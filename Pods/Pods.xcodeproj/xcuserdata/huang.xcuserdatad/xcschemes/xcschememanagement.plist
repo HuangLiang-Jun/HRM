@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-HRM.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>6C1A5973D491C521375A24ADB648F01A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>71C1DF39EE1271EA1147F993CA1439A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>868010619D7E6CBA5C6E6E2874668C85</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CB9D77588E4AE391FAC36D94F398CA3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
