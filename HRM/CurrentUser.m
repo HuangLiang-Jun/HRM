@@ -37,7 +37,7 @@
             
         } else {
             
-            _email = [NSString new];
+            _email = @"";
             
         }
         if ([userDefaults objectForKey:@"Password"] != nil) {
@@ -46,7 +46,7 @@
             
         } else {
             
-            _password = [NSString new];
+            _password = @"";
             
         }
         if ([userDefaults objectForKey:@"UID"] != nil) {
