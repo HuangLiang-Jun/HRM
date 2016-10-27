@@ -23,9 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
-    
+    FIRUser *user = [[FIRAuth auth] currentUser];
+    if (user != nil) {
+        
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,14 +44,6 @@
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
     _passwordField.text = localUser .password;
-    
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self name:@"LocalUserInfoFetchCompleted" object:nil];
     
 }
 
@@ -82,12 +78,15 @@
 
 - (void)discriminateUserAuth {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"LocalUserInfoFetchCompleted" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     switch (localUser.auth.intValue) {
             
         case 0:
             [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
             break;
+            
         default:
             [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
             break;

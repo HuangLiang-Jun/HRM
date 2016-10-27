@@ -46,6 +46,8 @@
 
 - (void)prepareForSignInPage {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"UserHadBeenSignOut" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     localUser.email = @"";
     localUser.password = @"";

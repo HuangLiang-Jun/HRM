@@ -64,12 +64,12 @@
             _auth = [userDefaults valueForKey:@"Auth"];
             
         }
-        if (_email != nil && _password!=nil) {
+        _applicationList = [NSMutableArray new];
+        if (![_email isEqualToString:@""] && ![_password isEqualToString:@""]) {
             
             [self signInUserAccount];
             
         }
-        _applicationList = [NSMutableArray new];
         
     }
     
@@ -113,14 +113,14 @@
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        if (snapshot) {
+        if (snapshot.value != [NSNull null]) {
             
             _displayName = snapshot.value;
             [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
             FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
             [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
-                if (snapshot) {
+                if (snapshot.value != [NSNull null]) {
                     
                     _auth = snapshot.value;
                     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
@@ -136,20 +136,23 @@
 }
 
 - (void)downloadAppcationList {
+    
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-//        NSLog(@"Snapshot: %@", snapshot);
-        
-        if (snapshot) {
+        [_applicationList removeAllObjects];
+        if (snapshot.value != [NSNull null]) {
             
             NSDictionary *applicationListDict = snapshot.value;
-//            for (NSString *key in [applicationListDict allKeys]) {
-//                
-//                NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
-//                [_applicationList addObject:application];
-//            
-//            }
+            if (applicationListDict.count != 0) {
+                
+                for (NSString *key in [applicationListDict allKeys]) {
+                    
+                    NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
+                    [_applicationList addObject:application];
+                    
+                }
+            }
         }
     }];
 }
@@ -207,6 +210,7 @@
             
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
             [notificationCenter postNotificationName:@"UserHadBeenSignOut" object:nil];
+            [_applicationList removeAllObjects];
             
         } else {
             
