@@ -10,95 +10,222 @@
 
 @implementation CurrentUser
 
+#pragma mark - Current User Singleton
+
 + (instancetype)sharedInstance {
+    
     static CurrentUser *_localUser;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _localUser = [CurrentUser new];
+        
+        _localUser = [[CurrentUser alloc] init];
+        
     });
+    
     return _localUser;
 }
 
-+ (void)signOutUserAccount {
-    NSError *error;
-    [[FIRAuth auth] signOut:&error];
-    if (error) {
-        NSLog(@"Error (Sign out): %@", error);
+- (id)init {
+    
+    self = [super init];
+    if (self) {
+
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        if ([userDefaults objectForKey:@"Email"] != nil) {
+            
+            _email = [userDefaults valueForKey:@"Email"];
+            
+        } else {
+            
+            _email = [NSString new];
+            
+        }
+        if ([userDefaults objectForKey:@"Password"] != nil) {
+            
+            _password = [userDefaults valueForKey:@"Password"];
+            
+        } else {
+            
+            _password = [NSString new];
+            
+        }
+        if ([userDefaults objectForKey:@"UID"] != nil) {
+            
+            _uid = [userDefaults valueForKey:@"UID"];
+            
+        }
+        if ([userDefaults objectForKey:@"DisplayName"]) {
+            
+            _displayName = [userDefaults valueForKey:@"DisplayName"];
+            
+        }
+        if ([userDefaults objectForKey:@"Auth"]) {
+            
+            _auth = [userDefaults valueForKey:@"Auth"];
+            
+        }
+        if (_email != nil && _password!=nil) {
+            
+            [self signInUserAccount];
+            
+        }
+        _applicationList = [NSMutableArray new];
+        
     }
+    
+    return self;
 }
 
-- (void)createUserAccount {
-    [[FIRAuth auth] createUserWithEmail:_email password:_password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
-        if (user != nil) {
-            _uid = user.uid;
-            _downloadState = @1;
-            [[NSUserDefaults standardUserDefaults] setValue:_uid forKey:@"UID"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        } else {
-            NSLog(@"Error (Account creation): %@", error);
-        }
-    }];
+#pragma mark - Update User Defaults
+
+- (void)updateUserDefaultsWithValue:(id)value andKey:(NSString *)key {
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setValue:value forKey:key];
+    [userDefaults synchronize];
+    
 }
+
+#pragma mark - Firebase Account Manage Func (Sign In)
 
 - (void)signInUserAccount {
+    
     [[FIRAuth auth] signInWithEmail:_email password:_password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        
         if (user != nil) {
+            
+            [self updateUserDefaultsWithValue:_email andKey:@"Email"];
+            [self updateUserDefaultsWithValue:_password andKey:@"Password"];
             _uid = user.uid;
-            _downloadState = @1;
-            [[NSUserDefaults standardUserDefaults] setValue:_uid forKey:@"UID"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
             [self fetchLocalUserInfoForm:user];
+            
         } else {
+            
             NSLog(@"Error (Sign in): %@", error);
+            
         }
     }];
 }
 
 - (void)fetchLocalUserInfoForm:(FIRUser *)user {
-    FIRDatabaseReference *_ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
-    [_ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        _displayName = snapshot.value;
-        [[NSUserDefaults standardUserDefaults] setValue:_displayName forKey:@"DisplayName"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        _downloadState = @2;
-        FIRDatabaseReference *_ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
-        [_ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            _auth = snapshot.value;
-            [[NSUserDefaults standardUserDefaults] setValue:_auth forKey:@"Auth"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            _downloadState = @3;
-        }];
+    
+    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
+    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (snapshot) {
+            
+            _displayName = snapshot.value;
+            [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
+            FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
+            [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                
+                if (snapshot) {
+                    
+                    _auth = snapshot.value;
+                    [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
+                    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                    [notificationCenter postNotificationName:@"LocalUserInfoFetchCompleted" object:nil];
+                    
+                }
+            }];
+            [self downloadAppcationList];
+            
+        }
+    }];
+}
+
+- (void)downloadAppcationList {
+    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+//        NSLog(@"Snapshot: %@", snapshot);
+        
+        if (snapshot) {
+            
+            NSDictionary *applicationListDict = snapshot.value;
+//            for (NSString *key in [applicationListDict allKeys]) {
+//                
+//                NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
+//                [_applicationList addObject:application];
+//            
+//            }
+        }
+    }];
+}
+
+#pragma mark - Firebase Account Manage Func (Create)
+
+- (void)createUserAccount {
+    
+    [[FIRAuth auth] createUserWithEmail:_email password:_password completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
+        
+        if (user != nil) {
+            
+            [self updateUserDefaultsWithValue:_email andKey:@"Email"];
+            [self updateUserDefaultsWithValue:_password andKey:@"Password"];
+            _uid = user.uid;
+            [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
+            
+        } else {
+            
+            NSLog(@"Error (Account creation): %@", error);
+            
+        }
     }];
 }
 
 - (void)updateUserInfoWithDict:(NSMutableDictionary *)userInfo {
+    
     _auth = @0;
+    [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
     NSString *dateString = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
     NSDictionary *userInfoDetail = @{@"Auth": _auth, @"Email": _email, @"Info": (NSDictionary *)userInfo, @"SignUpDate": dateString, @"UID": _uid};
-    [[NSUserDefaults standardUserDefaults] setValue:_auth forKey:@"Auth"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    FIRDatabaseReference *_ref = [[FIRDatabase database] reference];
-    [[_ref child:_displayName] updateChildValues:userInfoDetail];
-    [[[_ref child:@"UID"] child:_uid] setValue:_displayName];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:_displayName];
+        [ref updateChildValues:userInfoDetail];
+        
+    });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
+        [ref setValue:_displayName];
+        
+    });
 }
+
+#pragma mark - Firebase Account Manage Func (Sign Out)
+
+- (void)signOutUserAccount {
+    
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSError *error;
+        [[FIRAuth auth] signOut:&error];
+        if (!error) {
+            
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:@"UserHadBeenSignOut" object:nil];
+            
+        } else {
+            
+            NSLog(@"Error (Sign in): %@", error);
+            
+        }
+    });
+}
+
+#pragma mark - Firebase Application Sync Func
 
 - (void)updateApplicationInfoWithDict:(NSDictionary *)application {
-    FIRDatabaseReference *_ref = [[FIRDatabase database] reference];
-    [[[_ref child:_displayName] child:@"ApplicationList"] updateChildValues:application];
-}
-
-- (void)downloadAppcationList {
-    FIRDatabaseReference *_ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
-    [_ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *applicationListDict = snapshot.value;
-        _applicationList = [NSMutableArray new];
-        for (NSString *key in [applicationListDict allKeys]) {
-            NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
-            [_applicationList addObject:application];
-        }
-        _applicationDownloadState = @1;
-    }];
     
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+        [ref updateChildValues:application];
+        
+    });
 }
 
 @end

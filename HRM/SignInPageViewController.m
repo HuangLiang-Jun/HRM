@@ -18,59 +18,89 @@
 
 @implementation SignInPageViewController
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:true];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    _emailField.text = localUser.email;
+    _passwordField.text = localUser .password;
+    
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:false];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"LocalUserInfoFetchCompleted" object:nil];
+    
 }
+
+#pragma mark - Sign In Btn Func
 
 - (IBAction)signInBtnPressed:(UIButton *)sender {
+    
     CurrentUser *localUser = [CurrentUser sharedInstance];
     if (![_emailField.text isEqualToString:@""]) {
+        
         localUser.email = _emailField.text;
-        [[NSUserDefaults standardUserDefaults] setValue: localUser.email forKey:@"Email"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         if (![_passwordField.text isEqualToString:@""]) {
+            
             localUser.password = _passwordField.text;
-            [[NSUserDefaults standardUserDefaults] setValue:localUser.password forKey:@"Password"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [localUser signInUserAccount];
-            FIRUser *user = [[FIRAuth auth] currentUser];
-            if (user != nil && [localUser.downloadState isEqual:@3]) {
-                switch (localUser.auth.intValue) {
-                    case 1:
-                        [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
-                        break;
-                    default:
-                        [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
-                        break;
-                }
-                [localUser downloadAppcationList];
-            }
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
+             [localUser signInUserAccount];
+        
         } else {
+            
             _passwordField.placeholder = @"Enter your password.";
             _passwordField.text = @"";
+            
         }
     } else {
+        
         _emailField.placeholder = @"Enter your email.";
         _emailField.text = @"";
+        
     }
 }
 
+- (void)discriminateUserAuth {
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    switch (localUser.auth.intValue) {
+            
+        case 0:
+            [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
+            break;
+        default:
+            [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
+            break;
+            
+    }
+}
+
+#pragma mark - Sign Up Btn Func
+
 - (IBAction)createNewAccountBtnPressed:(UIButton *)sender {
+    
     [self performSegueWithIdentifier:@"SignUpPageSegue" sender:sender];
+    
 }
 
 @end

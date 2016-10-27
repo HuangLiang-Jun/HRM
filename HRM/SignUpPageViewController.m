@@ -19,40 +19,51 @@
 
 @implementation SignUpPageViewController
 
+#pragma mark - View LifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
 }
 
+#pragma mark - Create User Account Btn Func
+
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
+    
     CurrentUser *localUser = [CurrentUser sharedInstance];
     if (![_emailField.text isEqualToString:@""]) {
+        
         localUser.email = _emailField.text;
-        [[NSUserDefaults standardUserDefaults] setValue:localUser.email forKey:@"Email"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         if (![_passwordField.text isEqualToString:@""]) {
+            
             localUser.password = _passwordField.text;
             if ([_reconfirmPasswordField.text isEqualToString:_passwordField.text]) {
-                [[NSUserDefaults standardUserDefaults] setValue:localUser.password forKey:@"Password"];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                    [localUser createUserAccount];
-                });
+                
+                [localUser createUserAccount];
                 [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
+                
             } else {
+                
                 _reconfirmPasswordField.placeholder = @"Incompatible password.";
                 _reconfirmPasswordField.text = @"";
+                
             }
         } else {
+            
             _passwordField.placeholder = @"Enter your password.";
             _passwordField.text = @"";
+            
         }
     } else {
+        
         _emailField.placeholder = @"Enter your email.";
         _emailField.text = @"";
+        
     }
 }
 

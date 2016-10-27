@@ -29,6 +29,8 @@
 
 @implementation UserInfoPageViewController
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -39,36 +41,43 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [CurrentUser signOutUserAccount];
+
 }
 
+#pragma  mark - Complete Account Creation Btn Func
+
 - (IBAction)completeAccountCreationBtnPressed:(UIButton *)sender {
-    NSArray<UITextField *> *userInfoField = @[_nameField, _genderField, _positionField, _birthdayField, _IDCardNumberField, _heightField, _weightField, _bloodTypeField, _cellphoneNumberField, _marriageField, _mailingAddressField];
-    NSArray *userInfoKey = @[@"Gender", @"Position", @"Birthday", @"IDCardNumber", @"Height", @"Weight", @"BloodType", @"CellphoneNumber", @"Marriage", @"MailingAddress"];
-    NSMutableDictionary *userInfo = [NSMutableDictionary new];
+    
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    for (int i = 0; i < userInfoField.count; i += 1) {
-        if (![userInfoField[i].text isEqualToString:@""]) {
-            switch (i) {
-                case 0:
-                    localUser.displayName = userInfoField[0].text;
-                    [[NSUserDefaults standardUserDefaults] setValue:localUser.displayName forKey:@"DisplayName"];
-                    [[NSUserDefaults standardUserDefaults] synchronize];
-                    break;
-                default:
-                    [userInfo setValue:userInfoField[i].text forKey:userInfoKey[i - 1]];
-                    break;
-            }
-        } else {
-            userInfoField[i].placeholder = @"Please enter compatible info.";
-            userInfoField[i].text = @"";
-        }
+    if (![_nameField.text isEqualToString:@""]) {
+        
+        localUser.displayName = _nameField.text;
+        [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
+        
     }
-    if (userInfo.count == userInfoKey.count && [localUser.downloadState isEqual:@1]) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [localUser updateUserInfoWithDict:userInfo];
-        });
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Gender": _genderField, @"Position": _positionField, @"Birthday": _birthdayField, @"IDCardNumber": _IDCardNumberField, @"Height": _heightField, @"Weight": _weightField, @"BloodType": _bloodTypeField, @"CellphoneNumber": _cellphoneNumberField, @"Marriage": _marriageField, @"MailingAddress": _mailingAddressField}];
+    int count = 0;
+    for (NSString *key in [userInfo allKeys]) {
+        
+        UITextField *textField = [userInfo valueForKey:key];
+        if (![textField.text isEqualToString:@""]) {
+            
+            [userInfo setValue:textField.text forKey:key];
+            
+        } else {
+            
+            count += 1;
+            textField.placeholder = @"Please enter compatible info.";
+            textField.text = @"";
+            
+        }
+        
+    }
+    if (count == 0) {
+        
+        [localUser updateUserInfoWithDict:userInfo];
         [self.navigationController popToRootViewControllerAnimated:true];
+
     }
 }
 

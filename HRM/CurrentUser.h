@@ -19,13 +19,11 @@
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *displayName;
 @property (strong, nonatomic) NSNumber *auth;
-@property (strong, nonatomic) NSNumber *downloadState;
 @property (strong, nonatomic) NSMutableArray *applicationList;
-@property (strong, nonatomic) NSNumber *applicationDownloadState;
 
 + (instancetype)sharedInstance;
 
-+ (void)signOutUserAccount;
+- (void)updateUserDefaultsWithValue:(id)value andKey:(NSString *)key;
 
 - (void)createUserAccount;
 
@@ -36,6 +34,8 @@
 - (void)updateUserInfoWithDict:(NSMutableDictionary *)userInfo;
 
 - (void)updateApplicationInfoWithDict:(NSDictionary *)Application;
+
+- (void)signOutUserAccount;
 
 - (void)downloadAppcationList;
 

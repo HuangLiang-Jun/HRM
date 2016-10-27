@@ -15,6 +15,8 @@
 
 @implementation EmployeeHomePageViewController
 
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -23,12 +25,32 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma mark - Application Page Btn Func
+
 - (IBAction)applicationPageBtnPressed:(UIButton *)sender {
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    if ([localUser.applicationDownloadState isEqual:@1]) {
-        [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:sender];
-    }
+    
+    [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:sender];
+    
 }
 
+#pragma mark - Sign Out Btn Func
+
+- (IBAction)signOutBtnPressed:(UIButton *)sender {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserHadBeenSignOut" object:nil];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser signOutUserAccount];
+
+}
+
+- (void)prepareForSignInPage {
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    localUser.email = @"";
+    localUser.password = @"";
+    [self.navigationController popViewControllerAnimated:true];
+    
+}
 
 @end
