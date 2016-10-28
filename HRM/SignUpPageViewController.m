@@ -53,12 +53,14 @@
                 _reconfirmPasswordField.text = @"";
                 
             }
+            
         } else {
             
             _passwordField.placeholder = @"Enter your password.";
             _passwordField.text = @"";
             
         }
+        
     } else {
         
         _emailField.placeholder = @"Enter your email.";

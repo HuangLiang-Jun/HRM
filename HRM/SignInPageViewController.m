@@ -68,6 +68,7 @@
             _passwordField.text = @"";
             
         }
+        
     } else {
         
         _emailField.placeholder = @"Enter your email.";

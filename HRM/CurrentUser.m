@@ -21,8 +21,8 @@
         _localUser = [[CurrentUser alloc] init];
         
     });
-    
     return _localUser;
+    
 }
 
 - (id)init {
@@ -37,7 +37,7 @@
             
         } else {
             
-            _email = @"";
+            _email = [NSString new];
             
         }
         if ([userDefaults objectForKey:@"Password"] != nil) {
@@ -46,7 +46,7 @@
             
         } else {
             
-            _password = @"";
+            _password = [NSString new];
             
         }
         if ([userDefaults objectForKey:@"UID"] != nil) {
@@ -72,8 +72,8 @@
         }
         
     }
-    
     return self;
+    
 }
 
 #pragma mark - Update User Defaults
@@ -128,6 +128,7 @@
                     [notificationCenter postNotificationName:@"LocalUserInfoFetchCompleted" object:nil];
                     
                 }
+                
             }];
             [self downloadAppcationList];
             
@@ -144,7 +145,7 @@
         if (snapshot.value != [NSNull null]) {
             
             NSDictionary *applicationListDict = snapshot.value;
-            if (applicationListDict.count != 0) {
+            if (applicationListDict.count > 0) {
                 
                 for (NSString *key in [applicationListDict allKeys]) {
                     
