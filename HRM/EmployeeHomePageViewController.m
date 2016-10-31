@@ -53,7 +53,7 @@
     CurrentUser *localUser = [CurrentUser sharedInstance];
     localUser.email = @"";
     localUser.password = @"";
-    [self.navigationController popViewControllerAnimated:true];
+    [self dismissViewControllerAnimated:true completion:nil];
     
 }
 

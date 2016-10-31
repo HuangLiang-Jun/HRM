@@ -29,8 +29,6 @@
 
 - (void)signInUserAccount;
 
-- (void)downloadUserInfoForm:(FIRUser *)user;
-
 - (void)uploadUserInfoWithDict:(NSMutableDictionary *)userInfo;
 
 - (void)signOutUserAccount;
