@@ -36,36 +36,34 @@
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![_emailField.text isEqualToString:@""]) {
+    if (![_emailField.text isEqualToString:@""] && ![_passwordField.text isEqualToString:@""]) {
         
         localUser.email = _emailField.text;
-        if (![_passwordField.text isEqualToString:@""]) {
+        if ([_reconfirmPasswordField.text isEqualToString:_passwordField.text]) {
             
             localUser.password = _passwordField.text;
-            if ([_reconfirmPasswordField.text isEqualToString:_passwordField.text]) {
-                
-                [localUser createUserAccount];
-                [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
-                
-            } else {
-                
-                _reconfirmPasswordField.placeholder = @"Incompatible password.";
-                _reconfirmPasswordField.text = @"";
-                
-            }
+            [localUser createUserAccount];
+            [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
             
         } else {
             
-            _passwordField.placeholder = @"Enter your password.";
-            _passwordField.text = @"";
+            _reconfirmPasswordField.placeholder = @"Reconfirm your password";
+            _reconfirmPasswordField.text = @"";
             
         }
-        
     } else {
         
-        _emailField.placeholder = @"Enter your email.";
-        _emailField.text = @"";
+        NSDictionary *signInInfo = @{@"Email": _emailField, @"Password": _passwordField};
+        for (NSString *key in [signInInfo allKeys]) {
+            
+            UITextField *textField = [signInInfo valueForKey:key];
+            if ([textField.text isEqualToString:@""]) {
+                
+                textField.placeholder = [NSString stringWithFormat:@"Enter your %@", key];
+                textField.text = @"";
         
+            }
+        }
     }
 }
 

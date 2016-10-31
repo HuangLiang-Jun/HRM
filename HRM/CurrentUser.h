@@ -29,14 +29,14 @@
 
 - (void)signInUserAccount;
 
-- (void)fetchLocalUserInfoForm:(FIRUser *)user;
+- (void)downloadUserInfoForm:(FIRUser *)user;
 
-- (void)updateUserInfoWithDict:(NSMutableDictionary *)userInfo;
-
-- (void)updateApplicationInfoWithDict:(NSDictionary *)Application;
+- (void)uploadUserInfoWithDict:(NSMutableDictionary *)userInfo;
 
 - (void)signOutUserAccount;
 
 - (void)downloadAppcationList;
+
+- (void)uploadApplicationWithDict:(NSDictionary *)Application;
 
 @end

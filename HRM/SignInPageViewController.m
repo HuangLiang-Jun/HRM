@@ -23,18 +23,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    FIRUser *user = [[FIRAuth auth] currentUser];
-    if (user != nil) {
-        
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
-        
-    }
+//    FIRUser *user = [[FIRAuth auth] currentUser];
+//    if (user != nil) {
+//        
+//        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+//        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+//        
+//    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+- (void)loadView {
+    [super loadView];
+    
+    FIRUser *user = [[FIRAuth auth] currentUser];
+    if (user != nil) {
+        
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,35 +64,34 @@
 - (IBAction)signInBtnPressed:(UIButton *)sender {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![_emailField.text isEqualToString:@""]) {
+    if (![_emailField.text isEqualToString:@""] && ![_passwordField.text isEqualToString:@""]) {
         
         localUser.email = _emailField.text;
-        if (![_passwordField.text isEqualToString:@""]) {
-            
-            localUser.password = _passwordField.text;
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"LocalUserInfoFetchCompleted" object:nil];
-             [localUser signInUserAccount];
-        
-        } else {
-            
-            _passwordField.placeholder = @"Enter your password.";
-            _passwordField.text = @"";
-            
-        }
+        localUser.password = _passwordField.text;
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        [localUser signInUserAccount];
         
     } else {
         
-        _emailField.placeholder = @"Enter your email.";
-        _emailField.text = @"";
-        
+        NSDictionary *signInInfo = @{@"Email": _emailField, @"Password": _passwordField};
+        for (NSString *key in [signInInfo allKeys]) {
+            
+            UITextField *textField = [signInInfo valueForKey:key];
+            if ([textField.text isEqualToString:@""]) {
+                
+                textField.placeholder = [NSString stringWithFormat:@"Enter your %@", key];
+                textField.text = @"";
+                
+            }
+        }
     }
 }
 
 - (void)discriminateUserAuth {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self name:@"LocalUserInfoFetchCompleted" object:nil];
+    [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     switch (localUser.auth.intValue) {
             

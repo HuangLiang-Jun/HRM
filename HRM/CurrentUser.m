@@ -98,7 +98,7 @@
             [self updateUserDefaultsWithValue:_password andKey:@"Password"];
             _uid = user.uid;
             [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
-            [self fetchLocalUserInfoForm:user];
+            [self downloadUserInfoForm:user];
             
         } else {
             
@@ -108,7 +108,7 @@
     }];
 }
 
-- (void)fetchLocalUserInfoForm:(FIRUser *)user {
+- (void)downloadUserInfoForm:(FIRUser *)user {
     
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -117,43 +117,19 @@
             
             _displayName = snapshot.value;
             [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
-            FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
-            [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            FIRDatabaseReference *userAuthRef = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
+            [userAuthRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
                 if (snapshot.value != [NSNull null]) {
                     
                     _auth = snapshot.value;
                     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
                     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-                    [notificationCenter postNotificationName:@"LocalUserInfoFetchCompleted" object:nil];
+                    [notificationCenter postNotificationName:@"UserInfoDownloaded" object:nil];
                     
                 }
                 
             }];
-            [self downloadAppcationList];
-            
-        }
-    }];
-}
-
-- (void)downloadAppcationList {
-    
-    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
-    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        [_applicationList removeAllObjects];
-        if (snapshot.value != [NSNull null]) {
-            
-            NSDictionary *applicationListDict = snapshot.value;
-            if (applicationListDict.count > 0) {
-                
-                for (NSString *key in [applicationListDict allKeys]) {
-                    
-                    NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
-                    [_applicationList addObject:application];
-                    
-                }
-            }
         }
     }];
 }
@@ -179,7 +155,7 @@
     }];
 }
 
-- (void)updateUserInfoWithDict:(NSMutableDictionary *)userInfo {
+- (void)uploadUserInfoWithDict:(NSMutableDictionary *)userInfo {
     
     _auth = @0;
     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
@@ -187,14 +163,14 @@
     NSDictionary *userInfoDetail = @{@"Auth": _auth, @"Email": _email, @"Info": (NSDictionary *)userInfo, @"SignUpDate": dateString, @"UID": _uid};
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:_displayName];
-        [ref updateChildValues:userInfoDetail];
+        FIRDatabaseReference *userInfoRef = [[[FIRDatabase database] reference] child:_displayName];
+        [userInfoRef updateChildValues:userInfoDetail];
         
     });
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
-        [ref setValue:_displayName];
+        FIRDatabaseReference *userIdentityRef = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
+        [userIdentityRef setValue:_displayName];
         
     });
 }
@@ -210,7 +186,7 @@
         if (!error) {
             
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:@"UserHadBeenSignOut" object:nil];
+            [notificationCenter postNotificationName:@"UserSignedOut" object:nil];
             [_applicationList removeAllObjects];
             
         } else {
@@ -223,12 +199,38 @@
 
 #pragma mark - Firebase Application Sync Func
 
-- (void)updateApplicationInfoWithDict:(NSDictionary *)application {
+- (void)downloadAppcationList {
+    
+    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if (snapshot.value != [NSNull null]) {
+            
+            NSDictionary *applicationListDict = snapshot.value;
+            [_applicationList removeAllObjects];
+            if (applicationListDict.count > 0) {
+                
+                for (NSString *key in [applicationListDict allKeys]) {
+                    
+                    NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
+                    [_applicationList addObject:application];
+                    
+                }
+                
+            }
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:@"applicationListDownloaded" object:nil];
+            
+        }
+    }];
+}
+
+- (void)uploadApplicationWithDict:(NSDictionary *)application {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
-        [ref updateChildValues:application];
+        FIRDatabaseReference *applicationListRef = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+        [applicationListRef updateChildValues:application];
         
     });
 }

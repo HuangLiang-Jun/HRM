@@ -72,9 +72,9 @@
     }
     if (count == 0) {
         
-        [localUser updateUserInfoWithDict:userInfo];
+        [localUser uploadUserInfoWithDict:userInfo];
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserHadBeenSignOut" object:nil];
+        [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
         CurrentUser *localUser = [CurrentUser sharedInstance];
         [localUser signOutUserAccount];
 
@@ -84,7 +84,7 @@
 - (void)prepareForSignInPage {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self name:@"UserHadBeenSignOut" object:nil];
+    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
     [self.navigationController popToRootViewControllerAnimated:true];
     
 }

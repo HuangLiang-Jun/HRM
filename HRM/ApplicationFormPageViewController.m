@@ -124,7 +124,7 @@ static int dependence;
         NSDictionary *application = @{applicationDate: applicationInfo};
         CurrentUser *localUser = [CurrentUser sharedInstance];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [localUser updateApplicationInfoWithDict:application];
+            [localUser uploadApplicationWithDict:application];
         });
 
         [localUser.applicationList addObject:application];

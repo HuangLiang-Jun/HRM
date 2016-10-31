@@ -40,7 +40,7 @@
 - (IBAction)signOutBtnPressed:(UIButton *)sender {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserHadBeenSignOut" object:nil];
+    [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     [localUser signOutUserAccount];
 
