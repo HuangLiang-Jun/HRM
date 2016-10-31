@@ -23,13 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    FIRUser *user = [[FIRAuth auth] currentUser];
-//    if (user != nil) {
-//        
-//        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-//        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
-//        
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
