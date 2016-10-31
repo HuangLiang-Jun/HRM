@@ -154,8 +154,6 @@
         [_mainMapView setRegion:region animated:true];
 
     });
-    
-    
 }
 
 

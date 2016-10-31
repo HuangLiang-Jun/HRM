@@ -65,6 +65,7 @@
     _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
+    self.navigationItem.title = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
     // firebase Ref
     updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:@"黃亮鈞"];
     
@@ -76,46 +77,29 @@
         
         NSLog(@"snapShot: %@",snapshot.value);
         
-        
-        
         NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
         vacationHours = [snapShotDic[nextMonthKey] intValue];
         
         NSLog(@"vacationHours: %i",vacationHours);
         
     }];
-    
-
-    
 
     selectDate = [NSDate date];
     
+    //setting segmentControl
     self.edgesForExtendedLayout = UIRectEdgeNone;
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionImages:@[ [UIImage imageNamed: @"morningDeselect.png"],[UIImage imageNamed:@"nightDeselect.png"],[UIImage imageNamed:@"offDayDeselect.png"],[UIImage imageNamed:@"specialDeselect.png"]] sectionSelectedImages:@[[UIImage imageNamed:@"morningSelect.png"],[UIImage imageNamed:@"nightSelect.png"],[UIImage imageNamed:@"offDaySelect.png"],[UIImage imageNamed:@"specialSelect.png"]]];
-    
+    NSArray *selectImageNameArr = @[[UIImage imageNamed:@"morningSelect"],[UIImage imageNamed:@"nightSelect"],[UIImage imageNamed:@"offdaySelect"],[UIImage imageNamed:@"specialSelect"]];
+    NSArray *deselectImageName = @[[UIImage imageNamed:@"morningDeselect"],[UIImage imageNamed:@"nightDeselect"],[UIImage imageNamed:@"offdayDeselect"],[UIImage imageNamed:@"specialDeselect"]];
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc]initWithSectionImages:deselectImageName sectionSelectedImages:selectImageNameArr];
     segmentedControl.frame = CGRectMake(0, 0, viewWidth, 40);
-    segmentedControl.selectionIndicatorHeight = 2.0f;
+    segmentedControl.selectionIndicatorHeight = 4.0f;
     segmentedControl.backgroundColor = [UIColor clearColor];
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     
-    
-//    // setting WorkingClassChoseBtn
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-//    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-//    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionImages:@[@"morningDeselect.png",@"nightDeselect.png",@"offDayDeselect.png",@"specialDeselect.png"] sectionSelectedImages:@[@"morningSelect.png",@"nightSelect.png",@"offDaySelect.png",@"specialSelect.png"]];
-//    segmentedControl.frame = CGRectMake(0, 0, viewWidth, 40);
-//    segmentedControl.selectionIndicatorHeight = 4.0f;
-//    segmentedControl.backgroundColor = [UIColor clearColor];
-//    segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
-//    segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-
-    
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventAllEvents];
     [self.view addSubview:segmentedControl];
-    
-    
     
 }
 
@@ -126,14 +110,29 @@
 }
 
 - (IBAction)submitBtnPressed:(UIButton *)sender {
+ 
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否確定送出?" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"送出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self submitWorkSchedule];
+    }];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:true completion:nil];
+  
+}
+
+-(void) submitWorkSchedule{
     [updateRef setValue:attendanceSheetForNextMonthDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"Update Scheduling Error : %@",error);
         }
     }];
-  
+    
 }
-
 #pragma - mark SegmentedControl Method
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {

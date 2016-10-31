@@ -44,10 +44,6 @@
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
 		706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706159D91D94231800D2530B /* LaunchScreen.storyboard */; };
-		70A398211DA6302D0046CDAC /* High3.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A398201DA6302D0046CDAC /* High3.storyboard */; };
-		70A398231DA631400046CDAC /* High4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A398221DA631400046CDAC /* High4.storyboard */; };
-		70A398251DA633EA0046CDAC /* High5.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A398241DA633EA0046CDAC /* High5.storyboard */; };
-		70A3986B1DA656DC0046CDAC /* Low2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70A3986A1DA656DC0046CDAC /* Low2.storyboard */; };
 		70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */; };
 		7AAC48412F70DADEDF7716CD /* Pods_HRM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465262FC63B996D9E36968C5 /* Pods_HRM.framework */; };
 		A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91416FC1DBDE37000735A49 /* Application.storyboard */; };
@@ -115,10 +111,6 @@
 		706159D71D94231800D2530B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		706159DA1D94231800D2530B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		706159DC1D94231900D2530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70A398201DA6302D0046CDAC /* High3.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = High3.storyboard; sourceTree = "<group>"; };
-		70A398221DA631400046CDAC /* High4.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = High4.storyboard; sourceTree = "<group>"; };
-		70A398241DA633EA0046CDAC /* High5.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = High5.storyboard; sourceTree = "<group>"; };
-		70A3986A1DA656DC0046CDAC /* Low2.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Low2.storyboard; sourceTree = "<group>"; };
 		70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
 		9C326C437B5E56D3CFD3D639 /* Pods-HRM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRM/Pods-HRM.debug.xcconfig"; sourceTree = "<group>"; };
 		A91416FC1DBDE37000735A49 /* Application.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Application.storyboard; sourceTree = "<group>"; };
@@ -182,21 +174,22 @@
 			name = CollectionView;
 			sourceTree = "<group>";
 		};
-		6335E1711DB8E1E100B71A63 /* Attendance */ = {
+		6328BF2D1DC780410067BBCC /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				6335E1761DB8E22F00B71A63 /* VC */,
+				70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */,
+				A91416FC1DBDE37000735A49 /* Application.storyboard */,
 			);
-			name = Attendance;
+			name = StoryBoard;
 			sourceTree = "<group>";
 		};
-		6335E1761DB8E22F00B71A63 /* VC */ = {
+		6335E1711DB8E1E100B71A63 /* Attendance */ = {
 			isa = PBXGroup;
 			children = (
 				6335E1771DB8E4A200B71A63 /* AttendanceViewController.h */,
 				6335E1781DB8E4A200B71A63 /* AttendanceViewController.m */,
 			);
-			name = VC;
+			name = Attendance;
 			sourceTree = "<group>";
 		};
 		6335E17A1DB8E52C00B71A63 /* Model */ = {
@@ -213,20 +206,10 @@
 		6335E17B1DB8E69100B71A63 /* Scheduling */ = {
 			isa = PBXGroup;
 			children = (
-				6335E17C1DB8E7AB00B71A63 /* Controller */,
+				63D92FA81DBF7F4A007578DB /* SearchTheClassTable */,
+				63D92FB31DBF7F98007578DB /* WorkScheduling */,
 			);
 			name = Scheduling;
-			sourceTree = "<group>";
-		};
-		6335E17C1DB8E7AB00B71A63 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				63D92FA81DBF7F4A007578DB /* SearchTheClassTable */,
-				63D92FB31DBF7F98007578DB /* Schedu */,
-				6335E17E1DB8E85200B71A63 /* SchedulingViewController.h */,
-				6335E17F1DB8E85200B71A63 /* SchedulingViewController.m */,
-			);
-			name = Controller;
 			sourceTree = "<group>";
 		};
 		63D92FA81DBF7F4A007578DB /* SearchTheClassTable */ = {
@@ -250,12 +233,14 @@
 			name = CheckClassForCollection;
 			sourceTree = "<group>";
 		};
-		63D92FB31DBF7F98007578DB /* Schedu */ = {
+		63D92FB31DBF7F98007578DB /* WorkScheduling */ = {
 			isa = PBXGroup;
 			children = (
 				630E70F11DBDCEAB0035E334 /* CollectionView */,
+				6335E17E1DB8E85200B71A63 /* SchedulingViewController.h */,
+				6335E17F1DB8E85200B71A63 /* SchedulingViewController.m */,
 			);
-			name = Schedu;
+			name = WorkScheduling;
 			sourceTree = "<group>";
 		};
 		63D92FB41DBF8105007578DB /* image */ = {
@@ -306,8 +291,14 @@
 		706159CA1D94231800D2530B /* HRM */ = {
 			isa = PBXGroup;
 			children = (
-				63D92FB41DBF8105007578DB /* image */,
+				6328BF2D1DC780410067BBCC /* StoryBoard */,
 				6335E17B1DB8E69100B71A63 /* Scheduling */,
+				6335E1711DB8E1E100B71A63 /* Attendance */,
+				A9DC91121DB51FEF00679708 /* AccountManage */,
+				A95C7E351DB9A7CD00AF7CB5 /* Application */,
+				6335E17A1DB8E52C00B71A63 /* Model */,
+				706159CB1D94231800D2530B /* Supporting Files */,
+				63D92FB41DBF8105007578DB /* image */,
 				A9DC91111DB51FD900679708 /* HRM.entitlements */,
 				706159CE1D94231800D2530B /* AppDelegate.h */,
 				706159CF1D94231800D2530B /* AppDelegate.m */,
@@ -315,15 +306,6 @@
 				706159D91D94231800D2530B /* LaunchScreen.storyboard */,
 				706159DC1D94231900D2530B /* Info.plist */,
 				A99D6A411DB4D18700C54FBB /* GoogleService-Info.plist */,
-				6335E1711DB8E1E100B71A63 /* Attendance */,
-				A9DC91121DB51FEF00679708 /* AccountManage */,
-				70A398201DA6302D0046CDAC /* High3.storyboard */,
-				70A398221DA631400046CDAC /* High4.storyboard */,
-				70A398241DA633EA0046CDAC /* High5.storyboard */,
-				70A3986A1DA656DC0046CDAC /* Low2.storyboard */,
-				A95C7E351DB9A7CD00AF7CB5 /* Application */,
-				706159CB1D94231800D2530B /* Supporting Files */,
-				6335E17A1DB8E52C00B71A63 /* Model */,
 			);
 			path = HRM;
 			sourceTree = "<group>";
@@ -349,7 +331,6 @@
 				63D92FDE1DC03667007578DB /* SalarySums.m */,
 				63D92FDF1DC03667007578DB /* SalaryViewController.h */,
 				63D92FE01DC03667007578DB /* SalaryViewController.m */,
-				A91416FC1DBDE37000735A49 /* Application.storyboard */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -367,7 +348,6 @@
 				A91417021DBEEA8600735A49 /* SupervisorHomePageViewController.m */,
 				A91417041DBEEAF600735A49 /* EmployeeHomePageViewController.h */,
 				A91417051DBEEAF600735A49 /* EmployeeHomePageViewController.m */,
-				70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */,
 			);
 			name = AccountManage;
 			sourceTree = "<group>";
@@ -452,8 +432,6 @@
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
 				63D92FD51DBF811A007578DB /* offdaySelect@2x.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
-				70A3986B1DA656DC0046CDAC /* Low2.storyboard in Resources */,
-				70A398211DA6302D0046CDAC /* High3.storyboard in Resources */,
 				63D92FD31DBF811A007578DB /* offdayfDeselect.png in Resources */,
 				63D92FCF1DBF811A007578DB /* nightDeselect@2x.png in Resources */,
 				63D92FD01DBF811A007578DB /* nightSelect.png in Resources */,
@@ -461,10 +439,8 @@
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
 				63D92FCB1DBF811A007578DB /* morningDeselect@2x.png in Resources */,
-				70A398251DA633EA0046CDAC /* High5.storyboard in Resources */,
 				A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */,
 				63D92FDC1DBF811A007578DB /* specialSelect@2x.png in Resources */,
-				70A398231DA631400046CDAC /* High4.storyboard in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				63D92FCA1DBF811A007578DB /* morningDeselect.png in Resources */,
 				63D92FCE1DBF811A007578DB /* nightDeselect.png in Resources */,
