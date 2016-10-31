@@ -51,6 +51,7 @@
             _reconfirmPasswordField.text = @"";
             
         }
+        
     } else {
         
         NSDictionary *signInInfo = @{@"Email": _emailField, @"Password": _passwordField};
