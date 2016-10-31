@@ -33,11 +33,12 @@
 - (void)loadView {
     [super loadView];
     
-    FIRUser *user = [[FIRAuth auth] currentUser];
-    if (user != nil) {
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    if (![localUser.email isEqualToString:@""] && ![localUser.password isEqualToString:@""]) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        [localUser signInUserAccount];
         
     }
 }
@@ -45,7 +46,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:true];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
     _passwordField.text = localUser .password;

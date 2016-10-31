@@ -85,7 +85,7 @@
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
-    [self.navigationController popToRootViewControllerAnimated:true];
+    [self.navigationController dismissViewControllerAnimated:true completion:nil];
     
 }
 

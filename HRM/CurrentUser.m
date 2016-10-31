@@ -65,11 +65,6 @@
             
         }
         _applicationList = [NSMutableArray new];
-        if (![_email isEqualToString:@""] && ![_password isEqualToString:@""]) {
-            
-            [self signInUserAccount];
-            
-        }
         
     }
     return self;
