@@ -48,6 +48,7 @@
     snapShotDic = [NSMutableDictionary new];
     attendanceSheetForNextMonthDic = [NSMutableDictionary new];
  
+    
     // for collectionView
     onDuty = [NSMutableArray new];
     offDuty = [NSMutableArray new];
@@ -60,12 +61,13 @@
     // claendar不可編輯&換頁
     _schedulingCalendar.allowsSelection = false;
     _schedulingCalendar.pagingEnabled = false;
-    
+    _schedulingCalendar.scrollEnabled =false;
     NSDate *today = [NSDate date];
     _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
     self.navigationItem.title = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
+   
     // firebase Ref
     updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:@"黃亮鈞"];
     
@@ -89,11 +91,11 @@
     //setting segmentControl
     self.edgesForExtendedLayout = UIRectEdgeNone;
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-    NSArray *selectImageNameArr = @[[UIImage imageNamed:@"morningSelect"],[UIImage imageNamed:@"nightSelect"],[UIImage imageNamed:@"offdaySelect"],[UIImage imageNamed:@"specialSelect"]];
-    NSArray *deselectImageName = @[[UIImage imageNamed:@"morningDeselect"],[UIImage imageNamed:@"nightDeselect"],[UIImage imageNamed:@"offdayDeselect"],[UIImage imageNamed:@"specialDeselect"]];
+    NSArray *selectImageNameArr = @[[UIImage imageNamed:@"morningSelect"],[UIImage imageNamed:@"nightSelect"],[UIImage imageNamed:@"dayoffSelect"],[UIImage imageNamed:@"specialSelect"]];
+    NSArray *deselectImageName = @[[UIImage imageNamed:@"morningDeselect"],[UIImage imageNamed:@"nightDeselect"],[UIImage imageNamed:@"dayoffDeselect"],[UIImage imageNamed:@"specialDeselect"]];
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc]initWithSectionImages:deselectImageName sectionSelectedImages:selectImageNameArr];
-    segmentedControl.frame = CGRectMake(0, 0, viewWidth, 40);
-    segmentedControl.selectionIndicatorHeight = 4.0f;
+    segmentedControl.frame = CGRectMake(0, 0, viewWidth, 50);
+    segmentedControl.selectionIndicatorHeight = 3.0f;
     segmentedControl.backgroundColor = [UIColor clearColor];
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
@@ -107,6 +109,9 @@
     [super didReceiveMemoryWarning];
     
     
+}
+- (IBAction)backBtnPressed:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)submitBtnPressed:(UIButton *)sender {

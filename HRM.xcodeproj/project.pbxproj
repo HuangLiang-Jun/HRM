@@ -19,25 +19,9 @@
 		63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAD1DBF7F7D007578DB /* CheckClassCollectionCell.m */; };
 		63D92FB21DBF7F8B007578DB /* SearchClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FB11DBF7F8B007578DB /* SearchClassViewController.m */; };
 		63D92FC91DBF811A007578DB /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB51DBF811A007578DB /* blueCircle.png */; };
-		63D92FCA1DBF811A007578DB /* morningDeselect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB61DBF811A007578DB /* morningDeselect.png */; };
-		63D92FCB1DBF811A007578DB /* morningDeselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB71DBF811A007578DB /* morningDeselect@2x.png */; };
-		63D92FCC1DBF811A007578DB /* morningSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB81DBF811A007578DB /* morningSelect.png */; };
-		63D92FCD1DBF811A007578DB /* morningSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB91DBF811A007578DB /* morningSelect@2x.png */; };
-		63D92FCE1DBF811A007578DB /* nightDeselect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBA1DBF811A007578DB /* nightDeselect.png */; };
-		63D92FCF1DBF811A007578DB /* nightDeselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBB1DBF811A007578DB /* nightDeselect@2x.png */; };
-		63D92FD01DBF811A007578DB /* nightSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBC1DBF811A007578DB /* nightSelect.png */; };
-		63D92FD11DBF811A007578DB /* nightSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBD1DBF811A007578DB /* nightSelect@2x.png */; };
-		63D92FD21DBF811A007578DB /* offdayDeselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBE1DBF811A007578DB /* offdayDeselect@2x.png */; };
-		63D92FD31DBF811A007578DB /* offdayfDeselect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FBF1DBF811A007578DB /* offdayfDeselect.png */; };
-		63D92FD41DBF811A007578DB /* offdaySelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC01DBF811A007578DB /* offdaySelect.png */; };
-		63D92FD51DBF811A007578DB /* offdaySelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC11DBF811A007578DB /* offdaySelect@2x.png */; };
 		63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC21DBF811A007578DB /* orangeCircle.png */; };
 		63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC31DBF811A007578DB /* purpleCircle.png */; };
 		63D92FD81DBF811A007578DB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC41DBF811A007578DB /* redCircle.png */; };
-		63D92FD91DBF811A007578DB /* specialDeselect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC51DBF811A007578DB /* specialDeselect.png */; };
-		63D92FDA1DBF811A007578DB /* specialDeselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC61DBF811A007578DB /* specialDeselect@2x.png */; };
-		63D92FDB1DBF811A007578DB /* specialSelect.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC71DBF811A007578DB /* specialSelect.png */; };
-		63D92FDC1DBF811A007578DB /* specialSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC81DBF811A007578DB /* specialSelect@2x.png */; };
 		63D92FE11DC03667007578DB /* SalarySums.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FDE1DC03667007578DB /* SalarySums.m */; };
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
 		706159CD1D94231800D2530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CC1D94231800D2530B /* main.m */; };
@@ -81,25 +65,9 @@
 		63D92FB01DBF7F8B007578DB /* SearchClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchClassViewController.h; sourceTree = "<group>"; };
 		63D92FB11DBF7F8B007578DB /* SearchClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchClassViewController.m; sourceTree = "<group>"; };
 		63D92FB51DBF811A007578DB /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
-		63D92FB61DBF811A007578DB /* morningDeselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morningDeselect.png; sourceTree = "<group>"; };
-		63D92FB71DBF811A007578DB /* morningDeselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "morningDeselect@2x.png"; sourceTree = "<group>"; };
-		63D92FB81DBF811A007578DB /* morningSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = morningSelect.png; sourceTree = "<group>"; };
-		63D92FB91DBF811A007578DB /* morningSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "morningSelect@2x.png"; sourceTree = "<group>"; };
-		63D92FBA1DBF811A007578DB /* nightDeselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightDeselect.png; sourceTree = "<group>"; };
-		63D92FBB1DBF811A007578DB /* nightDeselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nightDeselect@2x.png"; sourceTree = "<group>"; };
-		63D92FBC1DBF811A007578DB /* nightSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nightSelect.png; sourceTree = "<group>"; };
-		63D92FBD1DBF811A007578DB /* nightSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nightSelect@2x.png"; sourceTree = "<group>"; };
-		63D92FBE1DBF811A007578DB /* offdayDeselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offdayDeselect@2x.png"; sourceTree = "<group>"; };
-		63D92FBF1DBF811A007578DB /* offdayfDeselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offdayfDeselect.png; sourceTree = "<group>"; };
-		63D92FC01DBF811A007578DB /* offdaySelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = offdaySelect.png; sourceTree = "<group>"; };
-		63D92FC11DBF811A007578DB /* offdaySelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "offdaySelect@2x.png"; sourceTree = "<group>"; };
 		63D92FC21DBF811A007578DB /* orangeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeCircle.png; sourceTree = "<group>"; };
 		63D92FC31DBF811A007578DB /* purpleCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleCircle.png; sourceTree = "<group>"; };
 		63D92FC41DBF811A007578DB /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCircle.png; sourceTree = "<group>"; };
-		63D92FC51DBF811A007578DB /* specialDeselect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specialDeselect.png; sourceTree = "<group>"; };
-		63D92FC61DBF811A007578DB /* specialDeselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialDeselect@2x.png"; sourceTree = "<group>"; };
-		63D92FC71DBF811A007578DB /* specialSelect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = specialSelect.png; sourceTree = "<group>"; };
-		63D92FC81DBF811A007578DB /* specialSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialSelect@2x.png"; sourceTree = "<group>"; };
 		63D92FDD1DC03667007578DB /* SalarySums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalarySums.h; sourceTree = "<group>"; };
 		63D92FDE1DC03667007578DB /* SalarySums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalarySums.m; sourceTree = "<group>"; };
 		63D92FDF1DC03667007578DB /* SalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryViewController.h; sourceTree = "<group>"; };
@@ -247,25 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				63D92FB51DBF811A007578DB /* blueCircle.png */,
-				63D92FB61DBF811A007578DB /* morningDeselect.png */,
-				63D92FB71DBF811A007578DB /* morningDeselect@2x.png */,
-				63D92FB81DBF811A007578DB /* morningSelect.png */,
-				63D92FB91DBF811A007578DB /* morningSelect@2x.png */,
-				63D92FBA1DBF811A007578DB /* nightDeselect.png */,
-				63D92FBB1DBF811A007578DB /* nightDeselect@2x.png */,
-				63D92FBC1DBF811A007578DB /* nightSelect.png */,
-				63D92FBD1DBF811A007578DB /* nightSelect@2x.png */,
-				63D92FBE1DBF811A007578DB /* offdayDeselect@2x.png */,
-				63D92FBF1DBF811A007578DB /* offdayfDeselect.png */,
-				63D92FC01DBF811A007578DB /* offdaySelect.png */,
-				63D92FC11DBF811A007578DB /* offdaySelect@2x.png */,
 				63D92FC21DBF811A007578DB /* orangeCircle.png */,
 				63D92FC31DBF811A007578DB /* purpleCircle.png */,
 				63D92FC41DBF811A007578DB /* redCircle.png */,
-				63D92FC51DBF811A007578DB /* specialDeselect.png */,
-				63D92FC61DBF811A007578DB /* specialDeselect@2x.png */,
-				63D92FC71DBF811A007578DB /* specialSelect.png */,
-				63D92FC81DBF811A007578DB /* specialSelect@2x.png */,
 			);
 			name = image;
 			sourceTree = "<group>";
@@ -395,7 +347,7 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = F29672WPZ9;
+						DevelopmentTeam = 2FFS45S3SA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -428,30 +380,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63D92FDB1DBF811A007578DB /* specialSelect.png in Resources */,
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
-				63D92FD51DBF811A007578DB /* offdaySelect@2x.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
-				63D92FD31DBF811A007578DB /* offdayfDeselect.png in Resources */,
-				63D92FCF1DBF811A007578DB /* nightDeselect@2x.png in Resources */,
-				63D92FD01DBF811A007578DB /* nightSelect.png in Resources */,
-				63D92FD11DBF811A007578DB /* nightSelect@2x.png in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
-				63D92FCB1DBF811A007578DB /* morningDeselect@2x.png in Resources */,
 				A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */,
-				63D92FDC1DBF811A007578DB /* specialSelect@2x.png in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
-				63D92FCA1DBF811A007578DB /* morningDeselect.png in Resources */,
-				63D92FCE1DBF811A007578DB /* nightDeselect.png in Resources */,
-				63D92FDA1DBF811A007578DB /* specialDeselect@2x.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
-				63D92FD21DBF811A007578DB /* offdayDeselect@2x.png in Resources */,
-				63D92FD41DBF811A007578DB /* offdaySelect.png in Resources */,
-				63D92FD91DBF811A007578DB /* specialDeselect.png in Resources */,
-				63D92FCD1DBF811A007578DB /* morningSelect@2x.png in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
-				63D92FCC1DBF811A007578DB /* morningSelect.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -646,7 +582,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRM;
@@ -661,7 +597,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRM;

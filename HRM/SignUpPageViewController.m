@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.navigationController setNavigationBarHidden:true];
+   // [self.navigationController setNavigationBarHidden:true];
     
 }
 
