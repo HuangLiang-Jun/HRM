@@ -59,14 +59,14 @@
     _schedulingCollectionView.dataSource = self;
     
     // claendar不可編輯&換頁
-    _schedulingCalendar.allowsSelection = false;
-    _schedulingCalendar.pagingEnabled = false;
-    _schedulingCalendar.scrollEnabled =false;
+//    _schedulingCalendar.allowsSelection = false;
+//    _schedulingCalendar.pagingEnabled = false;
+//    _schedulingCalendar.scrollEnabled =false;
     NSDate *today = [NSDate date];
     _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
-    self.navigationItem.title = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
+//    self.navigationItem.title = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
    
     // firebase Ref
     updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:@"黃亮鈞"];
