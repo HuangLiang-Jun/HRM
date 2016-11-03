@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
+		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
+		6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */; };
 		630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */; };
 		630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */; };
 		6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */; };
@@ -52,6 +54,10 @@
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6309EA0E1DCBBF1A001815C6 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
+		6309EA111DCBC777001815C6 /* StaffListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListViewController.h; sourceTree = "<group>"; };
+		6309EA121DCBC777001815C6 /* StaffListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListViewController.m; sourceTree = "<group>"; };
+		6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoViewController.h; sourceTree = "<group>"; };
+		6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoViewController.m; sourceTree = "<group>"; };
 		630E70EB1DBDBAC00035E334 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		630E70EE1DBDCE960035E334 /* RecipeCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionHeaderView.h; sourceTree = "<group>"; };
@@ -141,6 +147,17 @@
 				465262FC63B996D9E36968C5 /* Pods_HRM.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6309EA101DCBC74B001815C6 /* StaffInfo */ = {
+			isa = PBXGroup;
+			children = (
+				6309EA111DCBC777001815C6 /* StaffListViewController.h */,
+				6309EA121DCBC777001815C6 /* StaffListViewController.m */,
+				6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */,
+				6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */,
+			);
+			name = StaffInfo;
 			sourceTree = "<group>";
 		};
 		630E70F11DBDCEAB0035E334 /* CollectionView */ = {
@@ -270,6 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
+				6309EA101DCBC74B001815C6 /* StaffInfo */,
 				63E0A1101DCB0C490021F246 /* BulletinBoard */,
 				6335E17B1DB8E69100B71A63 /* Scheduling */,
 				6335E1711DB8E1E100B71A63 /* Attendance */,
@@ -478,8 +496,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */,
+				6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */,
 				A9DC91151DB5202D00679708 /* SignInPageViewController.m in Sources */,
 				63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */,
+				6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */,
 				6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */,
 				63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */,
 				6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */,
