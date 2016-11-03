@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */; };
 		630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */; };
 		6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */; };
@@ -24,6 +25,9 @@
 		63D92FD81DBF811A007578DB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC41DBF811A007578DB /* redCircle.png */; };
 		63D92FE11DC03667007578DB /* SalarySums.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FDE1DC03667007578DB /* SalarySums.m */; };
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
+		63E0A10F1DCB0B4B0021F246 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E0A10E1DCB0B4B0021F246 /* info.png */; };
+		63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */; };
+		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
 		706159CD1D94231800D2530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CC1D94231800D2530B /* main.m */; };
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
@@ -45,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		630E70EB1DBDBAC00035E334 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		630E70EE1DBDCE960035E334 /* RecipeCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionHeaderView.h; sourceTree = "<group>"; };
@@ -72,6 +77,11 @@
 		63D92FDE1DC03667007578DB /* SalarySums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalarySums.m; sourceTree = "<group>"; };
 		63D92FDF1DC03667007578DB /* SalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryViewController.h; sourceTree = "<group>"; };
 		63D92FE01DC03667007578DB /* SalaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryViewController.m; sourceTree = "<group>"; };
+		63E0A10E1DCB0B4B0021F246 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		63E0A1111DCB0C910021F246 /* BulletinBoarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoarViewController.h; sourceTree = "<group>"; };
+		63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoarViewController.m; sourceTree = "<group>"; };
+		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
+		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
 		706159C81D94231800D2530B /* HRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706159CC1D94231800D2530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		706159CE1D94231800D2530B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -214,12 +224,25 @@
 		63D92FB41DBF8105007578DB /* image */ = {
 			isa = PBXGroup;
 			children = (
+				6309E9E61DCB174D001815C6 /* backBtn.png */,
+				63E0A10E1DCB0B4B0021F246 /* info.png */,
 				63D92FB51DBF811A007578DB /* blueCircle.png */,
 				63D92FC21DBF811A007578DB /* orangeCircle.png */,
 				63D92FC31DBF811A007578DB /* purpleCircle.png */,
 				63D92FC41DBF811A007578DB /* redCircle.png */,
 			);
 			name = image;
+			sourceTree = "<group>";
+		};
+		63E0A1101DCB0C490021F246 /* BulletinBoard */ = {
+			isa = PBXGroup;
+			children = (
+				63E0A1111DCB0C910021F246 /* BulletinBoarViewController.h */,
+				63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */,
+				63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */,
+				63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */,
+			);
+			name = BulletinBoard;
 			sourceTree = "<group>";
 		};
 		706159BF1D94231800D2530B = {
@@ -244,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
+				63E0A1101DCB0C490021F246 /* BulletinBoard */,
 				6335E17B1DB8E69100B71A63 /* Scheduling */,
 				6335E1711DB8E1E100B71A63 /* Attendance */,
 				A9DC91121DB51FEF00679708 /* AccountManage */,
@@ -342,7 +366,7 @@
 		706159C01D94231800D2530B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = JimSu;
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
@@ -380,7 +404,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6309E9E71DCB174D001815C6 /* backBtn.png in Resources */,
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
+				63E0A10F1DCB0B4B0021F246 /* info.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
@@ -449,6 +475,7 @@
 			files = (
 				A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */,
 				A9DC91151DB5202D00679708 /* SignInPageViewController.m in Sources */,
+				63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */,
 				6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */,
 				63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */,
 				6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */,
@@ -468,6 +495,7 @@
 				63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */,
 				630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */,
 				630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */,
+				63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +531,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -551,6 +580,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -110,9 +110,7 @@
     
     
 }
-- (IBAction)backBtnPressed:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
+
 
 - (IBAction)submitBtnPressed:(UIButton *)sender {
  

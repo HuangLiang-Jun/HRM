@@ -43,14 +43,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:false];
+    //[self.navigationController setNavigationBarHidden:false];
     [self.tableView reloadData];
 
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-    [self.navigationController setNavigationBarHidden:true];
+    //[self.navigationController setNavigationBarHidden:true];
     
 }
 

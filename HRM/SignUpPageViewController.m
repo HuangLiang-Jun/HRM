@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
    // [self.navigationController setNavigationBarHidden:true];
     
 }
@@ -34,6 +35,9 @@
 }
 
 #pragma mark - Create User Account Btn Func
+- (IBAction)backBtn:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     

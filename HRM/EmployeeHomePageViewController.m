@@ -31,7 +31,7 @@
 
 - (IBAction)applicationPageBtnPressed:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:sender];
+   // [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:sender];
     
 }
 
