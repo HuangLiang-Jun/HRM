@@ -11,17 +11,12 @@
 
 @interface UserInfoPageViewController ()
 
+
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *genderField;
-@property (weak, nonatomic) IBOutlet UITextField *positionField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayField;
 @property (weak, nonatomic) IBOutlet UITextField *IDCardNumberField;
-@property (weak, nonatomic) IBOutlet UITextField *heightField;
-@property (weak, nonatomic) IBOutlet UITextField *weightField;
-@property (weak, nonatomic) IBOutlet UITextField *bloodTypeField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneNumberField;
-@property (weak, nonatomic) IBOutlet UITextField *marriageField;
-@property (weak, nonatomic) IBOutlet UITextField *mailingAddressField;
+
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 
@@ -52,7 +47,7 @@
         [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
         
     }
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Gender": _genderField, @"Position": _positionField, @"Birthday": _birthdayField, @"IDCardNumber": _IDCardNumberField, @"Height": _heightField, @"Weight": _weightField, @"BloodType": _bloodTypeField, @"CellphoneNumber": _cellphoneNumberField, @"Marriage": _marriageField, @"MailingAddress": _mailingAddressField}];
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Birthday": _birthdayField, @"IDCardNumber": _IDCardNumberField, @"CellphoneNumber": _cellphoneNumberField}];
     int count = 0;
     for (NSString *key in [userInfo allKeys]) {
         
@@ -87,6 +82,11 @@
     [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
     [self.navigationController dismissViewControllerAnimated:true completion:nil];
     
+}
+
+-(IBAction) textFieldDoneEditing: (id) sender
+{
+    [sender resignFirstResponder];
 }
 
 

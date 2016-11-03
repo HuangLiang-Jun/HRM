@@ -14,15 +14,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
+
 @end
 
 @implementation SignInPageViewController
+
+-(IBAction) textFieldDoneEditing: (id) sender
+{
+    [sender resignFirstResponder];
+}
 
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   
 }
 
 - (void)didReceiveMemoryWarning {

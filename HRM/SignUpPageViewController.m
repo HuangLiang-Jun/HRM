@@ -21,6 +21,7 @@
 
 #pragma mark - View LifeCycle
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -72,6 +73,11 @@
             }
         }
     }
+}
+
+-(IBAction) textFieldDoneEditing: (id) sender
+{
+    [sender resignFirstResponder];
 }
 
 @end
