@@ -11,6 +11,9 @@
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
 		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
 		6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */; };
+		6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA191DCCAC8E001815C6 /* StaffSalaryViewController.m */; };
+		6309EA1D1DCCACD4001815C6 /* StaffSalaryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA1C1DCCACD4001815C6 /* StaffSalaryListViewController.m */; };
+		6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA1F1DCCAD52001815C6 /* SalaryListTableViewCell.m */; };
 		630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */; };
 		630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */; };
 		6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */; };
@@ -58,6 +61,12 @@
 		6309EA121DCBC777001815C6 /* StaffListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListViewController.m; sourceTree = "<group>"; };
 		6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoViewController.h; sourceTree = "<group>"; };
 		6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoViewController.m; sourceTree = "<group>"; };
+		6309EA181DCCAC8E001815C6 /* StaffSalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffSalaryViewController.h; sourceTree = "<group>"; };
+		6309EA191DCCAC8E001815C6 /* StaffSalaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffSalaryViewController.m; sourceTree = "<group>"; };
+		6309EA1B1DCCACD4001815C6 /* StaffSalaryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffSalaryListViewController.h; sourceTree = "<group>"; };
+		6309EA1C1DCCACD4001815C6 /* StaffSalaryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffSalaryListViewController.m; sourceTree = "<group>"; };
+		6309EA1E1DCCAD52001815C6 /* SalaryListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryListTableViewCell.h; sourceTree = "<group>"; };
+		6309EA1F1DCCAD52001815C6 /* SalaryListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryListTableViewCell.m; sourceTree = "<group>"; };
 		630E70EB1DBDBAC00035E334 /* CollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewCell.h; sourceTree = "<group>"; };
 		630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		630E70EE1DBDCE960035E334 /* RecipeCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionHeaderView.h; sourceTree = "<group>"; };
@@ -158,6 +167,19 @@
 				6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */,
 			);
 			name = StaffInfo;
+			sourceTree = "<group>";
+		};
+		6309EA171DCCAC3F001815C6 /* ManagerSalary */ = {
+			isa = PBXGroup;
+			children = (
+				6309EA1B1DCCACD4001815C6 /* StaffSalaryListViewController.h */,
+				6309EA1C1DCCACD4001815C6 /* StaffSalaryListViewController.m */,
+				6309EA181DCCAC8E001815C6 /* StaffSalaryViewController.h */,
+				6309EA191DCCAC8E001815C6 /* StaffSalaryViewController.m */,
+				6309EA1E1DCCAD52001815C6 /* SalaryListTableViewCell.h */,
+				6309EA1F1DCCAD52001815C6 /* SalaryListTableViewCell.m */,
+			);
+			name = ManagerSalary;
 			sourceTree = "<group>";
 		};
 		630E70F11DBDCEAB0035E334 /* CollectionView */ = {
@@ -286,6 +308,7 @@
 		706159CA1D94231800D2530B /* HRM */ = {
 			isa = PBXGroup;
 			children = (
+				6309EA171DCCAC3F001815C6 /* ManagerSalary */,
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
 				6309EA101DCBC74B001815C6 /* StaffInfo */,
 				63E0A1101DCB0C490021F246 /* BulletinBoard */,
@@ -498,6 +521,7 @@
 				A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */,
 				6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */,
 				A9DC91151DB5202D00679708 /* SignInPageViewController.m in Sources */,
+				6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */,
 				63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */,
 				6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */,
 				6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */,
@@ -512,12 +536,14 @@
 				63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */,
 				A91417031DBEEA8600735A49 /* SupervisorHomePageViewController.m in Sources */,
 				706159D01D94231800D2530B /* AppDelegate.m in Sources */,
+				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
 				706159CD1D94231800D2530B /* main.m in Sources */,
 				A9DC91211DB530F600679708 /* CurrentUser.m in Sources */,
 				63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */,
 				630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */,
+				6309EA1D1DCCACD4001815C6 /* StaffSalaryListViewController.m in Sources */,
 				630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */,
 				63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */,
 			);

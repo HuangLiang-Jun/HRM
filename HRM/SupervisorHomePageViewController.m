@@ -9,12 +9,17 @@
 #import "SupervisorHomePageViewController.h"
 #import "SearchClassViewController.h"
 #import "CurrentUser.h"
+@import Firebase;
+@import FirebaseDatabase;
+
 @interface SupervisorHomePageViewController ()
 
 @end
 
 @implementation SupervisorHomePageViewController
-
+{
+     FIRDatabaseReference *staffNameRef;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 }
@@ -27,10 +32,31 @@
 }
 - (IBAction)salaryBtnPressed:(UIButton *)sender {
 
+    staffNameRef = [[[FIRDatabase database]reference]child:@"UID"];
+    
+    //Get All Staff Name.
+    [staffNameRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSDictionary *allName = snapshot.value;
+        NSMutableArray *staffName = [[NSMutableArray alloc] initWithArray:allName.allValues];
+        
+        NSLog(@"snapshotValue: %@",staffName);
+        if (staffName.count != 0) {
+           
+            [[NSUserDefaults standardUserDefaults] setObject:staffName forKey:@"staffName"];
+            [[NSUserDefaults standardUserDefaults]synchronize];
+        }
+        
+    }];
+    
+    
 }
 - (IBAction)confirmApplicationBtnPressed:(UIButton *)sender {
-
+    
+    
+    
 }
+
+
 - (IBAction)signOutBtnPressed:(id)sender {
 
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
