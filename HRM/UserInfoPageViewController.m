@@ -9,14 +9,12 @@
 #import "UserInfoPageViewController.h"
 #import "CurrentUser.h"
 
-@interface UserInfoPageViewController ()
-
+@interface UserInfoPageViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayField;
 @property (weak, nonatomic) IBOutlet UITextField *IDCardNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneNumberField;
-
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 
@@ -29,11 +27,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+//    [_nameField performSelector:@selector(becomeFirstResponder) withObject:nil afterDelay:0.5];
+    [_nameField becomeFirstResponder];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    [self.navigationController setNavigationBarHidden:true];
+//    
+//}
+
+#pragma mark - textFieldDelegate
+
+//- (void)textFieldDidBeginEditing:(UITextField *)textField {
+//    
+//    [textField becomeFirstResponder];
+//    
+//}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return true;
 }
 
 #pragma  mark - Complete Account Creation Btn Func
@@ -83,11 +104,5 @@
     [self.navigationController dismissViewControllerAnimated:true completion:nil];
     
 }
-
--(IBAction) textFieldDoneEditing: (id) sender
-{
-    [sender resignFirstResponder];
-}
-
 
 @end

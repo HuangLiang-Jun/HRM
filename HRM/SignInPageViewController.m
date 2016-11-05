@@ -9,20 +9,14 @@
 #import "SignInPageViewController.h"
 #import "CurrentUser.h"
 
-@interface SignInPageViewController ()
+@interface SignInPageViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
-
 @end
 
 @implementation SignInPageViewController
-
--(IBAction) textFieldDoneEditing: (id) sender
-{
-    [sender resignFirstResponder];
-}
 
 #pragma mark - View Lifecycle
 
@@ -52,9 +46,19 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [_emailField becomeFirstResponder];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
     _passwordField.text = localUser .password;
+    
+}
+
+#pragma mark - Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return true;
     
 }
 

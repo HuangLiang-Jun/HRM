@@ -112,7 +112,7 @@
             
             _displayName = snapshot.value;
             [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
-            FIRDatabaseReference *userAuthRef = [[[[FIRDatabase database] reference] child:_displayName] child:@"Auth"];
+            FIRDatabaseReference *userAuthRef = [[[[[FIRDatabase database] reference] child:@"StaffInformation"]child:_displayName] child:@"Auth"];
             [userAuthRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
                 if (snapshot.value != [NSNull null]) {
@@ -123,7 +123,6 @@
                     [notificationCenter postNotificationName:@"UserInfoDownloaded" object:nil];
                     
                 }
-                
             }];
         }
     }];

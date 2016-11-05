@@ -25,13 +25,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-   // [self.navigationController setNavigationBarHidden:true];
-    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:false];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:true];
     
 }
 
