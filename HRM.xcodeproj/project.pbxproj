@@ -308,8 +308,8 @@
 		706159CA1D94231800D2530B /* HRM */ = {
 			isa = PBXGroup;
 			children = (
-				6309EA171DCCAC3F001815C6 /* ManagerSalary */,
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
+				6309EA171DCCAC3F001815C6 /* ManagerSalary */,
 				6309EA101DCBC74B001815C6 /* StaffInfo */,
 				63E0A1101DCB0C490021F246 /* BulletinBoard */,
 				6335E17B1DB8E69100B71A63 /* Scheduling */,

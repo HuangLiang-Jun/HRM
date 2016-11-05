@@ -12,7 +12,7 @@
 #import "NSDateNSStringExchange.h"
 #import "CollectionViewCell.h"
 #import "RecipeCollectionHeaderView.h"
-
+#import "CurrentUser.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -28,7 +28,6 @@
 @implementation SchedulingViewController
 {
     NSInteger segmentIndex;
-    NSDate *selectDate;
     UIColor *selectColor;
     NSMutableDictionary *snapShotDic;
     FIRDatabaseReference *vacationRef;
@@ -38,7 +37,7 @@
     NSMutableDictionary *attendanceSheetForNextMonthDic;
     NSString *classStr;
     NSMutableArray *onDuty,*offDuty,*dayoff,*annualLeave;
-
+    CurrentUser *staffInfo;
 }
 
 
@@ -47,7 +46,7 @@
     colorForVactionDic = [NSMutableDictionary new];
     snapShotDic = [NSMutableDictionary new];
     attendanceSheetForNextMonthDic = [NSMutableDictionary new];
- 
+    staffInfo = [CurrentUser sharedInstance];
     
     // for collectionView
     onDuty = [NSMutableArray new];
@@ -58,18 +57,13 @@
     _schedulingCollectionView.delegate = self;
     _schedulingCollectionView.dataSource = self;
     
-    // claendar不可編輯&換頁
-//    _schedulingCalendar.allowsSelection = false;
-//    _schedulingCalendar.pagingEnabled = false;
-//    _schedulingCalendar.scrollEnabled =false;
     NSDate *today = [NSDate date];
     _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
-//    self.navigationItem.title = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
-   
+
     // firebase Ref
-    updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:@"黃亮鈞"];
+    updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:staffInfo.displayName];
     
     //-- Loading Next Month VacationHours --//
     vacationRef = [[[FIRDatabase database]reference] child:@"vacation"];
@@ -86,23 +80,25 @@
         
     }];
 
-    selectDate = [NSDate date];
-    
     //setting segmentControl
     self.edgesForExtendedLayout = UIRectEdgeNone;
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     NSArray *selectImageNameArr = @[[UIImage imageNamed:@"morningSelect"],[UIImage imageNamed:@"nightSelect"],[UIImage imageNamed:@"dayoffSelect"],[UIImage imageNamed:@"specialSelect"]];
     NSArray *deselectImageName = @[[UIImage imageNamed:@"morningDeselect"],[UIImage imageNamed:@"nightDeselect"],[UIImage imageNamed:@"dayoffDeselect"],[UIImage imageNamed:@"specialDeselect"]];
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc]initWithSectionImages:deselectImageName sectionSelectedImages:selectImageNameArr];
+    segmentedControl.selectedSegmentIndex = 0;
     segmentedControl.frame = CGRectMake(0, 0, viewWidth, 50);
     segmentedControl.selectionIndicatorHeight = 3.0f;
     segmentedControl.backgroundColor = [UIColor clearColor];
     segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-    
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventAllEvents];
     [self.view addSubview:segmentedControl];
     
+    // Default setting.
+    selectColor = [UIColor blueColor];
+    segmentIndex = 0;
+    classStr = @"早班";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -139,73 +135,65 @@
 #pragma - mark SegmentedControl Method
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+
     segmentIndex = segmentedControl.selectedSegmentIndex;
-    _schedulingCalendar.allowsMultipleSelection = true;
-    _schedulingCalendar.allowsSelection = true;
-    if (_schedulingCalendar.allowsMultipleSelection == true ) {
-   
-        switch (segmentedControl.selectedSegmentIndex ) {
-            case 0:
-                selectColor = [UIColor blueColor];
-                classStr = @"早班";
-                break;
-            case 1:
-                selectColor = [UIColor orangeColor];
-                classStr = @"晚班";
-                break;
-            case 2:
-                selectColor = [UIColor redColor];
-                classStr = @"例休";
-                break;
-            case 3:
-                selectColor = [UIColor purpleColor];
-                classStr = @"特休";
-                break;
-            default:
-                break;
-        }
+
+    switch (segmentedControl.selectedSegmentIndex ) {
+        case 0:
+            selectColor = [UIColor blueColor];
+            classStr = @"早班";
+            break;
+        case 1:
+            selectColor = [UIColor orangeColor];
+            classStr = @"晚班";
+            break;
+        case 2:
+            selectColor = [UIColor redColor];
+            classStr = @"例休";
+            break;
+        case 3:
+            selectColor = [UIColor purpleColor];
+            classStr = @"特休";
+            break;
+        default:
+            break;
     }
 }
 
 
 #pragma -mark Calendar Method
 
-
-
 -(void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     
     NSString  *selectDateStr = [NSDateNSStringExchange stringFromChosenDate:date];
     // for collectionView
-    if (_schedulingCalendar.allowsMultipleSelection == true) {
-        NSDateFormatter *formatter = [NSDateFormatter new];
-        [formatter setDateFormat:@"MM/dd"];
-        NSString *monthAndDay = [formatter stringFromDate:date];
-        switch (segmentIndex) {
-        
-            case 0:
-                [onDuty addObject:monthAndDay];
-                break;
-            case 1:
-                [offDuty addObject:monthAndDay];
-                break;
-            case 2:
-                [dayoff addObject:monthAndDay];
-                break;
-            case 3:
-                [annualLeave addObject:monthAndDay];
-                break;
-            default:
-                break;
-        }
-       
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"MM/dd"];
+    NSString *monthAndDay = [formatter stringFromDate:date];
+    
+    switch (segmentIndex) {
+        case 0:
+            [onDuty addObject:monthAndDay];
+            break;
+        case 1:
+            [offDuty addObject:monthAndDay];
+            break;
+        case 2:
+            [dayoff addObject:monthAndDay];
+            break;
+        case 3:
+            [annualLeave addObject:monthAndDay];
+            break;
+        default:
+            break;
+    }
         //update firebase data
         [colorForVactionDic setValue:selectColor forKey:selectDateStr];
         [attendanceSheetForNextMonthDic setObject:classStr forKey:selectDateStr];
         NSLog(@"加入班別時間: %@",attendanceSheetForNextMonthDic);
-        
         [_schedulingCalendar reloadData];
         [_schedulingCollectionView reloadData];
-    }
 }
 
 -(void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date{
