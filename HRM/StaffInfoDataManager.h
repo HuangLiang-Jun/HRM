@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+@import Firebase;
+@import FirebaseDatabase;
 
 @interface StaffInfoDataManager : NSObject
+
+@property (nonatomic,strong) NSMutableDictionary *staffInformation;
+
++(instancetype) sharedInstance;
+
+-(id) init;
 
 @end

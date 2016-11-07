@@ -10,4 +10,30 @@
 
 @implementation StaffInfoDataManager
 
++(instancetype) sharedInstance{
+    
+    static StaffInfoDataManager *_staffInfo;
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        _staffInfo = [StaffInfoDataManager new];
+    });
+    
+    return _staffInfo;
+}
+
+-(id) init{
+    
+    
+    FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
+    
+    [staffInfoRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        self.staffInformation = snapshot.value;
+        
+    }];
+    
+    return self;
+}
+
+
 @end
