@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StaffInfoViewController : UIViewController
-
+@property (nonatomic,strong) NSMutableDictionary *staffInfoDict;
 @end

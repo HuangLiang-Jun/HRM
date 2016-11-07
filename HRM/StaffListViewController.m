@@ -7,22 +7,68 @@
 //
 
 #import "StaffListViewController.h"
+#import "StaffInfoDataManager.h"
+#import "StaffListTableViewCell.h"
+#import "StaffInfoViewController.h"
 
-@interface StaffListViewController ()
+
+
+
+@interface StaffListViewController ()<UITableViewDelegate,UITableViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UITableView *staffListTableView;
 
 @end
 
 @implementation StaffListViewController
-
+{
+    StaffInfoDataManager *staffDataManager;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    staffDataManager = [StaffInfoDataManager sharedInstance];
+    [staffDataManager downLoadStaffInfo];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
+    
+    return staffDataManager.allStaffInfoDict.count;
+    
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    StaffListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    
+    //下載需要時間 所以要做Loading畫面..
+    
+    cell.nameLabel.text = staffDataManager.allStaffInfoDict.allKeys[indexPath.row];
+    
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    
+    StaffInfoViewController *staffInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"StaffInfoViewController"];
+    
+    staffInfo.staffInfoDict = staffDataManager.allStaffInfoDict.allValues[indexPath.row];
+    
+    [self showViewController:staffInfo sender:nil];
+}
+
+
+
 
 /*
 #pragma mark - Navigation

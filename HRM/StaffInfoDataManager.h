@@ -12,10 +12,10 @@
 
 @interface StaffInfoDataManager : NSObject
 
-@property (nonatomic,strong) NSMutableDictionary *staffInformation;
+@property (nonatomic,strong) NSMutableDictionary *allStaffInfoDict;
 
 +(instancetype) sharedInstance;
 
--(id) init;
+-(void) downLoadStaffInfo;
 
 @end

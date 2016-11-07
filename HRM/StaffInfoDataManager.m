@@ -22,17 +22,16 @@
     return _staffInfo;
 }
 
--(id) init{
+-(void) downLoadStaffInfo{
     
     
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
     
     [staffInfoRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        self.staffInformation = snapshot.value;
-        
+        self.allStaffInfoDict = snapshot.value;
+        NSLog(@"StaffInformation : %@",self.allStaffInfoDict);
     }];
     
-    return self;
 }
 
 

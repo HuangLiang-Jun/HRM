@@ -9,14 +9,27 @@
 #import "StaffInfoViewController.h"
 
 @interface StaffInfoViewController ()
+@property (weak, nonatomic) IBOutlet UIImageView *staffImageView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *authSegment;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
+@property (weak, nonatomic) IBOutlet UITextField *idTextField;
+@property (weak, nonatomic) IBOutlet UITextField *cellphoneTextField;
 
 @end
 
-@implementation StaffInfoViewController
+@implementation StaffInfoViewController{
+    NSMutableDictionary *info;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    info = [_staffInfoDict valueForKey:@"Info"];
+    NSLog(@"info :%@",info);
+    
+    _birthdayTextField.text = [info valueForKey:@"Birthday"];
 }
 
 - (void)didReceiveMemoryWarning {

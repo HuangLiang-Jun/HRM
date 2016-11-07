@@ -99,10 +99,12 @@
     switch (localUser.auth.intValue) {
             
         case 0:
+            
             [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
             break;
             
         default:
+            
             [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
             break;
             
