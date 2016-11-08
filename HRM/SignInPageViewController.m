@@ -20,16 +20,6 @@
 
 #pragma mark - View Lifecycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-   
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
-
 - (void)loadView {
     [super loadView];
     
@@ -45,18 +35,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    [_emailField becomeFirstResponder];
+
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
-    _passwordField.text = localUser .password;
+    _passwordField.text = localUser.password;
     
 }
 
 #pragma mark - Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
+
     [textField resignFirstResponder];
     return true;
     

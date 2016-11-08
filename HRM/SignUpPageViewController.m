@@ -9,7 +9,7 @@
 #import "SignUpPageViewController.h"
 #import "CurrentUser.h"
 
-@interface SignUpPageViewController ()
+@interface SignUpPageViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -19,42 +19,22 @@
 
 @implementation SignUpPageViewController
 
-#pragma mark - View LifeCycle
+#pragma mark - Text Field Delegate
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    
-    [self.navigationController setNavigationBarHidden:false];
-    
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    
-    [self.navigationController setNavigationBarHidden:true];
+    [textField resignFirstResponder];
+    return true;
     
 }
 
 #pragma mark - Create User Account Btn Func
-- (IBAction)backBtn:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![_emailField.text isEqualToString:@""] && ![_passwordField.text isEqualToString:@""]) {
+    if (![_emailField.text isEqualToString:@""] && _passwordField.text.length >= 6) {
         
-        localUser.email = _emailField.text;
         if ([_reconfirmPasswordField.text isEqualToString:_passwordField.text]) {
             
             localUser.password = _passwordField.text;
@@ -82,11 +62,6 @@
             }
         }
     }
-}
-
--(IBAction) textFieldDoneEditing: (id) sender
-{
-    [sender resignFirstResponder];
 }
 
 @end

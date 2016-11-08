@@ -213,7 +213,7 @@
                 
             }
             NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:@"applicationListDownloaded" object:nil];
+            [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];
             
         }
     }];

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
 		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
@@ -56,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
+		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6309EA0E1DCBBF1A001815C6 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 			children = (
 				A9DC911F1DB530F600679708 /* CurrentUser.h */,
 				A9DC91201DB530F600679708 /* CurrentUser.m */,
+				3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */,
+				3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */,
 				6335E1731DB8E21400B71A63 /* NSDateNSStringExchange.h */,
 				6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */,
 				639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */,
@@ -547,6 +552,7 @@
 				63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */,
 				A91417031DBEEA8600735A49 /* SupervisorHomePageViewController.m in Sources */,
 				706159D01D94231800D2530B /* AppDelegate.m in Sources */,
+				3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */,
 				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
