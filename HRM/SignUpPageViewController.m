@@ -10,11 +10,7 @@
 #import "StrValidationFilter.h"
 #import "CurrentUser.h"
 
-@interface SignUpPageViewController () <UITextFieldDelegate> {
-    
-    CurrentUser *localUser;
-    
-}
+@interface SignUpPageViewController () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -24,28 +20,17 @@
 
 @implementation SignUpPageViewController
 
-#pragma mark - View Lifecycle
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    localUser = [CurrentUser sharedInstance];
-    [_emailField becomeFirstResponder];
-    
-}
-
 #pragma mark - Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    [textField resignFirstResponder];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
     if (textField == _emailField) {
         
         NSString *emailStr = textField.text;
         if ([StrValidationFilter emailValidationWithStr:emailStr]) {
             
             localUser.email = emailStr;
-            [_passwordField becomeFirstResponder];
             
         } else {
             
@@ -60,11 +45,12 @@
             [self presentViewController:alertC animated:true completion:nil];
             
         }
+        
     }
-    
-    
-    
-    
+//    if (<#condition#>) {
+//        <#statements#>
+//    }
+    [textField resignFirstResponder];
     return true;
     
 }
@@ -73,12 +59,11 @@
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
     int i = 0;
     NSString *emailStr = _emailField.text;
     if ([StrValidationFilter emailValidationWithStr:emailStr]) {
         
-        localUser.email = emailStr;
+//        localUser.email = emailStr;
         i += 1;
         
     } else {
@@ -93,7 +78,7 @@
         NSString *reconfirmPwd = _reconfirmPasswordField.text;
         if ([reconfirmPwd isEqualToString:pwdStr]) {
             
-            localUser.password = pwdStr;
+//            localUser.password = pwdStr;
             
         } else {
             
@@ -111,7 +96,7 @@
     }
     if (i == 2) {
         
-        [localUser createUserAccount];
+//        [localUser createUserAccount];
         [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
         
     }
