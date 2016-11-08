@@ -10,4 +10,8 @@
 
 @interface StrValidationFilter : NSObject
 
++ (BOOL)emailValidationWithStr:(NSString *)str;
+
++ (BOOL)passwordValidationWithStr:(NSString *)str;
+
 @end

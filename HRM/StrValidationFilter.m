@@ -13,17 +13,33 @@
 
 @implementation StrValidationFilter
 
-- (BOOL)emailValidationWithStr:(NSString *)str {
++ (BOOL)emailValidationWithStr:(NSString *)str {
     
-    NSString *acceptableStr = [LEGAL_ALPHA stringByAppendingString:LEGAL_NUMBER];
-    NSCharacterSet *unacceptableSet  = [[NSCharacterSet characterSetWithCharactersInString:[acceptableStr stringByAppendingString:@"_.-"]] invertedSet];
-    if ([[str componentsSeparatedByString:@"@"] count] == 2) {
+    NSArray *subStr = [str componentsSeparatedByString:@"@"];
+    if (subStr.count == 2) {
         
-        BOOL validationFilter = ([[str componentsSeparatedByCharactersInSet:unacceptableSet] count] <= 1);
-        return validationFilter;
+        NSString *regexStr = [NSString stringWithFormat:@"@%@%@-._", LEGAL_ALPHA, LEGAL_NUMBER];
+        NSCharacterSet *charSet = [[NSCharacterSet characterSetWithCharactersInString:regexStr] invertedSet];
+        subStr = [str componentsSeparatedByCharactersInSet:charSet];
+        return (subStr.count == 1);
         
     }
-    return false;
+    return (subStr.count == 2);
+
+}
+
++ (BOOL)passwordValidationWithStr:(NSString *)str {
+    
+    if (str.length >= 6) {
+        
+        NSString *regexStr = [NSString stringWithFormat:@"%@%@", LEGAL_ALPHA, LEGAL_NUMBER];
+        NSCharacterSet *charSet = [[NSCharacterSet characterSetWithCharactersInString:regexStr] invertedSet];
+        NSArray *subStr = [str componentsSeparatedByCharactersInSet:charSet];
+        return (subStr.count == 1);
+        
+    }
+    return (str.length >= 6);
+    
 }
 
 @end
