@@ -22,6 +22,8 @@
 		6335E1B21DB9E9A100B71A63 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B11DB9E9A100B71A63 /* CoreLocation.framework */; };
 		6335E1B41DB9E9A700B71A63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B31DB9E9A700B71A63 /* MapKit.framework */; };
 		6335E1B81DBC789F00B71A63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B71DBC789F00B71A63 /* QuartzCore.framework */; };
+		636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */; };
+		639DD7C11DD01A9700ED2C7D /* StaffInfoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */; };
 		63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAB1DBF7F7D007578DB /* CheckClassCollectionReusable.m */; };
 		63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAD1DBF7F7D007578DB /* CheckClassCollectionCell.m */; };
 		63D92FB21DBF7F8B007578DB /* SearchClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FB11DBF7F8B007578DB /* SearchClassViewController.m */; };
@@ -80,6 +82,10 @@
 		6335E1B11DB9E9A100B71A63 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6335E1B31DB9E9A700B71A63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6335E1B71DBC789F00B71A63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListTableViewCell.h; sourceTree = "<group>"; };
+		636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListTableViewCell.m; sourceTree = "<group>"; };
+		639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoDataManager.h; sourceTree = "<group>"; };
+		639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoDataManager.m; sourceTree = "<group>"; };
 		63D92FAA1DBF7F7D007578DB /* CheckClassCollectionReusable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckClassCollectionReusable.h; sourceTree = "<group>"; };
 		63D92FAB1DBF7F7D007578DB /* CheckClassCollectionReusable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckClassCollectionReusable.m; sourceTree = "<group>"; };
 		63D92FAC1DBF7F7D007578DB /* CheckClassCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckClassCollectionCell.h; sourceTree = "<group>"; };
@@ -163,6 +169,8 @@
 			children = (
 				6309EA111DCBC777001815C6 /* StaffListViewController.h */,
 				6309EA121DCBC777001815C6 /* StaffListViewController.m */,
+				636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */,
+				636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */,
 				6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */,
 				6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */,
 			);
@@ -218,6 +226,8 @@
 				A9DC91201DB530F600679708 /* CurrentUser.m */,
 				6335E1731DB8E21400B71A63 /* NSDateNSStringExchange.h */,
 				6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */,
+				639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */,
+				639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -527,6 +537,7 @@
 				6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */,
 				63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */,
 				6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */,
+				639DD7C11DD01A9700ED2C7D /* StaffInfoDataManager.m in Sources */,
 				A9DC911B1DB52B4100679708 /* UserInfoPageViewController.m in Sources */,
 				A95C7E381DB9A85200AF7CB5 /* ApplicationListPageTableViewController.m in Sources */,
 				A91417001DBE601200735A49 /* ApplicationInfoPageViewController.m in Sources */,
@@ -539,6 +550,7 @@
 				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
+				636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */,
 				706159CD1D94231800D2530B /* main.m in Sources */,
 				A9DC91211DB530F600679708 /* CurrentUser.m in Sources */,
 				63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */,

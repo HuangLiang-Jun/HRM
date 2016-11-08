@@ -269,22 +269,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NhV-lv-3nC">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NhV-lv-3nC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="uzz-ce-QyH">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="79" id="uzz-ce-QyH" customClass="StaffListTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="79"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uzz-ce-QyH" id="vvD-aO-Zhe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head.png" translatesAutoresizingMaskIntoConstraints="NO" id="cvX-vJ-bTO">
+                                                    <rect key="frame" x="8" y="8" width="64" height="62"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="62" id="8qK-Hb-IAw"/>
+                                                        <constraint firstAttribute="width" constant="64" id="ZHd-G0-IzG"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uiC-8R-vR4">
+                                                    <rect key="frame" x="80" y="27" width="41" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cvX-vJ-bTO" firstAttribute="leading" secondItem="vvD-aO-Zhe" secondAttribute="leading" constant="8" id="35Q-3W-Fw7"/>
+                                                <constraint firstItem="cvX-vJ-bTO" firstAttribute="top" secondItem="vvD-aO-Zhe" secondAttribute="top" constant="8" id="FNa-kX-0HP"/>
+                                                <constraint firstItem="uiC-8R-vR4" firstAttribute="leading" secondItem="cvX-vJ-bTO" secondAttribute="trailing" constant="8" id="OfB-l2-6zW"/>
+                                                <constraint firstAttribute="bottom" secondItem="cvX-vJ-bTO" secondAttribute="bottom" constant="8" id="ZU9-xk-J4X"/>
+                                                <constraint firstItem="cvX-vJ-bTO" firstAttribute="centerY" secondItem="vvD-aO-Zhe" secondAttribute="centerY" id="qK9-qW-McG"/>
+                                                <constraint firstItem="uiC-8R-vR4" firstAttribute="centerY" secondItem="vvD-aO-Zhe" secondAttribute="centerY" id="s0T-XB-7GU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Bq7-vu-1BB" kind="show" id="F7Z-FF-aQG"/>
+                                            <outlet property="nameLabel" destination="uiC-8R-vR4" id="D4Z-Yn-epf"/>
+                                            <outlet property="staffImageView" destination="cvX-vJ-bTO" id="0Fg-Mb-CC1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="2h4-wu-sSZ" id="a4j-PI-ldj"/>
+                                    <outlet property="delegate" destination="2h4-wu-sSZ" id="z9x-Ug-7ZR"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -295,15 +323,18 @@
                             <constraint firstItem="NhV-lv-3nC" firstAttribute="top" secondItem="yDx-v1-Ea2" secondAttribute="top" id="gKy-ru-SXX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="staffListTableView" destination="NhV-lv-3nC" id="zvT-9b-bK2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1ve-Tk-GAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178" y="-2096"/>
+            <point key="canvasLocation" x="1176.8" y="-2096.4017991004498"/>
         </scene>
         <!--Staff Info View Controller-->
         <scene sceneID="C00-ef-UqR">
             <objects>
-                <viewController id="Bq7-vu-1BB" customClass="StaffInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StaffInfoViewController" id="Bq7-vu-1BB" customClass="StaffInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="HdV-9c-cj8"/>
                         <viewControllerLayoutGuide type="bottom" id="Sbb-pt-Mga"/>
@@ -428,6 +459,14 @@
                             <constraint firstItem="AZ5-7u-JeA" firstAttribute="top" secondItem="cV2-pY-Ixj" secondAttribute="bottom" constant="45" id="zpf-B4-y0n"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="authSegment" destination="Nyp-gE-xTd" id="Xe8-fp-ukp"/>
+                        <outlet property="birthdayTextField" destination="nlz-cA-0N8" id="Ic5-n8-Dmz"/>
+                        <outlet property="cellphoneTextField" destination="vD3-95-FwL" id="9YF-F9-ot7"/>
+                        <outlet property="idTextField" destination="5Ah-Ni-Hw2" id="ciu-9v-JEj"/>
+                        <outlet property="nameTextField" destination="Scu-vP-yN5" id="qlg-64-37Q"/>
+                        <outlet property="staffImageView" destination="Q3I-pk-Mia" id="jVO-22-ACw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7m-V6-j5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
