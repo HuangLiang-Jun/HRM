@@ -37,6 +37,11 @@
 		63E0A10F1DCB0B4B0021F246 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E0A10E1DCB0B4B0021F246 /* info.png */; };
 		63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
+		7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DB1DD354BF00793999 /* backgroundBlue.png */; };
+		7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DC1DD354BF00793999 /* backgroundGreen.png */; };
+		7023F6E11DD354BF00793999 /* btnBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DD1DD354BF00793999 /* btnBlue.png */; };
+		7023F6E21DD354BF00793999 /* btnGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DE1DD354BF00793999 /* btnGreen.png */; };
+		7023F6E41DD3627300793999 /* btnRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6E31DD3627300793999 /* btnRed.png */; };
 		706159CD1D94231800D2530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CC1D94231800D2530B /* main.m */; };
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
@@ -108,6 +113,11 @@
 		63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoarViewController.m; sourceTree = "<group>"; };
 		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
 		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
+		7023F6DB1DD354BF00793999 /* backgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundBlue.png; sourceTree = "<group>"; };
+		7023F6DC1DD354BF00793999 /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
+		7023F6DD1DD354BF00793999 /* btnBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBlue.png; sourceTree = "<group>"; };
+		7023F6DE1DD354BF00793999 /* btnGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnGreen.png; sourceTree = "<group>"; };
+		7023F6E31DD3627300793999 /* btnRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnRed.png; sourceTree = "<group>"; };
 		706159C81D94231800D2530B /* HRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706159CC1D94231800D2530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		706159CE1D94231800D2530B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -280,6 +290,11 @@
 		63D92FB41DBF8105007578DB /* image */ = {
 			isa = PBXGroup;
 			children = (
+				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
+				7023F6DC1DD354BF00793999 /* backgroundGreen.png */,
+				7023F6E31DD3627300793999 /* btnRed.png */,
+				7023F6DD1DD354BF00793999 /* btnBlue.png */,
+				7023F6DE1DD354BF00793999 /* btnGreen.png */,
 				6309EA0E1DCBBF1A001815C6 /* head.png */,
 				6309E9E61DCB174D001815C6 /* backBtn.png */,
 				63E0A10E1DCB0B4B0021F246 /* info.png */,
@@ -467,6 +482,7 @@
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
 				63E0A10F1DCB0B4B0021F246 /* info.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
+				7023F6E21DD354BF00793999 /* btnGreen.png in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
@@ -475,6 +491,10 @@
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
+				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
+				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
+				7023F6E41DD3627300793999 /* btnRed.png in Resources */,
+				7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

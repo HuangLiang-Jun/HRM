@@ -8,6 +8,7 @@
 
 #import "SalaryViewController.h"
 #import "SalarySums.h"
+#import "CurrentUser.h"
 
 
 @import Firebase;
@@ -20,7 +21,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *payCutTextField;
 @property (weak, nonatomic) IBOutlet UITextField *fullAttendanceTextField;
 @property (weak, nonatomic) IBOutlet UITextField *totalSalaryTextField;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editBtn;
 
 
 @property (strong,nonatomic) FIRDatabaseReference *databaseRef;
@@ -35,26 +35,28 @@
     double totalHours,workHours;
     FIRDatabaseReference *updateRef;
     Boolean downLoadStatus;
+    CurrentUser *localUser;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    localUser = [CurrentUser sharedInstance];
     snapShotDic = [NSMutableDictionary new];
     downloadSalaryDic = [NSMutableDictionary new];
     //下載出勤紀錄的路徑
-    _databaseRef = [[[[[FIRDatabase database]reference]child:@"Attendance"] child:@"黃亮鈞"] child:@"2016-10"];
+    _databaseRef = [[[[[FIRDatabase database]reference]child:@"Attendance"] child:localUser.displayName] child:@"2016-10"];
 
     //上傳本薪資料到資料庫的路徑
-    updateRef = [[[[FIRDatabase database]reference]child:@"Salary"]child:@"黃亮鈞"];
+    updateRef = [[[[FIRDatabase database]reference]child:@"Salary"]child:localUser.displayName];
    
     NSLog(@"ref: %@",_databaseRef);
-    monthlySalary = 32000;
-    totalHours = 176;
+//    monthlySalary = 32000;
+//    totalHours = 176;
     leaveHour = 0;
-    workerInsurance = 1234;
-    healthInsurance = 789;
+//    workerInsurance = 1234;
+//    healthInsurance = 789;
     
     [self downLoadSalary];
     [self changeSalary];
@@ -80,10 +82,6 @@
         [self totalSalarySums];
         NSLog(@"實領薪水為: %i", totalSalary);
     }
-    
-    //放置Navigation Bar button item
-    UIBarButtonItem * testItem = [[UIBarButtonItem alloc] initWithTitle:@"TEST" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.rightBarButtonItem = testItem;
 }
 
 - (void) totalSalarySums {
@@ -131,7 +129,8 @@
     }
 }
 
--(void) updateSalary {
+// 上傳更改的薪資
+/*-(void) updateSalary {
     NSString *monthlySalaryDic = [[NSString alloc] initWithFormat:@"%@", self.monthlySalaryTextField.text];
     NSString *workerInsuranceDic = [[NSString alloc] initWithFormat:@"%@", self.workerInsuranceTextField.text];
     NSString *healthInsuranceDic = [[NSString alloc] initWithFormat:@"%@", self.healthInsuranceTextField.text];
@@ -144,6 +143,7 @@
         }
     }];
 }
+*/
 
 -(void) downLoadSalary {
     [updateRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -174,7 +174,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)editBtnAction:(id)sender {
+// 編輯按鈕更改薪資
+/*- (IBAction)editBtnAction:(id)sender {
     if ([_editBtn.title  isEqual: @"編輯"]) {
         [_editBtn setTitle:@"完成"];
         _monthlySalaryTextField.enabled = YES;
@@ -197,6 +198,7 @@
         self.totalSalaryTextField.text = [[NSString alloc] initWithFormat:@"%i", totalSalary];
     }
 }
+*/
 
 /*
 #pragma mark - Navigation
