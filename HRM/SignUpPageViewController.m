@@ -22,36 +22,62 @@
 
 #pragma mark - Text Field Delegate
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    [self validationDependenceOfTextField:textField];
+    
+}
+
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (textField == _emailField) {
-        
-        NSString *emailStr = textField.text;
-        if ([StrValidationFilter emailValidationWithStr:emailStr]) {
-            
-            localUser.email = emailStr;
-            
-        } else {
-            
-            UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:@"E-mail 格式錯誤" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-                textField.text = @"";
-                [textField becomeFirstResponder];
-                
-            }];
-            [alertC addAction:alertAction];
-            [self presentViewController:alertC animated:true completion:nil];
-            
-        }
-        
-    }
-//    if (<#condition#>) {
-//        <#statements#>
-//    }
-    [textField resignFirstResponder];
+    [self validationDependenceOfTextField:textField];
     return true;
+    
+}
+
+- (void)validationDependenceOfTextField:(UITextField *)textField {
+    [textField resignFirstResponder];
+    NSString *str = textField.text;
+    switch (textField.tag) {
+            
+        case 0:
+            if ([StrValidationFilter emailValidationFor:str]) {
+                [_passwordField becomeFirstResponder];
+            } else {
+                [self presentAlertControllerFor:textField withInfo:@"電子郵件格式錯誤"];
+            }
+            break;
+            
+        case 1:
+            if ([StrValidationFilter passwordValidationFor:str]) {
+                [_reconfirmPasswordField becomeFirstResponder];
+            } else {
+                [self presentAlertControllerFor:textField withInfo:@"密碼格式錯誤"];
+            }
+            break;
+            
+        case 2:
+            if ([StrValidationFilter passwordValidationFor:str]) {
+                //.
+            } else {
+                [self presentAlertControllerFor:textField withInfo:@"密碼比對碼格式錯誤"];
+            }
+            break;
+    }
+}
+
+- (void)presentAlertControllerFor:(UITextField *)textField withInfo:(NSString *)info {
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        textField.text = @"";
+        [textField becomeFirstResponder];
+        
+    }];
+    [alertC addAction:alertAction];
+    [self presentViewController:alertC animated:true completion:nil];
     
 }
 
@@ -59,47 +85,8 @@
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
-    int i = 0;
-    NSString *emailStr = _emailField.text;
-    if ([StrValidationFilter emailValidationWithStr:emailStr]) {
-        
-//        localUser.email = emailStr;
-        i += 1;
-        
-    } else {
-        
-        _emailField.placeholder = @"E-mail 格式錯誤";
-        _emailField.text = @"";
-        
-    }
-    NSString *pwdStr = _passwordField.text;
-    if ([StrValidationFilter passwordValidationWithStr:pwdStr]) {
-        
-        NSString *reconfirmPwd = _reconfirmPasswordField.text;
-        if ([reconfirmPwd isEqualToString:pwdStr]) {
-            
-//            localUser.password = pwdStr;
-            
-        } else {
-            
-            _reconfirmPasswordField.placeholder = @"請再次確認密碼";
-            _reconfirmPasswordField.text = @"";
-            i += 1;
-            
-        }
-        
-    } else {
-        
-        _passwordField.placeholder = @"密碼格式錯誤";
-        _passwordField.text = @"";
-        
-    }
-    if (i == 2) {
-        
-//        [localUser createUserAccount];
-        [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
-        
-    }
+    
+    
 }
 
 @end

@@ -104,6 +104,8 @@
 
 - (IBAction)createNewAccountBtnPressed:(UIButton *)sender {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
     [self performSegueWithIdentifier:@"SignUpPageSegue" sender:sender];
     
 }

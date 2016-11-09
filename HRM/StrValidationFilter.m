@@ -13,14 +13,14 @@
 
 @implementation StrValidationFilter
 
-+ (BOOL)emailValidationWithStr:(NSString *)str {
++ (BOOL)emailValidationFor:(NSString *)email {
     
-    NSArray *subStr = [str componentsSeparatedByString:@"@"];
+    NSArray *subStr = [email componentsSeparatedByString:@"@"];
     if (subStr.count == 2) {
         
         NSString *regexStr = [NSString stringWithFormat:@"@%@%@-._", LEGAL_ALPHA, LEGAL_NUMBER];
         NSCharacterSet *charSet = [[NSCharacterSet characterSetWithCharactersInString:regexStr] invertedSet];
-        subStr = [str componentsSeparatedByCharactersInSet:charSet];
+        subStr = [email componentsSeparatedByCharactersInSet:charSet];
         return (subStr.count == 1);
         
     }
@@ -28,17 +28,17 @@
 
 }
 
-+ (BOOL)passwordValidationWithStr:(NSString *)str {
++ (BOOL)passwordValidationFor:(NSString *)pwd {
     
-    if (str.length >= 6) {
+    if (pwd.length >= 6) {
         
         NSString *regexStr = [NSString stringWithFormat:@"%@%@", LEGAL_ALPHA, LEGAL_NUMBER];
         NSCharacterSet *charSet = [[NSCharacterSet characterSetWithCharactersInString:regexStr] invertedSet];
-        NSArray *subStr = [str componentsSeparatedByCharactersInSet:charSet];
+        NSArray *subStr = [pwd componentsSeparatedByCharactersInSet:charSet];
         return (subStr.count == 1);
         
     }
-    return (str.length >= 6);
+    return (pwd.length >= 6);
     
 }
 
