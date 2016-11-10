@@ -11,9 +11,6 @@
 #import "StaffListTableViewCell.h"
 #import "StaffInfoViewController.h"
 
-
-
-
 @interface StaffListViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *staffListTableView;
@@ -27,9 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     staffDataManager = [StaffInfoDataManager sharedInstance];
-    [staffDataManager downLoadStaffInfo];
     
 }
 
@@ -38,8 +33,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark TableViewDatasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
     
     return staffDataManager.allStaffInfoDict.count;
     
@@ -48,7 +43,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     StaffListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
     
     //下載需要時間 所以要做Loading畫面..
     
@@ -63,12 +57,22 @@
     StaffInfoViewController *staffInfo = [self.storyboard instantiateViewControllerWithIdentifier:@"StaffInfoViewController"];
     
     staffInfo.staffInfoDict = staffDataManager.allStaffInfoDict.allValues[indexPath.row];
+    staffInfo.nameStr = staffDataManager.allStaffInfoDict.allKeys[indexPath.row];
     
     [self showViewController:staffInfo sender:nil];
+    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    if (staffDataManager.downLoadStatus) {
+        [_staffListTableView reloadData];
 
-
+    }
+    
+}
 
 /*
 #pragma mark - Navigation

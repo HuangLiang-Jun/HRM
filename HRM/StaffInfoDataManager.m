@@ -27,12 +27,34 @@
     
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
     
+    if (_allStaffInfoDict == nil) {
+        
     [staffInfoRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
         self.allStaffInfoDict = snapshot.value;
         NSLog(@"StaffInformation : %@",self.allStaffInfoDict);
+    
+    }];
+    
+    }
+}
+
+-(void) refreshInfoData{
+    
+    _downLoadStatus = false;
+
+    FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
+   
+    [staffInfoRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        self.allStaffInfoDict = snapshot.value;
+        
+        NSLog(@"Refresh StaffInformation : %@",self.allStaffInfoDict);
+        
+        _downLoadStatus = true;
+   
+        
     }];
     
 }
-
 
 @end

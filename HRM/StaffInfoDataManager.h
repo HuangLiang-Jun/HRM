@@ -13,9 +13,11 @@
 @interface StaffInfoDataManager : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary *allStaffInfoDict;
+@property (nonatomic,assign) BOOL downLoadStatus;
 
 +(instancetype) sharedInstance;
 
 -(void) downLoadStaffInfo;
 
+-(void) refreshInfoData;
 @end

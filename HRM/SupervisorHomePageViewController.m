@@ -9,6 +9,7 @@
 #import "SupervisorHomePageViewController.h"
 #import "SearchClassViewController.h"
 #import "CurrentUser.h"
+#import "StaffInfoDataManager.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -19,9 +20,12 @@
 @implementation SupervisorHomePageViewController
 {
      FIRDatabaseReference *staffNameRef;
+    StaffInfoDataManager *staffDataManager;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    staffDataManager = [StaffInfoDataManager sharedInstance];
 }
 - (IBAction)checkOnDutyList:(UIButton *)sender {
     
@@ -53,6 +57,11 @@
 - (IBAction)confirmApplicationBtnPressed:(UIButton *)sender {
     
     
+    
+}
+- (IBAction)staffListBtnPressed:(id)sender {
+    
+    [staffDataManager downLoadStaffInfo];
     
 }
 

@@ -10,4 +10,6 @@
 
 @interface StaffInfoViewController : UIViewController
 @property (nonatomic,strong) NSMutableDictionary *staffInfoDict;
+@property (nonatomic,strong) NSString *nameStr;
+
 @end
