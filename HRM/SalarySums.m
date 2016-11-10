@@ -16,7 +16,7 @@ static double hourSalary;
 //接本薪參數並回傳時薪的方法
 - (double) hourSalary:(int)monthlySalary totalHours:(double)totalHours {
     
-    hourSalary = (double)monthlySalary / (double)totalHours;
+    hourSalary = monthlySalary / totalHours;
     
     return hourSalary;
 }

@@ -53,41 +53,13 @@
    
     NSLog(@"ref: %@",_databaseRef);
 //    monthlySalary = 32000;
-//    totalHours = 176;
+    totalHours = 176;
     leaveHour = 0;
 //    workerInsurance = 1234;
 //    healthInsurance = 789;
     
-    [self downLoadSalary];
-    [self changeSalary];
     [self loadData];
-    
-    //下方為計算時薪
-    SalarySums *get = [[SalarySums alloc] init];
-    hourSalary = [get hourSalary:monthlySalary totalHours:totalHours];
-    NSLog(@"時薪為: %i", hourSalary);
-    
-    //下方為計算請假扣薪
-    payCut = [get askForLeave:leaveHour hourSalary:hourSalary];
-    self.payCutTextField.text = [[NSString alloc] initWithFormat:@"%i", payCut];
-    NSLog(@"事假扣薪: %i", payCut);
-    
-    //下方為計算全勤獎金
-    fullAttendance = [get fullAttendance:leaveHour];
-    self.fullAttendanceTextField.text = [[NSString alloc] initWithFormat:@"%i", fullAttendance];
-    NSLog(@"全勤獎金為: %i", fullAttendance);
-    
-    if (downLoadStatus) {
-        //下方為計算實領薪水
-        [self totalSalarySums];
-        NSLog(@"實領薪水為: %i", totalSalary);
-    }
 }
-
-- (void) totalSalarySums {
-    totalSalary = monthlySalary - workerInsurance - healthInsurance + fullAttendance - payCut;
-}
-
 
 //抓取資料庫內的打卡記錄
 -(void) loadData {
@@ -122,11 +94,29 @@
             downLoadStatus = true;
         };
         NSLog(@"workHour: %1.2f", workHours);
+       
+        [updateRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
+            downloadSalaryDic = snapshot.value;
+            //NSLog(@"downloadSalary: %@",snapshot.value);
+            
+            salaryArr = downloadSalaryDic.allValues;
+            //NSLog(@"salaryArr: %@", salaryArr);
+            self.monthlySalaryTextField.text = salaryArr[0];
+            self.workerInsuranceTextField.text = salaryArr[1];
+            self.healthInsuranceTextField.text = salaryArr[2];
+            
+            [self changeSalary];
+            [self fullAttendance];
+            [self totalSalarySums];
+            
+            self.totalSalaryTextField.text = [NSString stringWithFormat:@"%d", totalSalary];
+        }];
     }];
-    if (snapShotDic) {
-        NSLog(@"snapShotDic: %@", snapShotDic);
-        
-    }
+//    if (snapShotDic) {
+//        NSLog(@"snapShotDic: %@", snapShotDic);
+//        
+//    }
 }
 
 // 上傳更改的薪資
@@ -157,9 +147,7 @@
         self.workerInsuranceTextField.text = salaryArr[1];
         self.healthInsuranceTextField.text = salaryArr[2];
         
-        [self totalSalarySums];
-        self.totalSalaryTextField.text = [[NSString alloc] initWithFormat:@"%i", totalSalary];
-        
+        [self changeSalary];
     }];
 }
 
@@ -168,7 +156,28 @@
     workerInsurance = [salaryArr[1] intValue];
     healthInsurance = [salaryArr[2] intValue];
 }
+
+- (void) fullAttendance {
+    //下方為計算時薪
+    SalarySums *get = [[SalarySums alloc] init];
+    hourSalary = [get hourSalary:monthlySalary totalHours:totalHours];
+    NSLog(@"時薪為: %i", hourSalary);
     
+    //下方為計算請假扣薪
+    payCut = [get askForLeave:leaveHour hourSalary:hourSalary];
+    self.payCutTextField.text = [NSString stringWithFormat:@"%i", payCut];
+    NSLog(@"事假扣薪: %i", payCut);
+    
+    //下方為計算全勤獎金
+    fullAttendance = [get fullAttendance:leaveHour];
+    self.fullAttendanceTextField.text = [NSString stringWithFormat:@"%i", fullAttendance];
+    NSLog(@"全勤獎金為: %i", fullAttendance);
+}
+
+- (void) totalSalarySums {
+    totalSalary = monthlySalary - workerInsurance - healthInsurance + fullAttendance - payCut;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
