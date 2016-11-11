@@ -24,6 +24,9 @@
 		6335E1B41DB9E9A700B71A63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B31DB9E9A700B71A63 /* MapKit.framework */; };
 		6335E1B81DBC789F00B71A63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B71DBC789F00B71A63 /* QuartzCore.framework */; };
 		636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */; };
+		637AD2591DD5E6D500FA94E5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2561DD5E6D500FA94E5 /* camera.png */; };
+		637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2571DD5E6D500FA94E5 /* head01.png */; };
+		637AD26A1DD5F28600FA94E5 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2691DD5F28600FA94E5 /* info.png */; };
 		639DD7C11DD01A9700ED2C7D /* StaffInfoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */; };
 		63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAB1DBF7F7D007578DB /* CheckClassCollectionReusable.m */; };
 		63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAD1DBF7F7D007578DB /* CheckClassCollectionCell.m */; };
@@ -34,7 +37,6 @@
 		63D92FD81DBF811A007578DB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC41DBF811A007578DB /* redCircle.png */; };
 		63D92FE11DC03667007578DB /* SalarySums.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FDE1DC03667007578DB /* SalarySums.m */; };
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
-		63E0A10F1DCB0B4B0021F246 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 63E0A10E1DCB0B4B0021F246 /* info.png */; };
 		63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
 		7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DB1DD354BF00793999 /* backgroundBlue.png */; };
@@ -92,6 +94,9 @@
 		6335E1B71DBC789F00B71A63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListTableViewCell.h; sourceTree = "<group>"; };
 		636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListTableViewCell.m; sourceTree = "<group>"; };
+		637AD2561DD5E6D500FA94E5 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		637AD2571DD5E6D500FA94E5 /* head01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head01.png; sourceTree = "<group>"; };
+		637AD2691DD5F28600FA94E5 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoDataManager.h; sourceTree = "<group>"; };
 		639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoDataManager.m; sourceTree = "<group>"; };
 		63D92FAA1DBF7F7D007578DB /* CheckClassCollectionReusable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckClassCollectionReusable.h; sourceTree = "<group>"; };
@@ -108,7 +113,6 @@
 		63D92FDE1DC03667007578DB /* SalarySums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalarySums.m; sourceTree = "<group>"; };
 		63D92FDF1DC03667007578DB /* SalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryViewController.h; sourceTree = "<group>"; };
 		63D92FE01DC03667007578DB /* SalaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryViewController.m; sourceTree = "<group>"; };
-		63E0A10E1DCB0B4B0021F246 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
 		63E0A1111DCB0C910021F246 /* BulletinBoarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoarViewController.h; sourceTree = "<group>"; };
 		63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoarViewController.m; sourceTree = "<group>"; };
 		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
@@ -290,14 +294,16 @@
 		63D92FB41DBF8105007578DB /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				637AD2561DD5E6D500FA94E5 /* camera.png */,
+				637AD2571DD5E6D500FA94E5 /* head01.png */,
 				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
+				637AD2691DD5F28600FA94E5 /* info.png */,
 				7023F6DC1DD354BF00793999 /* backgroundGreen.png */,
 				7023F6E31DD3627300793999 /* btnRed.png */,
 				7023F6DD1DD354BF00793999 /* btnBlue.png */,
 				7023F6DE1DD354BF00793999 /* btnGreen.png */,
 				6309EA0E1DCBBF1A001815C6 /* head.png */,
 				6309E9E61DCB174D001815C6 /* backBtn.png */,
-				63E0A10E1DCB0B4B0021F246 /* info.png */,
 				63D92FB51DBF811A007578DB /* blueCircle.png */,
 				63D92FC21DBF811A007578DB /* orangeCircle.png */,
 				63D92FC31DBF811A007578DB /* purpleCircle.png */,
@@ -480,19 +486,21 @@
 			files = (
 				6309E9E71DCB174D001815C6 /* backBtn.png in Resources */,
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
-				63E0A10F1DCB0B4B0021F246 /* info.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
 				7023F6E21DD354BF00793999 /* btnGreen.png in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
+				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
 				A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
+				637AD26A1DD5F28600FA94E5 /* info.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
 				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
 				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
+				637AD2591DD5E6D500FA94E5 /* camera.png in Resources */,
 				7023F6E41DD3627300793999 /* btnRed.png in Resources */,
 				7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */,
 			);

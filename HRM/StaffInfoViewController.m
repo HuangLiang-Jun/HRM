@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *cameraImage;
 
 @property (nonatomic,assign)BOOL editStatus;
 @end
