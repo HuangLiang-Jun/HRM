@@ -26,6 +26,8 @@
     [super viewDidLoad];
     
     staffDataManager = [StaffInfoDataManager sharedInstance];
+    
+
 }
 - (IBAction)checkOnDutyList:(UIButton *)sender {
     
