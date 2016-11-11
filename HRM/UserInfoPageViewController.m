@@ -99,9 +99,9 @@
 
 - (void)prepareForSignInPage {
     
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
-    [self.navigationController dismissViewControllerAnimated:true completion:nil];
+//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+//    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
+    [self.presentingViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
     
 }
 

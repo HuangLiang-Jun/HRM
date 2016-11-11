@@ -37,10 +37,37 @@
     
     _reconfirmPasswordField.tag = 2;
     _reconfirmPasswordField.delegate = self;
-
+    
+    FIRUser *user = [[FIRAuth auth] currentUser];
+    if (user != nil) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        [localUser signOutUserAccount];
+        
+    }
 }
 
 #pragma mark - Text Field Delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    switch (textField.tag) {
+        case 0:
+            emailToken = false;
+            break;
+        
+        case 1:
+            pwdToken = false;
+            procedureToken = false;
+            break;
+        
+        case 2:
+            reconfirmPWDToken = false;
+            procedureToken = false;
+            break;
+            
+    }
+}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     
@@ -53,8 +80,11 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    [self validationDependenceOfTextField:textField];
-    
+    if (textField.text.length != 0) {
+        
+        [self validationDependenceOfTextField:textField];
+        
+    }
     return true;
     
 }
@@ -66,7 +96,6 @@
     switch (textField.tag) {
             
         case 0:
-            emailToken = false;
             if ([StrValidationFilter emailValidationFor:str]) {
                 
                 emailToken = true;
@@ -78,26 +107,24 @@
                 
             } else {
                 
-                [self presentAlertControllerFor:textField withInfo:@"電子郵件格式錯誤"];
+                [self presentAlertControllerWithInfo:@"電子郵件格式錯誤"];
                 
             }
             break;
             
         case 1:
-            pwdToken = false;
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 pwdToken = true;
                 if (reconfirmPWDToken) {
                     
-                    procedureToken = false;
                     if ([str isEqualToString:_reconfirmPasswordField.text]) {
                         
                         procedureToken = true;
                         
                     } else {
                         
-                        [self presentAlertControllerFor:textField withInfo:@"密碼比對失敗"];
+                        [self presentAlertControllerWithInfo:@"密碼比對失敗"];
                         
                     }
                     
@@ -109,26 +136,24 @@
                 
             } else {
                 
-                [self presentAlertControllerFor:textField withInfo:@"密碼格式錯誤"];
+                [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
                 
             }
             break;
             
         case 2:
-            reconfirmPWDToken = false;
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 reconfirmPWDToken = true;
                 if (emailToken) {
                     
-                    procedureToken = false;
                     if ([str isEqualToString:_passwordField.text]) {
                         
                         procedureToken = true;
                         
                     } else {
                         
-                        [self presentAlertControllerFor:textField withInfo:@"密碼比對失敗"];
+                        [self presentAlertControllerWithInfo:@"密碼比對失敗"];
                         
                     }
                     
@@ -140,7 +165,7 @@
                 
             } else {
                 
-                [self presentAlertControllerFor:textField withInfo:@"密碼格式錯誤"];
+                [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
                 
             }
             break;
@@ -161,16 +186,16 @@
 
 - (void)shiftToThePreviousOneOfTextField:(UITextField *)textField {
     
-    NSInteger nextTag = textField.tag-1;
-    UIResponder *nextResponder = [self.view viewWithTag:nextTag];
-    if ([nextResponder isKindOfClass:[textField class]]) {
+    NSInteger previousTag = textField.tag-1;
+    UIResponder *previousResponder = [self.view viewWithTag:previousTag];
+    if ([previousResponder isKindOfClass:[textField class]]) {
         
-        [nextResponder becomeFirstResponder];
+        [previousResponder becomeFirstResponder];
         
     }
 }
 
-- (void)presentAlertControllerFor:(UITextField *)textField withInfo:(NSString *)info {
+- (void)presentAlertControllerWithInfo:(NSString *)info {
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:nil];
@@ -183,15 +208,29 @@
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
-    if (emailToken && procedureToken) {
+    for (UITextField *textField in self.view.subviews) {
         
-        NSLog(@"登入");
-        
-    } else {
-        
-        NSLog(@"登入失敗");
+        if ([textField isFirstResponder]) {
+            
+            [textField endEditing:true];
+            
+        }
         
     }
+    if (emailToken && procedureToken) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        localUser.email = _emailField.text;
+        localUser.password = _passwordField.text;
+        [localUser createUserAccount];
+        [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
+        
+    }
+}
+
+- (IBAction)cancelAccountCreationBtnPressed:(UIButton *)sender {
+    
+    [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
     
 }
 

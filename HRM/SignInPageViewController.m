@@ -7,9 +7,14 @@
 //
 
 #import "SignInPageViewController.h"
+#import "StrValidationFilter.h"
 #import "CurrentUser.h"
 
-@interface SignInPageViewController () <UITextFieldDelegate>
+@interface SignInPageViewController () <UITextFieldDelegate> {
+    
+    BOOL emailToken, pwdToken;
+    
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -20,8 +25,14 @@
 
 #pragma mark - View Lifecycle
 
-- (void)loadView {
-    [super loadView];
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    _emailField.tag = 0;
+    _emailField.delegate = self;
+    
+    _passwordField.tag = 1;
+    _passwordField.delegate = self;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
     if (![localUser.email isEqualToString:@""] && ![localUser.password isEqualToString:@""]) {
@@ -44,10 +55,106 @@
 
 #pragma mark - Text Field Delegate
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    
+    switch (textField.tag) {
+        case 0:
+            emailToken = false;
+            break;
+            
+        case 1:
+            pwdToken = false;
+            break;
+            
+    }
+}
 
-    [textField resignFirstResponder];
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    if (textField.text.length != 0) {
+        
+        [self validationDependenceOfTextField:textField];
+        
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField.text.length != 0) {
+        
+        [self validationDependenceOfTextField:textField];
+        
+    }
     return true;
+    
+}
+
+- (void)validationDependenceOfTextField:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    NSString *str = textField.text;
+    switch (textField.tag) {
+            
+        case 0:
+            if ([StrValidationFilter emailValidationFor:str]) {
+                
+                emailToken = true;
+                if (!pwdToken) {
+                    
+                    [self shiftToTheNextOneOfTextField:textField];
+                    
+                }
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"電子郵件格式錯誤"];
+                
+            }
+            break;
+            
+        case 1:
+            if ([StrValidationFilter passwordValidationFor:str]) {
+                
+                pwdToken = true;
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                
+            }
+            break;
+            
+    }
+}
+
+- (void)shiftToTheNextOneOfTextField:(UITextField *)textField {
+    
+    NSInteger nextTag = textField.tag+1;
+    UIResponder *nextResponder = [self.view viewWithTag:nextTag];
+    if ([nextResponder isKindOfClass:[textField class]]) {
+        
+        [nextResponder becomeFirstResponder];
+        
+    }
+}
+
+- (void)shiftToThePreviousOneOfTextField:(UITextField *)textField {
+    
+    NSInteger previousTag = textField.tag-1;
+    UIResponder *previousResponder = [self.view viewWithTag:previousTag];
+    if ([previousResponder isKindOfClass:[textField class]]) {
+        
+        [previousResponder becomeFirstResponder];
+        
+    }
+}
+
+- (void)presentAlertControllerWithInfo:(NSString *)info {
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:nil];
+    [alertC addAction:alertAction];
+    [self presentViewController:alertC animated:true completion:nil];
     
 }
 
@@ -55,28 +162,24 @@
 
 - (IBAction)signInBtnPressed:(UIButton *)sender {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![_emailField.text isEqualToString:@""] && ![_passwordField.text isEqualToString:@""]) {
+    for (UITextField *textField in self.view.subviews) {
         
+        if ([textField isFirstResponder]) {
+            
+            [textField endEditing:true];
+            
+        }
+        
+    }
+    if (emailToken && pwdToken) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
         localUser.password = _passwordField.text;
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
         [localUser signInUserAccount];
         
-    } else {
-        
-        NSDictionary *signInInfo = @{@"Email": _emailField, @"Password": _passwordField};
-        for (NSString *key in [signInInfo allKeys]) {
-            
-            UITextField *textField = [signInInfo valueForKey:key];
-            if ([textField.text isEqualToString:@""]) {
-                
-                textField.placeholder = [NSString stringWithFormat:@"Enter your %@", key];
-                textField.text = @"";
-                
-            }
-        }
     }
 }
 
@@ -88,12 +191,10 @@
     switch (localUser.auth.intValue) {
             
         case 0:
-            
             [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
             break;
             
-        default:
-            
+        case 1:
             [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
             break;
             
