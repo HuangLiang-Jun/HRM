@@ -9,6 +9,13 @@
 #import "StaffSalaryViewController.h"
 
 @interface StaffSalaryViewController ()
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnEdit;
+@property (weak, nonatomic) IBOutlet UITextField *monthlySalaryTextField;
+@property (weak, nonatomic) IBOutlet UITextField *workerInsuranceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *healthInsuranceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *payCutTextField;
+@property (weak, nonatomic) IBOutlet UITextField *fullAttendanceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *totalSalaryTextField;
 
 @end
 
@@ -27,6 +34,8 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)btnEdit:(UIBarButtonItem *)sender {
 }
 
 /*

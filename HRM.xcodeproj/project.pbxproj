@@ -44,6 +44,7 @@
 		7023F6E11DD354BF00793999 /* btnBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DD1DD354BF00793999 /* btnBlue.png */; };
 		7023F6E21DD354BF00793999 /* btnGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DE1DD354BF00793999 /* btnGreen.png */; };
 		7023F6E41DD3627300793999 /* btnRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6E31DD3627300793999 /* btnRed.png */; };
+		7032EEE81DD76294008C6C7A /* btnWork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7032EEE71DD76294008C6C7A /* btnWork.png */; };
 		706159CD1D94231800D2530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CC1D94231800D2530B /* main.m */; };
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
@@ -122,6 +123,7 @@
 		7023F6DD1DD354BF00793999 /* btnBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBlue.png; sourceTree = "<group>"; };
 		7023F6DE1DD354BF00793999 /* btnGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnGreen.png; sourceTree = "<group>"; };
 		7023F6E31DD3627300793999 /* btnRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnRed.png; sourceTree = "<group>"; };
+		7032EEE71DD76294008C6C7A /* btnWork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnWork.png; sourceTree = "<group>"; };
 		706159C81D94231800D2530B /* HRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706159CC1D94231800D2530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		706159CE1D94231800D2530B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		63D92FB41DBF8105007578DB /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				7032EEE71DD76294008C6C7A /* btnWork.png */,
 				637AD2561DD5E6D500FA94E5 /* camera.png */,
 				637AD2571DD5E6D500FA94E5 /* head01.png */,
 				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
@@ -497,6 +500,7 @@
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
 				637AD26A1DD5F28600FA94E5 /* info.png in Resources */,
+				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
 				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
 				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
