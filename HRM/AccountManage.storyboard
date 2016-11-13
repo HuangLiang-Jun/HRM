@@ -533,13 +533,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wnE-Lj-pTC">
-                                <rect key="frame" x="41" y="231" width="41" height="24"/>
+                                <rect key="frame" x="41" y="244" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXQ-bE-nop">
-                                <rect key="frame" x="94" y="227" width="261" height="32"/>
+                                <rect key="frame" x="94" y="240" width="261" height="32"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -548,13 +548,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="生日" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5N-bA-bnF">
-                                <rect key="frame" x="41" y="303" width="41" height="24"/>
+                                <rect key="frame" x="41" y="316" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-QZ-3yg">
-                                <rect key="frame" x="94" y="299" width="261" height="32"/>
+                                <rect key="frame" x="94" y="312" width="261" height="32"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -563,13 +563,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份證" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhQ-eB-7dj">
-                                <rect key="frame" x="20" y="375" width="62" height="24"/>
+                                <rect key="frame" x="20" y="388" width="62" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qV-Jn-Fvc">
-                                <rect key="frame" x="94" y="371" width="261" height="32"/>
+                                <rect key="frame" x="94" y="384" width="261" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="3dL-jH-tGd"/>
                                 </constraints>
@@ -581,13 +581,13 @@
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手機" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYI-YI-mbB">
-                                <rect key="frame" x="41" y="447" width="41" height="24"/>
+                                <rect key="frame" x="41" y="460" width="41" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDZ-R3-fdZ">
-                                <rect key="frame" x="94" y="443" width="261" height="32"/>
+                                <rect key="frame" x="94" y="456" width="261" height="32"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -596,7 +596,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sq-9Q-D8X">
-                                <rect key="frame" x="113" y="567" width="150" height="40"/>
+                                <rect key="frame" x="113" y="580" width="150" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="mr9-n6-kIh"/>
                                 </constraints>
@@ -613,7 +613,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="head.png" translatesAutoresizingMaskIntoConstraints="NO" id="bak-cF-y4G">
-                                <rect key="frame" x="87.5" y="11" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="24" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="L0d-Dq-opU"/>
                                     <constraint firstAttribute="width" secondItem="bak-cF-y4G" secondAttribute="height" multiplier="1:1" id="gHy-c6-dbA"/>
@@ -634,7 +634,7 @@
                             <constraint firstItem="UDZ-R3-fdZ" firstAttribute="height" secondItem="7qV-Jn-Fvc" secondAttribute="height" id="F62-tl-bxR"/>
                             <constraint firstItem="UDZ-R3-fdZ" firstAttribute="trailing" secondItem="7qV-Jn-Fvc" secondAttribute="trailing" id="J17-K7-get"/>
                             <constraint firstItem="dhQ-eB-7dj" firstAttribute="leading" secondItem="huG-Pf-1Z9" secondAttribute="leading" constant="20" id="K0U-jW-i8K"/>
-                            <constraint firstItem="dhQ-eB-7dj" firstAttribute="centerY" secondItem="huG-Pf-1Z9" secondAttribute="centerY" multiplier="1.16" id="NwV-eQ-FfP"/>
+                            <constraint firstItem="dhQ-eB-7dj" firstAttribute="centerY" secondItem="huG-Pf-1Z9" secondAttribute="centerY" multiplier="1.2" id="NwV-eQ-FfP"/>
                             <constraint firstItem="UDZ-R3-fdZ" firstAttribute="leading" secondItem="7qV-Jn-Fvc" secondAttribute="leading" id="QG0-6o-yfb"/>
                             <constraint firstItem="wnE-Lj-pTC" firstAttribute="top" secondItem="bak-cF-y4G" secondAttribute="bottom" constant="20" id="UKn-gN-cc7"/>
                             <constraint firstItem="7qV-Jn-Fvc" firstAttribute="centerY" secondItem="dhQ-eB-7dj" secondAttribute="centerY" id="X55-i1-xrW"/>
