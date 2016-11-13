@@ -66,8 +66,8 @@
                 NSCharacterSet *regexCharSet = [NSCharacterSet characterSetWithCharactersInString:regexNumStr];
                 if ([regexCharSet isSupersetOfSet:numCharSet]) {
                     
-                    NSString *genderNum = [numStr substringToIndex:1];
-                    if ([genderNum isEqualToString:@"1"] || [genderNum isEqualToString:@"2"]) {
+                    NSString *genderStr = [numStr substringToIndex:1];
+                    if ([genderStr isEqualToString:@"1"] || [genderStr isEqualToString:@"2"]) {
                         
                         NSUInteger num = [numStr integerValue];
                         NSString *capitalizedLetterStr = [letterStr capitalizedString];
