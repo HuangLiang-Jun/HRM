@@ -50,6 +50,20 @@
     
 }
 
++ (BOOL)birthdayValidationFor:(NSString *)birthday {
+        
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormatter dateFromString:birthday];
+    if (date) {
+        
+        return true;
+        
+    }
+    return false;
+    
+}
+
 + (BOOL)idCardNumValidationFor:(NSString *)idCardNum {
     
     switch (idCardNum.length) {
@@ -96,6 +110,24 @@
         default:
             return false;
             
+    }
+}
+
++ (BOOL)cellPhoneNumValidationFor:(NSString *)cellPhoneNum {
+    
+    switch (cellPhoneNum.length) {
+            
+        case 10:
+            if ([cellPhoneNum hasPrefix:@"09"]) {
+                
+                return true;
+                
+            }
+            return false;
+            
+        default:
+            return false;
+
     }
 }
 

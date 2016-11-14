@@ -81,11 +81,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
-    if (textField.text.length != 0) {
-        
-        [self validationDependenceOfTextField:textField];
-        
-    }
+    [self validationDependenceOfTextField:textField];
     return true;
     
 }

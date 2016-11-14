@@ -14,6 +14,10 @@
 
 + (BOOL)passwordValidationFor:(NSString *)pwd;
 
++ (BOOL)birthdayValidationFor:(NSString *)birthday;
+
 + (BOOL)idCardNumValidationFor:(NSString *)idCardNum;
+
++ (BOOL)cellPhoneNumValidationFor:(NSString *)cellPhoneNum;
 
 @end

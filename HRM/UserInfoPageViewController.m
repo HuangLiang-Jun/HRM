@@ -27,7 +27,17 @@
 
 #pragma mark - View Lifecycle
 
-#pragma mark - View Lifecycle
+- (void)loadView {
+    [super loadView];
+    
+    UIDatePicker *datePicker = [UIDatePicker new];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.maximumDate = [NSDate date];
+    [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
+    
+    [_birthdayField setInputView:datePicker];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,6 +81,95 @@
     }
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    
+    if (textField.text.length != 0) {
+        
+        [self validationDependenceOfTextField:textField];
+        
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [self validationDependenceOfTextField:textField];
+    return true;
+    
+}
+
+- (void)validationDependenceOfTextField:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    NSString *str = textField.text;
+    switch (textField.tag) {
+            
+        case 0:
+            if (str.length != 0) {
+                
+                nameToken = true;
+                if (!birthdayToken) {
+                    
+                    [self shiftToTheNextOneOfTextField:textField];
+                    
+                }
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"請輸入使用者姓名"];
+                
+            }
+            break;
+            
+        case 1:
+            if ([StrValidationFilter birthdayValidationFor:str]) {
+                
+                birthdayToken = true;
+                if (!idCardNumToken) {
+                    
+                    [self shiftToTheNextOneOfTextField:textField];
+                    
+                }
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"出生日期格式錯誤"];
+                
+            }
+            break;
+            
+        case 2:
+            if ([StrValidationFilter idCardNumValidationFor:str]) {
+                
+                idCardNumToken = true;
+                if (!cellPhoneNumToken) {
+                    
+                    [self shiftToTheNextOneOfTextField:textField];
+                    
+                }
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"請輸入合法的身分證字號"];
+                
+            }
+            break;
+            
+        case 3:
+            if ([StrValidationFilter cellPhoneNumValidationFor:str]) {
+                
+                cellPhoneNumToken = true;
+                
+            } else {
+                
+                [self presentAlertControllerWithInfo:@"手機號碼格式錯誤"];
+                
+            }
+            break;
+            
+    }
+}
+
+
 - (void)shiftToTheNextOneOfTextField:(UITextField *)textField {
     
     NSInteger nextTag = textField.tag+1;
@@ -91,50 +190,45 @@
     
 }
 
+- (void)updateTextField:(UIDatePicker *)sender {
+    
+    UIDatePicker *datePicker = (UIDatePicker *)_birthdayField.inputView;
+    _birthdayField.text = [NSDateNSStringExchange stringFromChosenDate:datePicker.date];
+    
+}
+
 #pragma  mark - Complete Account Creation Btn Func
 
 - (IBAction)completeAccountCreationBtnPressed:(UIButton *)sender {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![_nameField.text isEqualToString:@""]) {
+    for (UITextField *textField in self.view.subviews) {
         
-        localUser.displayName = _nameField.text;
-        [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
-        
-    }
-    NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Birthday": _birthdayField, @"IDCardNumber": _idCardNumberField, @"CellphoneNumber": _cellphoneNumberField}];
-    int count = 0;
-    for (NSString *key in [userInfo allKeys]) {
-        
-        UITextField *textField = [userInfo valueForKey:key];
-        if (![textField.text isEqualToString:@""]) {
+        if ([textField isFirstResponder]) {
             
-            [userInfo setValue:textField.text forKey:key];
-            
-        } else {
-            
-            count += 1;
-            textField.placeholder = @"Please enter compatible info.";
-            textField.text = @"";
+            [textField endEditing:true];
             
         }
         
     }
-    if (count == 0) {
+    if (nameToken && birthdayToken && idCardNumToken && cellPhoneNumToken) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        localUser.displayName = _nameField.text;
+        [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
+        NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Birthday": _birthdayField.text, @"IDCardNumber": _idCardNumberField.text, @"CellphoneNumber": _cellphoneNumberField.text}];
         
         [localUser uploadUserInfoWithDict:userInfo];
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
-        CurrentUser *localUser = [CurrentUser sharedInstance];
+        [notificationCenter addObserver:self selector:@selector(completeAccountCreation) name:@"UserSignedOut" object:nil];
         [localUser signOutUserAccount];
-
+        
     }
 }
 
-- (void)prepareForSignInPage {
+- (void)completeAccountCreation {
     
-//    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-//    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
     [self.presentingViewController.presentingViewController dismissViewControllerAnimated:true completion:nil];
     
 }
