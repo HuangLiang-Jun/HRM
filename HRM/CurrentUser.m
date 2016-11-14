@@ -94,7 +94,7 @@
             _uid = user.uid;
             [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
             [self downloadUserInfoForm:user];
-            NSLog(@"使用者登入");
+            
         } else {
             
             NSLog(@"Error (Sign in): %@", error);
@@ -112,7 +112,6 @@
             
             _displayName = snapshot.value;
             [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
-            NSLog(@"使用者姓名抓取完成");
             FIRDatabaseReference *userAuthRef = [[[[[FIRDatabase database] reference] child:@"StaffInformation"]child:_displayName] child:@"Auth"];
             [userAuthRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
@@ -122,7 +121,7 @@
                     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
                     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
                     [notificationCenter postNotificationName:@"UserInfoDownloaded" object:nil];
-                    NSLog(@"使用者權限抓取完成");
+                    
                 }
             }];
         }
