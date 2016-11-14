@@ -17,7 +17,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UITextField *pwdField;
+
 
 @end
 
@@ -31,11 +32,11 @@
     _emailField.tag = 0;
     _emailField.delegate = self;
     
-    _passwordField.tag = 1;
-    _passwordField.delegate = self;
+    _pwdField.tag = 1;
+    _pwdField.delegate = self;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (![localUser.email isEqualToString:@""] && ![localUser.password isEqualToString:@""]) {
+    if (localUser.email.length != 0 && localUser.password.length != 0) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
@@ -49,7 +50,7 @@
 
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
-    _passwordField.text = localUser.password;
+    _pwdField.text = localUser.password;
     
 }
 
@@ -138,17 +139,6 @@
     }
 }
 
-- (void)shiftToThePreviousOneOfTextField:(UITextField *)textField {
-    
-    NSInteger previousTag = textField.tag-1;
-    UIResponder *previousResponder = [self.view viewWithTag:previousTag];
-    if ([previousResponder isKindOfClass:[textField class]]) {
-        
-        [previousResponder becomeFirstResponder];
-        
-    }
-}
-
 - (void)presentAlertControllerWithInfo:(NSString *)info {
     
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
@@ -175,7 +165,7 @@
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
-        localUser.password = _passwordField.text;
+        localUser.password = _pwdField.text;
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
         [localUser signInUserAccount];

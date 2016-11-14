@@ -17,8 +17,9 @@
 }
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
-@property (weak, nonatomic) IBOutlet UITextField *reconfirmPasswordField;
+@property (weak, nonatomic) IBOutlet UITextField *pwdField;
+@property (weak, nonatomic) IBOutlet UITextField *reconfirmPWDField;
+
 
 @end
 
@@ -32,11 +33,11 @@
     _emailField.tag = 0;
     _emailField.delegate = self;
     
-    _passwordField.tag = 1;
-    _passwordField.delegate = self;
+    _pwdField.tag = 1;
+    _pwdField.delegate = self;
     
-    _reconfirmPasswordField.tag = 2;
-    _reconfirmPasswordField.delegate = self;
+    _reconfirmPWDField.tag = 2;
+    _reconfirmPWDField.delegate = self;
     
     FIRUser *user = [[FIRAuth auth] currentUser];
     if (user != nil) {
@@ -118,7 +119,7 @@
                 pwdToken = true;
                 if (reconfirmPWDToken) {
                     
-                    if ([str isEqualToString:_reconfirmPasswordField.text]) {
+                    if ([str isEqualToString:_reconfirmPWDField.text]) {
                         
                         procedureToken = true;
                         
@@ -147,7 +148,7 @@
                 reconfirmPWDToken = true;
                 if (emailToken) {
                     
-                    if ([str isEqualToString:_passwordField.text]) {
+                    if ([str isEqualToString:_pwdField.text]) {
                         
                         procedureToken = true;
                         
@@ -221,7 +222,7 @@
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
-        localUser.password = _passwordField.text;
+        localUser.password = _pwdField.text;
         [localUser createUserAccount];
         [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
         

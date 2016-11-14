@@ -14,4 +14,6 @@
 
 + (BOOL)passwordValidationFor:(NSString *)pwd;
 
++ (BOOL)idCardNumValidationFor:(NSString *)idCardNum;
+
 @end

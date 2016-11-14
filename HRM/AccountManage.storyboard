@@ -124,7 +124,7 @@
                     <navigationItem key="navigationItem" id="vQV-gf-CGA"/>
                     <connections>
                         <outlet property="emailField" destination="0At-Dx-kBE" id="HXG-eB-fkV"/>
-                        <outlet property="passwordField" destination="1oP-As-sQF" id="Lya-aZ-ahb"/>
+                        <outlet property="pwdField" destination="1oP-As-sQF" id="kGb-6S-B86"/>
                         <segue destination="6xy-9C-sYG" kind="show" identifier="EmployeeHomePageSegue" id="pvi-DA-I4Y"/>
                         <segue destination="iyB-in-ZMj" kind="show" identifier="SupervisorHomePageSegue" id="P17-QG-N68"/>
                         <segue destination="GI7-9f-nHd" kind="show" identifier="SignUpPageSegue" id="X4V-kb-DoU"/>
@@ -273,8 +273,8 @@
                     <navigationItem key="navigationItem" id="460-hV-lmV"/>
                     <connections>
                         <outlet property="emailField" destination="RPJ-k2-oPR" id="Xdb-Yj-iIx"/>
-                        <outlet property="passwordField" destination="3Ri-1U-Zgf" id="Y1N-6l-WcR"/>
-                        <outlet property="reconfirmPasswordField" destination="C0j-cM-WPB" id="Iyv-S7-CND"/>
+                        <outlet property="pwdField" destination="3Ri-1U-Zgf" id="1OI-5Z-81m"/>
+                        <outlet property="reconfirmPWDField" destination="C0j-cM-WPB" id="2wu-U7-oOm"/>
                         <segue destination="hyr-RM-VHd" kind="show" identifier="UserInfoPageSegue" id="UH2-cc-P83"/>
                     </connections>
                 </viewController>
@@ -653,9 +653,9 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="IDCardNumberField" destination="7qV-Jn-Fvc" id="E9u-ET-aio"/>
                         <outlet property="birthdayField" destination="dYq-QZ-3yg" id="62H-UQ-vh5"/>
                         <outlet property="cellphoneNumberField" destination="UDZ-R3-fdZ" id="0gN-a3-OFz"/>
+                        <outlet property="idCardNumberField" destination="7qV-Jn-Fvc" id="zZc-XE-yf7"/>
                         <outlet property="nameField" destination="wXQ-bE-nop" id="s8t-fB-RKK"/>
                     </connections>
                 </viewController>
