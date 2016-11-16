@@ -56,4 +56,7 @@
     
 }
 
+- (IBAction)BulletinBoarBtnPressed:(UIBarButtonItem *)sender {
+}
+
 @end

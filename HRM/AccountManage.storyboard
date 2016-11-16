@@ -689,136 +689,120 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="wsd-g0-bUN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="tgS-8I-5gx">
-                                <rect key="frame" x="117.5" y="128.5" width="140" height="410"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N6b-zl-gZw">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="320"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5D6-AB-hUf">
-                                                <rect key="frame" x="0.0" y="0.0" width="140" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="T4T-ls-dnH"/>
-                                                    <constraint firstAttribute="width" constant="140" id="da5-IT-dAP"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="打卡" backgroundImage="btnGreen.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="2nV-Gp-p1H" kind="show" id="dkv-ZX-ULT"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njz-tI-HtA">
-                                                <rect key="frame" x="0.0" y="70" width="140" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="CQV-un-xyP"/>
-                                                    <constraint firstAttribute="height" constant="40" id="WcZ-H8-1im"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                <state key="normal" title="請假" backgroundImage="btnGreen.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="applicationPageBtnPressed:" destination="5Ql-Pp-KSB" eventType="touchUpInside" id="XDz-YI-Tyv"/>
-                                                    <segue destination="e2T-Dz-E3x" kind="show" identifier="ApplicationListPageSegue" id="sF7-NN-qTb"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEc-91-flm">
-                                                <rect key="frame" x="0.0" y="140" width="140" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="b15-Gm-Aol"/>
-                                                    <constraint firstAttribute="height" constant="40" id="euw-0Z-dmd"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <state key="normal" title="排班" backgroundImage="btnGreen.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="e6x-Z3-dGE" kind="show" id="Hvg-iL-KXg"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8x-EM-fjV">
-                                                <rect key="frame" x="0.0" y="210" width="140" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="TBo-t5-edR"/>
-                                                    <constraint firstAttribute="width" constant="140" id="wD6-9e-OK3"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="班表" backgroundImage="btnGreen.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="yKa-xp-9Xt" kind="show" id="cUG-sN-jwu"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aT-hy-N4y">
-                                                <rect key="frame" x="0.0" y="280" width="140" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="140" id="Hjb-6u-DCn"/>
-                                                    <constraint firstAttribute="height" constant="40" id="fVp-Wc-SWv"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="個人薪資" backgroundImage="btnGreen.png">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <segue destination="rvf-ak-1fF" kind="show" id="tFg-72-7J0"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="320" id="4ds-v9-YlL"/>
-                                        </constraints>
-                                    </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhn-gR-3RP">
-                                        <rect key="frame" x="0.0" y="370" width="140" height="40"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="登出" backgroundImage="btnRed.png">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="signOutBtnPressed:" destination="5Ql-Pp-KSB" eventType="touchUpInside" id="Aee-Mf-3sT"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEc-91-flm">
+                                <rect key="frame" x="205" y="104" width="150" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="排班" backgroundImage="btnGreen.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="e6x-Z3-dGE" kind="show" id="Hvg-iL-KXg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aT-hy-N4y">
+                                <rect key="frame" x="20" y="104" width="150" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="個人薪資" backgroundImage="btnGreen.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="rvf-ak-1fF" kind="show" id="tFg-72-7J0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njz-tI-HtA">
+                                <rect key="frame" x="205" y="232" width="150" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="請假" backgroundImage="btnGreen.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="applicationPageBtnPressed:" destination="5Ql-Pp-KSB" eventType="touchUpInside" id="XDz-YI-Tyv"/>
+                                    <segue destination="e2T-Dz-E3x" kind="show" identifier="ApplicationListPageSegue" id="sF7-NN-qTb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5D6-AB-hUf">
+                                <rect key="frame" x="205" y="360" width="150" height="80"/>
                                 <constraints>
-                                    <constraint firstItem="Xhn-gR-3RP" firstAttribute="width" secondItem="8aT-hy-N4y" secondAttribute="width" id="00c-RZ-Qdk"/>
-                                    <constraint firstItem="Xhn-gR-3RP" firstAttribute="height" secondItem="8aT-hy-N4y" secondAttribute="height" id="7Cl-2b-ug7"/>
+                                    <constraint firstAttribute="height" constant="80" id="w0g-Q5-yaD"/>
                                 </constraints>
-                            </stackView>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="打卡" backgroundImage="btnGreen.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2nV-Gp-p1H" kind="show" id="dkv-ZX-ULT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xhn-gR-3RP">
+                                <rect key="frame" x="37.5" y="536" width="300" height="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="登出" backgroundImage="btnRed.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signOutBtnPressed:" destination="5Ql-Pp-KSB" eventType="touchUpInside" id="Aee-Mf-3sT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p8x-EM-fjV">
+                                <rect key="frame" x="20" y="232" width="150" height="80"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="0.0" green="0.46274509800000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="班表" backgroundImage="btnGreen.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yKa-xp-9Xt" kind="show" id="cUG-sN-jwu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wsd-g0-bUN" firstAttribute="centerY" secondItem="M2E-OC-dRJ" secondAttribute="centerY" id="0dx-0P-Noa"/>
-                            <constraint firstItem="tgS-8I-5gx" firstAttribute="centerX" secondItem="M2E-OC-dRJ" secondAttribute="centerX" id="5kc-8K-LGU"/>
-                            <constraint firstItem="tgS-8I-5gx" firstAttribute="centerY" secondItem="M2E-OC-dRJ" secondAttribute="centerY" id="Mge-kd-eEv"/>
-                            <constraint firstItem="kJG-CQ-HvG" firstAttribute="top" secondItem="wsd-g0-bUN" secondAttribute="bottom" id="ODC-9h-s5A"/>
-                            <constraint firstItem="wsd-g0-bUN" firstAttribute="leading" secondItem="M2E-OC-dRJ" secondAttribute="leading" id="moP-gV-r0l"/>
-                            <constraint firstItem="wsd-g0-bUN" firstAttribute="centerX" secondItem="M2E-OC-dRJ" secondAttribute="centerX" id="njS-qm-CD0"/>
-                            <constraint firstAttribute="trailing" secondItem="wsd-g0-bUN" secondAttribute="trailing" id="uHz-lG-vpT"/>
-                            <constraint firstItem="wsd-g0-bUN" firstAttribute="top" secondItem="M2E-OC-dRJ" secondAttribute="top" id="vRt-1e-4GP"/>
+                            <constraint firstItem="5D6-AB-hUf" firstAttribute="centerY" secondItem="M2E-OC-dRJ" secondAttribute="centerY" multiplier="1.2" id="8dU-PQ-IT9"/>
+                            <constraint firstItem="EEc-91-flm" firstAttribute="height" secondItem="5D6-AB-hUf" secondAttribute="height" id="A3Y-cv-N5n"/>
+                            <constraint firstItem="EEc-91-flm" firstAttribute="width" secondItem="5D6-AB-hUf" secondAttribute="width" id="AsI-R5-b7a"/>
+                            <constraint firstItem="Xhn-gR-3RP" firstAttribute="width" secondItem="5D6-AB-hUf" secondAttribute="width" multiplier="2" id="C23-Tk-h2e"/>
+                            <constraint firstItem="5D6-AB-hUf" firstAttribute="width" secondItem="M2E-OC-dRJ" secondAttribute="width" multiplier="0.4" id="IPP-nS-dxc"/>
+                            <constraint firstItem="p8x-EM-fjV" firstAttribute="width" secondItem="5D6-AB-hUf" secondAttribute="width" id="In7-OX-kRk"/>
+                            <constraint firstItem="wsd-g0-bUN" firstAttribute="top" secondItem="M2E-OC-dRJ" secondAttribute="top" id="J2q-9y-GH7"/>
+                            <constraint firstItem="njz-tI-HtA" firstAttribute="top" secondItem="EEc-91-flm" secondAttribute="bottom" constant="48" id="Lld-oh-elC"/>
+                            <constraint firstItem="8aT-hy-N4y" firstAttribute="leading" secondItem="p8x-EM-fjV" secondAttribute="leading" id="Q79-cF-SNK"/>
+                            <constraint firstItem="8aT-hy-N4y" firstAttribute="width" secondItem="5D6-AB-hUf" secondAttribute="width" id="RHy-p3-KOL"/>
+                            <constraint firstItem="Xhn-gR-3RP" firstAttribute="top" secondItem="5D6-AB-hUf" secondAttribute="bottom" constant="96" id="XpN-D6-Kfs"/>
+                            <constraint firstItem="njz-tI-HtA" firstAttribute="trailing" secondItem="5D6-AB-hUf" secondAttribute="trailing" id="af6-MO-Qp0"/>
+                            <constraint firstItem="8aT-hy-N4y" firstAttribute="height" secondItem="5D6-AB-hUf" secondAttribute="height" id="bEb-lO-4yQ"/>
+                            <constraint firstAttribute="trailing" secondItem="5D6-AB-hUf" secondAttribute="trailing" constant="20" id="bcK-Ad-R3f"/>
+                            <constraint firstItem="p8x-EM-fjV" firstAttribute="leading" secondItem="M2E-OC-dRJ" secondAttribute="leading" constant="20" id="hNm-mR-BJa"/>
+                            <constraint firstItem="njz-tI-HtA" firstAttribute="width" secondItem="5D6-AB-hUf" secondAttribute="width" id="iQb-7j-OpC"/>
+                            <constraint firstItem="p8x-EM-fjV" firstAttribute="height" secondItem="5D6-AB-hUf" secondAttribute="height" id="lpF-Ql-twf"/>
+                            <constraint firstItem="wsd-g0-bUN" firstAttribute="leading" secondItem="M2E-OC-dRJ" secondAttribute="leading" id="nya-GU-3UC"/>
+                            <constraint firstItem="Xhn-gR-3RP" firstAttribute="centerX" secondItem="M2E-OC-dRJ" secondAttribute="centerX" id="oLN-K9-EQH"/>
+                            <constraint firstAttribute="trailing" secondItem="wsd-g0-bUN" secondAttribute="trailing" id="oNV-F9-2Ky"/>
+                            <constraint firstItem="p8x-EM-fjV" firstAttribute="centerY" secondItem="njz-tI-HtA" secondAttribute="centerY" id="pbs-qt-PAi"/>
+                            <constraint firstItem="Xhn-gR-3RP" firstAttribute="height" secondItem="5D6-AB-hUf" secondAttribute="height" multiplier="0.5" id="rtV-yJ-oQk"/>
+                            <constraint firstItem="njz-tI-HtA" firstAttribute="height" secondItem="5D6-AB-hUf" secondAttribute="height" id="vXs-7z-tEM"/>
+                            <constraint firstItem="8aT-hy-N4y" firstAttribute="centerY" secondItem="EEc-91-flm" secondAttribute="centerY" id="wrY-is-hzE"/>
+                            <constraint firstItem="EEc-91-flm" firstAttribute="trailing" secondItem="5D6-AB-hUf" secondAttribute="trailing" id="xBs-lu-2nx"/>
+                            <constraint firstItem="kJG-CQ-HvG" firstAttribute="top" secondItem="wsd-g0-bUN" secondAttribute="bottom" id="ynw-e5-tYo"/>
+                            <constraint firstItem="5D6-AB-hUf" firstAttribute="top" secondItem="njz-tI-HtA" secondAttribute="bottom" constant="48" id="zeu-M7-ZoF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ecs-O6-aPY">
-                        <barButtonItem key="rightBarButtonItem" image="info.png" id="RNy-EZ-bue">
-                            <connections>
-                                <segue destination="drJ-HG-5i7" kind="show" id="nYb-gS-D8Z"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="info.png" id="RNy-EZ-bue"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="drJ-HG-5i7" kind="show" identifier="BulletinBoarSegue" id="VYi-2I-NZG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="prD-cC-02R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="284" y="309"/>
+            <point key="canvasLocation" x="284" y="308.9955022488756"/>
         </scene>
         <!--Supervisor Home Page View Controller-->
         <scene sceneID="a4M-jc-Z6Z">
@@ -2356,8 +2340,8 @@
         <image name="info.png" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nYb-gS-D8Z"/>
         <segue reference="dkv-ZX-ULT"/>
+        <segue reference="VYi-2I-NZG"/>
         <segue reference="cUG-sN-jwu"/>
     </inferredMetricsTieBreakers>
 </document>
