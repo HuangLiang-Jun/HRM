@@ -49,7 +49,7 @@
     _databaseRef = [[[[[FIRDatabase database]reference]child:@"Attendance"] child:localUser.displayName] child:@"2016-10"];
 
     //上傳本薪資料到資料庫的路徑
-    updateRef = [[[[FIRDatabase database]reference]child:@"Salary"]child:localUser.displayName];
+    updateRef = [[[[[FIRDatabase database]reference]child:@"Salary"]child:localUser.displayName] child:@"2016-10"];
    
     NSLog(@"ref: %@",_databaseRef);
 //    monthlySalary = 32000;
