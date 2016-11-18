@@ -16,13 +16,11 @@
 
 #define COMPANY_LOCATION_LATITUDE 24.967726
 #define COMPANY_LOCATION_LONGITUDE 121.191679
-@interface AttendanceViewController () <UIPickerViewDataSource,UIPickerViewDelegate,MKMapViewDelegate,CLLocationManagerDelegate>
+@interface AttendanceViewController () <MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mainMapView;
 @property (weak, nonatomic) IBOutlet UILabel *currentTimeLabel;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerView;
-@property (weak, nonatomic) IBOutlet UILabel *classLabel;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolBar;
+
 
 @property (nonatomic,strong) NSArray *classArr;
 @property (nonatomic,strong) FIRDatabaseReference *attendanceRef;
@@ -48,15 +46,8 @@
     currentDate = [NSDate date];
     NSString *yearAndMonthStr = [NSDateNSStringExchange stringFromYearAndMonth:currentDate];
     NSString *days = [NSDateNSStringExchange stringFromDays:currentDate];
-    _attendanceRef = [[[[[[FIRDatabase database]reference] child:@"Attendance"] child:@"黃亮鈞"] child:yearAndMonthStr] child:days];
+    _attendanceRef = [[[[[[FIRDatabase database]reference] child:@"Attendance"] child:userData.displayName] child:yearAndMonthStr] child:days];
     
-    _classArr = @[@"上班",@"下班"];
-    _classLabel.text = @"上班";
-    _toolBar.hidden = true;
-    _pickerView.hidden = true;
-    _classLabel.userInteractionEnabled = true;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelClicked:)];
-    [_classLabel addGestureRecognizer:tapGesture];
     
    myTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(showCurrentTimeOnLabel) userInfo:nil repeats:true];
     _currentTimeLabel.adjustsFontSizeToFitWidth = true;
@@ -70,20 +61,6 @@
     [locationManager startUpdatingLocation];
     
     companyLocation = [[CLLocation alloc]initWithLatitude:COMPANY_LOCATION_LATITUDE longitude:COMPANY_LOCATION_LONGITUDE];
-
-}
-
-- (void) labelClicked:(id) sender {
-    NSLog(@"Click label.");
-    _pickerView.hidden = false;
-    _toolBar.hidden = false;
-    
-    
-}
-- (IBAction)chooseClassBtnPressed:(UIBarButtonItem *)sender {
-    _toolBar.hidden = true;
-    _pickerView.hidden = true;
-    
 
 }
 
@@ -156,30 +133,6 @@
     });
 }
 
-
-#pragma -mark set picker
-
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
-    
-    return 1;
-}
-
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    
-    return _classArr.count;
-}
-
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    
-    
-    return [_classArr objectAtIndex:row];
-}
-
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    
-    _classLabel.text = [_classArr objectAtIndex:row];
-
-}
 
 -(void) completeToRecordAttendance{
     

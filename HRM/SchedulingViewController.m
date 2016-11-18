@@ -96,7 +96,7 @@
     [self.view addSubview:segmentedControl];
     
     // Default setting.
-    selectColor = [UIColor blueColor];
+    selectColor = [UIColor colorWithRed:0.196 green:0.729 blue:0.682 alpha:1];
     segmentIndex = 0;
     classStr = @"早班";
 }
@@ -140,7 +140,7 @@
 
     switch (segmentedControl.selectedSegmentIndex ) {
         case 0:
-            selectColor = [UIColor blueColor];
+            selectColor = [UIColor colorWithRed:0.196 green:0.729 blue:0.682 alpha:1];
             classStr = @"早班";
             break;
         case 1:
@@ -235,7 +235,7 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 4;
+    return 5;
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
@@ -243,8 +243,17 @@
     
     RecipeCollectionHeaderView *headerView = [_schedulingCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
     
-    NSArray *statusArr = @[@"目前排班狀況:",@"早班",@"晚班",@"例休",@"特休"];
-    NSArray *headerImage = @[[UIImage imageNamed:@"headerBlue.png"],[UIImage imageNamed:@"headerBlue.png"],[UIImage imageNamed:@"headerGreen.png"],[UIImage imageNamed:@"headerOrange.png"],[UIImage imageNamed:@"headerRed.png"]];
+    // prepare title & image
+    NSArray *statusArr = @[@"排班狀況",@"早班",@"晚班",@"例休",@"特休"];
+    NSArray *headerImage = @[[UIImage imageNamed:@"grayheader.png"],[UIImage imageNamed:@"blueheader.png"],[UIImage imageNamed:@"greenheader.png"],[UIImage imageNamed:@"orangeheader.png"],[UIImage imageNamed:@"redheader.png"]];
+    NSLog(@"indexPath: %@",indexPath);
+   
+   // setting section info.
+    if (indexPath.section == 4) {
+        headerView.specialVacHours.hidden = false;
+        headerView.specialVacHours.text = @"72小時";
+    }
+    
     headerView.headerLabel.text = statusArr[indexPath.section];
     headerView.headerImage.image = headerImage[indexPath.section];
     reusableView = headerView;
@@ -259,21 +268,24 @@
     if (_schedulingCalendar.allowsMultipleSelection == true) {
         switch (section) {
             case 0:
+                return 0;
+                break;
+            case 1:
                 if (onDuty > 0){
                     return onDuty.count;
                 }
                 break;
-            case 1:
+            case 2:
                 if (offDuty > 0){
                     return offDuty.count;
                 }
                 break;
-            case 2:
+            case 3:
                 if (dayoff > 0){
                     return dayoff.count;
                 }
                 break;
-            case 3:
+            case 4:
                 if (annualLeave > 0){
                     return annualLeave.count;
                 }

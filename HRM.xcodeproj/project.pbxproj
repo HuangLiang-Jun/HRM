@@ -17,6 +17,7 @@
 		6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA1F1DCCAD52001815C6 /* SalaryListTableViewCell.m */; };
 		630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */; };
 		630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */; };
+		631126241DDEE30A00F3404E /* grayheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 6311261A1DDEE30A00F3404E /* grayheader.png */; };
 		6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */; };
 		6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1781DB8E4A200B71A63 /* AttendanceViewController.m */; };
 		6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E17F1DB8E85200B71A63 /* SchedulingViewController.m */; };
@@ -39,10 +40,10 @@
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
 		63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
-		70197E021DDD9CFC009254C4 /* headerBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFE1DDD9CFC009254C4 /* headerBlue.png */; };
-		70197E031DDD9CFC009254C4 /* headerGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* headerGreen.png */; };
-		70197E041DDD9CFC009254C4 /* headerOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* headerOrange.png */; };
-		70197E051DDD9CFC009254C4 /* headerRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E011DDD9CFC009254C4 /* headerRed.png */; };
+		70197E021DDD9CFC009254C4 /* blueheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFE1DDD9CFC009254C4 /* blueheader.png */; };
+		70197E031DDD9CFC009254C4 /* greenheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* greenheader.png */; };
+		70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* orangeheader.png */; };
+		70197E051DDD9CFC009254C4 /* redheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E011DDD9CFC009254C4 /* redheader.png */; };
 		7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DB1DD354BF00793999 /* backgroundBlue.png */; };
 		7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DC1DD354BF00793999 /* backgroundGreen.png */; };
 		7023F6E11DD354BF00793999 /* btnBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DD1DD354BF00793999 /* btnBlue.png */; };
@@ -55,7 +56,6 @@
 		706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706159D91D94231800D2530B /* LaunchScreen.storyboard */; };
 		70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */; };
 		7AAC48412F70DADEDF7716CD /* Pods_HRM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 465262FC63B996D9E36968C5 /* Pods_HRM.framework */; };
-		A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91416FC1DBDE37000735A49 /* Application.storyboard */; };
 		A91417001DBE601200735A49 /* ApplicationInfoPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */; };
 		A91417031DBEEA8600735A49 /* SupervisorHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91417021DBEEA8600735A49 /* SupervisorHomePageViewController.m */; };
 		A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91417051DBEEAF600735A49 /* EmployeeHomePageViewController.m */; };
@@ -88,6 +88,7 @@
 		630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewCell.m; sourceTree = "<group>"; };
 		630E70EE1DBDCE960035E334 /* RecipeCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionHeaderView.h; sourceTree = "<group>"; };
 		630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCollectionHeaderView.m; sourceTree = "<group>"; };
+		6311261A1DDEE30A00F3404E /* grayheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayheader.png; sourceTree = "<group>"; };
 		6335E1731DB8E21400B71A63 /* NSDateNSStringExchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateNSStringExchange.h; sourceTree = "<group>"; };
 		6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateNSStringExchange.m; sourceTree = "<group>"; };
 		6335E1771DB8E4A200B71A63 /* AttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
@@ -122,10 +123,10 @@
 		63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoarViewController.m; sourceTree = "<group>"; };
 		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
 		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
-		70197DFE1DDD9CFC009254C4 /* headerBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerBlue.png; sourceTree = "<group>"; };
-		70197DFF1DDD9CFC009254C4 /* headerGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerGreen.png; sourceTree = "<group>"; };
-		70197E001DDD9CFC009254C4 /* headerOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerOrange.png; sourceTree = "<group>"; };
-		70197E011DDD9CFC009254C4 /* headerRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headerRed.png; sourceTree = "<group>"; };
+		70197DFE1DDD9CFC009254C4 /* blueheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueheader.png; sourceTree = "<group>"; };
+		70197DFF1DDD9CFC009254C4 /* greenheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenheader.png; sourceTree = "<group>"; };
+		70197E001DDD9CFC009254C4 /* orangeheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeheader.png; sourceTree = "<group>"; };
+		70197E011DDD9CFC009254C4 /* redheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheader.png; sourceTree = "<group>"; };
 		7023F6DB1DD354BF00793999 /* backgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundBlue.png; sourceTree = "<group>"; };
 		7023F6DC1DD354BF00793999 /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
 		7023F6DD1DD354BF00793999 /* btnBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBlue.png; sourceTree = "<group>"; };
@@ -141,7 +142,6 @@
 		706159DC1D94231900D2530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
 		9C326C437B5E56D3CFD3D639 /* Pods-HRM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HRM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HRM/Pods-HRM.debug.xcconfig"; sourceTree = "<group>"; };
-		A91416FC1DBDE37000735A49 /* Application.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Application.storyboard; sourceTree = "<group>"; };
 		A91416FE1DBE601200735A49 /* ApplicationInfoPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationInfoPageViewController.h; sourceTree = "<group>"; };
 		A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationInfoPageViewController.m; sourceTree = "<group>"; };
 		A91417011DBEEA8600735A49 /* SupervisorHomePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SupervisorHomePageViewController.h; sourceTree = "<group>"; };
@@ -232,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */,
-				A91416FC1DBDE37000735A49 /* Application.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -304,11 +303,12 @@
 		63D92FB41DBF8105007578DB /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				70197DFE1DDD9CFC009254C4 /* headerBlue.png */,
-				70197DFF1DDD9CFC009254C4 /* headerGreen.png */,
-				70197E001DDD9CFC009254C4 /* headerOrange.png */,
+				70197DFE1DDD9CFC009254C4 /* blueheader.png */,
+				6311261A1DDEE30A00F3404E /* grayheader.png */,
+				70197DFF1DDD9CFC009254C4 /* greenheader.png */,
+				70197E001DDD9CFC009254C4 /* orangeheader.png */,
+				70197E011DDD9CFC009254C4 /* redheader.png */,
 				639C13821DDEA1B900E21531 /* info.png */,
-				70197E011DDD9CFC009254C4 /* headerRed.png */,
 				7032EEE71DD76294008C6C7A /* btnWork.png */,
 				637AD2561DD5E6D500FA94E5 /* camera.png */,
 				637AD2571DD5E6D500FA94E5 /* head01.png */,
@@ -499,27 +499,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70197E021DDD9CFC009254C4 /* headerBlue.png in Resources */,
+				70197E021DDD9CFC009254C4 /* blueheader.png in Resources */,
 				6309E9E71DCB174D001815C6 /* backBtn.png in Resources */,
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
 				7023F6E21DD354BF00793999 /* btnGreen.png in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
-				70197E051DDD9CFC009254C4 /* headerRed.png in Resources */,
+				70197E051DDD9CFC009254C4 /* redheader.png in Resources */,
 				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
-				A91416FD1DBDE37000735A49 /* Application.storyboard in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
-				70197E041DDD9CFC009254C4 /* headerOrange.png in Resources */,
+				631126241DDEE30A00F3404E /* grayheader.png in Resources */,
+				70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */,
 				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
 				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
 				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
 				637AD2591DD5E6D500FA94E5 /* camera.png in Resources */,
-				70197E031DDD9CFC009254C4 /* headerGreen.png in Resources */,
+				70197E031DDD9CFC009254C4 /* greenheader.png in Resources */,
 				7023F6E41DD3627300793999 /* btnRed.png in Resources */,
 				7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */,
 				639C13831DDEA1B900E21531 /* info.png in Resources */,
