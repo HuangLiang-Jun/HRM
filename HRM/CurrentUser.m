@@ -195,7 +195,7 @@
 
 - (void)downloadAppcationList {
     
-    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+    FIRDatabaseReference *ref = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:@"ApplicationList"];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if (snapshot.value != [NSNull null]) {
@@ -223,7 +223,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *applicationListRef = [[[[FIRDatabase database] reference] child:_displayName] child:@"ApplicationList"];
+        FIRDatabaseReference *applicationListRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:@"ApplicationList"];
         [applicationListRef updateChildValues:application];
         
     });
