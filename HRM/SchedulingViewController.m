@@ -243,8 +243,10 @@
     
     RecipeCollectionHeaderView *headerView = [_schedulingCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
     
-    NSArray *arr = @[@"早班",@"晚班",@"例休",@"特休"];
-    headerView.headerLabel.text = arr[indexPath.section];
+    NSArray *statusArr = @[@"目前排班狀況:",@"早班",@"晚班",@"例休",@"特休"];
+    NSArray *headerImage = @[[UIImage imageNamed:@"headerBlue.png"],[UIImage imageNamed:@"headerBlue.png"],[UIImage imageNamed:@"headerGreen.png"],[UIImage imageNamed:@"headerOrange.png"],[UIImage imageNamed:@"headerRed.png"]];
+    headerView.headerLabel.text = statusArr[indexPath.section];
+    headerView.headerImage.image = headerImage[indexPath.section];
     reusableView = headerView;
     
     return reusableView;
@@ -291,15 +293,18 @@
     switch (indexPath.section) {
         case 0:
             
-            cell.schedulingCollevtionViewLabel.text = onDuty[indexPath.row];
             break;
         case 1:
+            
+            cell.schedulingCollevtionViewLabel.text = onDuty[indexPath.row];
+            break;
+        case 2:
             cell.schedulingCollevtionViewLabel.text = offDuty[indexPath.row];
              break;
-        case 2:
+        case 3:
             cell.schedulingCollevtionViewLabel.text = dayoff[indexPath.row];
             break;
-        case 3:
+        case 4:
             cell.schedulingCollevtionViewLabel.text = annualLeave[indexPath.row];
              break;
         default:
