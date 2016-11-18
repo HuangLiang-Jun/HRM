@@ -152,7 +152,7 @@
             classStr = @"例休";
             break;
         case 3:
-            selectColor = [UIColor purpleColor];
+            selectColor = [UIColor colorWithRed:0.196 green:0.792 blue:0.094 alpha:1];
             classStr = @"特休";
             break;
         default:
@@ -245,7 +245,7 @@
     
     // prepare title & image
     NSArray *statusArr = @[@"排班狀況",@"早班",@"晚班",@"例休",@"特休"];
-    NSArray *headerImage = @[[UIImage imageNamed:@"grayheader.png"],[UIImage imageNamed:@"blueheader.png"],[UIImage imageNamed:@"greenheader.png"],[UIImage imageNamed:@"orangeheader.png"],[UIImage imageNamed:@"redheader.png"]];
+    NSArray *headerImage = @[[UIImage imageNamed:@"grayheader.png"],[UIImage imageNamed:@"blueheader.png"],[UIImage imageNamed:@"orangeheader.png"],[UIImage imageNamed:@"redheader.png"],[UIImage imageNamed:@"greenheader.png"]];
     NSLog(@"indexPath: %@",indexPath);
    
    // setting section info.
