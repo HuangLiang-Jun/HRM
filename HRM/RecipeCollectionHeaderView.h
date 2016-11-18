@@ -11,6 +11,6 @@
 @interface RecipeCollectionHeaderView : UICollectionReusableView
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImage;
-@property (weak, nonatomic) IBOutlet UILabel *specialVacHours;
+@property (weak, nonatomic) IBOutlet UILabel *leaveHours;
 
 @end

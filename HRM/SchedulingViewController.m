@@ -13,8 +13,8 @@
 #import "CollectionViewCell.h"
 #import "RecipeCollectionHeaderView.h"
 #import "CurrentUser.h"
-@import Firebase;
-@import FirebaseDatabase;
+
+#define NOTIFICATION_KEY @"reloadData"
 
 @interface SchedulingViewController ()<FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UICollectionViewDataSource,UICollectionViewDelegate>
 
@@ -29,14 +29,15 @@
 {
     NSInteger segmentIndex;
     UIColor *selectColor;
-    NSMutableDictionary *snapShotDic;
-    FIRDatabaseReference *vacationRef;
-    FIRDatabaseReference *updateRef;
-    int vacationHours;
-    NSMutableDictionary *colorForVactionDic;
-    NSMutableDictionary *attendanceSheetForNextMonthDic;
     NSString *classStr;
-    NSMutableArray *onDuty,*offDuty,*dayoff,*annualLeave;
+    
+    // 路徑：上傳班表
+    FIRDatabaseReference *updateSchedulingRef;
+    
+    int officialHolidayHours;
+    int annualLeaveHours;
+    NSMutableDictionary *colorForVactionDic,*attendanceSheetForNextMonthDic;
+    NSMutableArray *firstShiftArr,*secondShiftArr,*dayoff,*annualLeaveArr;
     CurrentUser *staffInfo;
 }
 
@@ -44,48 +45,81 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     colorForVactionDic = [NSMutableDictionary new];
-    snapShotDic = [NSMutableDictionary new];
     attendanceSheetForNextMonthDic = [NSMutableDictionary new];
     staffInfo = [CurrentUser sharedInstance];
     
     // for collectionView
-    onDuty = [NSMutableArray new];
-    offDuty = [NSMutableArray new];
+    firstShiftArr = [NSMutableArray new];
+    secondShiftArr = [NSMutableArray new];
     dayoff = [NSMutableArray new];
-    annualLeave = [NSMutableArray new];
+    annualLeaveArr = [NSMutableArray new];
     
     _schedulingCollectionView.delegate = self;
     _schedulingCollectionView.dataSource = self;
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionData) name:NOTIFICATION_KEY object:nil];
     
     NSDate *today = [NSDate date];
     _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
-
-    // firebase Ref
-    updateRef = [[[[[FIRDatabase database]reference]child:@"Secheduling"] child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]child:staffInfo.displayName];
+    
+    updateSchedulingRef = [[[[[FIRDatabase database]reference]
+                            child:@"Secheduling"]
+                            child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]
+                            child:staffInfo.displayName];
     
     //-- Loading Next Month VacationHours --//
-    vacationRef = [[[FIRDatabase database]reference] child:@"vacation"];
-    [vacationRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        snapShotDic = snapshot.value;
-        
-        NSLog(@"snapShot: %@",snapshot.value);
-        
-        NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
-        vacationHours = [snapShotDic[nextMonthKey] intValue];
-        
-        NSLog(@"vacationHours: %i",vacationHours);
-        
+    
+    FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]];
+    [downloadSchedulingRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        NSMutableDictionary *dict = snapshot.value;
+        // 下載排班狀況
+        NSLog(@"dict for scheduling : %@",dict);
     }];
-
+    
+    FIRDatabaseReference *officialHolidayRef = [[[FIRDatabase database]reference] child:@"vacation"];
+    [officialHolidayRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        NSMutableDictionary *dict = snapshot.value;
+        NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
+        officialHolidayHours = [dict[nextMonthKey] intValue];
+        NSLog(@"officialHolidayHours: %i",officialHolidayHours);
+        
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
+         object:self
+         userInfo:nil];
+    }];
+    
+    FIRDatabaseReference *annualLeaveRef = [[[[[FIRDatabase database]reference]
+                        child:@"StaffInformation"]
+                        child:staffInfo.displayName]
+                        child:@"AnnualLeave"];
+   
+    [annualLeaveRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+       
+        NSDictionary *dict = snapshot.value;
+        annualLeaveHours = [dict[@"2016"]intValue];
+        NSLog(@"annualLeaveHours: %i",annualLeaveHours);
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
+         object:self
+         userInfo:nil];
+    }];
+    
     //setting segmentControl
     self.edgesForExtendedLayout = UIRectEdgeNone;
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-    NSArray *selectImageNameArr = @[[UIImage imageNamed:@"morningSelect"],[UIImage imageNamed:@"nightSelect"],[UIImage imageNamed:@"dayoffSelect"],[UIImage imageNamed:@"specialSelect"]];
-    NSArray *deselectImageName = @[[UIImage imageNamed:@"morningDeselect"],[UIImage imageNamed:@"nightDeselect"],[UIImage imageNamed:@"dayoffDeselect"],[UIImage imageNamed:@"specialDeselect"]];
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc]initWithSectionImages:deselectImageName sectionSelectedImages:selectImageNameArr];
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc]
+                                            initWithSectionImages:@[[UIImage imageNamed:@"morningDeselect"],
+                                                                    [UIImage imageNamed:@"nightDeselect"],
+                                                                    [UIImage imageNamed:@"dayoffDeselect"],
+                                                                    [UIImage imageNamed:@"specialDeselect"]]
+                                            sectionSelectedImages:@[[UIImage imageNamed:@"morningSelect"],
+                                                                    [UIImage imageNamed:@"nightSelect"],
+                                                                    [UIImage imageNamed:@"dayoffSelect"],
+                                                                    [UIImage imageNamed:@"specialSelect"]]];
     segmentedControl.selectedSegmentIndex = 0;
     segmentedControl.frame = CGRectMake(0, 0, viewWidth, 50);
     segmentedControl.selectionIndicatorHeight = 3.0f;
@@ -109,7 +143,7 @@
 
 
 - (IBAction)submitBtnPressed:(UIButton *)sender {
- 
+    
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"是否確定送出?" preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *ok = [UIAlertAction actionWithTitle:@"送出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -121,43 +155,16 @@
     [alert addAction:ok];
     [alert addAction:cancel];
     [self presentViewController:alert animated:true completion:nil];
-  
+    
 }
 
 -(void) submitWorkSchedule{
-    [updateRef setValue:attendanceSheetForNextMonthDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [updateSchedulingRef setValue:attendanceSheetForNextMonthDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"Update Scheduling Error : %@",error);
         }
     }];
     
-}
-#pragma - mark SegmentedControl Method
-
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-
-    segmentIndex = segmentedControl.selectedSegmentIndex;
-
-    switch (segmentedControl.selectedSegmentIndex ) {
-        case 0:
-            selectColor = [UIColor colorWithRed:0.196 green:0.729 blue:0.682 alpha:1];
-            classStr = @"早班";
-            break;
-        case 1:
-            selectColor = [UIColor orangeColor];
-            classStr = @"晚班";
-            break;
-        case 2:
-            selectColor = [UIColor redColor];
-            classStr = @"例休";
-            break;
-        case 3:
-            selectColor = [UIColor colorWithRed:0.196 green:0.792 blue:0.094 alpha:1];
-            classStr = @"特休";
-            break;
-        default:
-            break;
-    }
 }
 
 
@@ -174,26 +181,26 @@
     
     switch (segmentIndex) {
         case 0:
-            [onDuty addObject:monthAndDay];
+            [firstShiftArr addObject:monthAndDay];
             break;
         case 1:
-            [offDuty addObject:monthAndDay];
+            [secondShiftArr addObject:monthAndDay];
             break;
         case 2:
             [dayoff addObject:monthAndDay];
             break;
         case 3:
-            [annualLeave addObject:monthAndDay];
+            [annualLeaveArr addObject:monthAndDay];
             break;
         default:
             break;
     }
-        //update firebase data
-        [colorForVactionDic setValue:selectColor forKey:selectDateStr];
-        [attendanceSheetForNextMonthDic setObject:classStr forKey:selectDateStr];
-        NSLog(@"加入班別時間: %@",attendanceSheetForNextMonthDic);
-        [_schedulingCalendar reloadData];
-        [_schedulingCollectionView reloadData];
+    //update firebase data
+    [colorForVactionDic setValue:selectColor forKey:selectDateStr];
+    [attendanceSheetForNextMonthDic setObject:classStr forKey:selectDateStr];
+    [_schedulingCalendar reloadData];
+    [_schedulingCollectionView reloadData];
+    NSLog(@"加入班別時間: %@",attendanceSheetForNextMonthDic);
 }
 
 -(void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date{
@@ -203,7 +210,7 @@
     [formatter setDateFormat:@"MM/dd"];
     NSString *removeStr = [formatter stringFromDate:date];
     
-    NSMutableArray *classArr = [[NSMutableArray alloc]initWithObjects:onDuty,offDuty,dayoff,annualLeave, nil];
+    NSMutableArray *classArr = [[NSMutableArray alloc]initWithObjects:firstShiftArr,secondShiftArr,dayoff,annualLeaveArr, nil];
     for (NSInteger i = 0; i < classArr.count ; i++) {
         for (NSInteger a = 0; a < [classArr[i] count]; a++) {
             NSString *indexStr = classArr[i][a];
@@ -215,7 +222,7 @@
     }
     
     [attendanceSheetForNextMonthDic removeObjectForKey:dateStr];
-
+    
     NSLog(@"取消班別時間: %@",attendanceSheetForNextMonthDic);
     
     [_schedulingCollectionView reloadData];
@@ -231,7 +238,7 @@
     return nil;
 }
 
-#pragma -MARK CollectionViewDataSource
+#pragma -mark CollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
@@ -239,19 +246,33 @@
 }
 
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    UICollectionReusableView *reusableView = nil;
+    UICollectionReusableView *reusableView;
     
     RecipeCollectionHeaderView *headerView = [_schedulingCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
     
     // prepare title & image
     NSArray *statusArr = @[@"排班狀況",@"早班",@"晚班",@"例休",@"特休"];
-    NSArray *headerImage = @[[UIImage imageNamed:@"grayheader.png"],[UIImage imageNamed:@"blueheader.png"],[UIImage imageNamed:@"orangeheader.png"],[UIImage imageNamed:@"redheader.png"],[UIImage imageNamed:@"greenheader.png"]];
-    NSLog(@"indexPath: %@",indexPath);
-   
-   // setting section info.
-    if (indexPath.section == 4) {
-        headerView.specialVacHours.hidden = false;
-        headerView.specialVacHours.text = @"72小時";
+    NSArray *headerImage = @[[UIImage imageNamed:@"grayheader.png"],
+                             [UIImage imageNamed:@"blueheader.png"],
+                             [UIImage imageNamed:@"orangeheader.png"],
+                             [UIImage imageNamed:@"redheader.png"],
+                             [UIImage imageNamed:@"greenheader.png"]];
+    
+    // setting section info.
+    
+    switch (indexPath.section) {
+        case 0:
+            headerView.leaveHours.hidden = true;
+            break;
+        case 3:
+            headerView.leaveHours.hidden = false;
+            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",officialHolidayHours];
+            break;
+        
+        case 4:
+            headerView.leaveHours.hidden = false;
+            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",annualLeaveHours];
+            break;
     }
     
     headerView.headerLabel.text = statusArr[indexPath.section];
@@ -259,25 +280,23 @@
     reusableView = headerView;
     
     return reusableView;
-    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    
     if (_schedulingCalendar.allowsMultipleSelection == true) {
         switch (section) {
             case 0:
-                return 0;
+                return 4;
                 break;
             case 1:
-                if (onDuty > 0){
-                    return onDuty.count;
+                if (firstShiftArr > 0){
+                    return firstShiftArr.count;
                 }
                 break;
             case 2:
-                if (offDuty > 0){
-                    return offDuty.count;
+                if (secondShiftArr > 0){
+                    return secondShiftArr.count;
                 }
                 break;
             case 3:
@@ -286,14 +305,11 @@
                 }
                 break;
             case 4:
-                if (annualLeave > 0){
-                    return annualLeave.count;
+                if (annualLeaveArr > 0){
+                    return annualLeaveArr.count;
                 }
                 break;
-            default:
-                break;
         }
-    
     }
     return 0;
 }
@@ -304,25 +320,68 @@
     
     switch (indexPath.section) {
         case 0:
-            
+            cell.schedulingCollevtionViewLabel.text = @[@"早",@"晚",@"例假",@"特休"][indexPath.row];
             break;
         case 1:
             
-            cell.schedulingCollevtionViewLabel.text = onDuty[indexPath.row];
+            cell.schedulingCollevtionViewLabel.text = firstShiftArr[indexPath.row];
             break;
         case 2:
-            cell.schedulingCollevtionViewLabel.text = offDuty[indexPath.row];
-             break;
+            cell.schedulingCollevtionViewLabel.text = secondShiftArr[indexPath.row];
+            break;
         case 3:
             cell.schedulingCollevtionViewLabel.text = dayoff[indexPath.row];
             break;
         case 4:
-            cell.schedulingCollevtionViewLabel.text = annualLeave[indexPath.row];
-             break;
-        default:
+            cell.schedulingCollevtionViewLabel.text = annualLeaveArr[indexPath.row];
             break;
     }
     return cell;
+}
+
+#pragma - mark SegmentedControl Method
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    
+    segmentIndex = segmentedControl.selectedSegmentIndex;
+    
+    switch (segmentedControl.selectedSegmentIndex ) {
+        case 0:
+            selectColor = [UIColor
+                           colorWithRed:0.196
+                           green:0.729
+                           blue:0.682
+                           alpha:1];
+            classStr = @"早班";
+            break;
+            
+        case 1:
+            selectColor = [UIColor orangeColor];
+            classStr = @"晚班";
+            break;
+            
+        case 2:
+            selectColor = [UIColor redColor];
+            classStr = @"例休";
+            break;
+            
+        case 3:
+            selectColor = [UIColor
+                           colorWithRed:0.196
+                           green:0.792
+                           blue:0.094
+                           alpha:1];
+            classStr = @"特休";
+            break;
+    }
+}
+
+
+
+-(void) reloadCollectionData {
+
+    [_schedulingCollectionView reloadData];
+    NSLog(@"reloadData");
 }
 
 @end
