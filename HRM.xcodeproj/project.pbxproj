@@ -38,7 +38,7 @@
 		63D92FD81DBF811A007578DB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC41DBF811A007578DB /* redCircle.png */; };
 		63D92FE11DC03667007578DB /* SalarySums.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FDE1DC03667007578DB /* SalarySums.m */; };
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
-		63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */; };
+		63E0A1131DCB0C910021F246 /* BulletinBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
 		70197E021DDD9CFC009254C4 /* blueheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFE1DDD9CFC009254C4 /* blueheader.png */; };
 		70197E031DDD9CFC009254C4 /* greenheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* greenheader.png */; };
@@ -119,8 +119,8 @@
 		63D92FDE1DC03667007578DB /* SalarySums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalarySums.m; sourceTree = "<group>"; };
 		63D92FDF1DC03667007578DB /* SalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryViewController.h; sourceTree = "<group>"; };
 		63D92FE01DC03667007578DB /* SalaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalaryViewController.m; sourceTree = "<group>"; };
-		63E0A1111DCB0C910021F246 /* BulletinBoarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoarViewController.h; sourceTree = "<group>"; };
-		63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoarViewController.m; sourceTree = "<group>"; };
+		63E0A1111DCB0C910021F246 /* BulletinBoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardViewController.h; sourceTree = "<group>"; };
+		63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardViewController.m; sourceTree = "<group>"; };
 		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
 		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
 		70197DFE1DDD9CFC009254C4 /* blueheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueheader.png; sourceTree = "<group>"; };
@@ -330,8 +330,8 @@
 		63E0A1101DCB0C490021F246 /* BulletinBoard */ = {
 			isa = PBXGroup;
 			children = (
-				63E0A1111DCB0C910021F246 /* BulletinBoarViewController.h */,
-				63E0A1121DCB0C910021F246 /* BulletinBoarViewController.m */,
+				63E0A1111DCB0C910021F246 /* BulletinBoardViewController.h */,
+				63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */,
 				63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */,
 				63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */,
 			);
@@ -611,7 +611,7 @@
 				630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */,
 				6309EA1D1DCCACD4001815C6 /* StaffSalaryListViewController.m in Sources */,
 				630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */,
-				63E0A1131DCB0C910021F246 /* BulletinBoarViewController.m in Sources */,
+				63E0A1131DCB0C910021F246 /* BulletinBoardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

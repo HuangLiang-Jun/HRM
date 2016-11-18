@@ -158,11 +158,11 @@
     }
     if (emailToken && pwdToken) {
         
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
         CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
         localUser.password = _pwdField.text;
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
         [localUser signInUserAccount];
         
     }

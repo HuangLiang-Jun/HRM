@@ -6,15 +6,15 @@
 //  Copyright © 2016年 JimSu. All rights reserved.
 //
 
-#import "BulletinBoarViewController.h"
+#import "BulletinBoardViewController.h"
 #import "BulletinBoardTableViewCell.h"
 
-@interface BulletinBoarViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface BulletinBoardViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation BulletinBoarViewController
+@implementation BulletinBoardViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

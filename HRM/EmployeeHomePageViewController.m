@@ -15,20 +15,22 @@
 
 @implementation EmployeeHomePageViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-//    UINavigationBar *navigationBar = self.navigationController.navigationBar;
-//    [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-//    [navigationBar setShadowImage:[UIImage new]];
-    
-}
-
 #pragma mark - Application Page Btn Func
 
 - (IBAction)applicationPageBtnPressed:(UIButton *)sender {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(segueToApplicationPage) name:@"ApplicationListDownloaded" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser downloadAppcationList];
+    
+}
+
+- (void)segueToApplicationPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
+    [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:nil];
     
 }
 
@@ -54,7 +56,12 @@
     
 }
 
-- (IBAction)BulletinBoarBtnPressed:(UIBarButtonItem *)sender {
+#pragma mark - Bulletin Board Btn Func
+
+- (IBAction)BulletinBoardBtnPressed:(UIBarButtonItem *)sender {
+    
+    [self performSegueWithIdentifier:@"BulletinBoardSegue" sender:nil];
+    
 }
 
 @end

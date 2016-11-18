@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BulletinBoarViewController : UIViewController
+@interface BulletinBoardViewController : UIViewController
 
 @end
