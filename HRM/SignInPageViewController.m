@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 
-
 @end
 
 @implementation SignInPageViewController

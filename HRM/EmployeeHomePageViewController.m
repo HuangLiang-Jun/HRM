@@ -15,8 +15,6 @@
 
 @implementation EmployeeHomePageViewController
 
-#pragma mark - View Lifecycle
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -30,7 +28,7 @@
 
 - (IBAction)applicationPageBtnPressed:(UIButton *)sender {
     
-   // [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:sender];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
     
 }
 
