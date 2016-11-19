@@ -167,8 +167,6 @@
                 return annualLeave.count;
             }
             break;
-        default:
-            break;
     }
     return 0;
 

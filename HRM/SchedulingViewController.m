@@ -16,6 +16,13 @@
 
 #define NOTIFICATION_KEY @"reloadData"
 
+//typedef NS_ENUM(NSUInteger, COLLECTION_SESSION) {
+//    COLLECTION_SESSION_DE = 0,
+//    COLLECTION_SESSION,
+//    <#MyEnumValueC#>,
+//};
+
+
 @interface SchedulingViewController ()<FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet FSCalendar *schedulingCalendar;
@@ -34,19 +41,29 @@
     // 路徑：上傳班表
     FIRDatabaseReference *updateSchedulingRef;
     
+    // 用來儲存當月休假時數跟LocalUser 的特休時數
     int officialHolidayHours;
     int annualLeaveHours;
-    NSMutableDictionary *colorForVactionDic,*attendanceSheetForNextMonthDic;
-    NSMutableArray *firstShiftArr,*secondShiftArr,*dayoff,*annualLeaveArr;
+    NSMutableDictionary *colorForVactionDic, *attendanceSheetForNextMonthDic, *shiftStatusDict, *shiftTableForDayDict;
+    
+    //儲存local user 的排班,準備上傳
+    NSMutableArray *firstShiftArr, *secondShiftArr, *dayoff, *annualLeaveArr;
+    NSArray *allShiftTableStatus;
+    
+    //用來儲存排班的現況 save for shiftTable's situation
+    NSMutableArray *firShiftArr, *secShiftArr, *takeOffArr, *specialArr;
+    
     CurrentUser *staffInfo;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    staffInfo = [CurrentUser sharedInstance];
+    
     colorForVactionDic = [NSMutableDictionary new];
     attendanceSheetForNextMonthDic = [NSMutableDictionary new];
-    staffInfo = [CurrentUser sharedInstance];
+    shiftTableForDayDict = [NSMutableDictionary new];
     
     // for collectionView
     firstShiftArr = [NSMutableArray new];
@@ -59,23 +76,24 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionData) name:NOTIFICATION_KEY object:nil];
     
-    NSDate *today = [NSDate date];
-    _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:today];
+    
+    _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:[NSDate date]];
     // 設定排班功能月曆顯示月份
     [_schedulingCalendar setCurrentPage:_nextMonth];
     
     updateSchedulingRef = [[[[[FIRDatabase database]reference]
-                            child:@"Secheduling"]
+                             child:@"Secheduling"]
                             child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]
-                            child:staffInfo.displayName];
+                           child:staffInfo.displayName];
     
     //-- Loading Next Month VacationHours --//
     
     FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]];
     [downloadSchedulingRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSMutableDictionary *dict = snapshot.value;
+        shiftStatusDict = snapshot.value;
         // 下載排班狀況
-        NSLog(@"dict for scheduling : %@",dict);
+        NSLog(@"dict for scheduling : %@",shiftStatusDict);
+        
     }];
     
     FIRDatabaseReference *officialHolidayRef = [[[FIRDatabase database]reference] child:@"vacation"];
@@ -84,7 +102,7 @@
         NSMutableDictionary *dict = snapshot.value;
         NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
         officialHolidayHours = [dict[nextMonthKey] intValue];
-        NSLog(@"officialHolidayHours: %i",officialHolidayHours);
+        //NSLog(@"officialHolidayHours: %i",officialHolidayHours);
         
         [[NSNotificationCenter defaultCenter]
          postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
@@ -93,15 +111,15 @@
     }];
     
     FIRDatabaseReference *annualLeaveRef = [[[[[FIRDatabase database]reference]
-                        child:@"StaffInformation"]
-                        child:staffInfo.displayName]
-                        child:@"AnnualLeave"];
-   
+                                              child:@"StaffInformation"]
+                                             child:staffInfo.displayName]
+                                            child:@"AnnualLeave"];
+    
     [annualLeaveRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-       
+        
         NSDictionary *dict = snapshot.value;
         annualLeaveHours = [dict[@"2016"]intValue];
-        NSLog(@"annualLeaveHours: %i",annualLeaveHours);
+        //NSLog(@"annualLeaveHours: %i",annualLeaveHours);
         [[NSNotificationCenter defaultCenter]
          postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
          object:self
@@ -159,7 +177,7 @@
 }
 
 -(void) submitWorkSchedule{
-    [updateSchedulingRef setValue:attendanceSheetForNextMonthDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+    [updateSchedulingRef updateChildValues:attendanceSheetForNextMonthDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
         if (error) {
             NSLog(@"Update Scheduling Error : %@",error);
         }
@@ -173,8 +191,36 @@
 -(void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     
     NSString  *selectDateStr = [NSDateNSStringExchange stringFromChosenDate:date];
-    // for collectionView
     
+    //顯示目前排班狀態
+    // for search schedule array
+    firShiftArr = [NSMutableArray new];
+    secShiftArr = [NSMutableArray new];
+    takeOffArr = [NSMutableArray new];
+    specialArr = [NSMutableArray new];
+    NSArray *staffNameArr =  shiftStatusDict.allKeys;
+    
+    for (int i = 0; i < staffNameArr.count ; i++) {
+        NSString *name = staffNameArr[i];
+        NSString *keyForDate = [NSDateNSStringExchange stringFromChosenDate:date];
+        // 個人班表
+        NSMutableDictionary *personalShiftTableInfoDict = [shiftStatusDict valueForKey:name];
+        NSString *kindOfShiftStr = [personalShiftTableInfoDict valueForKey:keyForDate];
+        if ([kindOfShiftStr isEqualToString:@"早班"]) {
+            [firShiftArr addObject:name];
+        }else if ([kindOfShiftStr isEqualToString:@"晚班"]) {
+            [secShiftArr addObject:name];
+        }else if ([kindOfShiftStr isEqualToString:@"例休"]) {
+            [takeOffArr addObject:name];
+        }else if ([kindOfShiftStr isEqualToString:@"特休"]){
+            [specialArr addObject:name];
+        }
+        
+    }
+    allShiftTableStatus = @[firShiftArr,secShiftArr,takeOffArr,specialArr];
+    NSLog(@"allshift: %@",allShiftTableStatus);
+    
+    // for collectionView
     NSDateFormatter *formatter = [NSDateFormatter new];
     [formatter setDateFormat:@"MM/dd"];
     NSString *monthAndDay = [formatter stringFromDate:date];
@@ -245,6 +291,7 @@
     return 5;
 }
 
+// setting section
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     UICollectionReusableView *reusableView;
     
@@ -268,7 +315,7 @@
             headerView.leaveHours.hidden = false;
             headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",officialHolidayHours];
             break;
-        
+            
         case 4:
             headerView.leaveHours.hidden = false;
             headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",annualLeaveHours];
@@ -287,7 +334,7 @@
     if (_schedulingCalendar.allowsMultipleSelection == true) {
         switch (section) {
             case 0:
-                return 4;
+                return allShiftTableStatus.count;
                 break;
             case 1:
                 if (firstShiftArr > 0){
@@ -318,8 +365,20 @@
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
     
     
+   
     switch (indexPath.section) {
         case 0:
+            switch (indexPath.row) {
+                case 0:
+                {
+                    NSArray *arr = allShiftTableStatus[0];
+                    
+                    //cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"早班:%lu人",arr.count];
+                    break;
+                }
+                default:
+                    break;
+            }
             cell.schedulingCollevtionViewLabel.text = @[@"早",@"晚",@"例假",@"特休"][indexPath.row];
             break;
         case 1:
@@ -379,7 +438,7 @@
 
 
 -(void) reloadCollectionData {
-
+    
     [_schedulingCollectionView reloadData];
     NSLog(@"reloadData");
 }
