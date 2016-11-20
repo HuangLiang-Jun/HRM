@@ -16,7 +16,7 @@
 
 #define NOTIFICATION_KEY @"reloadData"
 
-typedef NS_ENUM(NSInteger, ShiftStatus) {
+typedef NS_ENUM(NSInteger, ShiftStatus) { // CollectionViewSection
     ScheduleStatus = 0,
     FirstShift,
     SecondShift,
@@ -24,7 +24,7 @@ typedef NS_ENUM(NSInteger, ShiftStatus) {
     AnnualLeave
 };
 
-typedef NS_ENUM(NSInteger, SegmentStatus) {
+typedef NS_ENUM(NSInteger, SegmentStatus) { // SegmentItems
     
     FirstShiftSegment = 0,
     SecondShiftSegment,
@@ -32,11 +32,11 @@ typedef NS_ENUM(NSInteger, SegmentStatus) {
     AnnualLeaveSegment
 };
 
-typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
-    FirstShiftItem = 0,
-    SecondItem,
-    DafOffItem,
-    AnnualLeaveItem
+typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
+    FirstShiftCell = 0,
+    SecondShiftCell,
+    DayOffCell,
+    AnnualLeaveCell
 };
 
 
@@ -421,34 +421,32 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
     
-    
-    
     switch (indexPath.section) {
         case ScheduleStatus:
             
             switch (indexPath.row) {
-                case 0:
+                case FirstShiftCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"早班:%lu人",arr.count];
                     NSLog(@"1");
                     break;
                 }
-                case 1:
+                case SecondShiftCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"晚班:%lu人",arr.count];
                     NSLog(@"2");
                     break;
                 }
-                case 2:
+                case DayOffCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"休假:%lu人",arr.count];
                     NSLog(@"3");
                     break;
                 }
-                case 3:
+                case AnnualLeaveCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"特休:%lu人",arr.count];
@@ -457,7 +455,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
                 }
                     
             }
-            // cell.schedulingCollevtionViewLabel.text = @[@"早",@"晚",@"例假",@"特休"][indexPath.row];
+            
             break;
         case FirstShift:
             
@@ -476,6 +474,35 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
     return cell;
 }
 
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.section == ScheduleStatus) {
+        return true;
+    } else {
+    return false;
+    }
+}
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSArray *shifts = @[@"早班人員",@"晚班人員",@"休假人員",@"特休人員"];
+    NSString *personnel = @"";
+    for (int i = 0; i < [allShiftTableStatus[indexPath.row] count]; i++) {
+     
+       personnel = [personnel stringByAppendingFormat:@"%@ ",allShiftTableStatus[indexPath.row][i]];
+    }
+   
+    NSLog(@"personnel: %@", personnel);
+    
+    if (indexPath.section == ScheduleStatus) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:shifts[indexPath.row] message:personnel preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:ok];
+        [self presentViewController:alert animated:true completion:nil];
+        
+    }
+}
+
 -(void) reloadCollectionData {
     
     [_schedulingCollectionView reloadData];
@@ -483,3 +510,5 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
 }
 
 @end
+
+
