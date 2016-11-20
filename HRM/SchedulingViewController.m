@@ -16,11 +16,28 @@
 
 #define NOTIFICATION_KEY @"reloadData"
 
-//typedef NS_ENUM(NSUInteger, COLLECTION_SESSION) {
-//    COLLECTION_SESSION_DE = 0,
-//    COLLECTION_SESSION,
-//    <#MyEnumValueC#>,
-//};
+typedef NS_ENUM(NSInteger, ShiftStatus) {
+    ScheduleStatus = 0,
+    FirstShift,
+    SecondShift,
+    DayOff,
+    AnnualLeave
+};
+
+typedef NS_ENUM(NSInteger, SegmentStatus) {
+    
+    FirstShiftSegment = 0,
+    SecondShiftSegment,
+    DayOffSegment,
+    AnnualLeaveSegment
+};
+
+typedef NS_ENUM(NSInteger, ScheduleItemStatus) {
+    FirstShiftItem = 0,
+    SecondItem,
+    DafOffItem,
+    AnnualLeaveItem
+};
 
 
 @interface SchedulingViewController ()<FSCalendarDelegate,FSCalendarDataSource,FSCalendarDelegateAppearance,UICollectionViewDataSource,UICollectionViewDelegate>
@@ -29,7 +46,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *schedulingCollectionView;
 
 
-@property (strong,nonatomic)  NSDate *nextMonth;
+
 @end
 
 @implementation SchedulingViewController
@@ -51,7 +68,7 @@
     NSArray *allShiftTableStatus;
     
     //用來儲存排班的現況 save for shiftTable's situation
-    NSMutableArray *firShiftArr, *secShiftArr, *takeOffArr, *specialArr;
+    NSMutableArray *firShiftArr, *secShiftArr, *dayOffArr, *specialArr;
     
     CurrentUser *staffInfo;
 }
@@ -77,18 +94,18 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionData) name:NOTIFICATION_KEY object:nil];
     
     
-    _nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:[NSDate date]];
+    NSDate *nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:[NSDate date]];
     // 設定排班功能月曆顯示月份
-    [_schedulingCalendar setCurrentPage:_nextMonth];
+    [_schedulingCalendar setCurrentPage:nextMonth];
     
     updateSchedulingRef = [[[[[FIRDatabase database]reference]
                              child:@"Secheduling"]
-                            child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]]
+                            child:[NSDateNSStringExchange stringFromYearAndMonth:nextMonth]]
                            child:staffInfo.displayName];
     
     //-- Loading Next Month VacationHours --//
     
-    FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:_nextMonth]];
+    FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:nextMonth]];
     [downloadSchedulingRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         shiftStatusDict = snapshot.value;
         // 下載排班狀況
@@ -100,7 +117,7 @@
     [officialHolidayRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         NSMutableDictionary *dict = snapshot.value;
-        NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:_nextMonth];
+        NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:nextMonth];
         officialHolidayHours = [dict[nextMonthKey] intValue];
         //NSLog(@"officialHolidayHours: %i",officialHolidayHours);
         
@@ -185,6 +202,42 @@
     
 }
 
+#pragma - mark SegmentedControl Method
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    
+    segmentIndex = segmentedControl.selectedSegmentIndex;
+    
+    switch (segmentedControl.selectedSegmentIndex ) {
+        case FirstShiftSegment:
+            selectColor = [UIColor
+                           colorWithRed:0.196
+                           green:0.729
+                           blue:0.682
+                           alpha:1];
+            classStr = @"早班";
+            break;
+            
+        case SecondShiftSegment:
+            selectColor = [UIColor orangeColor];
+            classStr = @"晚班";
+            break;
+            
+        case DayOffSegment:
+            selectColor = [UIColor redColor];
+            classStr = @"例休";
+            break;
+            
+        case AnnualLeaveSegment:
+            selectColor = [UIColor
+                           colorWithRed:0.196
+                           green:0.792
+                           blue:0.094
+                           alpha:1];
+            classStr = @"特休";
+            break;
+    }
+}
 
 #pragma -mark Calendar Method
 
@@ -196,7 +249,7 @@
     // for search schedule array
     firShiftArr = [NSMutableArray new];
     secShiftArr = [NSMutableArray new];
-    takeOffArr = [NSMutableArray new];
+    dayOffArr = [NSMutableArray new];
     specialArr = [NSMutableArray new];
     NSArray *staffNameArr =  shiftStatusDict.allKeys;
     
@@ -211,13 +264,13 @@
         }else if ([kindOfShiftStr isEqualToString:@"晚班"]) {
             [secShiftArr addObject:name];
         }else if ([kindOfShiftStr isEqualToString:@"例休"]) {
-            [takeOffArr addObject:name];
+            [dayOffArr addObject:name];
         }else if ([kindOfShiftStr isEqualToString:@"特休"]){
             [specialArr addObject:name];
         }
         
     }
-    allShiftTableStatus = @[firShiftArr,secShiftArr,takeOffArr,specialArr];
+    allShiftTableStatus = @[firShiftArr,secShiftArr,dayOffArr,specialArr];
     NSLog(@"allshift: %@",allShiftTableStatus);
     
     // for collectionView
@@ -226,16 +279,16 @@
     NSString *monthAndDay = [formatter stringFromDate:date];
     
     switch (segmentIndex) {
-        case 0:
+        case FirstShiftSegment:
             [firstShiftArr addObject:monthAndDay];
             break;
-        case 1:
+        case SecondShiftSegment:
             [secondShiftArr addObject:monthAndDay];
             break;
-        case 2:
+        case DayOffSegment:
             [dayoff addObject:monthAndDay];
             break;
-        case 3:
+        case AnnualLeaveSegment:
             [annualLeaveArr addObject:monthAndDay];
             break;
         default:
@@ -308,15 +361,18 @@
     // setting section info.
     
     switch (indexPath.section) {
-        case 0:
+        case ScheduleStatus:
+        case FirstShift:
+        case SecondShift:
             headerView.leaveHours.hidden = true;
             break;
-        case 3:
+        
+        case DayOff:
             headerView.leaveHours.hidden = false;
             headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",officialHolidayHours];
             break;
             
-        case 4:
+        case AnnualLeave:
             headerView.leaveHours.hidden = false;
             headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",annualLeaveHours];
             break;
@@ -329,29 +385,30 @@
     return reusableView;
 }
 
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     if (_schedulingCalendar.allowsMultipleSelection == true) {
         switch (section) {
-            case 0:
+            case ScheduleStatus:
                 return allShiftTableStatus.count;
                 break;
-            case 1:
+            case FirstShift:
                 if (firstShiftArr > 0){
                     return firstShiftArr.count;
                 }
                 break;
-            case 2:
+            case SecondShift:
                 if (secondShiftArr > 0){
                     return secondShiftArr.count;
                 }
                 break;
-            case 3:
+            case DayOff:
                 if (dayoff > 0){
                     return dayoff.count;
                 }
                 break;
-            case 4:
+            case AnnualLeave:
                 if (annualLeaveArr > 0){
                     return annualLeaveArr.count;
                 }
@@ -365,77 +422,59 @@
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
     
     
-   
+    
     switch (indexPath.section) {
-        case 0:
+        case ScheduleStatus:
+            
             switch (indexPath.row) {
                 case 0:
                 {
-                    NSArray *arr = allShiftTableStatus[0];
-                    
-                    //cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"早班:%lu人",arr.count];
+                    NSArray *arr = allShiftTableStatus[indexPath.row];
+                    cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"早班:%lu人",arr.count];
+                    NSLog(@"1");
                     break;
                 }
-                default:
+                case 1:
+                {
+                    NSArray *arr = allShiftTableStatus[indexPath.row];
+                    cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"晚班:%lu人",arr.count];
+                    NSLog(@"2");
                     break;
+                }
+                case 2:
+                {
+                    NSArray *arr = allShiftTableStatus[indexPath.row];
+                    cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"休假:%lu人",arr.count];
+                    NSLog(@"3");
+                    break;
+                }
+                case 3:
+                {
+                    NSArray *arr = allShiftTableStatus[indexPath.row];
+                    cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"特休:%lu人",arr.count];
+                    NSLog(@"4");
+                    break;
+                }
+                    
             }
-            cell.schedulingCollevtionViewLabel.text = @[@"早",@"晚",@"例假",@"特休"][indexPath.row];
+            // cell.schedulingCollevtionViewLabel.text = @[@"早",@"晚",@"例假",@"特休"][indexPath.row];
             break;
-        case 1:
+        case FirstShift:
             
             cell.schedulingCollevtionViewLabel.text = firstShiftArr[indexPath.row];
             break;
-        case 2:
+        case SecondShift:
             cell.schedulingCollevtionViewLabel.text = secondShiftArr[indexPath.row];
             break;
-        case 3:
+        case DayOff:
             cell.schedulingCollevtionViewLabel.text = dayoff[indexPath.row];
             break;
-        case 4:
+        case AnnualLeave:
             cell.schedulingCollevtionViewLabel.text = annualLeaveArr[indexPath.row];
             break;
     }
     return cell;
 }
-
-#pragma - mark SegmentedControl Method
-
-- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    
-    segmentIndex = segmentedControl.selectedSegmentIndex;
-    
-    switch (segmentedControl.selectedSegmentIndex ) {
-        case 0:
-            selectColor = [UIColor
-                           colorWithRed:0.196
-                           green:0.729
-                           blue:0.682
-                           alpha:1];
-            classStr = @"早班";
-            break;
-            
-        case 1:
-            selectColor = [UIColor orangeColor];
-            classStr = @"晚班";
-            break;
-            
-        case 2:
-            selectColor = [UIColor redColor];
-            classStr = @"例休";
-            break;
-            
-        case 3:
-            selectColor = [UIColor
-                           colorWithRed:0.196
-                           green:0.792
-                           blue:0.094
-                           alpha:1];
-            classStr = @"特休";
-            break;
-    }
-}
-
-
 
 -(void) reloadCollectionData {
     
