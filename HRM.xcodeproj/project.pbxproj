@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
+		3AA0579F1DE34C2A00F39F32 /* ApplicationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3AA0579E1DE34C2A00F39F32 /* ApplicationTableViewCell.xib */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
 		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
+		3AA0579E1DE34C2A00F39F32 /* ApplicationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplicationTableViewCell.xib; sourceTree = "<group>"; };
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6309EA0E1DCBBF1A001815C6 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 				A95C7E3A1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m */,
 				A91416FE1DBE601200735A49 /* ApplicationInfoPageViewController.h */,
 				A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */,
+				3AA0579E1DE34C2A00F39F32 /* ApplicationTableViewCell.xib */,
 				63D92FDD1DC03667007578DB /* SalarySums.h */,
 				63D92FDE1DC03667007578DB /* SalarySums.m */,
 				63D92FDF1DC03667007578DB /* SalaryViewController.h */,
@@ -506,6 +509,7 @@
 				7023F6E21DD354BF00793999 /* btnGreen.png in Resources */,
 				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
+				3AA0579F1DE34C2A00F39F32 /* ApplicationTableViewCell.xib in Resources */,
 				70197E051DDD9CFC009254C4 /* redheader.png in Resources */,
 				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
 				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
