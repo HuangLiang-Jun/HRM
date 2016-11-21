@@ -59,8 +59,10 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     FIRDatabaseReference *updateSchedulingRef;
     
     // 用來儲存當月休假時數跟LocalUser 的特休時數
-    int officialHolidayHours;
-    int annualLeaveHours;
+    int defaultDayOffHours;
+    int defaultAnnualLeaveHours;
+    int dayOffResult;
+    int annualLeaveResult;
     NSMutableDictionary *colorForVactionDic, *attendanceSheetForNextMonthDic, *shiftStatusDict, *shiftTableForDayDict;
     
     //儲存local user 的排班,準備上傳
@@ -118,9 +120,8 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
         
         NSMutableDictionary *dict = snapshot.value;
         NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:nextMonth];
-        officialHolidayHours = [dict[nextMonthKey] intValue];
-        //NSLog(@"officialHolidayHours: %i",officialHolidayHours);
-        
+        defaultDayOffHours = [dict[nextMonthKey] intValue];
+        dayOffResult = [dict[nextMonthKey] intValue];
         [[NSNotificationCenter defaultCenter]
          postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
          object:self
@@ -135,8 +136,9 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     [annualLeaveRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         NSDictionary *dict = snapshot.value;
-        annualLeaveHours = [dict[@"2016"]intValue];
-        //NSLog(@"annualLeaveHours: %i",annualLeaveHours);
+        defaultAnnualLeaveHours = [dict[@"2016"]intValue];
+        annualLeaveResult = [dict[@"2016"]intValue];
+        
         [[NSNotificationCenter defaultCenter]
          postNotificationName:NOTIFICATION_KEY //Notification以一個字串(Name)下去辨別
          object:self
@@ -239,7 +241,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     }
 }
 
-#pragma -mark Calendar Method
+#pragma -mark Calendar
 
 -(void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date{
     
@@ -286,10 +288,31 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
             [secondShiftArr addObject:monthAndDay];
             break;
         case DayOffSegment:
-            [dayoff addObject:monthAndDay];
+            if (dayOffResult > 0 ) {
+                dayOffResult = dayOffResult - 8;
+                [dayoff addObject:monthAndDay];
+                
+            } else {
+                
+                
+                
+                
+            }
+            NSLog(@"defaultDayoff: %u",defaultDayOffHours);
             break;
         case AnnualLeaveSegment:
-            [annualLeaveArr addObject:monthAndDay];
+            if (annualLeaveResult > 0){
+                annualLeaveResult = annualLeaveResult - 8;
+                [annualLeaveArr addObject:monthAndDay];
+                
+                
+            } else {
+                
+               
+                
+                
+            }
+             NSLog(@"annDefault: %i",annualLeaveResult);
             break;
         default:
             break;
@@ -297,9 +320,21 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     //update firebase data
     [colorForVactionDic setValue:selectColor forKey:selectDateStr];
     [attendanceSheetForNextMonthDic setObject:classStr forKey:selectDateStr];
-    [_schedulingCalendar reloadData];
-    [_schedulingCollectionView reloadData];
+    [self reloadCollectionData];
     NSLog(@"加入班別時間: %@",attendanceSheetForNextMonthDic);
+}
+
+-(BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date{
+    
+    if (segmentIndex == DayOffSegment && dayOffResult == 0) {
+        [self alertController:@"" alertMessage:@"休假時數已達上限"];
+        return false;
+    } else if (segmentIndex == AnnualLeaveSegment && annualLeaveResult == 0){
+        [self alertController:@"" alertMessage:@"特休時數已達上限"];
+        return false;
+    }
+    
+    return true;
 }
 
 -(void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date{
@@ -318,6 +353,14 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                 [_schedulingCollectionView reloadData];
             }
         }
+    }
+    
+    if (segmentIndex == DayOffSegment && dayOffResult < defaultDayOffHours) {
+        
+        dayOffResult = dayOffResult + 8;
+        
+    }else if (segmentIndex == AnnualLeaveSegment && annualLeaveResult < defaultAnnualLeaveHours) {
+        annualLeaveResult = annualLeaveResult + 8;
     }
     
     [attendanceSheetForNextMonthDic removeObjectForKey:dateStr];
@@ -366,15 +409,15 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
         case SecondShift:
             headerView.leaveHours.hidden = true;
             break;
-        
+            
         case DayOff:
             headerView.leaveHours.hidden = false;
-            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",officialHolidayHours];
+            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",dayOffResult];
             break;
             
         case AnnualLeave:
             headerView.leaveHours.hidden = false;
-            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",annualLeaveHours];
+            headerView.leaveHours.text = [NSString stringWithFormat:@"剩餘時數:%i",annualLeaveResult];
             break;
     }
     
@@ -429,28 +472,28 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"早班:%lu人",arr.count];
-                    NSLog(@"1");
+                    
                     break;
                 }
                 case SecondShiftCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"晚班:%lu人",arr.count];
-                    NSLog(@"2");
+                    
                     break;
                 }
                 case DayOffCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"休假:%lu人",arr.count];
-                    NSLog(@"3");
+                    
                     break;
                 }
                 case AnnualLeaveCell:
                 {
                     NSArray *arr = allShiftTableStatus[indexPath.row];
                     cell.schedulingCollevtionViewLabel.text = [NSString stringWithFormat:@"特休:%lu人",arr.count];
-                    NSLog(@"4");
+                    
                     break;
                 }
                     
@@ -479,7 +522,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     if (indexPath.section == ScheduleStatus) {
         return true;
     } else {
-    return false;
+        return false;
     }
 }
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -487,10 +530,10 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     NSArray *shifts = @[@"早班人員",@"晚班人員",@"休假人員",@"特休人員"];
     NSString *personnel = @"";
     for (int i = 0; i < [allShiftTableStatus[indexPath.row] count]; i++) {
-     
-       personnel = [personnel stringByAppendingFormat:@"%@ ",allShiftTableStatus[indexPath.row][i]];
+        
+        personnel = [personnel stringByAppendingFormat:@"%@ ",allShiftTableStatus[indexPath.row][i]];
     }
-   
+    
     NSLog(@"personnel: %@", personnel);
     
     if (indexPath.section == ScheduleStatus) {
@@ -506,7 +549,19 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
 -(void) reloadCollectionData {
     
     [_schedulingCollectionView reloadData];
+    [_schedulingCalendar reloadData];
     NSLog(@"reloadData");
+}
+
+-(void) alertController:(NSString *)tittle alertMessage:(NSString *)message{
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:tittle message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alert addAction:ok];
+    [self presentViewController:alert animated:true completion:nil];
+    
 }
 
 @end
