@@ -57,7 +57,8 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     
     // 路徑：上傳班表
     FIRDatabaseReference *updateSchedulingRef;
-    
+    //下載上傳特休路徑 update & downLoad AL hours.
+    FIRDatabaseReference *annualLeaveRef;
     // 用來儲存當月休假時數跟LocalUser 的特休時數
     int defaultDayOffHours;
     int defaultAnnualLeaveHours;
@@ -106,17 +107,16 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                            child:staffInfo.displayName];
     
     //-- Loading Next Month VacationHours --//
-    
+    // 下載排班狀況
     FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:nextMonth]];
     [downloadSchedulingRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         shiftStatusDict = snapshot.value;
-        // 下載排班狀況
         NSLog(@"dict for scheduling : %@",shiftStatusDict);
         
     }];
     
     FIRDatabaseReference *officialHolidayRef = [[[FIRDatabase database]reference] child:@"vacation"];
-    [officialHolidayRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    [officialHolidayRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) { // 下載當月例假時數
         
         NSMutableDictionary *dict = snapshot.value;
         NSString *nextMonthKey = [NSDateNSStringExchange stringFromYearAndMonth:nextMonth];
@@ -128,13 +128,13 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
          userInfo:nil];
     }];
     
-    FIRDatabaseReference *annualLeaveRef = [[[[[FIRDatabase database]reference]
-                                              child:@"StaffInformation"]
-                                             child:staffInfo.displayName]
-                                            child:@"AnnualLeave"];
+    annualLeaveRef = [[[[[FIRDatabase database]reference]
+                        child:@"StaffInformation"]
+                       child:staffInfo.displayName]
+                      child:@"AnnualLeave"];
     
     [annualLeaveRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
+        // 下載個人特休時數
         NSDictionary *dict = snapshot.value;
         defaultAnnualLeaveHours = [dict[@"2016"]intValue];
         annualLeaveResult = [dict[@"2016"]intValue];
@@ -201,6 +201,14 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
             NSLog(@"Update Scheduling Error : %@",error);
         }
     }];
+    NSString *ALHours = [NSString stringWithFormat:@"%i",annualLeaveResult];
+    
+    [annualLeaveRef updateChildValues:@{@"2016":ALHours} withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        if (error) {
+            NSLog(@"Update AL Error: %@",error);
+        }
+    }];
+    [self alertController:@"上傳完成" alertMessage:@"即將離開本畫面" dissmiddVC:true];
     
 }
 
@@ -292,13 +300,8 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                 dayOffResult = dayOffResult - 8;
                 [dayoff addObject:monthAndDay];
                 
-            } else {
-                
-                
-                
-                
             }
-            NSLog(@"defaultDayoff: %u",defaultDayOffHours);
+            NSLog(@"defaultDayoff: %i",defaultDayOffHours);
             break;
         case AnnualLeaveSegment:
             if (annualLeaveResult > 0){
@@ -306,13 +309,8 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                 [annualLeaveArr addObject:monthAndDay];
                 
                 
-            } else {
-                
-               
-                
-                
             }
-             NSLog(@"annDefault: %i",annualLeaveResult);
+            NSLog(@"annDefault: %i",defaultAnnualLeaveHours);
             break;
         default:
             break;
@@ -327,10 +325,10 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
 -(BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date{
     
     if (segmentIndex == DayOffSegment && dayOffResult == 0) {
-        [self alertController:@"" alertMessage:@"休假時數已達上限"];
+        [self alertController:@"" alertMessage:@"休假時數已達上限" dissmiddVC:false];
         return false;
     } else if (segmentIndex == AnnualLeaveSegment && annualLeaveResult == 0){
-        [self alertController:@"" alertMessage:@"特休時數已達上限"];
+        [self alertController:@"" alertMessage:@"特休時數已達上限" dissmiddVC:false];
         return false;
     }
     
@@ -498,7 +496,6 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                 }
                     
             }
-            
             break;
         case FirstShift:
             
@@ -525,6 +522,8 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
         return false;
     }
 }
+
+
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     NSArray *shifts = @[@"早班人員",@"晚班人員",@"休假人員",@"特休人員"];
@@ -553,15 +552,24 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     NSLog(@"reloadData");
 }
 
--(void) alertController:(NSString *)tittle alertMessage:(NSString *)message{
+-(void) alertController:(NSString *)tittle alertMessage:(NSString *)message dissmiddVC:(BOOL) dissmissVC {
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:tittle message:message preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        if (dissmissVC == true) {
+            
+            [self dissmissThisPage];
+        }
+    }];
     [alert addAction:ok];
     [self presentViewController:alert animated:true completion:nil];
     
+}
+
+-(void) dissmissThisPage {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
