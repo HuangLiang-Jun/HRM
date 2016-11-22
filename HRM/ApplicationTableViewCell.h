@@ -14,5 +14,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *applicationDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *durationLabel;
-           
+
 @end
