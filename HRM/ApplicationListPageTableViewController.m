@@ -8,6 +8,7 @@
 
 #import "ApplicationListPageTableViewController.h"
 #import "CurrentUser.h"
+#import "ApplicationTableViewCell.h"
 
 @interface ApplicationListPageTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -43,40 +44,51 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    return localUser.applicationList.count;
+//    return localUser.applicationList.count;
+    return 100;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
-    cell.detailTextLabel.text = applicatedDate;
+//    CurrentUser *localUser = [CurrentUser sharedInstance];
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+//    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
+//    cell.detailTextLabel.text = applicatedDate;
+//    
+//    NSDictionary *applicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
+//    NSString *applicationPeriod = [NSString stringWithFormat:@"%@ (%@ ~ %@)", applicationInfo[@"Subject"], applicationInfo[@"From"], applicationInfo[@"To"]];
+//    cell.textLabel.text = applicationPeriod;
     
-    NSDictionary *applicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
-    NSString *applicationPeriod = [NSString stringWithFormat:@"%@ (%@ ~ %@)", applicationInfo[@"Subject"], applicationInfo[@"From"], applicationInfo[@"To"]];
-    cell.textLabel.text = applicationPeriod;
-    
+    ApplicationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationCell"];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ApplicationTableViewCell" owner:self options:nil];
+        cell = [nib firstObject];
+    }
+
     return cell;
     
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
-    _selectedApplicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
-    [self performSegueWithIdentifier:@"ApplicationInfoPageSegue" sender:nil];
-    
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    CurrentUser *localUser = [CurrentUser sharedInstance];
+//    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
+//    _selectedApplicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
+//    [self performSegueWithIdentifier:@"ApplicationInfoPageSegue" sender:nil];
+//    
+//}
+//
+//#pragma Additional Func
+//
+//- (void)addNewApplication {
+//    
+//    [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
+//    
+//}
 
-#pragma Additional Func
-
-- (void)addNewApplication {
-    
-    [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
 @end
