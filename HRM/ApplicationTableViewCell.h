@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ApplicationTableViewCell : UIView
+@interface ApplicationTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *thumbnailView;
+@property (weak, nonatomic) IBOutlet UILabel *applicationDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+           
 @end

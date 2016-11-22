@@ -11,34 +11,75 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ApplicationCell" id="DJq-kN-45G">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ApplicationCell" rowHeight="50" id="DJq-kN-45G" customClass="ApplicationTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DJq-kN-45G" id="TMf-IV-b6a">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fd6-nt-tmh">
-                        <rect key="frame" x="0.0" y="1" width="72.5" height="72.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="72.5" id="a8z-yJ-Akq"/>
-                            <constraint firstAttribute="height" constant="72.5" id="pNZ-3v-goe"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ASM-pX-c2d">
-                        <rect key="frame" x="88" y="27" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38b-bf-KbR">
+                        <rect key="frame" x="70" y="14" width="117" height="22"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Application date">
+                                <attributes>
+                                    <font key="NSFont" size="18" name="HelveticaNeue-CondensedBold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="truncatingTail" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhX-SZ-e1V">
+                        <rect key="frame" x="210" y="14" width="33" height="22"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Type">
+                                <attributes>
+                                    <font key="NSFont" size="18" name="HelveticaNeue-CondensedBold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyl-3e-SJd">
+                        <rect key="frame" x="265" y="14" width="62" height="22"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Duration">
+                                <attributes>
+                                    <font key="NSFont" size="18" name="HelveticaNeue-CondensedBold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jBO-e1-YOS">
+                        <rect key="frame" x="3" y="2" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="S11-Z2-9D8"/>
+                            <constraint firstAttribute="width" constant="45" id="ygi-OI-u9K"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Fd6-nt-tmh" firstAttribute="centerY" secondItem="TMf-IV-b6a" secondAttribute="centerY" id="Etc-yu-sV8"/>
-                    <constraint firstItem="Fd6-nt-tmh" firstAttribute="leading" secondItem="TMf-IV-b6a" secondAttribute="leading" id="OeJ-s9-WfK"/>
+                    <constraint firstItem="38b-bf-KbR" firstAttribute="leading" secondItem="jBO-e1-YOS" secondAttribute="trailing" constant="22.5" id="31Y-xi-ReB"/>
+                    <constraint firstItem="iyl-3e-SJd" firstAttribute="leading" secondItem="HhX-SZ-e1V" secondAttribute="trailing" constant="22.5" id="9Fh-vG-oYk"/>
+                    <constraint firstItem="jBO-e1-YOS" firstAttribute="leading" secondItem="TMf-IV-b6a" secondAttribute="leading" constant="2.5" id="En8-Q1-Er1"/>
+                    <constraint firstItem="jBO-e1-YOS" firstAttribute="centerY" secondItem="TMf-IV-b6a" secondAttribute="centerY" id="Myn-2V-B6s"/>
+                    <constraint firstItem="38b-bf-KbR" firstAttribute="centerY" secondItem="jBO-e1-YOS" secondAttribute="centerY" id="Ob7-YE-XbM"/>
+                    <constraint firstItem="HhX-SZ-e1V" firstAttribute="leading" secondItem="38b-bf-KbR" secondAttribute="trailing" constant="22.5" id="Y3C-vJ-Nvh"/>
+                    <constraint firstItem="HhX-SZ-e1V" firstAttribute="centerY" secondItem="jBO-e1-YOS" secondAttribute="centerY" id="pn9-dd-urV"/>
+                    <constraint firstItem="iyl-3e-SJd" firstAttribute="centerY" secondItem="jBO-e1-YOS" secondAttribute="centerY" id="rp6-L4-hUU"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="27" y="0.0"/>
+            <connections>
+                <outlet property="applicationDateLabel" destination="38b-bf-KbR" id="eeA-YK-TBs"/>
+                <outlet property="durationLabel" destination="iyl-3e-SJd" id="fEC-TS-0ME"/>
+                <outlet property="thumbnailView" destination="jBO-e1-YOS" id="DJX-MA-A1W"/>
+                <outlet property="typeLabel" destination="HhX-SZ-e1V" id="s7u-eN-71K"/>
+            </connections>
+            <point key="canvasLocation" x="26.5" y="12"/>
         </tableViewCell>
     </objects>
 </document>
