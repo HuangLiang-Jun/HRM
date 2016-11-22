@@ -23,6 +23,7 @@
 
 @implementation SearchClassViewController
 {
+    CheckClassCollectionReusable *headerView;
     NSMutableDictionary *dic;
     NSMutableArray *onDuty,*offDuty,*dayoff,*annualLeave;
     NSString *monthStrKey;
@@ -135,10 +136,51 @@
 -(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
     UICollectionReusableView *reusableView = nil;
     
-    CheckClassCollectionReusable *headerView = [_checkClassTableCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ClassHeaderView" forIndexPath:indexPath];
+    headerView = [_checkClassTableCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ClassHeaderView" forIndexPath:indexPath];
     
+//    switch (indexPath.section) {
+//        case 0:
+//            if (onDuty.count == 0){
+//                headerView.hidden = true;
+//                
+//                
+//            }else{
+//            headerView.hidden = false;
+//            }
+//            break;
+//        case 1:
+//            if (offDuty.count == 0){
+//                headerView.hidden = true;
+//            }else{
+//            headerView.hidden = false;
+//            }
+//            break;
+//        case 2:
+//            if (dayoff.count == 0){
+//                headerView.hidden = true;
+//            }else{
+//            headerView.hidden = false;
+//            }
+//            break;
+//        case 3:
+//            if (annualLeave.count == 0){
+//                headerView.hidden = true;
+//            }else{
+//            headerView.hidden = false;
+//            }
+//            break;
+//        
+//    }
+
+
     NSArray *arr = @[@"早班",@"晚班",@"例休",@"特休"];
+    NSArray *headerImage = @[[UIImage imageNamed:@"blueheader.png"],
+                             [UIImage imageNamed:@"orangeheader.png"],
+                             [UIImage imageNamed:@"redheader.png"],
+                             [UIImage imageNamed:@"greenheader.png"]];
+
     headerView.headerLabel.text = arr[indexPath.section];
+    headerView.headerBackground.image = headerImage[indexPath.section];
     reusableView = headerView;
     
     return reusableView;
@@ -193,6 +235,8 @@
     }
     return cell;
 }
+
+
 
 
 

@@ -1246,6 +1246,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8CB-oz-fVm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbO-fj-Bay">
                                             <rect key="frame" x="8" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -1253,13 +1256,17 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.83914184570000006" green="0.83926302190000002" blue="0.83911520240000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
+                                        <constraint firstItem="8CB-oz-fVm" firstAttribute="top" secondItem="tMT-aq-jZg" secondAttribute="top" id="AEp-Z6-g0S"/>
+                                        <constraint firstItem="8CB-oz-fVm" firstAttribute="leading" secondItem="tMT-aq-jZg" secondAttribute="leading" id="C4t-He-J5p"/>
                                         <constraint firstItem="GbO-fj-Bay" firstAttribute="top" secondItem="tMT-aq-jZg" secondAttribute="top" constant="8" id="F7z-K2-vc1"/>
                                         <constraint firstAttribute="bottom" secondItem="GbO-fj-Bay" secondAttribute="bottom" constant="7" id="PeI-DK-CFC"/>
+                                        <constraint firstAttribute="trailing" secondItem="8CB-oz-fVm" secondAttribute="trailing" id="dSs-g8-5Xe"/>
                                         <constraint firstItem="GbO-fj-Bay" firstAttribute="leading" secondItem="tMT-aq-jZg" secondAttribute="leading" constant="8" id="fgq-oU-pIl"/>
+                                        <constraint firstAttribute="bottom" secondItem="8CB-oz-fVm" secondAttribute="bottom" id="tGl-YV-JSv"/>
                                     </constraints>
                                     <connections>
+                                        <outlet property="headerBackground" destination="8CB-oz-fVm" id="NWm-kX-xv2"/>
                                         <outlet property="headerLabel" destination="GbO-fj-Bay" id="8Sy-eC-p2g"/>
                                     </connections>
                                 </collectionReusableView>
@@ -1291,7 +1298,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="msi-x5-dN1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="823" y="-407"/>
+            <point key="canvasLocation" x="821.60000000000002" y="-407.0464767616192"/>
         </scene>
         <!--BulletinBoard-->
         <scene sceneID="Rrp-A7-4Tb">

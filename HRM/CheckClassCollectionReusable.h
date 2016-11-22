@@ -10,5 +10,6 @@
 
 @interface CheckClassCollectionReusable : UICollectionReusableView
 @property (weak, nonatomic) IBOutlet UILabel *headerLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *headerBackground;
 
 @end
