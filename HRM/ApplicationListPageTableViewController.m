@@ -8,7 +8,6 @@
 
 #import "ApplicationListPageTableViewController.h"
 #import "CurrentUser.h"
-#import "ApplicationTableViewCell.h"
 
 @interface ApplicationListPageTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -17,14 +16,6 @@
 @implementation ApplicationListPageTableViewController
 
 #pragma View Lifecycle
-
-- (void)loadView {
-    [super loadView];
-    
-    UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewApplication)];
-    self.navigationItem.rightBarButtonItems = @[add];
-
-}
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -60,11 +51,24 @@
 //    NSString *applicationPeriod = [NSString stringWithFormat:@"%@ (%@ ~ %@)", applicationInfo[@"Subject"], applicationInfo[@"From"], applicationInfo[@"To"]];
 //    cell.textLabel.text = applicationPeriod;
     
-    ApplicationTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ApplicationCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ApplicationTableViewCell" owner:self options:nil];
-        cell = [nib firstObject];
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        
     }
+    UIImageView *thumbnailImageView = [cell viewWithTag:0];
+    thumbnailImageView.image = [UIImage new];
+    
+    UILabel *applicationDateLabel = [cell viewWithTag:1];
+    applicationDateLabel.text = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+    
+    UILabel *typeLabel = [cell viewWithTag:2];
+    typeLabel.text = @"病假";
+    
+    UILabel *durationLabel = [cell viewWithTag:3];
+    durationLabel.text = @"1d 3h";
+    
 
     return cell;
     
@@ -81,14 +85,14 @@
 //
 //#pragma Additional Func
 //
-//- (void)addNewApplication {
-//    
-//    [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
-//    
-//}
+- (void)addNewApplication {
+    
+    [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
+    
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    return 60;
 }
 
 @end

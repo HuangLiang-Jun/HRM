@@ -20,8 +20,10 @@
 
 @property (weak, nonatomic) IBOutlet FSCalendar *calendar;
 @property (weak, nonatomic) IBOutlet UITextField *subjectField;
-@property (weak, nonatomic) IBOutlet UIButton *startDateBtn;
-@property (weak, nonatomic) IBOutlet UIButton *endDateBtn;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *vyc;
+
+
 @property (weak, nonatomic) IBOutlet UITextView *contentView;
 
 @end
@@ -32,6 +34,14 @@ static int dependence;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    _vyc.constant = self.view.frame.size.height;
+    
+        [self.view layoutIfNeeded];
+    
+
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,8 +66,8 @@ static int dependence;
     [confirmBtn.titleLabel setFont:[UIFont systemFontOfSize:40.0]];
     [confirmBtn addTarget:self action:@selector(confirmBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     [optionBlocker addSubview:confirmBtn];
-    _startDateBtn.titleLabel.adjustsFontSizeToFitWidth = true;
-    _endDateBtn.titleLabel.adjustsFontSizeToFitWidth = true;
+//    _startDateBtn.titleLabel.adjustsFontSizeToFitWidth = true;
+//    _endDateBtn.titleLabel.adjustsFontSizeToFitWidth = true;
 }
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date {
@@ -101,9 +111,9 @@ static int dependence;
     _calendar.allowsSelection = false;
     dateString = [NSString stringWithFormat:@"%@ %@", dateString, timeString];
     if (dependence == 0) {
-        _startDateBtn.titleLabel.text = dateString;
+//        _startDateBtn.titleLabel.text = dateString;
     } else {
-        _endDateBtn.titleLabel.text = dateString;
+//        _endDateBtn.titleLabel.text = dateString;
     }
 }
 
@@ -118,21 +128,31 @@ static int dependence;
 }
 
 - (IBAction)applyBtnPressed:(UIButton *)sender {
-    if (![_subjectField.text isEqualToString:@""]) {
-        NSString *applicationDate = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
-        NSDictionary *applicationInfo = @{@"Agree": @0, @"Content": _contentView.text, @"From": _startDateBtn.titleLabel.text, @"Subject": _subjectField.text, @"To": _endDateBtn.titleLabel.text};
-        NSDictionary *application = @{applicationDate: applicationInfo};
-        CurrentUser *localUser = [CurrentUser sharedInstance];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [localUser uploadApplicationWithDict:application];
-        });
-
-        [localUser.applicationList addObject:application];
-        [self.navigationController popToRootViewControllerAnimated:true];
-    } else {
-        _subjectField.placeholder = @"Enter your password.";
-        _subjectField.text = @"";
-    }
+//    if (![_subjectField.text isEqualToString:@""]) {
+//        NSString *applicationDate = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
+////        NSDictionary *applicationInfo = @{@"Agree": @0, @"Content": _contentView.text, @"From": _startDateBtn.titleLabel.text, @"Subject": _subjectField.text, @"To": _endDateBtn.titleLabel.text};
+////        NSDictionary *application = @{applicationDate: applicationInfo};
+//        CurrentUser *localUser = [CurrentUser sharedInstance];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            [localUser uploadApplicationWithDict:application];
+//        });
+//
+//        [localUser.applicationList addObject:application];
+//        [self.navigationController popToRootViewControllerAnimated:true];
+//    } else {
+//        _subjectField.placeholder = @"Enter your password.";
+//        _subjectField.text = @"";
+//    }
+    
+//    [_bottomViewConst anima];
+    
+//    [self.view layoutIfNeeded];
+    _vyc.constant =  self.view.frame.size.height-300;
+    [UIView animateWithDuration:2 animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
+    
 }
 
 - (void)animateToSelectTime {
