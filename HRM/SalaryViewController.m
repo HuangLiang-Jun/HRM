@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *payCutTextField;
 @property (weak, nonatomic) IBOutlet UITextField *fullAttendanceTextField;
 @property (weak, nonatomic) IBOutlet UITextField *totalSalaryTextField;
+@property (weak, nonatomic) IBOutlet UILabel *showDate;
 
 
 @property (strong,nonatomic) FIRDatabaseReference *databaseRef;
@@ -36,11 +37,15 @@
     FIRDatabaseReference *updateRef;
     Boolean downLoadStatus;
     CurrentUser *localUser;
+    NSInteger lastMonth;
+    NSString *lastMonthStr;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self dateByAddingMonths:1];
+    self.showDate.text = [NSString stringWithFormat:@"2016 年 %lu 月", lastMonth];
     
     localUser = [CurrentUser sharedInstance];
     snapShotDic = [NSMutableDictionary new];
@@ -52,11 +57,8 @@
     updateRef = [[[[[FIRDatabase database]reference]child:@"Salary"]child:localUser.displayName] child:@"2016-10"];
    
     NSLog(@"ref: %@",_databaseRef);
-//    monthlySalary = 32000;
     totalHours = 176;
     leaveHour = 0;
-//    workerInsurance = 1234;
-//    healthInsurance = 789;
     
     [self loadData];
 }
@@ -113,27 +115,7 @@
             self.totalSalaryTextField.text = [NSString stringWithFormat:@"%d", totalSalary];
         }];
     }];
-//    if (snapShotDic) {
-//        NSLog(@"snapShotDic: %@", snapShotDic);
-//        
-//    }
 }
-
-// 上傳更改的薪資
-/*-(void) updateSalary {
-    NSString *monthlySalaryDic = [[NSString alloc] initWithFormat:@"%@", self.monthlySalaryTextField.text];
-    NSString *workerInsuranceDic = [[NSString alloc] initWithFormat:@"%@", self.workerInsuranceTextField.text];
-    NSString *healthInsuranceDic = [[NSString alloc] initWithFormat:@"%@", self.healthInsuranceTextField.text];
-    
-    NSDictionary *salaryDic = @{@"monthlysalay":monthlySalaryDic,@"workerInsurance":workerInsuranceDic,@"healthInsurance":healthInsuranceDic};
-    [updateRef updateChildValues:salaryDic withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
-        if (error) {
-            NSLog(@"update salary error: %@",error);
-            
-        }
-    }];
-}
-*/
 
 -(void) downLoadSalary {
     [updateRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -176,6 +158,17 @@
 
 - (void) totalSalarySums {
     totalSalary = monthlySalary - workerInsurance - healthInsurance + fullAttendance - payCut;
+}
+
+// 計算月份的方法
+- (NSInteger)dateByAddingMonths:(NSInteger)months
+{
+    NSCalendar *calendarr = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+    
+    NSDateComponents *month = [calendarr components:NSCalendarUnitMonth fromDate:[NSDate date]];
+    
+    lastMonth = month.month - months;
+    return lastMonth;
 }
 
 - (void)didReceiveMemoryWarning {
