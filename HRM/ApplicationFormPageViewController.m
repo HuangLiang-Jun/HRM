@@ -9,14 +9,12 @@
 #import "ApplicationFormPageViewController.h"
 #import "FSCalendar.h"
 #import "CurrentUser.h"
-#import "ApplicationListPageTableViewController.h"
 #import "StrValidationFilter.h"
 
 @interface ApplicationFormPageViewController () <FSCalendarDataSource, FSCalendarDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate> {
     
     BOOL procedureToken, startDateToken, endDateToken;
-    NSString *dateStr, *timeStr;
-    
+    NSString *applicationTypeStr, *dateStr, *timeStr;
     NSDate *selectedDate;
     
 }
@@ -24,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet FSCalendar *calendar;
 @property (weak, nonatomic) IBOutlet UITextField *startTimeField;
 @property (weak, nonatomic) IBOutlet UITextField *endTimeField;
+@property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewLocConst;
 
@@ -31,12 +30,14 @@
 
 @implementation ApplicationFormPageViewController
 
-static int dependence;
+#pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     _calendar.firstWeekday = 2;
+    _calendar.dataSource = self;
+    _calendar.delegate = self;
     _calendar.allowsSelection = false;
     
     _startTimeField.tag = 0;
@@ -45,18 +46,32 @@ static int dependence;
     _endTimeField.tag = 1;
     _endTimeField.delegate = self;
     
-    UIView *inputView = [self.view viewWithTag:100];
-    _inputViewLocConst.constant = -(self.navigationController.navigationBar.frame.size.height+inputView.frame.size.height);
-    [self.view layoutIfNeeded];
+    _timePickerView.dataSource = self;
+    _timePickerView.delegate = self;
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    UIView *inputView = [self.view viewWithTag:100];
+    _inputViewLocConst.constant = -(self.navigationController.navigationBar.frame.size.height+inputView.frame.size.height);
+    [self.view layoutSubviews];
+    applicationTypeStr = @"公假";
+    selectedDate = [NSDate date];
+    
+}
+
+#pragma mark - Application Type Segment Func
 
 - (IBAction)applicationTypeSegment:(UISegmentedControl *)sender {
     
-    NSLog(@"%@", [sender titleForSegmentAtIndex:[sender selectedSegmentIndex]]);
+    NSInteger selectedIndex = [sender selectedSegmentIndex];
+    applicationTypeStr = [sender titleForSegmentAtIndex:selectedIndex];
     
 }
+
+#pragma mark - Text Field Delegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
@@ -74,6 +89,22 @@ static int dependence;
             
     }
     [self animateToSelectDate];
+    
+}
+
+- (void)animateToSelectDate {
+    
+    _inputViewLocConst.constant = 0.0;
+    [UIView animateWithDuration:1.2 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+    _calendar.allowsSelection = true;
+    [_calendar selectDate:selectedDate];
+    dateStr = [NSDateNSStringExchange stringFromChosenDate:selectedDate];
+    [_timePickerView selectRow:0 inComponent:0 animated:true];
+    timeStr = @"09:00";
     
 }
 
@@ -168,12 +199,16 @@ static int dependence;
     
 }
 
+#pragma mark - Calendar Delegate
+
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date {
     
     dateStr = [NSDateNSStringExchange stringFromChosenDate:date];
     selectedDate = date;
     
 }
+
+#pragma mark - Picker View Delegate
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     
@@ -210,20 +245,33 @@ static int dependence;
     
 }
 
-- (void)confirmBtnPressed {
-//    [self animationAfterConfirm];
+#pragma mark - Confirm Btn Func
+
+- (IBAction)confirmBtnPressed:(UIButton *)sender {
+    
+    [self animationAfterConfirm];
     [_calendar deselectDate:selectedDate];
     _calendar.allowsSelection = false;
-    dateStr = [NSString stringWithFormat:@"%@ %@", dateStr, timeStr];
     if (procedureToken == false) {
         
-        _startTimeField.text = dateStr;
+        _startTimeField.text =  [NSString stringWithFormat:@"%@ %@", dateStr, timeStr];
         
     } else {
         
-        _endTimeField.text = dateStr;
+        _endTimeField.text =  [NSString stringWithFormat:@"%@ %@", dateStr, timeStr];
         
-    }
+    }    
+}
+
+- (void)animationAfterConfirm {
+    
+    UIView *inputView = [self.view viewWithTag:100];
+    _inputViewLocConst.constant = -(self.navigationController.navigationBar.frame.size.height+inputView.frame.size.height);
+    [UIView animateWithDuration:1.2 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
 }
 
 - (IBAction)applyBtnPressed:(UIButton *)sender {
@@ -250,18 +298,6 @@ static int dependence;
     
 }
 
-- (void)animateToSelectDate {
-    
-    _inputViewLocConst.constant = 0.0;
-    [UIView animateWithDuration:1.2 animations:^{
-        
-        [self.view layoutIfNeeded];
-        
-    }];
-    _calendar.allowsSelection = true;
-    timeStr = @"09:00";
-    
-}
 
 //- (void)animationAfterConfirm {
 //    [UIView animateWithDuration:1.0 animations:^{
