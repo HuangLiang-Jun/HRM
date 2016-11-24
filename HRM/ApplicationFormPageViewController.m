@@ -11,7 +11,7 @@
 #import "CurrentUser.h"
 #import "StrValidationFilter.h"
 
-@interface ApplicationFormPageViewController () <FSCalendarDataSource, FSCalendarDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate> {
+@interface ApplicationFormPageViewController () <FSCalendarDataSource, FSCalendarDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate> {
     
     BOOL procedureToken, startDateToken, endDateToken;
     NSString *applicationTypeStr, *dateStr, *timeStr;
@@ -49,6 +49,8 @@
     _timePickerView.dataSource = self;
     _timePickerView.delegate = self;
     
+    _contentTextView.delegate = self;
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -75,6 +77,7 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
+    [textField resignFirstResponder];
     switch (textField.tag) {
             
         case 0:
@@ -126,7 +129,6 @@
 
 - (void)validationDependenceOfTextField:(UITextField *)textField {
     
-    [textField resignFirstResponder];
     NSString *str = textField.text;
     switch (textField.tag) {
             
@@ -136,7 +138,7 @@
                 startDateToken = true;
                 if (!endDateToken) {
                     
-                    [self shiftToTheNextOneOfTextField:textField];
+                    
                     
                 }
                 
@@ -153,7 +155,7 @@
                 endDateToken = true;
                 if (!startDateToken) {
                     
-                    [self shiftToThePreviousOneOfTextField:textField];
+                    
                     
                 }
                 
@@ -164,29 +166,6 @@
             }
             break;
             
-    }
-}
-
-
-- (void)shiftToTheNextOneOfTextField:(UITextField *)textField {
-    
-    NSInteger nextTag = textField.tag+1;
-    UIResponder *nextResponder = [self.view viewWithTag:nextTag];
-    if ([nextResponder isKindOfClass:[textField class]]) {
-        
-        [nextResponder becomeFirstResponder];
-        
-    }
-}
-
-- (void)shiftToThePreviousOneOfTextField:(UITextField *)textField {
-    
-    NSInteger previousTag = textField.tag-1;
-    UIResponder *previousResponder = [self.view viewWithTag:previousTag];
-    if ([previousResponder isKindOfClass:[textField class]]) {
-        
-        [previousResponder becomeFirstResponder];
-        
     }
 }
 
@@ -255,10 +234,12 @@
     if (procedureToken == false) {
         
         _startTimeField.text =  [NSString stringWithFormat:@"%@ %@", dateStr, timeStr];
+        [_startTimeField resignFirstResponder];
         
     } else {
         
         _endTimeField.text =  [NSString stringWithFormat:@"%@ %@", dateStr, timeStr];
+        [_endTimeField resignFirstResponder];
         
     }    
 }
@@ -272,6 +253,20 @@
         [self.view layoutSubviews];
         
     }];
+}
+
+#pragma mark - Text Field Delegate
+
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if ([text isEqualToString:@"\n"]) {
+        
+        [textView resignFirstResponder];
+        return false;
+        
+    }
+    return true;
+    
 }
 
 - (IBAction)applyBtnPressed:(UIButton *)sender {
