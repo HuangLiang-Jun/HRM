@@ -466,7 +466,7 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2FFS45S3SA;
+						DevelopmentTeam = F29672WPZ9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -728,7 +728,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2FFS45S3SA;
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRM;
@@ -743,7 +743,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2FFS45S3SA;
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRM;

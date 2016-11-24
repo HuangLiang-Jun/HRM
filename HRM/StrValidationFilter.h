@@ -20,4 +20,6 @@
 
 + (BOOL)cellPhoneNumValidationFor:(NSString *)cellPhoneNum;
 
++ (BOOL)applicationDateValidationFor:(NSString *)applicationDate;
+
 @end

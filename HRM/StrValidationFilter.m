@@ -131,4 +131,18 @@
     }
 }
 
++ (BOOL)applicationDateValidationFor:(NSString *)applicationDate {
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSDate *date = [dateFormatter dateFromString:applicationDate];
+    if (date) {
+        
+        return true;
+        
+    }
+    return false;
+    
+}
+
 @end
