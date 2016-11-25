@@ -24,7 +24,43 @@
     [FIRApp configure];
     [CurrentUser sharedInstance];
     
+    // APNS Ask user's permission(詢問使用者是否同意推播通知)雖然建議使用ios10的新方法 但目前為了支援舊版本所以繼續使用就方法
+    UIUserNotificationType type = UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+    [application registerUserNotificationSettings:settings];
+    
+    // Ask deviceToken from APNS(去要DeviceToken)
+    [application registerForRemoteNotifications];
     return YES;
+}
+
+// 負責傳回deviceToken結果的
+- (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSLog(@"DeviceToken: %@",deviceToken.description);
+    
+    NSString *finalDeviceToken = deviceToken.description;
+    finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
+    finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@">" withString:@""];
+    finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSLog(@"finalDeviceToken: %@",finalDeviceToken);
+    
+    // Update DeviceToken to Server
+    //Communicator *comm = [Communicator sharedInstance];
+    
+    //[comm updateDeviceToken:finalDeviceToken
+      //           completion:^(NSError *error, id result) {
+                     // ...
+                     
+                     
+        //         }];
+
+    
+}
+
+-(void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    
+    NSLog(@"didFailToRegisterForRemoteNotificationsWithError: %@",error);
 }
 
 
