@@ -13,10 +13,10 @@
 
 @interface ApplicationFormPageViewController () <FSCalendarDataSource, FSCalendarDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextViewDelegate> {
     
-    BOOL procedureToken, startDateToken, endDateToken;
     NSString *applicationTypeStr, *dateStr, *timeStr;
     NSDate *selectedDate;
-    
+    BOOL procedureToken;
+
 }
 
 @property (weak, nonatomic) IBOutlet FSCalendar *calendar;
@@ -82,12 +82,10 @@
             
         case 0:
             procedureToken = false;
-            startDateToken = false;
             break;
             
         case 1:
             procedureToken = true;
-            endDateToken = false;
             break;
             
     }
@@ -108,73 +106,6 @@
     dateStr = [NSDateNSStringExchange stringFromChosenDate:selectedDate];
     [_timePickerView selectRow:0 inComponent:0 animated:true];
     timeStr = @"09:00";
-    
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    
-    if (textField.text.length != 0) {
-        
-        [self validationDependenceOfTextField:textField];
-        
-    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    [self validationDependenceOfTextField:textField];
-    return true;
-    
-}
-
-- (void)validationDependenceOfTextField:(UITextField *)textField {
-    
-    NSString *str = textField.text;
-    switch (textField.tag) {
-            
-        case 0:
-            if ([StrValidationFilter applicationDateValidationFor:str]) {
-                
-                startDateToken = true;
-                if (!endDateToken) {
-                    
-                    
-                    
-                }
-                
-            } else {
-                
-                [self presentAlertControllerWithInfo:@"請選擇起始日期"];
-                
-            }
-            break;
-            
-        case 1:
-            if ([StrValidationFilter applicationDateValidationFor:str]) {
-                
-                endDateToken = true;
-                if (!startDateToken) {
-                    
-                    
-                    
-                }
-                
-            } else {
-                
-                [self presentAlertControllerWithInfo:@"請選擇截止日期"];
-                
-            }
-            break;
-            
-    }
-}
-
-- (void)presentAlertControllerWithInfo:(NSString *)info {
-    
-    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:nil];
-    [alertC addAction:alertAction];
-    [self presentViewController:alertC animated:true completion:nil];
     
 }
 
@@ -270,42 +201,45 @@
 }
 
 - (IBAction)applyBtnPressed:(UIButton *)sender {
-//    if (![_subjectField.text isEqualToString:@""]) {
-//        NSString *applicationDate = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
-////        NSDictionary *applicationInfo = @{@"Agree": @0, @"Content": _contentView.text, @"From": _startDateBtn.titleLabel.text, @"Subject": _subjectField.text, @"To": _endDateBtn.titleLabel.text};
-////        NSDictionary *application = @{applicationDate: applicationInfo};
-//        CurrentUser *localUser = [CurrentUser sharedInstance];
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [localUser uploadApplicationWithDict:application];
-//        });
-//
-//        [localUser.applicationList addObject:application];
-//        [self.navigationController popToRootViewControllerAnimated:true];
-//    } else {
-//        _subjectField.placeholder = @"Enter your password.";
-//        _subjectField.text = @"";
-//    }
     
-//    [_bottomViewConst anima];
-    
-//    [self.view layoutIfNeeded];
-    
-    
+    NSString *startDateStr = _startTimeField.text;
+    NSString *endDateStr = _endTimeField.text;
+    if ([StrValidationFilter applicationDateValidationFor:startDateStr] && [StrValidationFilter applicationDateValidationFor:endDateStr]) {
+        
+        NSDateFormatter *dateFormatter = [NSDateFormatter new];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+        NSDate *startDate = [dateFormatter dateFromString:startDateStr];
+        NSDate *endDate = [dateFormatter dateFromString:endDateStr];
+        if ([startDate compare:endDate] == NSOrderedAscending) {
+            
+            NSString *applyDateStr = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
+            NSDictionary *applicationInfo = @{@"Agree": @0, @"Content": _contentTextView.text, @"From": startDateStr, @"Type": applicationTypeStr, @"To": endDateStr};
+            NSDictionary *application = @{applyDateStr: applicationInfo};
+            CurrentUser *localUser = [CurrentUser sharedInstance];
+            [localUser uploadApplicationWithDict:application];
+            [localUser.applicationList addObject:application];
+            [self.navigationController popViewControllerAnimated:true];
+            
+        } else {
+            
+            [self presentAlertControllerWithInfo:@"錯誤的時間順序"];
+            
+        }
+        
+    } else {
+        
+        [self presentAlertControllerWithInfo:@"請假日期選擇不完全"];
+        
+    }
 }
 
-
-//- (void)animationAfterConfirm {
-//    [UIView animateWithDuration:1.0 animations:^{
-//        timePicker.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height * 0.4);
-//        timePicker.alpha = 0.1;
-//        optionBlocker.frame = CGRectMake(0.0, self.view.frame.size.height * 1.0 + 20.0, self.view.frame.size.width, self.view.frame.size.height * 0.2 - 20.0);
-//        optionBlocker.alpha = 0.1;
-//    } completion:^(BOOL finished) {
-//        if (finished) {
-//            [timePicker removeFromSuperview];
-//            [optionBlocker removeFromSuperview];
-//        }
-//    }];
-//}
+- (void)presentAlertControllerWithInfo:(NSString *)info {
+    
+    UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"警告" message:info preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:nil];
+    [alertC addAction:alertAction];
+    [self presentViewController:alertC animated:true completion:nil];
+    
+}
 
 @end

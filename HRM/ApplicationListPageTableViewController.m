@@ -35,8 +35,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-//    return localUser.applicationList.count;
-    return 100;
+    return localUser.applicationList.count;
     
 }
 
@@ -51,25 +50,27 @@
 //    NSString *applicationPeriod = [NSString stringWithFormat:@"%@ (%@ ~ %@)", applicationInfo[@"Subject"], applicationInfo[@"From"], applicationInfo[@"To"]];
 //    cell.textLabel.text = applicationPeriod;
     
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    NSDictionary *application = localUser.applicationList[indexPath.row];
+    NSDictionary*info = [application allValues].firstObject;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         
     }
-    UIImageView *thumbnailImageView = [cell viewWithTag:0];
+    UIImageView *thumbnailImageView = [cell viewWithTag:100];
     thumbnailImageView.image = [UIImage new];
     
-    UILabel *applicationDateLabel = [cell viewWithTag:1];
-    applicationDateLabel.text = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+    UILabel *typeLabel = [cell viewWithTag:101];
+    typeLabel.text = [info valueForKey:@"Type"];
     
-    UILabel *typeLabel = [cell viewWithTag:2];
-    typeLabel.text = @"病假";
+    UILabel *startDateLabel = [cell viewWithTag:102];
+    startDateLabel.text = [info valueForKey:@"From"];
     
-    UILabel *durationLabel = [cell viewWithTag:3];
-    durationLabel.text = @"1d 3h";
+    UILabel *endDateLabel = [cell viewWithTag:103];
+    endDateLabel.text = [info valueForKey:@"To"];
     
-
     return cell;
     
 }

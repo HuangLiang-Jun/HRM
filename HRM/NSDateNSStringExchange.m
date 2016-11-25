@@ -20,7 +20,7 @@
 
 + (NSString *)stringFromUpdateDate:(NSDate *)date {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     NSString *strFromDate = [formatter stringFromDate:date];
     return strFromDate;
 }

@@ -35,7 +35,7 @@
     _pwdField.delegate = self;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if (localUser.email.length != 0 && localUser.password.length != 0) {
+    if ([StrValidationFilter emailValidationFor:localUser.email] && [StrValidationFilter passwordValidationFor:localUser.password]) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
