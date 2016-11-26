@@ -37,7 +37,9 @@
 // 負責傳回deviceToken結果的
 - (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     NSLog(@"DeviceToken: %@",deviceToken.description);
-    
+    // 取代字串 拿到符合我們要的格式
+    // <44928c24 f650074e ee268ffc 47ffcca1 82e2ca7e 68ae29f1 a2849f64 ce4459ec>
+    // ==> 44928c24f650074eee268ffc47ffcca182e2ca7e68ae29f1a2849f64ce4459ec
     NSString *finalDeviceToken = deviceToken.description;
     finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@"<" withString:@""];
     finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@">" withString:@""];
@@ -46,6 +48,7 @@
     NSLog(@"finalDeviceToken: %@",finalDeviceToken);
     
     // Update DeviceToken to Server
+    
     //Communicator *comm = [Communicator sharedInstance];
     
     //[comm updateDeviceToken:finalDeviceToken

@@ -40,6 +40,7 @@
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
 		63E0A1131DCB0C910021F246 /* BulletinBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
+		63E52BF31DE93E8F00BD24C2 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */; };
 		70197E021DDD9CFC009254C4 /* blueheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFE1DDD9CFC009254C4 /* blueheader.png */; };
 		70197E031DDD9CFC009254C4 /* greenheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* greenheader.png */; };
 		70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* orangeheader.png */; };
@@ -126,6 +127,8 @@
 		63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardViewController.m; sourceTree = "<group>"; };
 		63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletinBoardTableViewCell.h; sourceTree = "<group>"; };
 		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
+		63E52BF11DE93E8F00BD24C2 /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerCommunicator.h; path = ../ServerCommunicator.h; sourceTree = "<group>"; };
+		63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerCommunicator.m; path = ../ServerCommunicator.m; sourceTree = "<group>"; };
 		70197DFE1DDD9CFC009254C4 /* blueheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueheader.png; sourceTree = "<group>"; };
 		70197DFF1DDD9CFC009254C4 /* greenheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenheader.png; sourceTree = "<group>"; };
 		70197E001DDD9CFC009254C4 /* orangeheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeheader.png; sourceTree = "<group>"; };
@@ -254,6 +257,8 @@
 		6335E17A1DB8E52C00B71A63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63E52BF11DE93E8F00BD24C2 /* ServerCommunicator.h */,
+				63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */,
 				A9DC911F1DB530F600679708 /* CurrentUser.h */,
 				A9DC91201DB530F600679708 /* CurrentUser.m */,
 				3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */,
@@ -619,6 +624,7 @@
 				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
+				63E52BF31DE93E8F00BD24C2 /* ServerCommunicator.m in Sources */,
 				636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */,
 				706159CD1D94231800D2530B /* main.m in Sources */,
 				A9DC91211DB530F600679708 /* CurrentUser.m in Sources */,
