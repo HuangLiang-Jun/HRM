@@ -1827,8 +1827,7 @@
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="applyBtnPressed:" destination="y09-sy-mv5" eventType="touchUpInside" id="c1M-5O-8RL"/>
-                                    <action selector="onDutyBtnPressed:" destination="2nV-Gp-p1H" eventType="touchUpInside" id="7pY-Fe-gLj"/>
+                                    <action selector="applyBtnPressed:" destination="y09-sy-mv5" eventType="touchUpInside" id="uv1-iT-Zyp"/>
                                 </connections>
                             </button>
                             <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GDJ-nJ-65g">
