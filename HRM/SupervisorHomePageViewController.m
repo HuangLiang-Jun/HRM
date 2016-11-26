@@ -20,12 +20,11 @@
 @implementation SupervisorHomePageViewController
 {
      FIRDatabaseReference *staffNameRef;
-    StaffInfoDataManager *staffDataManager;
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    staffDataManager = [StaffInfoDataManager sharedInstance];
     
 
 }
@@ -38,21 +37,7 @@
 }
 - (IBAction)salaryBtnPressed:(UIButton *)sender {
 
-    staffNameRef = [[[FIRDatabase database]reference]child:@"UID"];
-    
-    //Get All Staff Name.
-    [staffNameRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        NSDictionary *allName = snapshot.value;
-        NSMutableArray *staffName = [[NSMutableArray alloc] initWithArray:allName.allValues];
-        
-        NSLog(@"snapshotValue: %@",staffName);
-        if (staffName.count != 0) {
-           
-            [[NSUserDefaults standardUserDefaults] setObject:staffName forKey:@"staffName"];
-            [[NSUserDefaults standardUserDefaults]synchronize];
-        }
-        
-    }];
+   
     
     
 }
@@ -63,7 +48,7 @@
 }
 - (IBAction)staffListBtnPressed:(id)sender {
     
-    [staffDataManager downLoadStaffInfo];
+   
     
 }
 
