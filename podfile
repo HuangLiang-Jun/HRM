@@ -9,6 +9,8 @@ target 'HRM' do
    pod 'Firebase/Database'
    pod 'FSCalendar'
    pod 'HMSegmentedControl'
+   pod 'AFNetworking'
+
   # Pods for HRM
 
 end
