@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
+		3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
 		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
@@ -48,7 +49,6 @@
 		70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* orangeheader.png */; };
 		70197E051DDD9CFC009254C4 /* redheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E011DDD9CFC009254C4 /* redheader.png */; };
 		7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DB1DD354BF00793999 /* backgroundBlue.png */; };
-		7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DC1DD354BF00793999 /* backgroundGreen.png */; };
 		7023F6E11DD354BF00793999 /* btnBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DD1DD354BF00793999 /* btnBlue.png */; };
 		7023F6E21DD354BF00793999 /* btnGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DE1DD354BF00793999 /* btnGreen.png */; };
 		7023F6E41DD3627300793999 /* btnRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6E31DD3627300793999 /* btnRed.png */; };
@@ -77,6 +77,7 @@
 /* Begin PBXFileReference section */
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
+		3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6309EA0E1DCBBF1A001815C6 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		70197E001DDD9CFC009254C4 /* orangeheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeheader.png; sourceTree = "<group>"; };
 		70197E011DDD9CFC009254C4 /* redheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheader.png; sourceTree = "<group>"; };
 		7023F6DB1DD354BF00793999 /* backgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundBlue.png; sourceTree = "<group>"; };
-		7023F6DC1DD354BF00793999 /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
 		7023F6DD1DD354BF00793999 /* btnBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBlue.png; sourceTree = "<group>"; };
 		7023F6DE1DD354BF00793999 /* btnGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnGreen.png; sourceTree = "<group>"; };
 		7023F6E31DD3627300793999 /* btnRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnRed.png; sourceTree = "<group>"; };
@@ -332,7 +332,7 @@
 				637AD2561DD5E6D500FA94E5 /* camera.png */,
 				637AD2571DD5E6D500FA94E5 /* head01.png */,
 				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
-				7023F6DC1DD354BF00793999 /* backgroundGreen.png */,
+				3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */,
 				7023F6E31DD3627300793999 /* btnRed.png */,
 				7023F6DD1DD354BF00793999 /* btnBlue.png */,
 				7023F6DE1DD354BF00793999 /* btnGreen.png */,
@@ -488,7 +488,7 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 2FFS45S3SA;
+						DevelopmentTeam = F29672WPZ9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -544,13 +544,13 @@
 				63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */,
 				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */,
+				3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
 				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
 				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
 				637AD2591DD5E6D500FA94E5 /* camera.png in Resources */,
 				70197E031DDD9CFC009254C4 /* greenheader.png in Resources */,
 				7023F6E41DD3627300793999 /* btnRed.png in Resources */,
-				7023F6E01DD354BF00793999 /* backgroundGreen.png in Resources */,
 				639C13831DDEA1B900E21531 /* info.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -759,7 +759,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2FFS45S3SA;
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
@@ -776,7 +776,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2FFS45S3SA;
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;

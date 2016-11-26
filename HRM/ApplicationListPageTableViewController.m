@@ -17,6 +17,15 @@
 
 #pragma View Lifecycle
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundGreen.png"];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
+    self.tableView.backgroundView = backgroundImageView;
+    
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -56,8 +65,26 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         
     }
+    
+    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
+    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
+    cell.backgroundView = cellBackgroundImageView;
+    
     UIImageView *thumbnailImageView = [cell viewWithTag:100];
-    thumbnailImageView.image = [UIImage new];
+    NSNumber *agree = [infoDict objectForKey:@"Agree"];
+    UIImage *agreeImage;
+    switch ([agree intValue]) {
+            
+        case 0:
+            agreeImage = [UIImage imageNamed:@"refuseIcon.png"];
+            break;
+            
+        case 1:
+            agreeImage = [UIImage imageNamed:@"agreeIcon.png"];
+            break;
+
+    }
+    thumbnailImageView.image = agreeImage;
     
     UILabel *typeLabel = [cell viewWithTag:101];
     typeLabel.text = [infoDict objectForKey:@"Type"];
