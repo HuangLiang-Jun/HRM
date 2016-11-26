@@ -49,7 +49,7 @@
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
     NSDictionary *application = localUser.applicationList[indexPath.row];
-    NSDictionary*info = [application allValues].firstObject;
+    NSDictionary*infoDict = [application allValues].firstObject;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
         
@@ -60,32 +60,23 @@
     thumbnailImageView.image = [UIImage new];
     
     UILabel *typeLabel = [cell viewWithTag:101];
-    typeLabel.text = [info valueForKey:@"Type"];
+    typeLabel.text = [infoDict objectForKey:@"Type"];
     
     UILabel *startDateLabel = [cell viewWithTag:102];
-    startDateLabel.text = [info valueForKey:@"From"];
+    startDateLabel.text = [infoDict objectForKey:@"From"];
     
     UILabel *endDateLabel = [cell viewWithTag:103];
-    endDateLabel.text = [info valueForKey:@"To"];
+    endDateLabel.text = [infoDict objectForKey:@"To"];
     
     return cell;
     
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    CurrentUser *localUser = [CurrentUser sharedInstance];
-//    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
-//    _selectedApplicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
-//    [self performSegueWithIdentifier:@"ApplicationInfoPageSegue" sender:nil];
-//    
-//}
-//
-//#pragma Additional Func
-//
-- (void)addNewApplication {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    _selectedApplicationDict = localUser.applicationList[indexPath.row];
+    [self performSegueWithIdentifier:@"ApplicationInfoPageSegue" sender:nil];
     
 }
 

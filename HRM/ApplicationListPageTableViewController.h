@@ -10,6 +10,6 @@
 
 @interface ApplicationListPageTableViewController : UITableViewController
 
-@property (strong, nonatomic) NSDictionary *selectedApplicationInfo;
+@property (strong, nonatomic) NSDictionary *selectedApplicationDict;
 
 @end
