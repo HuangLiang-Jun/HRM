@@ -20,30 +20,28 @@
 @implementation StaffSalaryListViewController
 {
     FIRDatabaseReference *staffNameRef;
-    NSMutableArray *staffName;
+    NSArray *staffName;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-   staffName = [[NSUserDefaults standardUserDefaults]objectForKey:@"staffName"];
-//    staffNameRef = [[[FIRDatabase database]reference]child:@"UID"];
-//    
-//    //Get All Staff Name.
-//    [staffNameRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-//        NSDictionary *allName = snapshot.value;
-//        staffName = [[NSMutableArray alloc] initWithArray:allName.allValues];
-//    
-//        NSLog(@"snapshotValue: %@",staffName);
-//        if (staffName.count != 0) {
-//            
-//            dispatch_sync(dispatch_get_main_queue(), ^{
-//                [self.salaryTableView reloadData];
-//            });
-//            
-//        }
-//    
-//    }];
+   
+    staffNameRef = [[[FIRDatabase database]reference]child:@"UID"];
+    
+    //Get All Staff Name.
+    [staffNameRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        //  會有時間差要加loading畫面
+        if (snapshot.value != [NSNull null]){
+            NSDictionary *allName = snapshot.value;
+            //staffName = [[NSMutableArray alloc] initWithArray:allName.allValues];
+            staffName = allName.allValues;
+            NSLog(@"snapshotValue: %@",staffName);
+            [self.salaryTableView reloadData];
+            
+        }
+        
+    }];
     
 }
 

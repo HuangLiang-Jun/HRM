@@ -25,7 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     staffDataManager = [StaffInfoDataManager sharedInstance];
-    
+    [staffDataManager downLoadStaffInfo:_staffListTableView ];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,9 +67,8 @@
     
     [super viewWillAppear:animated];
     
-    if (staffDataManager.downLoadStatus) {
+    if (staffDataManager.editStatus) {
         [_staffListTableView reloadData];
-
     }
     
 }

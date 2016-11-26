@@ -7,17 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 @import Firebase;
 @import FirebaseDatabase;
 
 @interface StaffInfoDataManager : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary *allStaffInfoDict;
-@property (nonatomic,assign) BOOL downLoadStatus;
+@property (nonatomic,assign) BOOL editStatus;
 
 +(instancetype) sharedInstance;
 
--(void) downLoadStaffInfo;
+-(void) downLoadStaffInfo:(UITableView *)tableView ;
 
 -(void) refreshInfoData;
+
 @end

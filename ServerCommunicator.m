@@ -18,7 +18,9 @@
 static ServerCommunicator *_singletonCommunicator = nil;
 
 @implementation ServerCommunicator
-
+{
+    UITableView *_tableView;
+}
 + (instancetype) shareInstance{
     
     static dispatch_once_t onceToken;
@@ -98,6 +100,40 @@ static ServerCommunicator *_singletonCommunicator = nil;
 }
 
 
+
+#pragma mark - Post to FBDB
+
+- (void) downLoadBulletinsFromFBDB:(UITableView *)tableView{
+    
+    FIRDatabaseReference *ref = [[[FIRDatabase database]reference]child:@"Bulletin"];
+    
+    [ref observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if(snapshot.value != [NSNull null]){
+            _bulletinsDict = snapshot.value;
+            _tableView = tableView;
+            [_tableView reloadData];
+        }
+
+    }];
+    
+}
+
+- (void) sendNewBulletinToFBDB:(NSDictionary *)bulletin
+                    completion:(DoneHandler)done{
+    
+    FIRDatabaseReference *ref = [[[FIRDatabase database]reference]child:@"Bulletin"];
+    
+    [ref updateChildValues:bulletin withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+        
+        if (done != nil) {
+            NSLog(@"done Ref: %@",ref);
+            done(error,ref);
+        }
+        
+    }];
+    
+}
 
 
 

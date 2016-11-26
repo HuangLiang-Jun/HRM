@@ -9,6 +9,9 @@
 #import "StaffInfoDataManager.h"
 
 @implementation StaffInfoDataManager
+{
+    UITableView *_tableView;
+}
 
 +(instancetype) sharedInstance{
     
@@ -22,7 +25,7 @@
     return _staffInfo;
 }
 
--(void) downLoadStaffInfo{
+-(void) downLoadStaffInfo:(UITableView *)tableView {
     
     
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
@@ -33,7 +36,8 @@
         
         self.allStaffInfoDict = snapshot.value;
         NSLog(@"StaffInformation : %@",self.allStaffInfoDict);
-    
+        _tableView = tableView;
+        [_tableView reloadData];
     }];
     
     }
@@ -41,7 +45,7 @@
 
 -(void) refreshInfoData{
     
-    _downLoadStatus = false;
+    _editStatus = false;
 
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
    
@@ -50,7 +54,7 @@
         
         NSLog(@"Refresh StaffInformation : %@",self.allStaffInfoDict);
         
-        _downLoadStatus = true;
+        _editStatus = true;
    
         
     }];
