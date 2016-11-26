@@ -26,6 +26,12 @@
 
 #pragma Table View Delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 60;
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     return 1;
@@ -40,15 +46,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-//    CurrentUser *localUser = [CurrentUser sharedInstance];
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-//    NSString *applicatedDate = [localUser.applicationList[indexPath.row] allKeys].firstObject;
-//    cell.detailTextLabel.text = applicatedDate;
-//    
-//    NSDictionary *applicationInfo = localUser.applicationList[indexPath.row][applicatedDate];
-//    NSString *applicationPeriod = [NSString stringWithFormat:@"%@ (%@ ~ %@)", applicationInfo[@"Subject"], applicationInfo[@"From"], applicationInfo[@"To"]];
-//    cell.textLabel.text = applicationPeriod;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
     NSDictionary *application = localUser.applicationList[indexPath.row];
@@ -90,10 +87,6 @@
     
     [self performSegueWithIdentifier:@"ApplicationFormPageSegue" sender:nil];
     
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
 }
 
 @end
