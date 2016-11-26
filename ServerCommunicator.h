@@ -9,14 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #define GROUP_NAME @"HRManager"
-#define USER_NAME @"HuangLiangJun"
+#define USER_NAME  @"HuangLiangJun"
 
-#define USER_NAME_KEY    @"UserName"
-#define BULLETIN_TITTLE_KEY    @"Title"
-#define MESSAGE_KEY    @"Message"
+#define USER_NAME_KEY      @"UserName"
+#define BULLETIN_TITLE_KEY @"Title"
 #define DEVICETOKEN_KEY    @"DeviceToken"
-#define GROUP_NAME_KEY    @"GroupName"
-#define DATA_KEY    @"data"
+#define GROUP_NAME_KEY     @"GroupName"
+#define DATA_KEY           @"data"
 
 
 typedef void(^DoneHandler)(NSError *error,id result);
@@ -25,7 +24,10 @@ typedef void(^DoneHandler)(NSError *error,id result);
 
 + (instancetype) shareInstance;
 
-- (void) updateDeviceToken: (NSString *)deviceToken completion:(DoneHandler)done;
+- (void) updateDeviceToken: (NSString *)deviceToken
+                completion:(DoneHandler)done;
 
+- (void) snedBulletinMessage:(NSString*)title
+                  completion:(DoneHandler) done;
 
 @end

@@ -39,13 +39,27 @@ static ServerCommunicator *_singletonCommunicator = nil;
 - (void) updateDeviceToken:(NSString *)deviceToken completion:(DoneHandler)done{
 
     // Prepare parameters
-    
     NSDictionary *parameters = @{USER_NAME_KEY:USER_NAME,DEVICETOKEN_KEY:deviceToken,GROUP_NAME_KEY:GROUP_NAME};
+    
     // Do Post Job
     [self doPostJobWithURLString:UPDATEDEVICETOKEN_URL
                       parameters:parameters
                       completion:done];
 
+}
+
+- (void) snedBulletinMessage:(NSString*)title
+                  completion:(DoneHandler) done{
+    
+    // Prepare Post ANPS JOb.
+    NSDictionary *jsonObj = @{BULLETIN_TITLE_KEY:title,GROUP_NAME_KEY:GROUP_NAME};
+    
+    // Do Post Job
+    [self doPostJobWithURLString:SENDMESSAGE_URL
+                      parameters:jsonObj
+                      completion:done];
+    
+    
 }
 
 #pragma mark - General Post Method
@@ -64,8 +78,8 @@ static ServerCommunicator *_singletonCommunicator = nil;
     NSDictionary *finalParameters = @{DATA_KEY:jsonString};
     
     // AFNetworking 指定我接受server回傳哪些type的內容
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
     // progress:如果是大型檔案可以回傳完成進度給我們
     [manager POST:urlString parameters:finalParameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // responseObject：會自動幫我們轉換成陣列
@@ -82,6 +96,9 @@ static ServerCommunicator *_singletonCommunicator = nil;
     }];
     
 }
+
+
+
 
 
 

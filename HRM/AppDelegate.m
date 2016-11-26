@@ -54,7 +54,7 @@
                  completion:^(NSError *error, id result) {
                      
                      if (error) {
-                         NSLog(@"updayeDeviceToken fail : %@",error);
+                         NSLog(@"updateDeviceToken fail : %@",error);
                          return ;
                          
                      }
