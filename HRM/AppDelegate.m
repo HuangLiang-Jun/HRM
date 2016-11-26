@@ -52,9 +52,16 @@
     
     [comm updateDeviceToken:finalDeviceToken
                  completion:^(NSError *error, id result) {
-        
-        
-    }];
+                     
+                     if (error) {
+                         NSLog(@"updayeDeviceToken fail : %@",error);
+                         return ;
+                         
+                     }
+                     
+                     NSLog(@"updateDeviceToken OK : %@",[result description]);
+                     
+                 }];
     
 }
 

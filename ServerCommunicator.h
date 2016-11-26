@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-#define GROUP_NAME @"HRManagerTest"
+#define GROUP_NAME @"HRManager"
 #define USER_NAME @"HuangLiangJun"
+
+#define USER_NAME_KEY    @"UserName"
+#define BULLETIN_TITTLE_KEY    @"Title"
+#define MESSAGE_KEY    @"Message"
+#define DEVICETOKEN_KEY    @"DeviceToken"
+#define GROUP_NAME_KEY    @"GroupName"
+#define DATA_KEY    @"data"
+
 
 typedef void(^DoneHandler)(NSError *error,id result);
 
