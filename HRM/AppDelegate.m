@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "CurrentUser.h"
-
+#import "ServerCommunicator.h"
 @import Firebase;
 
 @interface AppDelegate ()
@@ -48,16 +48,13 @@
     NSLog(@"finalDeviceToken: %@",finalDeviceToken);
     
     // Update DeviceToken to Server
+    ServerCommunicator *comm = [ServerCommunicator shareInstance];
     
-    //Communicator *comm = [Communicator sharedInstance];
-    
-    //[comm updateDeviceToken:finalDeviceToken
-      //           completion:^(NSError *error, id result) {
-                     // ...
-                     
-                     
-        //         }];
-
+    [comm updateDeviceToken:finalDeviceToken
+                 completion:^(NSError *error, id result) {
+        
+        
+    }];
     
 }
 
