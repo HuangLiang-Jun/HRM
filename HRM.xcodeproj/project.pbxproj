@@ -41,6 +41,8 @@
 		63E0A1131DCB0C910021F246 /* BulletinBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */; };
 		63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */; };
 		63E52BF31DE93E8F00BD24C2 /* ServerCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */; };
+		63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 63E52BF41DE987BD00BD24C2 /* bell.mp3 */; };
+		63E52BF81DE98B5600BD24C2 /* AddBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E52BF71DE98B5600BD24C2 /* AddBulletinViewController.m */; };
 		70197E021DDD9CFC009254C4 /* blueheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFE1DDD9CFC009254C4 /* blueheader.png */; };
 		70197E031DDD9CFC009254C4 /* greenheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* greenheader.png */; };
 		70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* orangeheader.png */; };
@@ -129,6 +131,9 @@
 		63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletinBoardTableViewCell.m; sourceTree = "<group>"; };
 		63E52BF11DE93E8F00BD24C2 /* ServerCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServerCommunicator.h; path = ../ServerCommunicator.h; sourceTree = "<group>"; };
 		63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServerCommunicator.m; path = ../ServerCommunicator.m; sourceTree = "<group>"; };
+		63E52BF41DE987BD00BD24C2 /* bell.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bell.mp3; sourceTree = "<group>"; };
+		63E52BF61DE98B5600BD24C2 /* AddBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBulletinViewController.h; sourceTree = "<group>"; };
+		63E52BF71DE98B5600BD24C2 /* AddBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBulletinViewController.m; sourceTree = "<group>"; };
 		70197DFE1DDD9CFC009254C4 /* blueheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueheader.png; sourceTree = "<group>"; };
 		70197DFF1DDD9CFC009254C4 /* greenheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenheader.png; sourceTree = "<group>"; };
 		70197E001DDD9CFC009254C4 /* orangeheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeheader.png; sourceTree = "<group>"; };
@@ -348,6 +353,8 @@
 				63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */,
 				63E0A1141DCB0DEF0021F246 /* BulletinBoardTableViewCell.h */,
 				63E0A1151DCB0DEF0021F246 /* BulletinBoardTableViewCell.m */,
+				63E52BF61DE98B5600BD24C2 /* AddBulletinViewController.h */,
+				63E52BF71DE98B5600BD24C2 /* AddBulletinViewController.m */,
 			);
 			name = BulletinBoard;
 			sourceTree = "<group>";
@@ -373,6 +380,7 @@
 		706159CA1D94231800D2530B /* HRM */ = {
 			isa = PBXGroup;
 			children = (
+				63E52BF41DE987BD00BD24C2 /* bell.mp3 */,
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
 				6309EA171DCCAC3F001815C6 /* ManagerSalary */,
 				6309EA101DCBC74B001815C6 /* StaffInfo */,
@@ -533,6 +541,7 @@
 				631126241DDEE30A00F3404E /* grayheader.png in Resources */,
 				70E35BFB1DE7C74600CB6702 /* agreeIcon.png in Resources */,
 				70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */,
+				63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */,
 				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
@@ -602,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */,
+				63E52BF81DE98B5600BD24C2 /* AddBulletinViewController.m in Sources */,
 				6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */,
 				A9DC91151DB5202D00679708 /* SignInPageViewController.m in Sources */,
 				6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */,
