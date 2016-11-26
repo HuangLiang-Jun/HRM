@@ -277,7 +277,7 @@
             </objects>
             <point key="canvasLocation" x="-1719" y="309"/>
         </scene>
-        <!--Staff List View Controller-->
+        <!--員工資料-->
         <scene sceneID="H83-0H-CjE">
             <objects>
                 <viewController id="2h4-wu-sSZ" customClass="StaffListViewController" sceneMemberID="viewController">
@@ -289,9 +289,6 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="N0c-6r-Xrj">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="87" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NhV-lv-3nC">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -342,17 +339,12 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="NhV-lv-3nC" secondAttribute="trailing" id="6sb-hA-3dy"/>
                             <constraint firstItem="NhV-lv-3nC" firstAttribute="leading" secondItem="yDx-v1-Ea2" secondAttribute="leading" id="RXt-LD-xAt"/>
-                            <constraint firstItem="N0c-6r-Xrj" firstAttribute="top" secondItem="yDx-v1-Ea2" secondAttribute="top" id="T17-In-oco"/>
                             <constraint firstItem="sgv-Cl-GD4" firstAttribute="top" secondItem="NhV-lv-3nC" secondAttribute="bottom" id="X3l-C8-dIz"/>
-                            <constraint firstItem="N0c-6r-Xrj" firstAttribute="centerX" secondItem="yDx-v1-Ea2" secondAttribute="centerX" id="Yw2-zE-tn0"/>
-                            <constraint firstItem="N0c-6r-Xrj" firstAttribute="centerY" secondItem="yDx-v1-Ea2" secondAttribute="centerY" id="aCz-m4-pJm"/>
-                            <constraint firstAttribute="trailing" secondItem="N0c-6r-Xrj" secondAttribute="trailing" id="cUT-2q-RcX"/>
                             <constraint firstItem="NhV-lv-3nC" firstAttribute="top" secondItem="yDx-v1-Ea2" secondAttribute="top" id="gKy-ru-SXX"/>
-                            <constraint firstItem="N0c-6r-Xrj" firstAttribute="leading" secondItem="yDx-v1-Ea2" secondAttribute="leading" id="orJ-cs-y7M"/>
-                            <constraint firstItem="sgv-Cl-GD4" firstAttribute="top" secondItem="N0c-6r-Xrj" secondAttribute="bottom" id="z8J-9u-zPE"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" title="員工資料" id="x81-Jt-DQk"/>
                     <connections>
                         <outlet property="staffListTableView" destination="NhV-lv-3nC" id="zvT-9b-bK2"/>
                     </connections>
@@ -884,7 +876,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="staffListBtnPressed:" destination="Hpu-DD-8gY" eventType="touchUpInside" id="pVj-wX-Y8F"/>
-                                                    <segue destination="2h4-wu-sSZ" kind="show" id="04i-oH-0YF"/>
+                                                    <segue destination="2h4-wu-sSZ" kind="show" id="PAf-YJ-omg"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpU-ms-nVB">
@@ -954,7 +946,7 @@
             </objects>
             <point key="canvasLocation" x="153" y="-1204"/>
         </scene>
-        <!--Attendance View Controller-->
+        <!--打卡-->
         <scene sceneID="0dG-fN-nPJ">
             <objects>
                 <viewController storyboardIdentifier="AttendanceViewController" id="2nV-Gp-p1H" customClass="AttendanceViewController" sceneMemberID="viewController">
@@ -969,7 +961,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="iJn-9d-YhB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2on-pr-S0n">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2on-pr-S0n">
                                 <rect key="frame" x="0.0" y="400.5" width="375" height="0.0"/>
                                 <connections>
                                     <outlet property="delegate" destination="2nV-Gp-p1H" id="Ena-sG-iAo"/>
@@ -1011,7 +1003,7 @@
                             <constraint firstItem="49e-6B-ZVz" firstAttribute="centerX" secondItem="v8a-8I-hha" secondAttribute="centerX" id="mgC-1N-j8o"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9ep-WQ-QHk"/>
+                    <navigationItem key="navigationItem" title="打卡" id="9ep-WQ-QHk"/>
                     <connections>
                         <outlet property="currentTimeLabel" destination="oTm-d3-1Nn" id="Zmx-DY-2uI"/>
                         <outlet property="mainMapView" destination="2on-pr-S0n" id="S1F-RR-TcP"/>
@@ -1376,6 +1368,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldDoneEditing:" destination="yiU-56-RuP" eventType="editingDidEndOnExit" id="qRD-6y-m7I"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhu-mR-4tO">
                                 <rect key="frame" x="117.5" y="477" width="140" height="40"/>
@@ -1400,7 +1395,7 @@
                                 <rect key="frame" x="64" y="239" width="241" height="189"/>
                                 <color key="backgroundColor" red="0.74483336234704711" green="1" blue="0.60954864970851375" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1937,7 +1932,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DfI-zJ-WUe">
-                                <rect key="frame" x="0.0" y="38" width="375" height="629"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="YVw-Ev-Eac">
@@ -2004,7 +1999,7 @@
                             <constraint firstAttribute="trailing" secondItem="DfI-zJ-WUe" secondAttribute="trailing" id="W9i-r5-fwG"/>
                             <constraint firstAttribute="trailing" secondItem="CVv-ed-R5M" secondAttribute="trailing" id="Xbj-td-sUx"/>
                             <constraint firstItem="DfI-zJ-WUe" firstAttribute="leading" secondItem="jWI-ld-VCL" secondAttribute="leading" id="cAK-v2-JgN"/>
-                            <constraint firstItem="DfI-zJ-WUe" firstAttribute="top" secondItem="jWI-ld-VCL" secondAttribute="top" constant="38" id="l3c-fW-Gug"/>
+                            <constraint firstItem="DfI-zJ-WUe" firstAttribute="top" secondItem="jWI-ld-VCL" secondAttribute="top" constant="64" id="l3c-fW-Gug"/>
                             <constraint firstItem="CVv-ed-R5M" firstAttribute="centerY" secondItem="jWI-ld-VCL" secondAttribute="centerY" id="lkd-ow-BhR"/>
                             <constraint firstAttribute="trailing" secondItem="DfI-zJ-WUe" secondAttribute="trailing" id="lmY-n9-FDr"/>
                             <constraint firstItem="CVv-ed-R5M" firstAttribute="top" secondItem="jWI-ld-VCL" secondAttribute="top" id="qrg-62-KTq"/>
@@ -2014,7 +2009,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6rV-MW-ADx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1241" y="-1825"/>
+            <point key="canvasLocation" x="1240.8" y="-1825.6371814092954"/>
         </scene>
         <!--薪資-->
         <scene sceneID="qNY-DN-OxY">
@@ -2032,7 +2027,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lO0-vV-LTY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="MiB-o6-OfJ" customClass="SalaryListTableViewCell">
@@ -2106,7 +2101,7 @@
                             <constraint firstItem="A7D-MV-NuD" firstAttribute="top" secondItem="IjS-PC-tAc" secondAttribute="bottom" id="Hha-h8-C9g"/>
                             <constraint firstItem="IjS-PC-tAc" firstAttribute="top" secondItem="Qfs-PN-T8K" secondAttribute="top" id="R22-ln-Mbi"/>
                             <constraint firstAttribute="trailing" secondItem="IjS-PC-tAc" secondAttribute="trailing" id="WRH-N7-9d4"/>
-                            <constraint firstItem="lO0-vV-LTY" firstAttribute="top" secondItem="r4x-k8-fly" secondAttribute="bottom" constant="-64" id="aKb-Jg-L37"/>
+                            <constraint firstItem="lO0-vV-LTY" firstAttribute="top" secondItem="r4x-k8-fly" secondAttribute="bottom" id="aKb-Jg-L37"/>
                             <constraint firstItem="A7D-MV-NuD" firstAttribute="top" secondItem="lO0-vV-LTY" secondAttribute="bottom" id="lm7-Ub-TM4"/>
                             <constraint firstItem="IjS-PC-tAc" firstAttribute="centerY" secondItem="Qfs-PN-T8K" secondAttribute="centerY" id="m8f-xs-92E"/>
                             <constraint firstItem="IjS-PC-tAc" firstAttribute="leading" secondItem="Qfs-PN-T8K" secondAttribute="leading" id="pSm-xp-OLP"/>
@@ -2120,7 +2115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UXf-D5-pjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1241" y="-1145"/>
+            <point key="canvasLocation" x="1240.8" y="-1145.577211394303"/>
         </scene>
         <!--薪資-->
         <scene sceneID="kmE-k4-P8d">
@@ -2587,8 +2582,8 @@
         <image name="info.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="cUG-sN-jwu"/>
-        <segue reference="BPt-o4-nKR"/>
-        <segue reference="dkv-ZX-ULT"/>
+        <segue reference="8z0-sb-4FI"/>
+        <segue reference="F9Y-vv-o3M"/>
+        <segue reference="kU4-Da-6Mh"/>
     </inferredMetricsTieBreakers>
 </document>
