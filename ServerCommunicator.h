@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 
 #define GROUP_NAME @"HRManager"
 #define USER_NAME  @"HuangLiangJun"
@@ -18,16 +17,10 @@
 #define GROUP_NAME_KEY     @"GroupName"
 #define DATA_KEY           @"data"
 
-#define RELOAD_DATA        @"reloadData"
-
-@import Firebase;
-@import FirebaseDatabase;
 
 typedef void(^DoneHandler)(NSError *error,id result);
 
 @interface ServerCommunicator : NSObject
-
-@property (nonatomic, strong) NSMutableDictionary *bulletinsDict;
 
 + (instancetype) shareInstance;
 
@@ -36,11 +29,5 @@ typedef void(^DoneHandler)(NSError *error,id result);
 
 - (void) snedBulletinMessage:(NSString*)title
                   completion:(DoneHandler) done;
-
-- (void) sendNewBulletinToFBDB:(NSDictionary *)bulletin
-                    completion:(DoneHandler)done;
-
-- (void) downLoadBulletinsFromFBDB:(UITableView *)tableView;
-
 
 @end
