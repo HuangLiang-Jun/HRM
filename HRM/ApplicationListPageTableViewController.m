@@ -80,4 +80,18 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle ==UITableViewCellEditingStyleDelete ) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        NSDictionary *application = localUser.applicationList[indexPath.row];
+        NSString*applyDate = [application allKeys].firstObject;
+        [localUser removeApplicationWhichAppliedAt:applyDate];
+        [localUser.applicationList removeObjectAtIndex:indexPath.row];
+        [tableView reloadData];
+        
+    }
+}
+
 @end

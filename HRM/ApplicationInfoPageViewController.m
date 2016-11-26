@@ -51,11 +51,4 @@
     
 }
 
-
-- (IBAction)confirmApplicationInfoBtnPressed:(UIButton *)sender {
-    
-    [self.navigationController popViewControllerAnimated:true];
-    
-}
-
 @end

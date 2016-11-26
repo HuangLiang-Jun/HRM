@@ -195,7 +195,7 @@
 
 - (void)downloadAppcationList {
     
-    FIRDatabaseReference *ref = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:@"ApplicationList"];
+    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if (snapshot.value != [NSNull null]) {
@@ -212,10 +212,11 @@
                 }
                 
             }
-            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-            [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];
             
         }
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];        
+        
     }];
 }
 
@@ -223,8 +224,18 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *applicationListRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:@"ApplicationList"];
+        FIRDatabaseReference *applicationListRef = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
         [applicationListRef updateChildValues:application];
+        
+    });
+}
+
+- (void)removeApplicationWhichAppliedAt:(NSString *)applyDate {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *applicationRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:applyDate];
+        [applicationRef removeValue];
         
     });
 }

@@ -37,4 +37,6 @@
 
 - (void)uploadApplicationWithDict:(NSDictionary *)Application;
 
+- (void)removeApplicationWhichAppliedAt:(NSString *)applyDate;
+
 @end

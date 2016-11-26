@@ -1655,30 +1655,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OD4-Fh-67e">
-                                <rect key="frame" x="68" y="322.5" width="287" height="267"/>
+                                <rect key="frame" x="68" y="322.5" width="287" height="293.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s67-Ka-XnD">
-                                <rect key="frame" x="205" y="613.5" width="150" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="ttQ-td-p1p"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="22"/>
-                                <state key="normal" title="確認" backgroundImage="btnWork.png">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="confirmApplicationInfoBtnPressed:" destination="ezY-HN-CtD" eventType="touchUpInside" id="t9V-EC-HBK"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="HPD-QG-qRn" firstAttribute="height" secondItem="IpL-bl-V8V" secondAttribute="height" id="1A0-tl-6hd"/>
-                            <constraint firstItem="OD4-Fh-67e" firstAttribute="height" secondItem="IYn-Bt-hlP" secondAttribute="height" multiplier="0.4" id="54k-4L-4VL"/>
+                            <constraint firstItem="OD4-Fh-67e" firstAttribute="height" secondItem="IYn-Bt-hlP" secondAttribute="height" multiplier="0.44" id="54k-4L-4VL"/>
                             <constraint firstItem="TgR-9g-h5z" firstAttribute="trailing" secondItem="IpL-bl-V8V" secondAttribute="trailing" id="6eo-bw-n2R"/>
                             <constraint firstItem="UAB-PY-lb4" firstAttribute="top" secondItem="IYn-Bt-hlP" secondAttribute="top" id="7EO-wF-iOi"/>
                             <constraint firstItem="UAB-PY-lb4" firstAttribute="leading" secondItem="IYn-Bt-hlP" secondAttribute="leading" id="7eB-v2-J8w"/>
@@ -1699,8 +1685,6 @@
                             <constraint firstItem="IpL-bl-V8V" firstAttribute="top" secondItem="TgR-9g-h5z" secondAttribute="bottom" constant="32" id="QvU-gR-bfh"/>
                             <constraint firstItem="Lpk-Rn-xkM" firstAttribute="top" secondItem="rzt-mh-4ti" secondAttribute="bottom" constant="36" id="VcG-Zq-1MD"/>
                             <constraint firstItem="TgR-9g-h5z" firstAttribute="top" secondItem="HPD-QG-qRn" secondAttribute="bottom" constant="32" id="YRR-Zc-dUp"/>
-                            <constraint firstItem="s67-Ka-XnD" firstAttribute="top" secondItem="OD4-Fh-67e" secondAttribute="bottom" constant="24" id="ad1-C8-oec"/>
-                            <constraint firstItem="s67-Ka-XnD" firstAttribute="width" secondItem="IYn-Bt-hlP" secondAttribute="width" multiplier="0.4" id="bhM-o3-fst"/>
                             <constraint firstItem="CYK-vM-dDq" firstAttribute="leading" secondItem="OD4-Fh-67e" secondAttribute="leading" id="dNv-Pa-9uV"/>
                             <constraint firstAttribute="trailing" secondItem="UAB-PY-lb4" secondAttribute="trailing" id="eNf-DM-KZ7"/>
                             <constraint firstAttribute="trailing" secondItem="OD4-Fh-67e" secondAttribute="trailing" constant="20" id="etx-cH-dv9"/>
@@ -1714,7 +1698,6 @@
                             <constraint firstItem="Lpk-Rn-xkM" firstAttribute="trailing" secondItem="IpL-bl-V8V" secondAttribute="trailing" id="tVH-oI-GAT"/>
                             <constraint firstItem="Tho-qA-5om" firstAttribute="trailing" secondItem="OD4-Fh-67e" secondAttribute="trailing" id="uxe-ps-cRt"/>
                             <constraint firstItem="TgR-9g-h5z" firstAttribute="height" secondItem="IpL-bl-V8V" secondAttribute="height" id="wlz-0d-GZl"/>
-                            <constraint firstItem="s67-Ka-XnD" firstAttribute="trailing" secondItem="OD4-Fh-67e" secondAttribute="trailing" id="yb4-0u-kFd"/>
                         </constraints>
                     </view>
                     <connections>
