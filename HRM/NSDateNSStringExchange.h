@@ -19,9 +19,11 @@
 + (NSString *)stringFromUpdateDate:(NSDate *)date;
 + (NSString *)stringFromChosenDate:(NSDate *)date;
 + (NSString *)getCurrentTime;
++ (NSString *)stringFromYearMonthDay:(NSDate *)date;
 
 + (NSDate *)yearAndMonthFromString:(NSString *)string;
 + (NSDate *)daysFromString:(NSString *)string;
 + (NSDate *)timesFromString:(NSString *)string;
+
 
 @end

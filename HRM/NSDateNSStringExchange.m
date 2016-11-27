@@ -53,6 +53,21 @@
     return strFromDate;
 }
 
++ (NSString *)stringFromYearMonthDay:(NSDate *)date {
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"yyyyMMdd"];
+    NSString *strFromDate = [formatter stringFromDate:date];
+    return strFromDate;
+}
+
++ (NSString *)getCurrentTime {
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    [formatter setDateFormat:@"HH:mm:ss"];
+    NSString *strFromDate = [formatter stringFromDate:date];
+    return strFromDate;
+}
+
 
 + (NSDate *)yearAndMonthFromString:(NSString *)string {
     NSDateFormatter *formatter = [NSDateFormatter new];
@@ -75,13 +90,9 @@
     return date;
 }
 
-+ (NSString *)getCurrentTime {
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"HH:mm:ss"];
-    NSString *strFromDate = [formatter stringFromDate:date];
-    return strFromDate;
-}
+
+
+
 
 
 @end

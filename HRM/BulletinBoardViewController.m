@@ -10,6 +10,7 @@
 #import "BulletinBoardViewController.h"
 #import "BulletinBoardTableViewCell.h"
 #import "ServerCommunicator.h"
+#import "NSDateNSStringExchange.h"
 @interface BulletinBoardViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -25,6 +26,7 @@
     comm = [ServerCommunicator shareInstance];
     [comm downLoadBulletinsFromFBDB:_tableView];
     
+   
 }
 
 - (void)didReceiveMemoryWarning {
