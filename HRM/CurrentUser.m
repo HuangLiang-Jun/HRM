@@ -108,14 +108,14 @@
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"UID"] child:_uid];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        if (snapshot.value != [NSNull null]) {
+        if ([snapshot exists]) {
             
             _displayName = snapshot.value;
             [self updateUserDefaultsWithValue:_displayName andKey:@"DisplayName"];
             FIRDatabaseReference *userAuthRef = [[[[[FIRDatabase database] reference] child:@"StaffInformation"]child:_displayName] child:@"Auth"];
             [userAuthRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
-                if (snapshot.value != [NSNull null]) {
+                if ([snapshot exists]) {
                     
                     _auth = snapshot.value;
                     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
@@ -198,21 +198,18 @@
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
     [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
-        if (snapshot.value != [NSNull null]) {
+        if ([snapshot exists]) {
             
             NSDictionary *applicationListDict = snapshot.value;
+            NSArray *sortedKeys = [[applicationListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
             [_applicationList removeAllObjects];
-            if (applicationListDict.count > 0) {
+            for (long long i = sortedKeys.count-1; i > -1; i --) {
                 
-                for (NSString *key in [applicationListDict allKeys]) {
-                    
-                    NSDictionary *application = @{key: [applicationListDict valueForKey:key]};
-                    [_applicationList addObject:application];
-                    
-                }
+                NSDictionary *application = @{sortedKeys[i]: [applicationListDict valueForKey:sortedKeys[i]]};
+                [_applicationList addObject:application];
                 
             }
-            
+
         }
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];        

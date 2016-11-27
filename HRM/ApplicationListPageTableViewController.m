@@ -9,7 +9,11 @@
 #import "ApplicationListPageTableViewController.h"
 #import "CurrentUser.h"
 
-@interface ApplicationListPageTableViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ApplicationListPageTableViewController () <UITableViewDataSource, UITableViewDelegate> {
+    
+    FIRDatabaseHandle refHandle;
+    
+}
 
 @end
 
@@ -24,6 +28,17 @@
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.tableView.backgroundView = backgroundImageView;
     
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    
+    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
+    refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if ([snapshot exists]) {
+            
+            [self.tableView reloadData];
+            
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -31,6 +46,18 @@
     
     [self.tableView reloadData];
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (self.isMovingFromParentViewController == true) {
+        
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
+        [ref removeObserverWithHandle:refHandle];
+        
+    }
 }
 
 #pragma Table View Delegate
