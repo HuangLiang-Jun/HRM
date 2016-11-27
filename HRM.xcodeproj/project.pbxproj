@@ -197,15 +197,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A635F5C1DEB4A05009DA2B6 /* Signoff */ = {
-			isa = PBXGroup;
-			children = (
-				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
-				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
-			);
-			name = Signoff;
-			sourceTree = "<group>";
-		};
 		4C71E6D023A882DEE3913A04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,7 +392,6 @@
 				6335E1711DB8E1E100B71A63 /* Attendance */,
 				A9DC91121DB51FEF00679708 /* AccountManage */,
 				A95C7E351DB9A7CD00AF7CB5 /* Application */,
-				3A635F5C1DEB4A05009DA2B6 /* Signoff */,
 				6335E17A1DB8E52C00B71A63 /* Model */,
 				706159CB1D94231800D2530B /* Supporting Files */,
 				63D92FB41DBF8105007578DB /* Image */,
@@ -433,6 +423,8 @@
 				A95C7E3A1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m */,
 				A91416FE1DBE601200735A49 /* ApplicationInfoPageViewController.h */,
 				A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */,
+				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
+				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
 				63D92FDD1DC03667007578DB /* SalarySums.h */,
 				63D92FDE1DC03667007578DB /* SalarySums.m */,
 				63D92FDF1DC03667007578DB /* SalaryViewController.h */,

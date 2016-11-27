@@ -9,7 +9,7 @@
 #import "ApplicationListPageTableViewController.h"
 #import "CurrentUser.h"
 
-@interface ApplicationListPageTableViewController () <UITableViewDataSource, UITableViewDelegate> {
+@interface ApplicationListPageTableViewController () {
     
     FIRDatabaseHandle refHandle;
     
@@ -29,7 +29,6 @@
     self.tableView.backgroundView = backgroundImageView;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    
     FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
     refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
@@ -74,7 +73,7 @@
     }
 }
 
-#pragma Table View Delegate
+#pragma mark - Table View Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     

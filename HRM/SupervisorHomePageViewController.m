@@ -10,8 +10,6 @@
 #import "SearchClassViewController.h"
 #import "CurrentUser.h"
 #import "StaffInfoDataManager.h"
-@import Firebase;
-@import FirebaseDatabase;
 
 @interface SupervisorHomePageViewController ()
 
@@ -40,9 +38,18 @@
 
 - (IBAction)SignoffListBtnPressed:(UIButton *)sender {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(segueToApplicationPage) name:@"ApplicationListDownloaded" object:nil];
     CurrentUser *localUser = [CurrentUser sharedInstance];
     [localUser downloadAppcationList];
     
+}
+
+- (void)segueToApplicationPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
+    [self performSegueWithIdentifier:@"SignoffListSegue" sender:nil];
     
 }
 
