@@ -56,12 +56,4 @@
     
 }
 
-#pragma mark - Bulletin Board Btn Func
-
-- (IBAction)BulletinBoardBtnPressed:(UIBarButtonItem *)sender {
-    
-    [self performSegueWithIdentifier:@"BulletinBoardSegue" sender:nil];
-    
-}
-
 @end

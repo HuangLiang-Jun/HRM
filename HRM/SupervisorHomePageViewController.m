@@ -41,19 +41,27 @@
     
     
 }
-- (IBAction)confirmApplicationBtnPressed:(UIButton *)sender {
+
+#pragma mark - Signoff List Btn Func
+
+- (IBAction)SignoffListBtnPressed:(UIButton *)sender {
+    
     
     
     
 }
+
+#pragma mark - Staff List Btn Func
+
 - (IBAction)staffListBtnPressed:(id)sender {
     
    
     
 }
 
+#pragma mark - Sign Out Btn Func
 
-- (IBAction)signOutBtnPressed:(id)sender {
+- (IBAction)signOutBtnPressed:(UIButton *)sender {
 
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
@@ -71,11 +79,6 @@
     localUser.password = @"";
     [self dismissViewControllerAnimated:true completion:nil];
     
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 @end

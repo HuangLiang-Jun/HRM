@@ -353,6 +353,34 @@
             </objects>
             <point key="canvasLocation" x="1241" y="-2503"/>
         </scene>
+        <!--Signoff List Table View Controller-->
+        <scene sceneID="cHg-lW-Viv">
+            <objects>
+                <tableViewController id="U6T-Rr-dRI" customClass="SignoffListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ubF-VV-7e8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Scm-op-oGu">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Scm-op-oGu" id="i30-li-H1w">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="U6T-Rr-dRI" id="cNx-33-mqu"/>
+                            <outlet property="delegate" destination="U6T-Rr-dRI" id="TOc-PA-e8z"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SJo-Uh-T1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1180" y="-1824"/>
+        </scene>
         <!--Staff Info View Controller-->
         <scene sceneID="C00-ef-UqR">
             <objects>
@@ -786,8 +814,7 @@
                     <navigationItem key="navigationItem" id="Ecs-O6-aPY">
                         <barButtonItem key="rightBarButtonItem" image="info.png" id="RNy-EZ-bue">
                             <connections>
-                                <action selector="BulletinBoardBtnPressed:" destination="5Ql-Pp-KSB" id="hgG-Zb-hxM"/>
-                                <segue destination="drJ-HG-5i7" kind="show" id="BPt-o4-nKR"/>
+                                <segue destination="drJ-HG-5i7" kind="show" id="obm-Gq-qoZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -890,8 +917,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="confirmApplicationBtnPressed:" destination="Hpu-DD-8gY" eventType="touchUpInside" id="Xf1-h3-DcY"/>
-                                                    <segue destination="s8j-kj-1NL" kind="show" id="MTq-ci-yLt"/>
+                                                    <action selector="SignoffListBtnPressed:" destination="Hpu-DD-8gY" eventType="touchUpInside" id="wg9-Cn-GYH"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -916,7 +942,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="signOutBtnPressed:" destination="Hpu-DD-8gY" eventType="touchUpInside" id="E0f-7X-2ns"/>
+                                            <action selector="signOutBtnPressed:" destination="Hpu-DD-8gY" eventType="touchUpInside" id="0UJ-iA-kD1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -924,14 +950,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="leading" secondItem="dW0-hQ-cuM" secondAttribute="leading" id="0UO-1d-yAi"/>
-                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="centerX" secondItem="dW0-hQ-cuM" secondAttribute="centerX" id="QkD-8m-Oda"/>
+                            <constraint firstItem="ZK8-E2-zuH" firstAttribute="top" secondItem="D8f-qn-Rwf" secondAttribute="bottom" id="142-9k-JdP"/>
+                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="leading" secondItem="dW0-hQ-cuM" secondAttribute="leading" id="Gna-G3-vhM"/>
+                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="top" secondItem="dW0-hQ-cuM" secondAttribute="top" id="RBI-d9-eku"/>
                             <constraint firstItem="hnQ-ma-ZXL" firstAttribute="centerY" secondItem="dW0-hQ-cuM" secondAttribute="centerY" id="Vv2-Vz-Ubd"/>
-                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="top" secondItem="dW0-hQ-cuM" secondAttribute="top" id="Vyv-Zx-9ra"/>
-                            <constraint firstItem="D8f-qn-Rwf" firstAttribute="centerY" secondItem="dW0-hQ-cuM" secondAttribute="centerY" id="WZE-Qn-JqZ"/>
-                            <constraint firstAttribute="trailing" secondItem="D8f-qn-Rwf" secondAttribute="trailing" id="ZsM-N5-XR6"/>
                             <constraint firstItem="hnQ-ma-ZXL" firstAttribute="centerX" secondItem="dW0-hQ-cuM" secondAttribute="centerX" id="pB1-Ke-cye"/>
-                            <constraint firstItem="ZK8-E2-zuH" firstAttribute="top" secondItem="D8f-qn-Rwf" secondAttribute="bottom" id="rpf-1a-owb"/>
+                            <constraint firstAttribute="trailing" secondItem="D8f-qn-Rwf" secondAttribute="trailing" id="pjI-AM-e2N"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gc9-rJ-cEW">
@@ -941,10 +965,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="U6T-Rr-dRI" kind="show" identifier="SignoffListSegue" id="kBC-Xq-TTC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LfO-dV-X6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="153" y="-1204"/>
+            <point key="canvasLocation" x="494" y="-1216"/>
         </scene>
         <!--打卡-->
         <scene sceneID="0dG-fN-nPJ">
@@ -961,7 +988,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundGreen.png" translatesAutoresizingMaskIntoConstraints="NO" id="iJn-9d-YhB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2on-pr-S0n">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2on-pr-S0n">
                                 <rect key="frame" x="0.0" y="400.5" width="375" height="0.0"/>
                                 <connections>
                                     <outlet property="delegate" destination="2nV-Gp-p1H" id="Ena-sG-iAo"/>
@@ -1899,6 +1926,7 @@
             </objects>
             <point key="canvasLocation" x="2853.5999999999999" y="-69.715142428785612"/>
         </scene>
+<<<<<<< HEAD
         <!--簽核-->
         <scene sceneID="aPf-x9-Pat">
             <objects>
@@ -1994,6 +2022,8 @@
             </objects>
             <point key="canvasLocation" x="1240.8" y="-1825.6371814092954"/>
         </scene>
+=======
+>>>>>>> MyFeature
         <!--薪資-->
         <scene sceneID="qNY-DN-OxY">
             <objects>
@@ -2553,7 +2583,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qah-pz-cCp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-698" y="309"/>
+            <point key="canvasLocation" x="-852" y="435"/>
         </scene>
     </scenes>
     <resources>
@@ -2565,8 +2595,14 @@
         <image name="info.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="BPt-o4-nKR"/>
         <segue reference="8z0-sb-4FI"/>
         <segue reference="F9Y-vv-o3M"/>
+=======
+        <segue reference="cUG-sN-jwu"/>
+        <segue reference="dkv-ZX-ULT"/>
+        <segue reference="obm-Gq-qoZ"/>
+>>>>>>> MyFeature
     </inferredMetricsTieBreakers>
 </document>

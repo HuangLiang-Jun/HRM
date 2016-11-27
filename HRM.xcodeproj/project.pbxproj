@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */; };
+		3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */; };
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
 		3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
@@ -76,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
+		3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignoffListTableViewController.h; sourceTree = "<group>"; };
+		3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignoffListTableViewController.m; sourceTree = "<group>"; };
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
 		3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
@@ -194,6 +197,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A635F5C1DEB4A05009DA2B6 /* Signoff */ = {
+			isa = PBXGroup;
+			children = (
+				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
+				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
+			);
+			name = Signoff;
+			sourceTree = "<group>";
+		};
 		4C71E6D023A882DEE3913A04 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,6 +401,7 @@
 				6335E1711DB8E1E100B71A63 /* Attendance */,
 				A9DC91121DB51FEF00679708 /* AccountManage */,
 				A95C7E351DB9A7CD00AF7CB5 /* Application */,
+				3A635F5C1DEB4A05009DA2B6 /* Signoff */,
 				6335E17A1DB8E52C00B71A63 /* Model */,
 				706159CB1D94231800D2530B /* Supporting Files */,
 				63D92FB41DBF8105007578DB /* Image */,
@@ -632,6 +645,7 @@
 				706159D01D94231800D2530B /* AppDelegate.m in Sources */,
 				3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */,
 				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
+				3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
 				63E52BF31DE93E8F00BD24C2 /* ServerCommunicator.m in Sources */,
