@@ -227,33 +227,20 @@
             
         case 1: {
             
-            FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Application"];
+            FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
             [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
                 if ([snapshot exists]) {
                     
-                    NSDictionary *snapshotSignoffListDict = snapshot.value;
-                    NSMutableDictionary *signoffListDict = [NSMutableDictionary new];
-                    for (NSString *userNameStr in [snapshotSignoffListDict allKeys]) {
-                        
-                        NSDictionary *applicationListDict = [snapshotSignoffListDict objectForKey:userNameStr];
-                        for (NSString *applyDateStr in [applicationListDict allKeys]) {
-                            
-                            NSString *newApplyDateStr = [NSString stringWithFormat:@"%@.%@", applyDateStr, userNameStr];
-                            NSDictionary *infoDict = [applicationListDict objectForKey:applyDateStr];
-                            [signoffListDict setObject:infoDict forKey:newApplyDateStr];
-                            
-                        }
-                        
-                    }
-                    NSArray *sortedKeys = [[signoffListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
+                    NSDictionary *signoffFormListDict = snapshot.value;
+                    NSArray *sortedKeys = [[signoffFormListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
                     [_applicationList removeAllObjects];
                     for (long long i = sortedKeys.count-1; i > -1; i -= 1) {
                         
                         NSString *newApplyDateStr = sortedKeys[i];
-                        NSDictionary *infoDict = [signoffListDict objectForKey:newApplyDateStr];
-                        NSDictionary *applicationDict = @{newApplyDateStr: infoDict};
-                        [_applicationList addObject:applicationDict];
+                        NSDictionary *infoDict = [signoffFormListDict objectForKey:newApplyDateStr];
+                        NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+                        [_applicationList addObject:signoffFormDict];
                         
                     }
                 }
@@ -274,6 +261,13 @@
         FIRDatabaseReference *applicationListRef = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
         [applicationListRef updateChildValues:applicationDict];
         
+        NSString *applyDateStr = [applicationDict allKeys].firstObject;
+        NSString *newApplyDateStr = [NSString stringWithFormat:@"%@@%@", applyDateStr, _displayName];
+        NSDictionary *infoDict = [applicationDict allValues].firstObject;
+        NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+        FIRDatabaseReference *signoffListRef = [[[FIRDatabase database] reference] child:@"Signoff"];
+        [signoffListRef updateChildValues:signoffFormDict];
+        
     });
 }
 
@@ -283,6 +277,10 @@
         
         FIRDatabaseReference *applicationRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:applyDateStr];
         [applicationRef removeValue];
+        
+        NSString *newApplyDateStr = [NSString stringWithFormat:@"%@@%@", applyDateStr, _displayName];
+        FIRDatabaseReference *signoffFormRef = [[[[FIRDatabase database] reference] child:@"Signoff"] child:newApplyDateStr];
+        [signoffFormRef removeValue];
         
     });
 }
