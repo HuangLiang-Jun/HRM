@@ -217,7 +217,7 @@
             NSDictionary *application = @{applyDateStr: applicationInfo};
             CurrentUser *localUser = [CurrentUser sharedInstance];
             [localUser uploadApplicationWithDict:application];
-            [localUser.applicationList addObject:application];
+            [localUser.applicationList insertObject:application atIndex:0];
             [self.navigationController popViewControllerAnimated:true];
             
         } else {
