@@ -35,6 +35,20 @@
         
         if ([snapshot exists]) {
             
+            NSString *snapshotApplyDateStr = snapshot.key;
+            for (long long i = 0; i < localUser.applicationList.count; i += 1) {
+                
+                NSDictionary *applicationDict = localUser.applicationList[i];
+                NSString *applyDateStr = [applicationDict allKeys].firstObject;
+                if ([applyDateStr isEqualToString:snapshotApplyDateStr]) {
+                    
+                    NSDictionary *snapshotInfoDict = snapshot.value;
+                    applicationDict = @{snapshotApplyDateStr: snapshotInfoDict};
+                    [localUser.applicationList replaceObjectAtIndex:i withObject:applicationDict];
+                    
+                }
+                
+            }
             [self.tableView reloadData];
             
         }
@@ -84,45 +98,45 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    NSDictionary *application = localUser.applicationList[indexPath.row];
-    NSDictionary*infoDict = [application allValues].firstObject;
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
+    NSDictionary *applicationDict = localUser.applicationList[indexPath.row];
+    NSDictionary*infoDict = [applicationDict allValues].firstObject;
+    UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (tableViewCell == nil) {
         
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
         
     }
     
     UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
     UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
-    cell.backgroundView = cellBackgroundImageView;
+    tableViewCell.backgroundView = cellBackgroundImageView;
     
-    UIImageView *thumbnailImageView = [cell viewWithTag:100];
+    UIImageView *thumbnailImageView = [tableViewCell viewWithTag:100];
     NSNumber *agree = [infoDict objectForKey:@"Agree"];
-    UIImage *agreeImage;
+    UIImage *agreementImage;
     switch ([agree intValue]) {
             
         case 0:
-            agreeImage = [UIImage imageNamed:@"refuseIcon.png"];
+            agreementImage = [UIImage imageNamed:@"refuseIcon.png"];
             break;
             
         case 1:
-            agreeImage = [UIImage imageNamed:@"agreeIcon.png"];
+            agreementImage = [UIImage imageNamed:@"agreeIcon.png"];
             break;
 
     }
-    thumbnailImageView.image = agreeImage;
+    thumbnailImageView.image = agreementImage;
     
-    UILabel *typeLabel = [cell viewWithTag:101];
+    UILabel *typeLabel = [tableViewCell viewWithTag:101];
     typeLabel.text = [infoDict objectForKey:@"Type"];
     
-    UILabel *startDateLabel = [cell viewWithTag:102];
+    UILabel *startDateLabel = [tableViewCell viewWithTag:102];
     startDateLabel.text = [infoDict objectForKey:@"From"];
     
-    UILabel *endDateLabel = [cell viewWithTag:103];
+    UILabel *endDateLabel = [tableViewCell viewWithTag:103];
     endDateLabel.text = [infoDict objectForKey:@"To"];
     
-    return cell;
+    return tableViewCell;
     
 }
 
@@ -139,9 +153,9 @@
     if (editingStyle ==UITableViewCellEditingStyleDelete ) {
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
-        NSDictionary *application = localUser.applicationList[indexPath.row];
-        NSString*applyDate = [application allKeys].firstObject;
-        [localUser removeApplicationWhichAppliedAt:applyDate];
+        NSDictionary *applicationDict = localUser.applicationList[indexPath.row];
+        NSString*applyDateStr = [applicationDict allKeys].firstObject;
+        [localUser removeApplicationWhichAppliedAt:applyDateStr];
         [localUser.applicationList removeObjectAtIndex:indexPath.row];
         [tableView reloadData];
         

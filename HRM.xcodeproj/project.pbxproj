@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */; };
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
 		3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
@@ -57,7 +58,6 @@
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
 		706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 706159D91D94231800D2530B /* LaunchScreen.storyboard */; };
-		70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */; };
 		70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70E35BF61DE7C73100CB6702 /* refuseIcon.png */; };
 		70E35BF91DE7C73D00CB6702 /* cellBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 70E35BF81DE7C73D00CB6702 /* cellBackground.png */; };
 		70E35BFB1DE7C74600CB6702 /* agreeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 70E35BFA1DE7C74600CB6702 /* agreeIcon.png */; };
@@ -75,6 +75,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
 		3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		706159D71D94231800D2530B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		706159DA1D94231800D2530B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		706159DC1D94231900D2530B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
 		70E35BF61DE7C73100CB6702 /* refuseIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refuseIcon.png; sourceTree = "<group>"; };
 		70E35BF81DE7C73D00CB6702 /* cellBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBackground.png; sourceTree = "<group>"; };
 		70E35BFA1DE7C74600CB6702 /* agreeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agreeIcon.png; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 		6328BF2D1DC780410067BBCC /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
-				70D1D89D1DA777D600D3D5FC /* AccountManage.storyboard */,
+				3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -534,7 +534,6 @@
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
 				70197E051DDD9CFC009254C4 /* redheader.png in Resources */,
 				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
-				70D1D89E1DA777D600D3D5FC /* AccountManage.storyboard in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
@@ -546,6 +545,7 @@
 				70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */,
 				3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
+				3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */,
 				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
 				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
 				637AD2591DD5E6D500FA94E5 /* camera.png in Resources */,

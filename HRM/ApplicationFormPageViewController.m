@@ -213,11 +213,11 @@
         if ([startDate compare:endDate] == NSOrderedAscending) {
             
             NSString *applyDateStr = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
-            NSDictionary *applicationInfo = @{@"Agree": @0, @"Content": _contentTextView.text, @"From": startDateStr, @"Type": applicationTypeStr, @"To": endDateStr};
-            NSDictionary *application = @{applyDateStr: applicationInfo};
+            NSDictionary *infoDict = @{@"Agree": @0, @"Content": _contentTextView.text, @"From": startDateStr, @"Type": applicationTypeStr, @"To": endDateStr};
+            NSDictionary *applicationDict = @{applyDateStr: infoDict};
             CurrentUser *localUser = [CurrentUser sharedInstance];
-            [localUser uploadApplicationWithDict:application];
-            [localUser.applicationList insertObject:application atIndex:0];
+            [localUser uploadApplicationWithDict:applicationDict];
+            [localUser.applicationList insertObject:applicationDict atIndex:0];
             [self.navigationController popViewControllerAnimated:true];
             
         } else {

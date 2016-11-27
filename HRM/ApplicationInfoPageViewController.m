@@ -44,12 +44,12 @@
     NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
     ApplicationListPageTableViewController *applicationPTableVC = self.navigationController.viewControllers[index-1];
     NSDictionary *applicationDict = applicationPTableVC.selectedApplicationDict;
-    NSString *applyDate = [applicationDict allKeys].firstObject;
-    NSDictionary *infoDict = [applicationDict objectForKey:applyDate];
+    NSString *applyDateStr = [applicationDict allKeys].firstObject;
+    NSDictionary *infoDict = [applicationDict allValues].firstObject;
     _typeField.text = [infoDict objectForKey:@"Type"];
     _fromField.text = [infoDict objectForKey:@"From"];
     _toField.text = [infoDict objectForKey:@"To"];
-    _applyTime.text = applyDate;
+    _applyTime.text = applyDateStr;
     _contentTextView.text = [infoDict objectForKey:@"Content"];
     
 }
