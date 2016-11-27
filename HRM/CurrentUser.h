@@ -35,8 +35,8 @@
 
 - (void)downloadAppcationList;
 
-- (void)uploadApplicationWithDict:(NSDictionary *)Application;
+- (void)uploadApplicationWithDict:(NSDictionary *)applicationDict;
 
-- (void)removeApplicationWhichAppliedAt:(NSString *)applyDate;
+- (void)removeApplicationWhichAppliedAt:(NSString *)applyDateStr;
 
 @end

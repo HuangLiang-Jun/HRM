@@ -28,13 +28,7 @@
     
 
 }
-- (IBAction)checkOnDutyList:(UIButton *)sender {
-    
-    
-    
-    
-    
-}
+
 - (IBAction)salaryBtnPressed:(UIButton *)sender {
 
    
@@ -46,7 +40,8 @@
 
 - (IBAction)SignoffListBtnPressed:(UIButton *)sender {
     
-    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser downloadAppcationList];
     
     
 }

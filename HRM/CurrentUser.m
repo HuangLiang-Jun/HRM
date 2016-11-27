@@ -195,43 +195,93 @@
 
 - (void)downloadAppcationList {
     
-    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
-    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        if ([snapshot exists]) {
+    switch (_auth.intValue) {
             
-            NSDictionary *applicationListDict = snapshot.value;
-            NSArray *sortedKeys = [[applicationListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
-            [_applicationList removeAllObjects];
-            for (long long i = sortedKeys.count-1; i > -1; i --) {
+        case 0: {
+            
+            FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"] child:_displayName];
+            [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
                 
-                NSDictionary *application = @{sortedKeys[i]: [applicationListDict valueForKey:sortedKeys[i]]};
-                [_applicationList addObject:application];
+                if ([snapshot exists]) {
+                    
+                    NSDictionary *applicationListDict = snapshot.value;
+                    NSArray *sortedKeys = [[applicationListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
+                    [_applicationList removeAllObjects];
+                    for (long long i = sortedKeys.count-1; i > -1; i -= 1) {
+                        
+                        NSString *applyDateStr = sortedKeys[i];
+                        NSDictionary *infoDict = [applicationListDict objectForKey:applyDateStr];
+                        NSDictionary *applicationDict = @{applyDateStr: infoDict};
+                        [_applicationList addObject:applicationDict];
+                        
+                    }
+                    
+                }
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];        
                 
-            }
+            }];
+            break;
 
         }
-        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];        
-        
-    }];
+            
+        case 1: {
+            
+            FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Application"];
+            [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+                
+                if ([snapshot exists]) {
+                    
+                    NSDictionary *snapshotSignoffListDict = snapshot.value;
+                    NSMutableDictionary *signoffListDict = [NSMutableDictionary new];
+                    for (NSString *userNameStr in [snapshotSignoffListDict allKeys]) {
+                        
+                        NSDictionary *applicationListDict = [snapshotSignoffListDict objectForKey:userNameStr];
+                        for (NSString *applyDateStr in [applicationListDict allKeys]) {
+                            
+                            NSString *newApplyDateStr = [NSString stringWithFormat:@"%@.%@", applyDateStr, userNameStr];
+                            NSDictionary *infoDict = [applicationListDict objectForKey:applyDateStr];
+                            [signoffListDict setObject:infoDict forKey:newApplyDateStr];
+                            
+                        }
+                        
+                    }
+                    NSArray *sortedKeys = [[signoffListDict allKeys] sortedArrayUsingSelector:@selector(compare:)];
+                    [_applicationList removeAllObjects];
+                    for (long long i = sortedKeys.count-1; i > -1; i -= 1) {
+                        
+                        NSString *newApplyDateStr = sortedKeys[i];
+                        NSDictionary *infoDict = [signoffListDict objectForKey:newApplyDateStr];
+                        NSDictionary *applicationDict = @{newApplyDateStr: infoDict};
+                        [_applicationList addObject:applicationDict];
+                        
+                    }
+                }
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];
+                
+            }];
+            break;
+            
+        }
+    }
 }
 
-- (void)uploadApplicationWithDict:(NSDictionary *)application {
+- (void)uploadApplicationWithDict:(NSDictionary *)applicationDict {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         FIRDatabaseReference *applicationListRef = [[[[FIRDatabase database] reference] child:@"Application"]child:_displayName];
-        [applicationListRef updateChildValues:application];
+        [applicationListRef updateChildValues:applicationDict];
         
     });
 }
 
-- (void)removeApplicationWhichAppliedAt:(NSString *)applyDate {
+- (void)removeApplicationWhichAppliedAt:(NSString *)applyDateStr {
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        FIRDatabaseReference *applicationRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:applyDate];
+        FIRDatabaseReference *applicationRef = [[[[[FIRDatabase database] reference] child:@"Application"]child:_displayName] child:applyDateStr];
         [applicationRef removeValue];
         
     });
