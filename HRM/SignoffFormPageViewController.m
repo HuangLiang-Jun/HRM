@@ -7,6 +7,8 @@
 //
 
 #import "SignoffFormPageViewController.h"
+#import "SignoffListTableViewController.h"
+#import "CurrentUser.h"
 
 @interface SignoffFormPageViewController ()
 
@@ -39,17 +41,76 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
-//    ApplicationListPageTableViewController *applicationPTableVC = self.navigationController.viewControllers[index-1];
-//    NSDictionary *applicationDict = applicationPTableVC.selectedApplicationDict;
-//    NSString *applyDateStr = [applicationDict allKeys].firstObject;
-//    NSDictionary *infoDict = [applicationDict allValues].firstObject;
-//    _typeField.text = [infoDict objectForKey:@"Type"];
-//    _fromField.text = [infoDict objectForKey:@"From"];
-//    _toField.text = [infoDict objectForKey:@"To"];
-//    _applyTime.text = applyDateStr;
-//    _contentTextView.text = [infoDict objectForKey:@"Content"];
-//    
+    NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    SignoffListTableViewController *signoffListTableVC = self.navigationController.viewControllers[index-1];
+    NSDictionary *signoffFormDict = signoffListTableVC.selectedSignoffFormDict;
+    
+    NSString *newApplyDateStr = [signoffFormDict allKeys].firstObject;
+    NSArray<NSString *> *subNewApplyDateStr = [newApplyDateStr componentsSeparatedByString:@"@"];
+    
+    NSString *applyDateStr = subNewApplyDateStr.firstObject;
+    _applyDateField.text = applyDateStr;
+    
+    NSString *usernameStr = subNewApplyDateStr.lastObject;
+    _usernameField.text = usernameStr;
+    
+    NSDictionary *infoDict = [signoffFormDict allValues].firstObject;
+    
+    NSString *type = [infoDict objectForKey:@"Type"];
+    _typeField.text = type;
+    
+    NSString *from = [infoDict objectForKey:@"From"];
+    _fromField.text = from;
+    
+    NSString *to = [infoDict objectForKey:@"To"];
+    _toField.text = to;
+    
+    NSString *content = [infoDict objectForKey:@"Content"];
+    _contentTextView.text = content;
+
+}
+
+- (IBAction)signoffPassedBtnPressed:(UIButton *)sender {
+    
+    NSNumber *agreementNum = @1;
+    [self setAgreementWith:agreementNum];
+    [self.navigationController popViewControllerAnimated:true];
+    
+}
+
+- (IBAction)signoffRejectedBtnPressed:(UIButton *)sender {
+    
+    NSNumber *agreementNum = @2;
+    [self setAgreementWith:agreementNum];
+    [self.navigationController popViewControllerAnimated:true];
+    
+}
+
+- (void)setAgreementWith:(NSNumber *)agreementNum {
+    
+    NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
+    SignoffListTableViewController *signoffListTableVC = self.navigationController.viewControllers[index-1];
+    NSDictionary *signoffFormDict = signoffListTableVC.selectedSignoffFormDict;
+    
+    NSString *newApplyDateStr = [signoffFormDict allKeys].firstObject;
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser signoffApplicationWith:newApplyDateStr andAgreement:agreementNum];
+    
+    for (long long i = 0; i < localUser.applicationList.count; i += 1) {
+        
+        NSDictionary *signoffFormDict = localUser.applicationList[i];
+        NSString *applyDateStr = [signoffFormDict allKeys].firstObject;
+        if ([applyDateStr isEqualToString:newApplyDateStr]) {
+            
+            NSDictionary *infoDict = [signoffFormDict allValues].firstObject;
+            NSMutableDictionary *renewInfoDict = [[NSMutableDictionary alloc] initWithDictionary:infoDict];
+            [renewInfoDict setObject:agreementNum forKey:@"Agree"];
+            NSDictionary *renewSignoffForm = @{newApplyDateStr: renewInfoDict};
+            [localUser.applicationList replaceObjectAtIndex:i withObject:renewSignoffForm];
+            
+        }
+    }
 }
 
 @end

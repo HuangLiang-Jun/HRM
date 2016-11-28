@@ -2227,6 +2227,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="signoffPassedBtnPressed:" destination="FEw-XE-E2c" eventType="touchUpInside" id="Fhf-Pw-ITg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U9B-G9-Cvf">
                                 <rect key="frame" x="20" y="614" width="150" height="40"/>
@@ -2241,6 +2244,9 @@
                                         </fragment>
                                     </attributedString>
                                 </state>
+                                <connections>
+                                    <action selector="signoffRejectedBtnPressed:" destination="FEw-XE-E2c" eventType="touchUpInside" id="NlE-Ol-bhy"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqj-I1-jZJ">
                                 <rect key="frame" x="20" y="243" width="36" height="21"/>

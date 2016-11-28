@@ -39,4 +39,6 @@
 
 - (void)removeApplicationWhichAppliedAt:(NSString *)applyDateStr;
 
+- (void)signoffApplicationWith:(NSString *)newApplyDateStr andAgreement:(NSNumber *)agreementNum;
+
 @end

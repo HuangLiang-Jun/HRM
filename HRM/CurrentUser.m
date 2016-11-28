@@ -286,4 +286,20 @@
     });
 }
 
+- (void)signoffApplicationWith:(NSString *)newApplyDateStr andAgreement:(NSNumber *)agreementNum {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *signoffListRef = [[[[[FIRDatabase database] reference] child:@"Signoff"] child:newApplyDateStr] child:@"Agree"];
+        [signoffListRef setValue:agreementNum];
+        
+        NSArray<NSString *> *subNewApplyDateStr = [newApplyDateStr componentsSeparatedByString:@"@"];
+        NSString *applyDateStr = subNewApplyDateStr.firstObject;
+        NSString *usernameStr = subNewApplyDateStr.lastObject;
+        FIRDatabaseReference *applicationRef = [[[[[[FIRDatabase database] reference] child:@"Application"]child:usernameStr] child:applyDateStr] child:@"Agree"];
+        [applicationRef setValue:agreementNum];
+        
+    });
+}
+
 @end
