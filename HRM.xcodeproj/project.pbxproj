@@ -10,6 +10,7 @@
 		3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */; };
 		3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */; };
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
+		3A80EFD41DEC69E400E605D1 /* SignoffFormPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */; };
 		3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */; };
 		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
@@ -84,6 +85,8 @@
 		3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignoffListTableViewController.m; sourceTree = "<group>"; };
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
+		3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignoffFormPageViewController.h; sourceTree = "<group>"; };
+		3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignoffFormPageViewController.m; sourceTree = "<group>"; };
 		3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
@@ -434,6 +437,8 @@
 				A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */,
 				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
 				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
+				3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */,
+				3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */,
 				63D92FDD1DC03667007578DB /* SalarySums.h */,
 				63D92FDE1DC03667007578DB /* SalarySums.m */,
 				63D92FDF1DC03667007578DB /* SalaryViewController.h */,
@@ -502,6 +507,7 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = F29672WPZ9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -641,6 +647,7 @@
 				A95C7E381DB9A85200AF7CB5 /* ApplicationListPageTableViewController.m in Sources */,
 				A91417001DBE601200735A49 /* ApplicationInfoPageViewController.m in Sources */,
 				A95C7E3B1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m in Sources */,
+				3A80EFD41DEC69E400E605D1 /* SignoffFormPageViewController.m in Sources */,
 				63D92FB21DBF7F8B007578DB /* SearchClassViewController.m in Sources */,
 				A9DC91181DB5208C00679708 /* SignUpPageViewController.m in Sources */,
 				63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */,
@@ -776,7 +783,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -794,7 +801,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
