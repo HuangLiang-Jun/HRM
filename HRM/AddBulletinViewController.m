@@ -70,7 +70,8 @@
 - (void) updateNewBulletin {
     // UpdateData to FBDB & APNS.
     NSString *dateStr = [NSDateNSStringExchange stringFromYearMonthDay:[NSDate date]];
-    NSDictionary *bulletinDict = @{BULLETIN_TITLE_KEY:_setTittleTextField.text,@"Detail":_detailTextField.text,@"UpdateDate":dateStr};
+    NSString *now = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+    NSDictionary *bulletinDict = @{BULLETIN_TITLE_KEY:_setTittleTextField.text,@"Detail":_detailTextField.text,@"UpdateDate":now};
     NSDictionary *updateFBDBDict = @{dateStr:bulletinDict};
     [comm sendNewBulletinToFBDB:updateFBDBDict completion:^(NSError *error, id result) {
         if (error) {
@@ -81,12 +82,19 @@
                        completion:^(NSError *error, id result) {
                            if (error) {
                                NSLog(@"SendPushTitle is Error : %@",error);
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [self.navigationController popViewControllerAnimated:YES];
+                               });
                                return;
                            }
                            NSLog(@"SendPushTitle is OK : %@",[result description]);
-                           [self.navigationController popViewControllerAnimated:YES];
+                           
+                           dispatch_async(dispatch_get_main_queue(), ^{
+                               [self.navigationController popViewControllerAnimated:YES];
+                           });
+                           
                        }];
-
+        
     }];
     
    

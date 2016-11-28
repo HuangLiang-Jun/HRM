@@ -28,6 +28,9 @@
 		6335E1B41DB9E9A700B71A63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B31DB9E9A700B71A63 /* MapKit.framework */; };
 		6335E1B81DBC789F00B71A63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B71DBC789F00B71A63 /* QuartzCore.framework */; };
 		636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */; };
+		637246C21DEC026100D55887 /* becheckIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C11DEC026000D55887 /* becheckIcon.png */; };
+		637246C41DEC064E00D55887 /* launchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C31DEC064E00D55887 /* launchScreenImage.png */; };
+		637246C61DEC0DB800D55887 /* cellBackground116.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C51DEC0DB800D55887 /* cellBackground116.png */; };
 		637AD2591DD5E6D500FA94E5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2561DD5E6D500FA94E5 /* camera.png */; };
 		637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2571DD5E6D500FA94E5 /* head01.png */; };
 		639C13831DDEA1B900E21531 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 639C13821DDEA1B900E21531 /* info.png */; };
@@ -111,6 +114,9 @@
 		6335E1B71DBC789F00B71A63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListTableViewCell.h; sourceTree = "<group>"; };
 		636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListTableViewCell.m; sourceTree = "<group>"; };
+		637246C11DEC026000D55887 /* becheckIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = becheckIcon.png; sourceTree = "<group>"; };
+		637246C31DEC064E00D55887 /* launchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreenImage.png; sourceTree = "<group>"; };
+		637246C51DEC0DB800D55887 /* cellBackground116.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBackground116.png; sourceTree = "<group>"; };
 		637AD2561DD5E6D500FA94E5 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		637AD2571DD5E6D500FA94E5 /* head01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head01.png; sourceTree = "<group>"; };
 		639C13821DDEA1B900E21531 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				70E35BFA1DE7C74600CB6702 /* agreeIcon.png */,
+				637246C51DEC0DB800D55887 /* cellBackground116.png */,
 				70E35BF61DE7C73100CB6702 /* refuseIcon.png */,
 				70E35BF81DE7C73D00CB6702 /* cellBackground.png */,
 				70197DFE1DDD9CFC009254C4 /* blueheader.png */,
@@ -337,7 +344,9 @@
 				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
 				3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */,
 				7023F6E31DD3627300793999 /* btnRed.png */,
+				637246C31DEC064E00D55887 /* launchScreenImage.png */,
 				7023F6DD1DD354BF00793999 /* btnBlue.png */,
+				637246C11DEC026000D55887 /* becheckIcon.png */,
 				7023F6DE1DD354BF00793999 /* btnGreen.png */,
 				6309EA0E1DCBBF1A001815C6 /* head.png */,
 				6309E9E61DCB174D001815C6 /* backBtn.png */,
@@ -493,7 +502,7 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = F29672WPZ9;
+						DevelopmentTeam = 2FFS45S3SA;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -529,6 +538,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				637246C61DEC0DB800D55887 /* cellBackground116.png in Resources */,
 				70197E021DDD9CFC009254C4 /* blueheader.png in Resources */,
 				6309E9E71DCB174D001815C6 /* backBtn.png in Resources */,
 				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
@@ -541,9 +551,11 @@
 				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
 				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
+				637246C41DEC064E00D55887 /* launchScreenImage.png in Resources */,
 				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
 				631126241DDEE30A00F3404E /* grayheader.png in Resources */,
 				70E35BFB1DE7C74600CB6702 /* agreeIcon.png in Resources */,
+				637246C21DEC026100D55887 /* becheckIcon.png in Resources */,
 				70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */,
 				63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */,
 				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
@@ -765,7 +777,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
@@ -782,7 +794,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;

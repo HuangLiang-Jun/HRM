@@ -9,7 +9,7 @@
 #import "ServerCommunicator.h"
 #import <AFNetworking/AFNetworking.h>
 
-#define BASE_URL @"http://192.168.196.127:8888/apnsphp"
+#define BASE_URL @"http://10.0.1.7:8888/apnsphp"
 
 #define SENDMESSAGE_URL [BASE_URL stringByAppendingPathComponent:@"sendMessage.php"]
 
@@ -104,7 +104,7 @@ static ServerCommunicator *_singletonCommunicator = nil;
 
 #pragma mark - Post to FBDB
 
-- (void) downLoadBulletinsFromFBDB:(UITableView *)tableView{
+- (void) downLoadBulletinsFromFBDB{
     
     FIRDatabaseReference *ref = [[[FIRDatabase database]reference]child:@"Bulletin"];
     
@@ -112,8 +112,8 @@ static ServerCommunicator *_singletonCommunicator = nil;
         
         if(snapshot.value != [NSNull null]){
             _bulletinsDict = snapshot.value;
-            _tableView = tableView;
-            [_tableView reloadData];
+            
+            [[NSNotificationCenter defaultCenter]postNotificationName:RELOAD_DATA object:self userInfo:nil];
         }
         
     }];

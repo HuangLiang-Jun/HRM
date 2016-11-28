@@ -40,6 +40,6 @@ typedef void(^DoneHandler)(NSError *error,id result);
 - (void) sendNewBulletinToFBDB:(NSDictionary *)bulletin
                     completion:(DoneHandler)done;
 
-- (void) downLoadBulletinsFromFBDB:(UITableView *)tableView;
+- (void) downLoadBulletinsFromFBDB;
 
 @end
