@@ -27,9 +27,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundGreen.png"];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImage];
-    
     [_typeField setUserInteractionEnabled:false];
     [_fromField setUserInteractionEnabled:false];
     [_toField setUserInteractionEnabled:false];

@@ -157,4 +157,12 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    _selectedSignoffFormDict = localUser.applicationList[indexPath.row];
+    [self performSegueWithIdentifier:@"SignoffFormPageSegue" sender:nil];
+    
+}
+
 @end

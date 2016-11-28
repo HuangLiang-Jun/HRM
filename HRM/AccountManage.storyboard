@@ -472,9 +472,6 @@
                                         <constraint firstItem="Kic-cB-0dM" firstAttribute="height" secondItem="kx1-UN-VoJ" secondAttribute="height" id="xuW-in-R5j"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="FEw-XE-E2c" kind="show" id="fGc-8T-bOm"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -482,6 +479,9 @@
                             <outlet property="delegate" destination="U6T-Rr-dRI" id="TOc-PA-e8z"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="FEw-XE-E2c" kind="show" identifier="SignoffFormPageSegue" id="Fyh-nk-vrC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJo-Uh-T1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2391,6 +2391,14 @@
                             <constraint firstItem="c3d-rN-xzm" firstAttribute="centerY" secondItem="C3b-ji-4Sj" secondAttribute="centerY" id="xbR-Ab-eo5"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="applyDateField" destination="28H-HJ-RoC" id="7B8-PC-inh"/>
+                        <outlet property="contentTextView" destination="uxI-K7-srU" id="Tpo-IO-7Ec"/>
+                        <outlet property="fromField" destination="jdF-sM-bK8" id="H5A-vz-6iJ"/>
+                        <outlet property="toField" destination="1k4-86-SF3" id="0Ry-RV-HTE"/>
+                        <outlet property="typeField" destination="c3d-rN-xzm" id="C2I-we-jQx"/>
+                        <outlet property="usernameField" destination="Fuj-Uh-fbY" id="cXl-HM-NAb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pzs-yg-awy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

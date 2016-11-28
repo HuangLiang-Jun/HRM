@@ -10,4 +10,6 @@
 
 @interface SignoffListTableViewController : UITableViewController
 
+@property (strong, nonatomic) NSDictionary *selectedSignoffFormDict;
+
 @end
