@@ -12,6 +12,7 @@
 #import "ServerCommunicator.h"
 #import "NSDateNSStringExchange.h"
 @interface BulletinBoardViewController ()<UITableViewDelegate,UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
