@@ -11,7 +11,7 @@
 
 @interface SignoffListTableViewController () {
     
-    FIRDatabaseHandle refHandle;
+    FIRDatabaseHandle refAddedHandle, refRemovedHandle;
     
 }
 
@@ -29,25 +29,33 @@
     self.tableView.backgroundView = backgroundImageView;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
-    refHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
+    refAddedHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         if ([snapshot exists]) {
             
-            NSString *snapshotApplyDateStr = snapshot.key;
-            for (long long i = 0; i < localUser.applicationList.count; i += 1) {
+            NSString *newApplyDateStr = snapshot.key;
+            NSDictionary *infoDict = snapshot.value;
+            NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+            if (![localUser.applicationList containsObject:signoffFormDict]) {
                 
-                NSDictionary *applicationDict = localUser.applicationList[i];
-                NSString *applyDateStr = [applicationDict allKeys].firstObject;
-                if ([applyDateStr isEqualToString:snapshotApplyDateStr]) {
-                    
-                    NSDictionary *snapshotInfoDict = snapshot.value;
-                    applicationDict = @{snapshotApplyDateStr: snapshotInfoDict};
-                    [localUser.applicationList replaceObjectAtIndex:i withObject:applicationDict];
-                    
-                }
+                [localUser.applicationList insertObject:signoffFormDict atIndex:0];
+                [self.tableView reloadData];
                 
             }
+            
+        }
+        
+    }];
+
+    refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if ([snapshot exists]) {
+            
+            NSString *newApplyDateStr = snapshot.key;
+            NSDictionary *infoDict = snapshot.value;
+            NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+            [localUser.applicationList removeObject:signoffFormDict];
             [self.tableView reloadData];
             
         }
@@ -66,24 +74,87 @@
     
     if (self.isMovingFromParentViewController == true) {
         
-        CurrentUser *localUser = [CurrentUser sharedInstance];
-        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
-        [ref removeObserverWithHandle:refHandle];
+        FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
+        [ref removeObserverWithHandle:refAddedHandle];
+        [ref removeObserverWithHandle:refRemovedHandle];
         
     }
 }
 
 #pragma mark - Table View Delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 60;
+    
+}
 
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 1;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    return localUser.applicationList.count;
+    
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    NSDictionary *signoffFormDict = localUser.applicationList[indexPath.row];
+    NSDictionary*infoDict = [signoffFormDict allValues].firstObject;
+    UITableViewCell *tableViewCell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (tableViewCell == nil) {
+        
+        tableViewCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+        
+    }
+    
+    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
+    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
+    tableViewCell.backgroundView = cellBackgroundImageView;
+    
+    UIImageView *thumbnailImageView = [tableViewCell viewWithTag:100];
+    NSNumber *agree = [infoDict objectForKey:@"Agree"];
+    UIImage *agreementImage;
+    switch ([agree intValue]) {
+            
+        case 0:
+            agreementImage = [UIImage imageNamed:@"becheckIcon.png"];
+            break;
+            
+        case 1:
+            agreementImage = [UIImage imageNamed:@"agreeIcon.png"];
+            break;
+            
+        case 2:
+            agreementImage = [UIImage imageNamed:@"refuseIcon.png"];
+            break;
+            
+    }
+    thumbnailImageView.image = agreementImage;
+    
+    NSString *newApplyDateStr = [signoffFormDict allKeys].firstObject;
+    NSArray<NSString *> *subNewApplyDateStr = [newApplyDateStr componentsSeparatedByString:@"@"];
+    NSString *username = subNewApplyDateStr.lastObject;
+    UILabel *usernameLabel = [tableViewCell viewWithTag:101];
+    usernameLabel.text = username;
+    
+    UILabel *typeLabel = [tableViewCell viewWithTag:102];
+    typeLabel.text = [infoDict objectForKey:@"Type"];
+    
+    UILabel *startDateLabel = [tableViewCell viewWithTag:103];
+    startDateLabel.text = [infoDict objectForKey:@"From"];
+    
+    UILabel *endDateLabel = [tableViewCell viewWithTag:104];
+    endDateLabel.text = [infoDict objectForKey:@"To"];
+    
+    return tableViewCell;
+    
+}
 
 @end

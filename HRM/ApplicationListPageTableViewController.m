@@ -116,11 +116,15 @@
     switch ([agree intValue]) {
             
         case 0:
-            agreementImage = [UIImage imageNamed:@"refuseIcon.png"];
+            agreementImage = [UIImage imageNamed:@"becheckIcon.png"];
             break;
             
         case 1:
             agreementImage = [UIImage imageNamed:@"agreeIcon.png"];
+            break;
+            
+        case 2:
+            agreementImage = [UIImage imageNamed:@"refuseIcon.png"];
             break;
 
     }

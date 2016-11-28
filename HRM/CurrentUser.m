@@ -243,6 +243,7 @@
                         [_applicationList addObject:signoffFormDict];
                         
                     }
+
                 }
                 NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
                 [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];
