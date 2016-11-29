@@ -515,8 +515,8 @@
 				TargetAttributes = {
 					706159C71D94231800D2530B = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = F29672WPZ9;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 2FFS45S3SA;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
@@ -791,14 +791,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2b372c92-8eda-4700-b8a9-f4579f7026cf";
+				PROVISIONING_PROFILE_SPECIFIER = "HRManager Development";
 			};
 			name = Debug;
 		};
@@ -809,14 +809,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HRM/HRM.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = F29672WPZ9;
+				DEVELOPMENT_TEAM = 2FFS45S3SA;
 				INFOPLIST_FILE = HRM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "2b372c92-8eda-4700-b8a9-f4579f7026cf";
+				PROVISIONING_PROFILE_SPECIFIER = "HRManager Development";
 			};
 			name = Release;
 		};
