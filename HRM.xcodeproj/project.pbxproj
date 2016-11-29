@@ -274,6 +274,8 @@
 		6335E17A1DB8E52C00B71A63 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				63D92FDD1DC03667007578DB /* SalarySums.h */,
+				63D92FDE1DC03667007578DB /* SalarySums.m */,
 				63E52BF11DE93E8F00BD24C2 /* ServerCommunicator.h */,
 				63E52BF21DE93E8F00BD24C2 /* ServerCommunicator.m */,
 				A9DC911F1DB530F600679708 /* CurrentUser.h */,
@@ -404,6 +406,7 @@
 				6335E1711DB8E1E100B71A63 /* Attendance */,
 				A9DC91121DB51FEF00679708 /* AccountManage */,
 				A95C7E351DB9A7CD00AF7CB5 /* Application */,
+				7093DD2E1DED10A700396490 /* Salary */,
 				6335E17A1DB8E52C00B71A63 /* Model */,
 				706159CB1D94231800D2530B /* Supporting Files */,
 				63D92FB41DBF8105007578DB /* Image */,
@@ -426,6 +429,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		7093DD2E1DED10A700396490 /* Salary */ = {
+			isa = PBXGroup;
+			children = (
+				63D92FDF1DC03667007578DB /* SalaryViewController.h */,
+				63D92FE01DC03667007578DB /* SalaryViewController.m */,
+			);
+			name = Salary;
+			sourceTree = "<group>";
+		};
 		A95C7E351DB9A7CD00AF7CB5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -439,10 +451,6 @@
 				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
 				3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */,
 				3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */,
-				63D92FDD1DC03667007578DB /* SalarySums.h */,
-				63D92FDE1DC03667007578DB /* SalarySums.m */,
-				63D92FDF1DC03667007578DB /* SalaryViewController.h */,
-				63D92FE01DC03667007578DB /* SalaryViewController.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -785,7 +793,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -803,7 +811,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = F29672WPZ9;
 				INFOPLIST_FILE = HRM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.HuangLiangJun.HRManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
