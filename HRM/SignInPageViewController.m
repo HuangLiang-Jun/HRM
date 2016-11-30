@@ -147,17 +147,39 @@
 
 - (IBAction)signInBtnPressed:(UIButton *)sender {
     
-    for (UITextField *textField in self.view.subviews) {
+    NSArray <UITextField *>*fieldArr = @[_emailField, _pwdField];
+    for (int i = 0; i < fieldArr.count; i += 1) {
         
-        if ([textField isFirstResponder]) {
-            
-            [textField endEditing:true];
-            NSLog(@"imnaaaaa");
-            
+        NSString *str = fieldArr[i].text;
+        switch (i) {
+                
+            case 0:
+                if ([StrValidationFilter emailValidationFor:str]) {
+                    
+                    emailToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"電子郵件格式錯誤"];
+                    
+                }
+                break;
+                
+            case 1:
+                if ([StrValidationFilter passwordValidationFor:str]) {
+                    
+                    pwdToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                    
+                }
+                break;
+                
         }
         
     }
-    NSLog(@"%d, %d", emailToken, pwdToken);
     if (emailToken && pwdToken) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
