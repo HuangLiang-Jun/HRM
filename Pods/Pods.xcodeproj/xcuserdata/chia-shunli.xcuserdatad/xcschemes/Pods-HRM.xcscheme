@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CB9D77588E4AE391FAC36D94F398CA3C"
+               BlueprintIdentifier = "043E34FCC4F990C92671E0FF2F9A5839"
                BuildableName = "Pods_HRM.framework"
                BlueprintName = "Pods-HRM"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CB9D77588E4AE391FAC36D94F398CA3C"
+            BlueprintIdentifier = "043E34FCC4F990C92671E0FF2F9A5839"
             BuildableName = "Pods_HRM.framework"
             BlueprintName = "Pods-HRM"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,15 +60,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CB9D77588E4AE391FAC36D94F398CA3C"
-            BuildableName = "Pods_HRM.framework"
-            BlueprintName = "Pods-HRM"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

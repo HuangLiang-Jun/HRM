@@ -152,10 +152,12 @@
         if ([textField isFirstResponder]) {
             
             [textField endEditing:true];
+            NSLog(@"imnaaaaa");
             
         }
         
     }
+    NSLog(@"%d, %d", emailToken, pwdToken);
     if (emailToken && pwdToken) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];

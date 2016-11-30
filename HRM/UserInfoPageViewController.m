@@ -56,6 +56,14 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSString *dateStr = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+    _birthdayField.placeholder = dateStr;
+    
+}
+
 #pragma mark - textFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -66,8 +74,13 @@
             nameToken = false;
             break;
             
-        case 1:
+        case 1: {
+            
             birthdayToken = false;
+            NSString *dateStr = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+            _birthdayField.text = dateStr;
+            
+        }
             break;
             
         case 2:
@@ -193,6 +206,7 @@
 - (void)updateTextField:(UIDatePicker *)sender {
     
     UIDatePicker *datePicker = (UIDatePicker *)_birthdayField.inputView;
+    datePicker.backgroundColor = [UIColor clearColor];
     _birthdayField.text = [NSDateNSStringExchange stringFromChosenDate:datePicker.date];
     
 }
