@@ -14,6 +14,16 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,12 +37,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>043E34FCC4F990C92671E0FF2F9A5839</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>71C1DF39EE1271EA1147F993CA1439A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7891E2B724C54EF58FB1692B34F1455C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,7 +72,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7563D5AE176C43B7EFA77306E3C43C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>CB9D77588E4AE391FAC36D94F398CA3C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
