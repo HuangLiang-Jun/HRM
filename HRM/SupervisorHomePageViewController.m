@@ -9,30 +9,12 @@
 #import "SupervisorHomePageViewController.h"
 #import "SearchClassViewController.h"
 #import "CurrentUser.h"
-#import "StaffInfoDataManager.h"
 
 @interface SupervisorHomePageViewController ()
 
 @end
 
 @implementation SupervisorHomePageViewController
-{
-     FIRDatabaseReference *staffNameRef;
-    
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-
-}
-
-- (IBAction)salaryBtnPressed:(UIButton *)sender {
-
-   
-    
-    
-}
 
 #pragma mark - Signoff List Btn Func
 
@@ -50,14 +32,6 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
     [self performSegueWithIdentifier:@"SignoffListSegue" sender:nil];
-    
-}
-
-#pragma mark - Staff List Btn Func
-
-- (IBAction)staffListBtnPressed:(id)sender {
-    
-   
     
 }
 
