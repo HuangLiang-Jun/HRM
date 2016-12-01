@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthdayField;
 @property (weak, nonatomic) IBOutlet UITextField *idCardNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneNumberField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subviewLayoutContraint;
 
 @end
 
@@ -42,16 +43,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _nameField.tag = 0;
+    _nameField.tag = 11;
     _nameField.delegate = self;
     
-    _birthdayField.tag = 1;
+    _birthdayField.tag = 12;
     _birthdayField.delegate = self;
     
-    _idCardNumberField.tag = 2;
+    _idCardNumberField.tag = 13;
     _idCardNumberField.delegate = self;
     
-    _cellphoneNumberField.tag = 3;
+    _cellphoneNumberField.tag = 14;
     _cellphoneNumberField.delegate = self;
     
 }
@@ -70,25 +71,27 @@
     
     switch (textField.tag) {
             
-        case 0:
+        case 11:
             nameToken = false;
             break;
             
-        case 1: {
+        case 12: {
             
             birthdayToken = false;
             NSString *dateStr = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
             _birthdayField.text = dateStr;
+            break;
             
         }
-            break;
             
-        case 2:
+        case 13:
             idCardNumToken = false;
+            [self animateBeforeIDCardNumInputed];
             break;
             
-        case 3:
+        case 14:
             cellPhoneNumToken = false;
+            [self animateBeforeIDCardNumInputed];
             break;
 
     }
@@ -116,7 +119,7 @@
     NSString *str = textField.text;
     switch (textField.tag) {
             
-        case 0:
+        case 11:
             if (str.length != 0) {
                 
                 nameToken = true;
@@ -133,7 +136,7 @@
             }
             break;
             
-        case 1:
+        case 12:
             if ([StrValidationFilter birthdayValidationFor:str]) {
                 
                 birthdayToken = true;
@@ -150,11 +153,15 @@
             }
             break;
             
-        case 2:
+        case 13:
             if ([StrValidationFilter idCardNumValidationFor:str]) {
                 
                 idCardNumToken = true;
-                if (!cellPhoneNumToken) {
+                if (cellPhoneNumToken) {
+                    
+                    [self animateAfterCellphoneNumInputed];
+                    
+                } else {
                     
                     [self shiftToTheNextOneOfTextField:textField];
                     
@@ -167,7 +174,8 @@
             }
             break;
             
-        case 3:
+        case 14:
+            [self animateAfterCellphoneNumInputed];
             if ([StrValidationFilter cellPhoneNumValidationFor:str]) {
                 
                 cellPhoneNumToken = true;
@@ -211,16 +219,88 @@
     
 }
 
+- (void)animateBeforeIDCardNumInputed {
+    
+    _subviewLayoutContraint.constant = -200.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+    
+}
+
+- (void)animateAfterCellphoneNumInputed {
+    
+    _subviewLayoutContraint.constant = 0.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+    
+}
+
 #pragma  mark - Complete Account Creation Btn Func
 
 - (IBAction)completeAccountCreationBtnPressed:(UIButton *)sender {
     
-    for (UITextField *textField in self.view.subviews) {
+    [self animateAfterCellphoneNumInputed];
+    NSArray <UITextField *>*fieldArr = @[_nameField, _birthdayField, _idCardNumberField, _cellphoneNumberField];
+    for (int i = 0; i < fieldArr.count; i += 1) {
         
-        if ([textField isFirstResponder]) {
-            
-            [textField endEditing:true];
-            
+        [fieldArr[i] resignFirstResponder];
+        NSString *str = fieldArr[i].text;
+        switch (i) {
+                
+            case 0:
+                if (str.length != 0) {
+                    
+                    nameToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"請輸入使用者姓名"];
+                    
+                }
+                break;
+                
+            case 1:
+                if ([StrValidationFilter birthdayValidationFor:str]) {
+                    
+                    birthdayToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"出生日期格式錯誤"];
+                    
+                }
+                break;
+                
+            case 2:
+                if ([StrValidationFilter idCardNumValidationFor:str]) {
+                    
+                    idCardNumToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"請輸入合法的身分證字號"];
+                    
+                }
+                break;
+                
+            case 3:
+                if ([StrValidationFilter cellPhoneNumValidationFor:str]) {
+                    
+                    cellPhoneNumToken = true;
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"手機號碼格式錯誤"];
+                    
+                }
+                break;
+                
         }
         
     }

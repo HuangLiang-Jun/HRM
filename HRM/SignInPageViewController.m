@@ -28,10 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _emailField.tag = 0;
+    _emailField.tag = 10;
     _emailField.delegate = self;
     
-    _pwdField.tag = 1;
+    _pwdField.tag = 11;
     _pwdField.delegate = self;
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
@@ -58,11 +58,11 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     switch (textField.tag) {
-        case 0:
+        case 10:
             emailToken = false;
             break;
             
-        case 1:
+        case 11:
             pwdToken = false;
             break;
             
@@ -91,7 +91,7 @@
     NSString *str = textField.text;
     switch (textField.tag) {
             
-        case 0:
+        case 10:
             if ([StrValidationFilter emailValidationFor:str]) {
                 
                 emailToken = true;
@@ -108,7 +108,7 @@
             }
             break;
             
-        case 1:
+        case 11:
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 pwdToken = true;
@@ -150,6 +150,7 @@
     NSArray <UITextField *>*fieldArr = @[_emailField, _pwdField];
     for (int i = 0; i < fieldArr.count; i += 1) {
         
+        [fieldArr[i] resignFirstResponder];
         NSString *str = fieldArr[i].text;
         switch (i) {
                 

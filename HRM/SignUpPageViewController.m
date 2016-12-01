@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
 @property (weak, nonatomic) IBOutlet UITextField *reconfirmPWDField;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subviewLayoutContraint;
 
 @end
 
@@ -30,13 +30,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _emailField.tag = 0;
+    _emailField.tag = 10;
     _emailField.delegate = self;
     
-    _pwdField.tag = 1;
+    _pwdField.tag = 11;
     _pwdField.delegate = self;
     
-    _reconfirmPWDField.tag = 2;
+    _reconfirmPWDField.tag = 12;
     _reconfirmPWDField.delegate = self;
     
     FIRUser *user = [[FIRAuth auth] currentUser];
@@ -53,18 +53,19 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     
     switch (textField.tag) {
-        case 0:
+        case 10:
             emailToken = false;
             break;
         
-        case 1:
+        case 11:
             pwdToken = false;
             procedureToken = false;
             break;
         
-        case 2:
+        case 12:
             reconfirmPWDToken = false;
             procedureToken = false;
+            [self animateBeforeReconfirmPWDInputed];
             break;
             
     }
@@ -92,7 +93,7 @@
     NSString *str = textField.text;
     switch (textField.tag) {
             
-        case 0:
+        case 10:
             if ([StrValidationFilter emailValidationFor:str]) {
                 
                 emailToken = true;
@@ -109,7 +110,7 @@
             }
             break;
             
-        case 1:
+        case 11:
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 pwdToken = true;
@@ -138,7 +139,8 @@
             }
             break;
             
-        case 2:
+        case 12:
+            [self animateAfterReconfirmPWDInputed];
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 reconfirmPWDToken = true;
@@ -162,7 +164,7 @@
                 
             } else {
                 
-                [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                [self presentAlertControllerWithInfo:@"比對密碼格式錯誤"];
                 
             }
             break;
@@ -201,16 +203,91 @@
     
 }
 
+- (void)animateBeforeReconfirmPWDInputed {
+    
+    _subviewLayoutContraint.constant = -100.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+    
+}
+
+- (void)animateAfterReconfirmPWDInputed {
+    
+    _subviewLayoutContraint.constant = 0.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+    
+}
+
 #pragma mark - Create User Account Btn Func
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
-    for (UITextField *textField in self.view.subviews) {
+    [self animateAfterReconfirmPWDInputed];
+    NSArray <UITextField *>*fieldArr = @[_emailField, _pwdField, _reconfirmPWDField];
+    for (int i = 0; i < fieldArr.count; i += 1) {
         
-        if ([textField isFirstResponder]) {
-            
-            [textField endEditing:true];
-            
+        [fieldArr[i] resignFirstResponder];
+        NSString *str = fieldArr[i].text;
+        switch (i) {
+                
+            case 0:
+                if ([StrValidationFilter emailValidationFor:str]) {
+                    
+                    emailToken = true;
+                    
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"電子郵件格式錯誤"];
+                    
+                }
+                break;
+                
+            case 1:
+                if ([StrValidationFilter passwordValidationFor:str]) {
+                    
+                    pwdToken = true;
+                    
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                    
+                }
+                break;
+                
+            case 2:
+                if ([StrValidationFilter passwordValidationFor:str]) {
+                    
+                    reconfirmPWDToken = true;
+                    if (emailToken) {
+                        
+                        if ([str isEqualToString:_pwdField.text]) {
+                            
+                            procedureToken = true;
+                            
+                        } else {
+                            
+                            [self presentAlertControllerWithInfo:@"密碼比對失敗"];
+                            
+                        }
+                        
+                    }
+                    
+                } else {
+                    
+                    [self presentAlertControllerWithInfo:@"比對密碼格式錯誤"];
+                    
+                }
+                break;
+                
         }
         
     }
