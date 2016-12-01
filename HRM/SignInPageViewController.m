@@ -18,6 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subviewLayoutContraint;
 
 @end
 
@@ -67,6 +68,11 @@
             break;
             
     }
+    if (_subviewLayoutContraint.constant == 0.0) {
+        
+        [self animateBeforeTextFieldInputed];
+        
+    }
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -87,6 +93,11 @@
 
 - (void)validationDependenceOfTextField:(UITextField *)textField {
     
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterTextFieldInputed];
+        
+    }
     [textField resignFirstResponder];
     NSString *str = textField.text;
     switch (textField.tag) {
@@ -143,10 +154,35 @@
     
 }
 
+- (void)animateBeforeTextFieldInputed {
+    
+    _subviewLayoutContraint.constant = -100.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+}
+
+- (void)animateAfterTextFieldInputed {
+    
+    _subviewLayoutContraint.constant = 0.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+}
+
 #pragma mark - Sign In Btn Func
 
 - (IBAction)signInBtnPressed:(UIButton *)sender {
     
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterTextFieldInputed];
+        
+    }
     NSArray <UITextField *>*fieldArr = @[_emailField, _pwdField];
     for (int i = 0; i < fieldArr.count; i += 1) {
         
@@ -215,6 +251,11 @@
 
 - (IBAction)createNewAccountBtnPressed:(UIButton *)sender {
     
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterTextFieldInputed];
+        
+    }
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
     [self performSegueWithIdentifier:@"SignUpPageSegue" sender:sender];

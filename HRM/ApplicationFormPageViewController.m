@@ -42,10 +42,10 @@
     _calendar.delegate = self;
     _calendar.allowsSelection = false;
     
-    _startTimeField.tag = 0;
+    _startTimeField.tag = 10;
     _startTimeField.delegate = self;
     
-    _endTimeField.tag = 1;
+    _endTimeField.tag = 11;
     _endTimeField.delegate = self;
     
     _timePickerView.dataSource = self;
@@ -66,6 +66,19 @@
     
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    if (self.isMovingFromParentViewController) {
+        
+        if (_subviewLayoutContraint.constant != 0.0 || _contentViewHeightLayoutContraint.constant != 0.0) {
+            
+            [self animateAfterContentInputed];
+            
+        }
+    }
+}
+
 #pragma mark - Application Type Segment Func
 
 - (IBAction)applicationTypeSegment:(UISegmentedControl *)sender {
@@ -82,11 +95,11 @@
     [textField resignFirstResponder];
     switch (textField.tag) {
             
-        case 0:
+        case 10:
             procedureToken = false;
             break;
             
-        case 1:
+        case 11:
             procedureToken = true;
             break;
             
