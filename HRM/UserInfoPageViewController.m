@@ -154,14 +154,15 @@
             break;
             
         case 13:
+            if (cellPhoneNumToken) {
+                
+                [self animateAfterCellphoneNumInputed];
+                
+            }
             if ([StrValidationFilter idCardNumValidationFor:str]) {
                 
                 idCardNumToken = true;
-                if (cellPhoneNumToken) {
-                    
-                    [self animateAfterCellphoneNumInputed];
-                    
-                } else {
+                if (!cellPhoneNumToken) {
                     
                     [self shiftToTheNextOneOfTextField:textField];
                     
