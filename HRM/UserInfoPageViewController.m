@@ -73,6 +73,11 @@
             
         case 11:
             nameToken = false;
+            if (_subviewLayoutContraint.constant != 0.0) {
+                
+                [self animateAfterCellphoneNumInputed];
+                
+            }
             break;
             
         case 12: {
@@ -80,18 +85,31 @@
             birthdayToken = false;
             NSString *dateStr = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
             _birthdayField.text = dateStr;
+            if (_subviewLayoutContraint.constant != 0.0) {
+                
+                [self animateAfterCellphoneNumInputed];
+                
+            }
             break;
             
         }
             
         case 13:
             idCardNumToken = false;
-            [self animateBeforeIDCardNumInputed];
+            if (_subviewLayoutContraint.constant == 0.0) {
+                
+                [self animateBeforeIDCardNumInputed];
+            
+            }
             break;
             
         case 14:
             cellPhoneNumToken = false;
-            [self animateBeforeIDCardNumInputed];
+            if (_subviewLayoutContraint.constant == 0.0) {
+                
+                [self animateBeforeIDCardNumInputed];
+                
+            }
             break;
 
     }
@@ -115,6 +133,11 @@
 
 - (void)validationDependenceOfTextField:(UITextField *)textField {
     
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterCellphoneNumInputed];
+        
+    }
     [textField resignFirstResponder];
     NSString *str = textField.text;
     switch (textField.tag) {
@@ -154,11 +177,6 @@
             break;
             
         case 13:
-            if (cellPhoneNumToken) {
-                
-                [self animateAfterCellphoneNumInputed];
-                
-            }
             if ([StrValidationFilter idCardNumValidationFor:str]) {
                 
                 idCardNumToken = true;
@@ -176,7 +194,6 @@
             break;
             
         case 14:
-            [self animateAfterCellphoneNumInputed];
             if ([StrValidationFilter cellPhoneNumValidationFor:str]) {
                 
                 cellPhoneNumToken = true;
@@ -228,7 +245,6 @@
         [self.view layoutSubviews];
         
     }];
-    
 }
 
 - (void)animateAfterCellphoneNumInputed {
@@ -239,14 +255,17 @@
         [self.view layoutSubviews];
         
     }];
-    
 }
 
 #pragma  mark - Complete Account Creation Btn Func
 
 - (IBAction)completeAccountCreationBtnPressed:(UIButton *)sender {
     
-    [self animateAfterCellphoneNumInputed];
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterCellphoneNumInputed];
+        
+    }
     NSArray <UITextField *>*fieldArr = @[_nameField, _birthdayField, _idCardNumberField, _cellphoneNumberField];
     for (int i = 0; i < fieldArr.count; i += 1) {
         

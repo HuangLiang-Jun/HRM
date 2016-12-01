@@ -39,6 +39,11 @@
     _reconfirmPWDField.tag = 12;
     _reconfirmPWDField.delegate = self;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     FIRUser *user = [[FIRAuth auth] currentUser];
     if (user != nil) {
         
@@ -55,17 +60,31 @@
     switch (textField.tag) {
         case 10:
             emailToken = false;
+            if (_subviewLayoutContraint.constant != 0.0) {
+                
+                [self animateAfterReconfirmPWDInputed];
+                
+            }
             break;
         
         case 11:
             pwdToken = false;
             procedureToken = false;
+            if (_subviewLayoutContraint.constant != 0.0) {
+                
+                [self animateAfterReconfirmPWDInputed];
+                
+            }
             break;
         
         case 12:
             reconfirmPWDToken = false;
             procedureToken = false;
-            [self animateBeforeReconfirmPWDInputed];
+            if (_subviewLayoutContraint.constant == 0.0) {
+            
+                [self animateBeforeReconfirmPWDInputed];
+                
+            }
             break;
             
     }
@@ -89,6 +108,11 @@
 
 - (void)validationDependenceOfTextField:(UITextField *)textField {
     
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterReconfirmPWDInputed];
+        
+    }
     [textField resignFirstResponder];
     NSString *str = textField.text;
     switch (textField.tag) {
@@ -140,7 +164,6 @@
             break;
             
         case 12:
-            [self animateAfterReconfirmPWDInputed];
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
                 reconfirmPWDToken = true;
@@ -211,7 +234,6 @@
         [self.view layoutSubviews];
         
     }];
-    
 }
 
 - (void)animateAfterReconfirmPWDInputed {
@@ -222,14 +244,17 @@
         [self.view layoutSubviews];
         
     }];
-    
 }
 
 #pragma mark - Create User Account Btn Func
 
 - (IBAction)createUserAccountBtnPressed:(UIButton *)sender {
     
-    [self animateAfterReconfirmPWDInputed];
+    if (_subviewLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterReconfirmPWDInputed];
+        
+    }
     NSArray <UITextField *>*fieldArr = @[_emailField, _pwdField, _reconfirmPWDField];
     for (int i = 0; i < fieldArr.count; i += 1) {
         
@@ -301,6 +326,8 @@
         
     }
 }
+
+#pragma mark - Cancel Account Creation Btn Func
 
 - (IBAction)cancelAccountCreationBtnPressed:(UIButton *)sender {
     
