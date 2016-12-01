@@ -378,7 +378,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kx1-UN-VoJ">
-                                            <rect key="frame" x="86" y="3" width="96" height="24"/>
+                                            <rect key="frame" x="79.5" y="3" width="96" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Username">
                                                     <attributes>
@@ -390,7 +390,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kic-cB-0dM">
-                                            <rect key="frame" x="112" y="32.5" width="44" height="24"/>
+                                            <rect key="frame" x="105.5" y="32.5" width="44" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Type">
                                                     <attributes>
@@ -402,7 +402,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SOg-8k-svL">
-                                            <rect key="frame" x="214" y="3" width="41" height="24"/>
+                                            <rect key="frame" x="204.5" y="3" width="41" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="From:">
                                                     <attributes>
@@ -414,7 +414,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kyh-ru-a8s">
-                                            <rect key="frame" x="234.5" y="32.5" width="20.5" height="24"/>
+                                            <rect key="frame" x="225" y="32.5" width="20.5" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="To:">
                                                     <attributes>
@@ -426,7 +426,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qC9-Dt-HWC">
-                                            <rect key="frame" x="267" y="3" width="72" height="24"/>
+                                            <rect key="frame" x="257.5" y="3" width="72" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Start Date">
                                                     <attributes>
@@ -438,7 +438,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uRK-pC-UGZ">
-                                            <rect key="frame" x="267" y="32.5" width="64" height="24"/>
+                                            <rect key="frame" x="257.5" y="32.5" width="64" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="End Date">
                                                     <attributes>
@@ -461,15 +461,15 @@
                                         <constraint firstItem="kx1-UN-VoJ" firstAttribute="height" secondItem="vTt-xT-lae" secondAttribute="height" multiplier="0.5" id="ATX-0F-tRz"/>
                                         <constraint firstItem="vTt-xT-lae" firstAttribute="centerY" secondItem="i30-li-H1w" secondAttribute="centerY" id="J1Q-ZX-m4y"/>
                                         <constraint firstItem="Kic-cB-0dM" firstAttribute="centerY" secondItem="vTt-xT-lae" secondAttribute="centerY" multiplier="1.5" id="L0R-Xm-TOW"/>
+                                        <constraint firstItem="kx1-UN-VoJ" firstAttribute="centerX" secondItem="i30-li-H1w" secondAttribute="centerX" multiplier="0.68" id="NL0-XH-czt"/>
+                                        <constraint firstItem="SOg-8k-svL" firstAttribute="centerX" secondItem="i30-li-H1w" secondAttribute="centerX" multiplier="1.2" id="Q80-yw-Og1"/>
                                         <constraint firstItem="Kic-cB-0dM" firstAttribute="centerX" secondItem="kx1-UN-VoJ" secondAttribute="centerX" id="S5n-Sl-bAx"/>
                                         <constraint firstItem="uRK-pC-UGZ" firstAttribute="height" secondItem="kx1-UN-VoJ" secondAttribute="height" id="S8V-s7-3GJ"/>
                                         <constraint firstItem="kyh-ru-a8s" firstAttribute="centerY" secondItem="Kic-cB-0dM" secondAttribute="centerY" id="WG9-cx-ndA"/>
                                         <constraint firstItem="SOg-8k-svL" firstAttribute="height" secondItem="kx1-UN-VoJ" secondAttribute="height" id="lJS-d3-u02"/>
-                                        <constraint firstItem="kx1-UN-VoJ" firstAttribute="leading" secondItem="vTt-xT-lae" secondAttribute="trailing" constant="32" id="q9r-1g-jxv"/>
                                         <constraint firstItem="SOg-8k-svL" firstAttribute="centerY" secondItem="kx1-UN-VoJ" secondAttribute="centerY" id="up2-2e-5rr"/>
                                         <constraint firstItem="kyh-ru-a8s" firstAttribute="height" secondItem="kx1-UN-VoJ" secondAttribute="height" id="vfG-j9-xRz"/>
                                         <constraint firstItem="qC9-Dt-HWC" firstAttribute="centerY" secondItem="SOg-8k-svL" secondAttribute="centerY" id="wiP-jl-bzm"/>
-                                        <constraint firstItem="SOg-8k-svL" firstAttribute="leading" secondItem="kx1-UN-VoJ" secondAttribute="trailing" constant="32" id="xP5-L8-H5C"/>
                                         <constraint firstItem="Kic-cB-0dM" firstAttribute="height" secondItem="kx1-UN-VoJ" secondAttribute="height" id="xuW-in-R5j"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1635,7 +1635,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F3B-De-xbv">
-                                            <rect key="frame" x="102" y="6" width="44" height="48"/>
+                                            <rect key="frame" x="105.5" y="6" width="44" height="48"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Type">
                                                     <attributes>
@@ -1647,7 +1647,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OZ9-ak-Rxc">
-                                            <rect key="frame" x="194" y="3" width="41" height="24"/>
+                                            <rect key="frame" x="204.5" y="3" width="41" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Form:">
                                                     <attributes>
@@ -1659,7 +1659,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Kn-cw-dWe">
-                                            <rect key="frame" x="214.5" y="32.5" width="20.5" height="24"/>
+                                            <rect key="frame" x="225" y="32.5" width="20.5" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="To:">
                                                     <attributes>
@@ -1671,7 +1671,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7pr-fJ-ZNB">
-                                            <rect key="frame" x="247" y="3" width="72" height="24"/>
+                                            <rect key="frame" x="257.5" y="3" width="72" height="24"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="Start Date">
                                                     <attributes>
@@ -1683,7 +1683,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Alv-nD-d6q">
-                                            <rect key="frame" x="247" y="34" width="64" height="21.5"/>
+                                            <rect key="frame" x="257.5" y="34" width="64" height="21.5"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="End Date">
                                                     <attributes>
@@ -1697,21 +1697,21 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="7pr-fJ-ZNB" firstAttribute="leading" secondItem="OZ9-ak-Rxc" secondAttribute="trailing" constant="12" id="28V-Eu-nUE"/>
-                                        <constraint firstItem="OZ9-ak-Rxc" firstAttribute="leading" secondItem="F3B-De-xbv" secondAttribute="trailing" constant="48" id="2Sz-7t-g6b"/>
                                         <constraint firstItem="OZ9-ak-Rxc" firstAttribute="centerY" secondItem="q2c-ap-5wv" secondAttribute="centerY" multiplier="0.5" id="3lz-1T-Y5p"/>
                                         <constraint firstItem="q2c-ap-5wv" firstAttribute="leading" secondItem="KAk-Ie-6cy" secondAttribute="leading" constant="6" id="EnR-gC-Y3P"/>
                                         <constraint firstItem="0Kn-cw-dWe" firstAttribute="centerY" secondItem="q2c-ap-5wv" secondAttribute="centerY" multiplier="1.5" id="JoZ-t7-dFl"/>
+                                        <constraint firstItem="OZ9-ak-Rxc" firstAttribute="centerX" secondItem="KAk-Ie-6cy" secondAttribute="centerX" multiplier="1.2" id="Ocw-aP-37C"/>
                                         <constraint firstItem="OZ9-ak-Rxc" firstAttribute="height" secondItem="q2c-ap-5wv" secondAttribute="height" multiplier="0.5" id="P6Q-Jz-7f7"/>
                                         <constraint firstItem="F3B-De-xbv" firstAttribute="height" secondItem="q2c-ap-5wv" secondAttribute="height" id="PhI-YB-gqa"/>
                                         <constraint firstItem="0Kn-cw-dWe" firstAttribute="trailing" secondItem="OZ9-ak-Rxc" secondAttribute="trailing" id="SMp-Nh-zxd"/>
                                         <constraint firstItem="q2c-ap-5wv" firstAttribute="centerY" secondItem="KAk-Ie-6cy" secondAttribute="centerY" id="Yjd-gy-Gbm"/>
                                         <constraint firstItem="Alv-nD-d6q" firstAttribute="centerY" secondItem="0Kn-cw-dWe" secondAttribute="centerY" id="cTO-Sg-Oqn"/>
                                         <constraint firstItem="0Kn-cw-dWe" firstAttribute="height" secondItem="OZ9-ak-Rxc" secondAttribute="height" id="d0Y-Yl-G2K"/>
-                                        <constraint firstItem="F3B-De-xbv" firstAttribute="leading" secondItem="q2c-ap-5wv" secondAttribute="trailing" constant="48" id="dDJ-Lb-74M"/>
                                         <constraint firstItem="Alv-nD-d6q" firstAttribute="leading" secondItem="7pr-fJ-ZNB" secondAttribute="leading" id="hs9-jl-tr0"/>
                                         <constraint firstItem="7pr-fJ-ZNB" firstAttribute="centerY" secondItem="OZ9-ak-Rxc" secondAttribute="centerY" id="o9H-iK-gCP"/>
                                         <constraint firstItem="7pr-fJ-ZNB" firstAttribute="height" secondItem="OZ9-ak-Rxc" secondAttribute="height" id="obS-3l-prB"/>
                                         <constraint firstItem="F3B-De-xbv" firstAttribute="centerY" secondItem="q2c-ap-5wv" secondAttribute="centerY" id="t3c-l9-ekm"/>
+                                        <constraint firstItem="F3B-De-xbv" firstAttribute="centerX" secondItem="KAk-Ie-6cy" secondAttribute="centerX" multiplier="0.68" id="zSe-OV-Y4e"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
