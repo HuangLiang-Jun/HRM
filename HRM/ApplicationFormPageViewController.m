@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *timePickerView;
 @property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *inputViewLocConst;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subviewLayoutContraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeightLayoutContraint;
 
 @end
 
@@ -186,12 +188,17 @@
     }];
 }
 
-#pragma mark - Text Field Delegate
+#pragma mark - Text View Delegate
 
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     
     if ([text isEqualToString:@"\n"]) {
         
+        if (_subviewLayoutContraint.constant != 0.0 || _contentViewHeightLayoutContraint.constant != 0.0) {
+            
+            [self animateAfterContentInputed];
+            
+        }
         [textView resignFirstResponder];
         return false;
         
@@ -200,8 +207,51 @@
     
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    
+    if (_subviewLayoutContraint.constant == 0.0 || _contentViewHeightLayoutContraint.constant == 0.0) {
+        
+        [self animateBeforeContentInputed];
+        
+    }
+}
+
+- (void)animateBeforeContentInputed {
+    
+    _subviewLayoutContraint.constant = -460.0;
+    _contentViewHeightLayoutContraint.constant = 240.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+}
+
+- (void)animateAfterContentInputed {
+    
+    _subviewLayoutContraint.constant = 0.0;
+    _contentViewHeightLayoutContraint.constant = 0.0;
+    [UIView animateWithDuration:0.6 animations:^{
+        
+        [self.view layoutSubviews];
+        
+    }];
+}
+
+#pragma mark - Apply Btn Func
+
 - (IBAction)applyBtnPressed:(UIButton *)sender {
     
+    if (_subviewLayoutContraint.constant != 0.0 || _contentViewHeightLayoutContraint.constant != 0.0) {
+        
+        [self animateAfterContentInputed];
+        
+    }
+    if (_contentTextView.isFirstResponder) {
+        
+        [_contentTextView resignFirstResponder];
+        
+    }
     NSString *startDateStr = _startTimeField.text;
     NSString *endDateStr = _endTimeField.text;
     if ([StrValidationFilter applicationDateValidationFor:startDateStr] && [StrValidationFilter applicationDateValidationFor:endDateStr]) {
