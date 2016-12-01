@@ -41,16 +41,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self dateByAddingMonths:1];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ 薪資",_nameStr];
     self.showDate.text = [NSString stringWithFormat:@"2016 年 %lu 月", lastMonth];
-
+    NSLog(@"name:%@",_nameStr);
     localUser = [CurrentUser sharedInstance];
     snapShotDic = [NSMutableDictionary new];
     downloadSalaryDic = [NSMutableDictionary new];
     //下載出勤紀錄的路徑
-    _databaseRef = [[[[[FIRDatabase database]reference]child:@"Attendance"] child:localUser.displayName] child:@"2016-10"];
+    _databaseRef = [[[[[FIRDatabase database]reference]child:@"Attendance"] child:_nameStr] child:@"2016-10"];
     
     //上傳本薪資料到資料庫的路徑
-    updateRef = [[[[[FIRDatabase database]reference]child:@"Salary"]child:localUser.displayName] child:@"2016-10"];
+    updateRef = [[[[[FIRDatabase database]reference]child:@"Salary"]child:_nameStr] child:@"2016-10"];
     
     NSLog(@"ref: %@",_databaseRef);
     totalHours = 176;

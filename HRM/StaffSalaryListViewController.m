@@ -8,7 +8,8 @@
 
 #import "StaffSalaryListViewController.h"
 #import "SalaryListTableViewCell.h"
-
+#import "SalarySums.h"
+#import "StaffSalaryViewController.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -20,30 +21,65 @@
 @implementation StaffSalaryListViewController
 {
     FIRDatabaseReference *staffNameRef;
+    FIRDatabaseReference *staffWorkingHoursRef;
+    
     NSArray *staffName;
+    NSDictionary *staffHours;
+    NSDictionary *staffsSalaryInfo;
+    NSMutableArray *finalSalaryArr;
+    
+    StaffSalaryViewController *detailVC;
+    
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self downLoadStaffWorkingSalaryInfo];
+    finalSalaryArr = [NSMutableArray new];
+
     
-    staffNameRef = [[[FIRDatabase database]reference]child:@"UID"];
+}
+
+- (void) downLoadStaffWorkingSalaryInfo{
+    staffNameRef = [[[FIRDatabase database]reference]child:@"Salary"];
     
     //Get All Staff Name.
     [staffNameRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         //  會有時間差要加loading畫面
         if (snapshot.value != [NSNull null]){
-            NSDictionary *allName = snapshot.value;
+            staffsSalaryInfo = snapshot.value;
             //staffName = [[NSMutableArray alloc] initWithArray:allName.allValues];
-            staffName = allName.allValues;
+            staffName = staffsSalaryInfo.allKeys;
             NSLog(@"snapshotValue: %@",staffName);
+            
+            
+            for (int i = 0; i <staffName.count; i++) {
+                
+                NSDictionary *staffInfo = staffsSalaryInfo[staffName[i]][@"2016-10"];
+                NSLog(@"staff Salary: %@",staffInfo);
+                //NSArray *salary = staffInfo.allValues;
+                //NSLog(@"allValue%@",salary);
+                int insurance = [staffInfo[@"healthInsurance"]intValue] + [staffInfo[@"workerInsurance"]intValue];
+                int totalSalary = [staffInfo[@"monthlysalay"]intValue] + 1000 - insurance ;
+                NSString *tmpStr = [NSString stringWithFormat:@"%i",totalSalary];
+                NSDictionary *tmp = @{@"Name":staffName[i],@"Salary":tmpStr};
+                [finalSalaryArr addObject: tmp];
+            }
+            
+            
             [self.salaryTableView reloadData];
+            
+            
             
         }
         
     }];
     
+    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -54,7 +90,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return staffName.count;
+    return finalSalaryArr.count;
 }
 
 
@@ -62,15 +98,23 @@
     
     SalaryListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-    cell.salaryLabel.text = @"30000";
+    cell.salaryLabel.text = [NSString stringWithFormat:@"%@ 元",finalSalaryArr[indexPath.row][@"Salary"]];
     
-    cell.staffNameLabel.text = staffName[indexPath.row];
+    cell.staffNameLabel.text = finalSalaryArr[indexPath.row][@"Name"];
     
-    
-    cell.basicSalaryLabel.text = @"40000";
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"StaffSalaryViewController"];
+    NSString *nameStr = finalSalaryArr[indexPath.row][@"Name"];
+    detailVC.nameStr = nameStr;
+    [self showViewController:detailVC sender:nil];
+    
+}
+
 /*
  #pragma mark - Navigation
  
