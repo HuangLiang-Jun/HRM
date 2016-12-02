@@ -38,6 +38,11 @@
     [imageView setUserInteractionEnabled:true];
     [imageView addGestureRecognizer:recognizer];
     
+    imageView.layer.cornerRadius = imageView.frame.size.height*0.5;
+    imageView.layer.masksToBounds = true;
+    imageView.layer.borderWidth = 0.0;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    
     UIDatePicker *datePicker = [UIDatePicker new];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.maximumDate = [NSDate date];
