@@ -29,6 +29,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImage *image = [UIImage imageNamed:@"viber.png"];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:image style:UIBarButtonItemStyleDone target:self action:@selector(makePhoneCallToUser)];
+    self.navigationItem.rightBarButtonItem = item;
+    
     [_usernameField setUserInteractionEnabled:false];
     [_typeField setUserInteractionEnabled:false];
     [_fromField setUserInteractionEnabled:false];
@@ -36,6 +40,27 @@
     [_applyDateField setUserInteractionEnabled:false];
     [_contentTextView setUserInteractionEnabled:false];
     
+}
+
+- (void)makePhoneCallToUser {
+    
+    NSString *username = _usernameField.text;
+    FIRDatabaseReference *cellPhoneNumRef = [[[[[[FIRDatabase database] reference] child:@"StaffInformation"] child:username] child:@"Info"] child:@"CellphoneNumber"];
+    [cellPhoneNumRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        
+        if ([snapshot exists]) {
+            
+            NSString *cellPhoneNumStr = snapshot.value;
+            NSString *cellPhoneNumUrlStr = [NSString stringWithFormat:@"tel://%@", cellPhoneNumStr];
+            NSURL *cellPhoneNumUrl = [[NSURL alloc] initWithString:cellPhoneNumUrlStr];
+            UIApplication *application = [UIApplication sharedApplication];
+            if ([application canOpenURL:cellPhoneNumUrl]) {
+                
+                [application openURL:cellPhoneNumUrl options:[NSDictionary new] completionHandler:nil];
+                //                [application openURL:cellPhoneNumUrl];
+            }
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

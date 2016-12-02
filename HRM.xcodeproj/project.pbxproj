@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */; };
+		3A40FB8D1DF154D500DBBE20 /* viber.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A40FB8C1DF154D500DBBE20 /* viber.png */; };
 		3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */; };
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
 		3A80EFD41DEC69E400E605D1 /* SignoffFormPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */; };
@@ -81,6 +82,7 @@
 
 /* Begin PBXFileReference section */
 		3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountManage.storyboard; sourceTree = "<group>"; };
+		3A40FB8C1DF154D500DBBE20 /* viber.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = viber.png; sourceTree = "<group>"; };
 		3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignoffListTableViewController.h; sourceTree = "<group>"; };
 		3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignoffListTableViewController.m; sourceTree = "<group>"; };
 		3A6F3FF91DD1CF0600376501 /* StrValidationFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrValidationFilter.h; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				70E35BFA1DE7C74600CB6702 /* agreeIcon.png */,
+				3A40FB8C1DF154D500DBBE20 /* viber.png */,
 				637246C51DEC0DB800D55887 /* cellBackground116.png */,
 				70E35BF61DE7C73100CB6702 /* refuseIcon.png */,
 				70E35BF81DE7C73D00CB6702 /* cellBackground.png */,
@@ -571,6 +574,7 @@
 				637246C21DEC026100D55887 /* becheckIcon.png in Resources */,
 				70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */,
 				63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */,
+				3A40FB8D1DF154D500DBBE20 /* viber.png in Resources */,
 				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */,
 				3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */,
