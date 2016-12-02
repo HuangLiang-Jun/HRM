@@ -31,12 +31,26 @@
 - (void)loadView {
     [super loadView];
     
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
+    [recognizer setNumberOfTapsRequired:1];
+    
+    UIImageView *imageView = [self.view viewWithTag:10];
+    [imageView setUserInteractionEnabled:true];
+    [imageView addGestureRecognizer:recognizer];
+    
     UIDatePicker *datePicker = [UIDatePicker new];
     datePicker.datePickerMode = UIDatePickerModeDate;
     datePicker.maximumDate = [NSDate date];
     [datePicker addTarget:self action:@selector(updateTextField:) forControlEvents:UIControlEventValueChanged];
     
     [_birthdayField setInputView:datePicker];
+    
+}
+
+-(void)singleTapping:(UIGestureRecognizer *)recognizer {
+    
+    
+    NSLog(@"image clicked");
     
 }
 
