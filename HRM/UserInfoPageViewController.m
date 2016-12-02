@@ -90,6 +90,19 @@
     
 }
 
+#pragma mark - Image Picker Controller Delegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    UIImage *image = info[UIImagePickerControllerEditedImage];
+    
+    UIImageView *imageView = [self.view viewWithTag:10];
+    [imageView setImage:image];
+    
+    [picker dismissViewControllerAnimated:true completion:nil];
+    
+}
+
 #pragma mark - textFieldDelegate
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
