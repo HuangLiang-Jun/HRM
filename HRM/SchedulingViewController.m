@@ -84,7 +84,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     colorForVactionDic = [NSMutableDictionary new];
     attendanceSheetForNextMonthDic = [NSMutableDictionary new];
     shiftTableForDayDict = [NSMutableDictionary new];
-    
+    shiftStatusDict = [NSMutableDictionary new];
     // for collectionView
     firstShiftArr = [NSMutableArray new];
     secondShiftArr = [NSMutableArray new];
@@ -109,8 +109,11 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     //-- Loading Next Month VacationHours --//
     // 下載排班狀況
     FIRDatabaseReference *downloadSchedulingRef = [[[[FIRDatabase database]reference]child:@"Secheduling"]child:[NSDateNSStringExchange stringFromYearAndMonth:nextMonth]];
+    NSLog(@"nextMonths:%@",nextMonth);
     [downloadSchedulingRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        shiftStatusDict = snapshot.value;
+        if (snapshot.value != [NSNull null]){
+            shiftStatusDict = snapshot.value;
+        }
         NSLog(@"dict for scheduling : %@",shiftStatusDict);
         
     }];
@@ -261,7 +264,14 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     secShiftArr = [NSMutableArray new];
     dayOffArr = [NSMutableArray new];
     specialArr = [NSMutableArray new];
-    NSArray *staffNameArr =  shiftStatusDict.allKeys;
+    NSArray *staffNameArr ;
+    if (shiftStatusDict != nil) {
+        
+        staffNameArr =  shiftStatusDict.allKeys;
+        
+    }else{
+        staffNameArr = [NSArray new];
+    }
     
     for (int i = 0; i < staffNameArr.count ; i++) {
         NSString *name = staffNameArr[i];
