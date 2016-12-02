@@ -12,7 +12,7 @@ target 'HRM' do
    pod 'FSCalendar'
    pod 'HMSegmentedControl'
    pod 'AFNetworking'
-   
+   pod 'SVProgressHUD'
   # Pods for HRM
 
 end

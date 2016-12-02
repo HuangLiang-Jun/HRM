@@ -218,6 +218,7 @@
     if (_editStatus) {
         [dataManager refreshInfoData];
     }
+
 }
 
 

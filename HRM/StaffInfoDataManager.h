@@ -11,6 +11,8 @@
 
 @import Firebase;
 @import FirebaseDatabase;
+@import FirebaseStorage;
+
 
 @interface StaffInfoDataManager : NSObject
 
@@ -22,5 +24,6 @@
 -(void) downLoadStaffInfo:(UITableView *)tableView ;
 
 -(void) refreshInfoData;
+
 
 @end

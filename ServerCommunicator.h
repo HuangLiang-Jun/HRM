@@ -22,7 +22,6 @@
 @import Firebase;
 @import FirebaseDatabase;
 
-
 typedef void(^DoneHandler)(NSError *error,id result);
 
 @interface ServerCommunicator : NSObject

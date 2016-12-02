@@ -13,7 +13,7 @@
     UITableView *_tableView;
 }
 
-+(instancetype) sharedInstance{
++ (instancetype) sharedInstance{
     
     static StaffInfoDataManager *_staffInfo;
     static dispatch_once_t onceToken;
@@ -25,7 +25,7 @@
     return _staffInfo;
 }
 
--(void) downLoadStaffInfo:(UITableView *)tableView {
+- (void) downLoadStaffInfo:(UITableView *)tableView {
     
     
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
@@ -43,7 +43,7 @@
     }
 }
 
--(void) refreshInfoData{
+- (void) refreshInfoData{
     
     _editStatus = false;
     
@@ -58,6 +58,26 @@
         
         
     }];
+    
+}
+
+
+- (void) upLoadStaffImage:(NSData *)imageData{
+    
+    FIRStorage *storageRef = [FIRStorage storage];
+    FIRStorageReference *imageRef = [storageRef reference];
+    
+    FIRStorageReference *final = [imageRef child:@"image"];
+    
+    [final putData:imageData metadata:nil completion:
+    ^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+        
+        //...
+        
+        NSString *urlString = metadata.downloadURL.absoluteString;
+        
+    }];
+    
     
 }
 

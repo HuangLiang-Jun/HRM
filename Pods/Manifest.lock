@@ -61,6 +61,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
   - GTMSessionFetcher/Core (1.1.7)
   - HMSegmentedControl (1.5.3)
+  - SVProgressHUD (2.0.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FSCalendar
   - HMSegmentedControl
+  - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -86,7 +88,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
+  SVProgressHUD: bfde85ed6c573ea802b9cb37894ed9b629034f1b
 
-PODFILE CHECKSUM: 17f4aa43a1a8a8f037577e239bfbf6a65fa11e7d
+PODFILE CHECKSUM: 999d064f21a77c6d810de500b479d7611cad588d
 
 COCOAPODS: 1.1.1
