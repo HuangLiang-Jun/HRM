@@ -52,7 +52,7 @@ static ServerCommunicator *_singletonCommunicator = nil;
 
 }
 
-- (void) snedBulletinMessage:(NSString*)title
+- (void) sendBulletinMessage:(NSString*)title
                   completion:(DoneHandler) done{
     
     // Prepare Post ANPS JOb.

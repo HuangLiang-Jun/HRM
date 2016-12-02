@@ -29,6 +29,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>是否使用相簿</string>
+	<key>NSCameraUsageDescription</key>
+	<string>是否使用照相機</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>是否願意提供現在位置?</string>
 	<key>UILaunchStoryboardName</key>

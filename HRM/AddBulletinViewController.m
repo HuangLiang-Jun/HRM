@@ -78,7 +78,7 @@
             NSLog(@"UpdateBulletin Error: %@",error);
         }
         
-        [comm snedBulletinMessage:_setTittleTextField.text
+        [comm sendBulletinMessage:_setTittleTextField.text
                        completion:^(NSError *error, id result) {
                            if (error) {
                                NSLog(@"SendPushTitle is Error : %@",error);

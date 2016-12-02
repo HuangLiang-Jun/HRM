@@ -12,14 +12,16 @@
 #define CELLPHONENUM @"CellphoneNumber"
 
 @interface StaffInfoViewController ()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-@property (weak, nonatomic) IBOutlet UIImageView *staffImageView;
+
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *authSegment;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneTextField;
-@property (weak, nonatomic) IBOutlet UIImageView *cameraImage;
+
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *staffImageView;
 
 @property (nonatomic,assign)BOOL editStatus;
 @end
@@ -65,8 +67,8 @@
     
     
     //將照片變成圓形
-    _imageView.layer.cornerRadius = _imageView.frame.size.width / 2;
-    _imageView.clipsToBounds = true;
+    _staffImageView.layer.cornerRadius = _staffImageView.frame.size.width / 2;
+    _staffImageView.clipsToBounds = true;
     
     
     
@@ -122,9 +124,9 @@
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
     UIImage *image = info[UIImagePickerControllerOriginalImage];
-    UIImage *resizedImage = [self resizeFromImage:image];
+    //UIImage *resizedImage = [self resizeFromImage:image];
     
-    _staffImageView.image = resizedImage;
+    _staffImageView.image = image;
     
     [picker dismissViewControllerAnimated:true completion:nil];
 }
@@ -184,9 +186,13 @@
     _authSegment.enabled = true;
     _cellphoneTextField.enabled = true;
     _staffImageView.userInteractionEnabled = true;
+    
     NSLog(@"edit");
     
 }
+
+
+
 
 -(void) finishEditStaffInfo{
     self.navigationItem.rightBarButtonItem = editBtn;

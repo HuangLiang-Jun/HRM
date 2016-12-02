@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #define GROUP_NAME @"HRManager"
-#define USER_NAME  @"CSLi"
+#define USER_NAME  @"HuangLiangJun"
 
 #define USER_NAME_KEY      @"UserName"
 #define BULLETIN_TITLE_KEY @"Title"
@@ -34,7 +34,7 @@ typedef void(^DoneHandler)(NSError *error,id result);
 - (void) updateDeviceToken: (NSString *)deviceToken
                 completion:(DoneHandler)done;
 
-- (void) snedBulletinMessage:(NSString*)title
+- (void) sendBulletinMessage:(NSString*)title
                   completion:(DoneHandler) done;
 
 - (void) sendNewBulletinToFBDB:(NSDictionary *)bulletin
