@@ -8,54 +8,46 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>FSCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>GTMSessionFetcher.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>GoogleToolboxForMac.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>HMSegmentedControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-HRM.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>043E34FCC4F990C92671E0FF2F9A5839</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1C3436CEA5C3D39764C5F54374794ECB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1D30AE0726BFF4455917F99D607CB15B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>23BA9083ED0D2392A167A8AFA04427FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -65,32 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7891E2B724C54EF58FB1692B34F1455C</key>
+		<key>7D04535608058A2FABC0D16935868FB9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>868010619D7E6CBA5C6E6E2874668C85</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9EF7EF82772FD7CC4AE91974905D0CB1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C052BEBFBD0AB5218CC64BA3450F6547</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C7563D5AE176C43B7EFA77306E3C43C9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<key>CA85DE6409D0829F1747B2389E11E2C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
