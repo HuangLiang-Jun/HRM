@@ -153,8 +153,9 @@
     
     _auth = @0;
     [self updateUserDefaultsWithValue:_auth andKey:@"Auth"];
+    NSDictionary *annualLeave = @{@"2016": @56};
     NSString *dateString = [NSDateNSStringExchange stringFromUpdateDate:[NSDate date]];
-    NSDictionary *userInfoDetail = @{@"Auth": _auth, @"Email": _email, @"Info": (NSDictionary *)userInfo, @"SignUpDate": dateString, @"UID": _uid};
+    NSDictionary *userInfoDetail = @{@"Auth": _auth, @"AnnualLeave": annualLeave,@"Email": _email, @"Info": (NSDictionary *)userInfo, @"SignUpDate": dateString, @"UID": _uid};
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         FIRDatabaseReference *userInfoRef = [[[[FIRDatabase database] reference] child:@"StaffInformation"] child:_displayName];
