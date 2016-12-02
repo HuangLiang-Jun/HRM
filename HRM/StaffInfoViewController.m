@@ -59,6 +59,7 @@
     doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(finishEditStaffInfo)];
     
     self.navigationItem.rightBarButtonItem = editBtn;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,8 +73,22 @@
     _authSegment.enabled = true;
     _cellphoneTextField.enabled = true;
     
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapping:)];
+    [recognizer setNumberOfTapsRequired:1];
+    
+    [_staffImageView setUserInteractionEnabled:true];
+    [_staffImageView addGestureRecognizer:recognizer];
+
+    
     NSLog(@"edit");
 
+}
+
+-(void)singleTapping:(UIGestureRecognizer *)recognizer {
+    
+    
+    NSLog(@"image clicked");
+    
 }
 
 -(void) finishEditStaffInfo{
