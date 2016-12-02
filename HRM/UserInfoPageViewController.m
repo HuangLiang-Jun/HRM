@@ -10,7 +10,7 @@
 #import "StrValidationFilter.h"
 #import "CurrentUser.h"
 
-@interface UserInfoPageViewController () <UITextFieldDelegate> {
+@interface UserInfoPageViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate> {
     
     BOOL nameToken, birthdayToken, idCardNumToken, cellPhoneNumToken;
     
@@ -49,9 +49,20 @@
 
 -(void)singleTapping:(UIGestureRecognizer *)recognizer {
     
-    
-    NSLog(@"image clicked");
-    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        UIImagePickerController *imagePickerC = [UIImagePickerController new];
+        imagePickerC.delegate = self;
+        imagePickerC.allowsEditing = true;
+        imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
+        [self presentViewController:imagePickerC animated:true completion:nil];
+        
+    } else {
+        
+        [self presentAlertControllerWithInfo:@"此裝置上偵測不到相機"];
+        
+    }
 }
 
 - (void)viewDidLoad {
