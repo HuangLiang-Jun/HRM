@@ -23,6 +23,8 @@
     // Override point for customization after application launch.
     
     [FIRApp configure];
+    [[FIRDatabase database] persistenceEnabled];
+    
     [CurrentUser sharedInstance];
     
     // APNS Ask user's permission(詢問使用者是否同意推播通知)雖然建議使用ios10的新方法 但目前為了支援舊版本所以繼續使用就方法

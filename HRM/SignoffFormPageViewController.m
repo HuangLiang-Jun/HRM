@@ -8,9 +8,15 @@
 
 #import "SignoffFormPageViewController.h"
 #import "SignoffListTableViewController.h"
+
 #import "CurrentUser.h"
 
-@interface SignoffFormPageViewController ()
+
+@interface SignoffFormPageViewController () {
+    
+    NSURL *_cellPhoneNumUrl;
+    
+}
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *typeField;
@@ -34,33 +40,27 @@
     self.navigationItem.rightBarButtonItem = item;
     
     [_usernameField setUserInteractionEnabled:false];
+    
     [_typeField setUserInteractionEnabled:false];
+    
     [_fromField setUserInteractionEnabled:false];
+    
     [_toField setUserInteractionEnabled:false];
+    
     [_applyDateField setUserInteractionEnabled:false];
+    
     [_contentTextView setUserInteractionEnabled:false];
     
 }
 
 - (void)makePhoneCallToUser {
     
-    NSString *username = _usernameField.text;
-    FIRDatabaseReference *cellPhoneNumRef = [[[[[[FIRDatabase database] reference] child:@"StaffInformation"] child:username] child:@"Info"] child:@"CellphoneNumber"];
-    [cellPhoneNumRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    UIApplication *application = [UIApplication sharedApplication];
+    if ([application canOpenURL:_cellPhoneNumUrl]) {
         
-        if ([snapshot exists]) {
-            
-            NSString *cellPhoneNumStr = snapshot.value;
-            NSString *cellPhoneNumUrlStr = [NSString stringWithFormat:@"tel://%@", cellPhoneNumStr];
-            NSURL *cellPhoneNumUrl = [[NSURL alloc] initWithString:cellPhoneNumUrlStr];
-            UIApplication *application = [UIApplication sharedApplication];
-            if ([application canOpenURL:cellPhoneNumUrl]) {
-                
-                [application openURL:cellPhoneNumUrl options:[NSDictionary new] completionHandler:nil];
-                //                [application openURL:cellPhoneNumUrl];
-            }
-        }
-    }];
+        [application openURL:_cellPhoneNumUrl options:[NSDictionary new] completionHandler:nil];
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -78,6 +78,21 @@
     
     NSString *usernameStr = subNewApplyDateStr.lastObject;
     _usernameField.text = usernameStr;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRDatabaseReference *cellPhoneNumRef = [[[[[[FIRDatabase database] reference] child:@"StaffInformation"] child:usernameStr] child:@"Info"] child:@"CellphoneNumber"];
+        [cellPhoneNumRef observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
+            if ([snapshot exists]) {
+                
+                NSString *cellPhoneNumStr = snapshot.value;
+                NSString *cellPhoneNumUrlStr = [NSString stringWithFormat:@"tel://%@", cellPhoneNumStr];
+                _cellPhoneNumUrl = [[NSURL alloc] initWithString:cellPhoneNumUrlStr];
+                
+            }
+        }];
+    });
     
     NSDictionary *infoDict = [signoffFormDict allValues].firstObject;
     
