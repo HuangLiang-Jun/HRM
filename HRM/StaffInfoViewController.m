@@ -80,7 +80,11 @@
     if (staffImage != nil){
         _staffImageView.image = staffImage;
     } else {
-        _staffImageView.image = [UIImage imageNamed:@"head.png"];
+        if ([ _nameStr isEqualToString:@"李家舜"]){
+            _staffImageView.image = [UIImage imageNamed:@"Li.png"];
+        }else{
+            _staffImageView.image = [UIImage imageNamed:@"head.png"];
+        }
     }
 }
 

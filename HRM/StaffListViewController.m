@@ -55,15 +55,16 @@
     NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:staffDataManager.allStaffInfoDict.allKeys[indexPath.row]];
     UIImage *staffImage = [UIImage imageWithData:imdata];
     if (staffImage != nil){
-       
+        cell.staffImageView.image = staffImage;
+        
+    } else {
         if ([staffDataManager.allStaffInfoDict.allKeys[indexPath.row] isEqualToString:@"李家舜"] && staffDataManager.imageStatus == false){
             cell.staffImageView.image = [UIImage imageNamed:@"Li.png"];
         }else{
-            cell.staffImageView.image = staffImage;
+            cell.staffImageView.image = [UIImage imageNamed:@"head.png"];
         }
         
-    } else {
-        cell.staffImageView.image = [UIImage imageNamed:@"head.png"];
+        
     }
     
     return cell;
@@ -87,7 +88,7 @@
     
     if (staffDataManager.editStatus || staffDataManager.imageStatus) {
         [_staffListTableView reloadData];
-    
+        
         staffDataManager.imageStatus = false;
     }
     
