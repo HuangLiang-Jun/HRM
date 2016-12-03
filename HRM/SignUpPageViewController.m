@@ -10,6 +10,8 @@
 #import "StrValidationFilter.h"
 #import "CurrentUser.h"
 
+#import <SVProgressHUD/SVProgressHUD.h>
+
 @interface SignUpPageViewController () <UITextFieldDelegate> {
     
     BOOL procedureToken, emailToken, pwdToken, reconfirmPWDToken;
@@ -321,10 +323,33 @@
         CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
         localUser.password = _pwdField.text;
+        
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector:@selector(segueToUserInfoPage) name:@"UserAccountCreated" object:nil];
+        
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+        
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+        [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+        [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+        [SVProgressHUD setForegroundColor:[UIColor darkGrayColor]];
+        [SVProgressHUD setRingThickness:4.0];
+        
+        [SVProgressHUD show];
+        
         [localUser createUserAccount];
-        [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:sender];
         
     }
+}
+
+- (void)segueToUserInfoPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"UserAccountCreated" object:nil];
+    
+    [SVProgressHUD dismiss];
+    
+    [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:nil];
 }
 
 #pragma mark - Cancel Account Creation Btn Func

@@ -152,6 +152,8 @@
             [self updateUserDefaultsWithValue:_password andKey:@"Password"];
             _uid = user.uid;
             [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
+            NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+            [notificationCenter postNotificationName:@"UserAccountCreated" object:nil];
             
         } else {
             
