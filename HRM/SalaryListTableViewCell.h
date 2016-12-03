@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SalaryListTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *staffImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *staffNameLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *salaryLabel;

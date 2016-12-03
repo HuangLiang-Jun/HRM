@@ -9,7 +9,7 @@
 #import "SupervisorHomePageViewController.h"
 #import "SearchClassViewController.h"
 #import "CurrentUser.h"
-
+#import "ServerCommunicator.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface SupervisorHomePageViewController ()
@@ -37,6 +37,19 @@
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
     [localUser downloadAppcationList];
+    
+    // Update DeviceToken to Server
+    ServerCommunicator *comm = [ServerCommunicator shareInstance];
+    [comm updateDeviceToken:^(NSError *error, id result) {
+        
+        if (error){
+            
+            NSLog(@"update DeviceToken is fail: %@",error);
+            
+        }
+        
+    }];
+
     
 }
 
