@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #define GROUP_NAME @"HRManager"
-#define USER_NAME  @"HuangLiangJun"
+//#define USER_NAME  @"HuangLiangJun"
 
 #define USER_NAME_KEY      @"UserName"
 #define BULLETIN_TITLE_KEY @"Title"

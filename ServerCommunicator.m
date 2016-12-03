@@ -10,7 +10,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CurrentUser.h"
 
-#define BASE_URL @"http://192.168.196.156:8888/apnsphp"
+//#define BASE_URL @"http://192.168.196.156:8888/apnsphp"
+#define BASE_URL @"http://103.17.8.124/food/apnsphp"
 
 #define SENDMESSAGE_URL [BASE_URL stringByAppendingPathComponent:@"sendMessage.php"]
 
