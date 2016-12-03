@@ -8,6 +8,7 @@
 
 #import "EmployeeHomePageViewController.h"
 #import "CurrentUser.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface EmployeeHomePageViewController ()
 
@@ -21,6 +22,17 @@
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(segueToApplicationPage) name:@"ApplicationListDownloaded" object:nil];
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD setForegroundColor:[UIColor darkGrayColor]];
+    [SVProgressHUD setRingThickness:4.0];
+    
+    [SVProgressHUD show];
+    
     CurrentUser *localUser = [CurrentUser sharedInstance];
     [localUser downloadAppcationList];
     
@@ -30,6 +42,9 @@
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
+    
+    [SVProgressHUD dismiss];
+    
     [self performSegueWithIdentifier:@"ApplicationListPageSegue" sender:nil];
     
 }

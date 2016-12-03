@@ -9,6 +9,7 @@
 #import "SignInPageViewController.h"
 #import "StrValidationFilter.h"
 #import "CurrentUser.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface SignInPageViewController () <UITextFieldDelegate> {
     
@@ -40,6 +41,17 @@
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+        
+        [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+        [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+        [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+        [SVProgressHUD setForegroundColor:[UIColor darkGrayColor]];
+        [SVProgressHUD setRingThickness:4.0];
+        
+        [SVProgressHUD show];
+        
         [localUser signInUserAccount];
         
     }
@@ -221,12 +233,13 @@
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        
+        [SVProgressHUD show];
+        
         CurrentUser *localUser = [CurrentUser sharedInstance];
         localUser.email = _emailField.text;
         localUser.password = _pwdField.text;
         [localUser signInUserAccount];
-        
-        
 
     }
 }
@@ -235,6 +248,9 @@
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
+    
+    [SVProgressHUD dismiss];
+    
     CurrentUser *localUser = [CurrentUser sharedInstance];
     switch (localUser.auth.intValue) {
             
