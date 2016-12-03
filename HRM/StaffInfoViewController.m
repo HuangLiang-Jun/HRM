@@ -8,6 +8,7 @@
 
 #import "StaffInfoViewController.h"
 #import "StaffInfoDataManager.h"
+#import "CurrentUser.h"
 
 #define CELLPHONENUM @"CellphoneNumber"
 
@@ -72,6 +73,13 @@
     _staffImageView.layer.borderWidth = 0.0;
     _staffImageView.contentMode = UIViewContentModeScaleAspectFit;
     
+    NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:_nameStr];
+    UIImage *staffImage = [UIImage imageWithData:imdata];
+    if (staffImage != nil){
+        _staffImageView.image = staffImage;
+    } else {
+        _staffImageView.image = [UIImage imageNamed:@"head.png"];
+    }
 }
 
 #pragma - mark Camera
@@ -112,7 +120,8 @@
     UIImagePickerController *picker = [UIImagePickerController new];
     
     picker.sourceType = sourceType ;
-    
+    picker.delegate =self;
+    picker.allowsEditing = true;
     //picker.mediaTypes = @[@"public.image",@"public.movie"];
     picker.mediaTypes = @[@"public.image"];
     
@@ -124,10 +133,15 @@
 
 -(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImage *image = info[UIImagePickerControllerEditedImage];
     //UIImage *resizedImage = [self resizeFromImage:image];
     
     _staffImageView.image = image;
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    NSData *data = UIImageJPEGRepresentation(image,1.0);
+    [localUser updateUserDefaultsWithValue:data andKey:_nameStr];
+    
+    
     NSLog(@"有換照片");
     [picker dismissViewControllerAnimated:true completion:nil];
 }
@@ -221,7 +235,7 @@
     if (_editStatus) {
         [dataManager refreshInfoData];
     }
-
+    
 }
 
 
