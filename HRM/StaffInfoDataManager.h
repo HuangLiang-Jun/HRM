@@ -13,6 +13,7 @@
 @import FirebaseDatabase;
 @import FirebaseStorage;
 
+typedef void(^Completion)(FIRStorageMetadata *metadata, NSError *error);
 
 @interface StaffInfoDataManager : NSObject
 
@@ -25,5 +26,6 @@
 
 -(void) refreshInfoData;
 
+- (void) upLoadStaffImage:(NSData *)imageData withBlock:(Completion)block;
 
 @end

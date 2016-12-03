@@ -7,7 +7,7 @@
 //
 
 #import "CurrentUser.h"
-
+#import "ServerCommunicator.h"
 @implementation CurrentUser
 
 #pragma mark - Current User Singleton
@@ -94,6 +94,17 @@
             _uid = user.uid;
             [self updateUserDefaultsWithValue:_uid andKey:@"UID"];
             [self downloadUserInfoForm:user];
+            
+        
+            // Update DeviceToken to Server
+            ServerCommunicator *comm = [ServerCommunicator shareInstance];
+            
+            [comm updateDeviceToken:^(NSError *error, id result) {
+                
+                if (error){
+                    NSLog(@"update DeviceToken is fail: %@",error);
+                }
+            }];
             
         } else {
             

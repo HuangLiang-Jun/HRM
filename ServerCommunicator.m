@@ -8,8 +8,9 @@
 
 #import "ServerCommunicator.h"
 #import <AFNetworking/AFNetworking.h>
+#import "CurrentUser.h"
 
-#define BASE_URL @"http://10.0.1.7:8888/apnsphp"
+#define BASE_URL @"http://192.168.196.156:8888/apnsphp"
 
 #define SENDMESSAGE_URL [BASE_URL stringByAppendingPathComponent:@"sendMessage.php"]
 
@@ -37,18 +38,24 @@ static ServerCommunicator *_singletonCommunicator = nil;
 /**
  Update Device's DeviceToken to Server
  
- @param deviceToken NSString: DeviceToken which is String format.
+
  @param done        DoneHandler: Done Block will be executed when job is done.
  */
-- (void) updateDeviceToken:(NSString *)deviceToken completion:(DoneHandler)done{
+- (void) updateDeviceToken:(DoneHandler)done{
 
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    if (localUser.deviceToken != nil) {
     // Prepare parameters
-    NSDictionary *parameters = @{USER_NAME_KEY:USER_NAME,DEVICETOKEN_KEY:deviceToken,GROUP_NAME_KEY:GROUP_NAME};
+    NSDictionary *parameters = @{USER_NAME_KEY:localUser.displayName,DEVICETOKEN_KEY:localUser.deviceToken,GROUP_NAME_KEY:GROUP_NAME};
     
     // Do Post Job
     [self doPostJobWithURLString:UPDATEDEVICETOKEN_URL
                       parameters:parameters
                       completion:done];
+        
+    }else {
+        NSLog(@"DeviceToken is nil");
+    }
 
 }
 

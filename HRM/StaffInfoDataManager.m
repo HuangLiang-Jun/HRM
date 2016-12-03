@@ -62,7 +62,7 @@
 }
 
 
-- (void) upLoadStaffImage:(NSData *)imageData{
+- (void) upLoadStaffImage:(NSData *)imageData withBlock:(Completion)block {
     
     FIRStorage *storageRef = [FIRStorage storage];
     FIRStorageReference *imageRef = [storageRef reference];
@@ -72,12 +72,9 @@
     [final putData:imageData metadata:nil completion:
     ^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
         
-        //...
-        
-        NSString *urlString = metadata.downloadURL.absoluteString;
+        block(metadata,error);
         
     }];
-    
     
 }
 

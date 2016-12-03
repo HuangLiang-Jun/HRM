@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CurrentUser.h"
 #import "ServerCommunicator.h"
+#import "CurrentUser.h"
 @import Firebase;
 
 @interface AppDelegate ()
@@ -36,6 +37,7 @@
 
 // 負責傳回deviceToken結果的
 - (void) application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
     NSLog(@"DeviceToken: %@",deviceToken.description);
     // 取代字串 拿到符合我們要的格式
     // <44928c24 f650074e ee268ffc 47ffcca1 82e2ca7e 68ae29f1 a2849f64 ce4459ec>
@@ -46,24 +48,10 @@
     finalDeviceToken = [finalDeviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     NSLog(@"finalDeviceToken: %@",finalDeviceToken);
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    localUser.deviceToken = finalDeviceToken;
     
-    // Update DeviceToken to Server
-    ServerCommunicator *comm = [ServerCommunicator shareInstance];
-    
-    [comm updateDeviceToken:finalDeviceToken
-                 completion:^(NSError *error, id result) {
-                     
-                     if (error) {
-                         NSLog(@"updateDeviceToken fail : %@",error);
-                         return ;
-                         
-                     }
-                     
-                     NSLog(@"updateDeviceToken OK : %@",[result description]);
-                     
-                 }];
-    
-}
+    }
 
 -(void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
     

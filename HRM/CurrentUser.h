@@ -14,6 +14,7 @@
 
 @interface CurrentUser : NSObject
 
+@property (strong, nonatomic) NSString *deviceToken;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *password;
 @property (strong, nonatomic) NSString *uid;

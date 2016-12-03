@@ -67,10 +67,10 @@
     
     
     //將照片變成圓形
-    _staffImageView.layer.cornerRadius = _staffImageView.frame.size.width / 2;
-    _staffImageView.clipsToBounds = true;
-    
-    
+    _staffImageView.layer.cornerRadius = _staffImageView.frame.size.height *0.5;
+    _staffImageView.layer.masksToBounds = true;
+    _staffImageView.layer.borderWidth = 0.0;
+    _staffImageView.contentMode = UIViewContentModeScaleAspectFit;
     
 }
 
@@ -112,6 +112,7 @@
     UIImagePickerController *picker = [UIImagePickerController new];
     
     picker.sourceType = sourceType ;
+    
     //picker.mediaTypes = @[@"public.image",@"public.movie"];
     picker.mediaTypes = @[@"public.image"];
     
@@ -127,12 +128,12 @@
     //UIImage *resizedImage = [self resizeFromImage:image];
     
     _staffImageView.image = image;
-    
+    NSLog(@"有換照片");
     [picker dismissViewControllerAnimated:true completion:nil];
 }
 
 
-// 縮圖
+// 縮圖 這是正方形size..
 -(UIImage *) resizeFromImage:(UIImage *)sourceImage{
     CGFloat maxLength = 1024.0;
     CGSize targetSize;
@@ -199,6 +200,8 @@
     _authSegment.enabled = false;
     _cellphoneTextField.enabled = false;
     NSLog(@"Done");
+    
+    
     
     if (auth != _authSegment.selectedSegmentIndex) {
         NSLog(@"authChange %lu",_authSegment.selectedSegmentIndex);

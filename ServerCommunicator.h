@@ -30,8 +30,7 @@ typedef void(^DoneHandler)(NSError *error,id result);
 
 + (instancetype) shareInstance;
 
-- (void) updateDeviceToken: (NSString *)deviceToken
-                completion:(DoneHandler)done;
+- (void) updateDeviceToken:(DoneHandler)done;
 
 - (void) sendBulletinMessage:(NSString*)title
                   completion:(DoneHandler) done;
