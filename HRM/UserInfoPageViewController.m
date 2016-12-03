@@ -400,10 +400,12 @@
         [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
         NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Birthday": _birthdayField.text, @"IDCardNumber": _idCardNumberField.text, @"CellphoneNumber": _cellphoneNumberField.text}];
         
+        [localUser uploadUserInfoWithDict:userInfo];
+        
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(completeAccountCreation) name:@"UserSignedOut" object:nil];
         
-        [localUser uploadUserInfoWithDict:userInfo];
+        [localUser signOutUserAccount];
         
     }
 }
