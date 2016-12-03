@@ -54,20 +54,46 @@
 
 -(void)singleTapping:(UIGestureRecognizer *)recognizer {
     
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    UIAlertController *alert =  [UIAlertController alertControllerWithTitle:@"請選擇照片" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *camera = [UIAlertAction actionWithTitle:@"相機" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self launchImagePickerWithSourceType:UIImagePickerControllerSourceTypeCamera];
+    }];
+    
+    UIAlertAction *library = [UIAlertAction actionWithTitle:@"從相簿中選擇" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self launchImagePickerWithSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    }];
+    
+    UIAlertAction *Cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    
+    [alert addAction:camera];
+    [alert addAction:library];
+    [alert addAction:Cancel];
+    
+    [self presentViewController:alert animated:true completion:nil];
+    
+}
+
+-(void) launchImagePickerWithSourceType:(UIImagePickerControllerSourceType)sourceType{
+    
+    if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         
         UIImagePickerController *imagePickerC = [UIImagePickerController new];
+        
         imagePickerC.delegate = self;
         imagePickerC.allowsEditing = true;
-        imagePickerC.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePickerC.sourceType = sourceType;
         
         [self presentViewController:imagePickerC animated:true completion:nil];
         
     } else {
         
-        [self presentAlertControllerWithInfo:@"此裝置上偵測不到相機"];
+        [self presentAlertControllerWithInfo:@"此裝置上找不到該選項"];
         
     }
+    
 }
 
 - (void)viewDidLoad {
@@ -374,10 +400,10 @@
         [localUser updateUserDefaultsWithValue:localUser.displayName andKey:@"DisplayName"];
         NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:@{@"Birthday": _birthdayField.text, @"IDCardNumber": _idCardNumberField.text, @"CellphoneNumber": _cellphoneNumberField.text}];
         
-        [localUser uploadUserInfoWithDict:userInfo];
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         [notificationCenter addObserver:self selector:@selector(completeAccountCreation) name:@"UserSignedOut" object:nil];
-        [localUser signOutUserAccount];
+        
+        [localUser uploadUserInfoWithDict:userInfo];
         
     }
 }
