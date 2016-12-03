@@ -42,7 +42,9 @@
     [super viewDidLoad];
     _editStatus = false;
     
+    
     dataManager = [StaffInfoDataManager sharedInstance];
+    dataManager.imageStatus = false;
     updateInfoRef = [[[[[FIRDatabase database]reference]child:@"StaffInformation"]child:_nameStr]child:@"Info"];
     updateAuthRef =[[[[FIRDatabase database]reference]child:@"StaffInformation"]child:_nameStr];
     NSLog(@"staffDetail:%@",_staffInfoDict);
@@ -142,7 +144,7 @@
     [localUser updateUserDefaultsWithValue:data andKey:_nameStr];
     
     
-    NSLog(@"有換照片");
+    dataManager.imageStatus = true;
     [picker dismissViewControllerAnimated:true completion:nil];
 }
 

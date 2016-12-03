@@ -19,6 +19,7 @@ typedef void(^Completion)(FIRStorageMetadata *metadata, NSError *error);
 
 @property (nonatomic,strong) NSMutableDictionary *allStaffInfoDict;
 @property (nonatomic,assign) BOOL editStatus;
+@property (nonatomic,assign) BOOL imageStatus;
 
 +(instancetype) sharedInstance;
 

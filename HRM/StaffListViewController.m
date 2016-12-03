@@ -26,6 +26,9 @@
     // Do any additional setup after loading the view.
     staffDataManager = [StaffInfoDataManager sharedInstance];
     [staffDataManager downLoadStaffInfo:_staffListTableView ];
+    
+    staffDataManager.imageStatus = false;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,7 +49,22 @@
     
     //下載需要時間 所以要做Loading畫面..
     
+    
     cell.nameLabel.text = staffDataManager.allStaffInfoDict.allKeys[indexPath.row];
+    
+    NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:staffDataManager.allStaffInfoDict.allKeys[indexPath.row]];
+    UIImage *staffImage = [UIImage imageWithData:imdata];
+    if (staffImage != nil){
+       
+        if ([staffDataManager.allStaffInfoDict.allKeys[indexPath.row] isEqualToString:@"李家舜"] && staffDataManager.imageStatus == false){
+            cell.staffImageView.image = [UIImage imageNamed:@"Li.png"];
+        }else{
+            cell.staffImageView.image = staffImage;
+        }
+        
+    } else {
+        cell.staffImageView.image = [UIImage imageNamed:@"head.png"];
+    }
     
     return cell;
 }
@@ -67,8 +85,10 @@
     
     [super viewWillAppear:animated];
     
-    if (staffDataManager.editStatus) {
+    if (staffDataManager.editStatus || staffDataManager.imageStatus) {
         [_staffListTableView reloadData];
+    
+        staffDataManager.imageStatus = false;
     }
     
 }

@@ -12,4 +12,5 @@
 @property (nonatomic,strong) NSMutableDictionary *staffInfoDict;
 @property (nonatomic,strong) NSString *nameStr;
 
+
 @end
