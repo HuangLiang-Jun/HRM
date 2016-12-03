@@ -27,31 +27,36 @@
     UIImage *backgroundImage = [UIImage imageNamed:@"backgroundGreen.png"];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.tableView.backgroundView = backgroundImageView;
-    
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
-    refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        if ([snapshot exists]) {
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
+        refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
-            NSString *snapshotApplyDateStr = snapshot.key;
-            for (long long i = 0; i < localUser.applicationList.count; i += 1) {
+            if ([snapshot exists]) {
                 
-                NSDictionary *applicationDict = localUser.applicationList[i];
-                NSString *applyDateStr = [applicationDict allKeys].firstObject;
-                if ([applyDateStr isEqualToString:snapshotApplyDateStr]) {
+                NSString *snapshotApplyDateStr = snapshot.key;
+                for (long long i = 0; i < localUser.applicationList.count; i += 1) {
                     
-                    NSDictionary *snapshotInfoDict = snapshot.value;
-                    applicationDict = @{snapshotApplyDateStr: snapshotInfoDict};
-                    [localUser.applicationList replaceObjectAtIndex:i withObject:applicationDict];
+                    NSDictionary *applicationDict = localUser.applicationList[i];
+                    NSString *applyDateStr = [applicationDict allKeys].firstObject;
+                    if ([applyDateStr isEqualToString:snapshotApplyDateStr]) {
+                        
+                        NSDictionary *snapshotInfoDict = snapshot.value;
+                        applicationDict = @{snapshotApplyDateStr: snapshotInfoDict};
+                        [localUser.applicationList replaceObjectAtIndex:i withObject:applicationDict];
+                        
+                    }
                     
                 }
-                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.tableView reloadData];
+                    
+                });
             }
-            [self.tableView reloadData];
-            
-        }
-    }];
+        }];
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {

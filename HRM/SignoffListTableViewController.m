@@ -28,38 +28,48 @@
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.tableView.backgroundView = backgroundImageView;
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
-    refAddedHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        if ([snapshot exists]) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        CurrentUser *localUser = [CurrentUser sharedInstance];
+        FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
+        refAddedHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
-            NSString *newApplyDateStr = snapshot.key;
-            NSDictionary *infoDict = snapshot.value;
-            NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
-            if (![localUser.applicationList containsObject:signoffFormDict]) {
+            if ([snapshot exists]) {
                 
-                [localUser.applicationList insertObject:signoffFormDict atIndex:0];
-                [self.tableView reloadData];
+                NSString *newApplyDateStr = snapshot.key;
+                NSDictionary *infoDict = snapshot.value;
+                NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+                if (![localUser.applicationList containsObject:signoffFormDict]) {
+                    
+                    [localUser.applicationList insertObject:signoffFormDict atIndex:0];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        
+                        [self.tableView reloadData];
+                        
+                    });
+                    
+                }
                 
             }
             
-        }
+        }];
         
-    }];
-
-    refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-        
-        if ([snapshot exists]) {
+        refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
-            NSString *newApplyDateStr = snapshot.key;
-            NSDictionary *infoDict = snapshot.value;
-            NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
-            [localUser.applicationList removeObject:signoffFormDict];
-            [self.tableView reloadData];
-            
-        }
-    }];
+            if ([snapshot exists]) {
+                
+                NSString *newApplyDateStr = snapshot.key;
+                NSDictionary *infoDict = snapshot.value;
+                NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+                [localUser.applicationList removeObject:signoffFormDict];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [self.tableView reloadData];
+                    
+                });
+                
+            }
+        }];
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
