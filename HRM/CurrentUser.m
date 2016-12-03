@@ -358,9 +358,7 @@
                 NSLog(@"Error (Sign Off Sign Off Form): %@", error);
                 
             }
-            
         }];
-        
         
         NSArray<NSString *> *subNewApplyDateStr = [newApplyDateStr componentsSeparatedByString:@"@"];
         NSString *applyDateStr = subNewApplyDateStr.firstObject;

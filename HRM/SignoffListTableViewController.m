@@ -11,7 +11,7 @@
 
 @interface SignoffListTableViewController () {
     
-    FIRDatabaseHandle refAddedHandle, refRemovedHandle;
+    FIRDatabaseHandle _refAddedHandle, _refRemovedHandle;
     
 }
 
@@ -29,9 +29,11 @@
     self.tableView.backgroundView = backgroundImageView;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
         CurrentUser *localUser = [CurrentUser sharedInstance];
+        
         FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
-        refAddedHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        _refAddedHandle = [ref observeEventType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if ([snapshot exists]) {
                 
@@ -43,30 +45,29 @@
                     [localUser.applicationList insertObject:signoffFormDict atIndex:0];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         
-                        [self.tableView reloadData];
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                         
                     });
-                    
                 }
-                
             }
-            
         }];
         
-        refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        _refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if ([snapshot exists]) {
                 
                 NSString *newApplyDateStr = snapshot.key;
                 NSDictionary *infoDict = snapshot.value;
                 NSDictionary *signoffFormDict = @{newApplyDateStr: infoDict};
+                long long row = [localUser.applicationList indexOfObject:signoffFormDict];
                 [localUser.applicationList removeObject:signoffFormDict];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
-                    [self.tableView reloadData];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+                    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                     
                 });
-                
             }
         }];
     });
@@ -85,8 +86,8 @@
     if (self.isMovingFromParentViewController == true) {
         
         FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
-        [ref removeObserverWithHandle:refAddedHandle];
-        [ref removeObserverWithHandle:refRemovedHandle];
+        [ref removeObserverWithHandle:_refAddedHandle];
+        [ref removeObserverWithHandle:_refRemovedHandle];
         
     }
 }
