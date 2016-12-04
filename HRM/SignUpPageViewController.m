@@ -325,7 +325,9 @@
         localUser.password = _pwdField.text;
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        
         [notificationCenter addObserver:self selector:@selector(segueToUserInfoPage) name:@"UserAccountCreated" object:nil];
+        [notificationCenter addObserver:self selector:@selector(errHandler:) name:@"AccountCreationErr" object:nil];
         
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
         
@@ -345,11 +347,14 @@
 - (void)segueToUserInfoPage {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
     [notificationCenter removeObserver:self name:@"UserAccountCreated" object:nil];
+    [notificationCenter removeObserver:self name:@"AccountCreationErr" object:nil];
     
     [SVProgressHUD dismiss];
     
     [self performSegueWithIdentifier:@"UserInfoPageSegue" sender:nil];
+    
 }
 
 #pragma mark - Cancel Account Creation Btn Func
@@ -357,6 +362,24 @@
 - (IBAction)cancelAccountCreationBtnPressed:(UIButton *)sender {
     
     [self.presentingViewController dismissViewControllerAnimated:true completion:nil];
+    
+}
+
+#pragma mark- Error Handler Func
+
+- (void)errHandler:(NSNotification *)notification {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter removeObserver:self name:@"UserAccountCreated" object:nil];
+    [notificationCenter removeObserver:self name:@"AccountCreationErr" object:nil];
+    
+    [SVProgressHUD dismiss];
+    
+    NSDictionary *errDict = notification.userInfo;
+    NSString *errNameStr = [errDict objectForKey:@"NSLocalizedDescription"];
+    
+    [self presentAlertControllerWithInfo:errNameStr];
     
 }
 

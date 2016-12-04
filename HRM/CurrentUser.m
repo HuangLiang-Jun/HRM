@@ -105,6 +105,10 @@
                 
                 NSLog(@"Error (Sign in): %@", error);
                 
+                NSDictionary *errDict = error.userInfo;
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:@"LogInErr" object:nil userInfo:errDict];
+                
             }
         }];
     });
@@ -159,6 +163,10 @@
             } else {
                 
                 NSLog(@"Error (Account creation): %@", error);
+                
+                NSDictionary *errDict = error.userInfo;
+                NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+                [notificationCenter postNotificationName:@"AccountCreationErr" object:nil userInfo:errDict];
                 
             }
         }];

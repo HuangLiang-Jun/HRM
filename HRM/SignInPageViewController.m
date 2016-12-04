@@ -41,10 +41,11 @@
     if ([StrValidationFilter emailValidationFor:localUser.email] && [StrValidationFilter passwordValidationFor:localUser.password]) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
-
-        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
         
+        [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        [notificationCenter addObserver:self selector:@selector(errHandler:) name:@"LogInErr" object:nil];
+        
+        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
         [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
         [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
         [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
@@ -100,8 +101,8 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     
     [self validationDependenceOfTextField:textField];
-    return true;
     
+    return true;
 }
 
 - (void)validationDependenceOfTextField:(UITextField *)textField {
@@ -233,7 +234,9 @@
     if (emailToken && pwdToken) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        
         [notificationCenter addObserver:self selector:@selector(discriminateUserAuth) name:@"UserInfoDownloaded" object:nil];
+        [notificationCenter addObserver:self selector:@selector(errHandler:) name:@"LogInErr" object:nil];
         
         [SVProgressHUD show];
         
@@ -248,7 +251,9 @@
 - (void)discriminateUserAuth {
     
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
     [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
+    [notificationCenter removeObserver:self name:@"LogInErr" object:nil];
     
     [SVProgressHUD dismiss];
     
@@ -270,14 +275,36 @@
 
 - (IBAction)createNewAccountBtnPressed:(UIButton *)sender {
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
+    [notificationCenter removeObserver:self name:@"LogInErr" object:nil];
+    
     if (_subviewLayoutContraint.constant != 0.0) {
         
         [self animateAfterTextFieldInputed];
         
     }
-    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
+    
     [self performSegueWithIdentifier:@"SignUpPageSegue" sender:sender];
+    
+}
+
+#pragma mark- Error Handler Func
+
+- (void)errHandler:(NSNotification *)notification {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    
+    [notificationCenter removeObserver:self name:@"UserInfoDownloaded" object:nil];
+    [notificationCenter removeObserver:self name:@"LogInErr" object:nil];
+    
+    [SVProgressHUD dismiss];
+    
+    NSDictionary *errDict = notification.userInfo;
+    NSString *errNameStr = [errDict objectForKey:@"NSLocalizedDescription"];
+    
+    [self presentAlertControllerWithInfo:errNameStr];
     
 }
 
