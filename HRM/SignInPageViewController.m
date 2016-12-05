@@ -14,7 +14,7 @@
 
 @interface SignInPageViewController () <UITextFieldDelegate> {
     
-    BOOL emailToken, pwdToken;
+    BOOL _emailToken, _pwdToken;
     
 }
 
@@ -33,12 +33,15 @@
     
     _emailField.tag = 10;
     _emailField.delegate = self;
+    _emailField.placeholder = @"請輸入您的電子郵件";
     
     _pwdField.tag = 11;
     _pwdField.delegate = self;
+    _pwdField.placeholder = @"請輸入您的密碼";
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    if ([StrValidationFilter emailValidationFor:localUser.email] && [StrValidationFilter passwordValidationFor:localUser.password]) {
+    if ([StrValidationFilter emailValidationFor:localUser.email] &&
+        localUser.password.length >= 6) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         
@@ -64,7 +67,12 @@
 
     CurrentUser *localUser = [CurrentUser sharedInstance];
     _emailField.text = localUser.email;
-    _pwdField.text = localUser.password;
+    
+    NSString *pwdStr = localUser.password;
+    NSArray<NSString *> *subPwdStrArr = [pwdStr componentsSeparatedByString:@"."];
+    pwdStr = subPwdStrArr.firstObject;
+    
+    _pwdField.text = pwdStr;
     
 }
 
@@ -74,11 +82,11 @@
     
     switch (textField.tag) {
         case 10:
-            emailToken = false;
+            _emailToken = false;
             break;
             
         case 11:
-            pwdToken = false;
+            _pwdToken = false;
             break;
             
     }
@@ -119,8 +127,8 @@
         case 10:
             if ([StrValidationFilter emailValidationFor:str]) {
                 
-                emailToken = true;
-                if (!pwdToken) {
+                _emailToken = true;
+                if (!_pwdToken) {
                     
                     [self shiftToTheNextOneOfTextField:textField];
                     
@@ -136,7 +144,7 @@
         case 11:
             if ([StrValidationFilter passwordValidationFor:str]) {
                 
-                pwdToken = true;
+                _pwdToken = true;
                 
             } else {
                 
@@ -207,7 +215,7 @@
             case 0:
                 if ([StrValidationFilter emailValidationFor:str]) {
                     
-                    emailToken = true;
+                    _emailToken = true;
                     
                 } else {
                     
@@ -219,7 +227,7 @@
             case 1:
                 if ([StrValidationFilter passwordValidationFor:str]) {
                     
-                    pwdToken = true;
+                    _pwdToken = true;
                     
                 } else {
                     
@@ -231,7 +239,7 @@
         }
         
     }
-    if (emailToken && pwdToken) {
+    if (_emailToken && _pwdToken) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         
@@ -241,11 +249,29 @@
         [SVProgressHUD show];
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
+        
         localUser.email = _emailField.text;
-        localUser.password = _pwdField.text;
+        
+        NSString *pwdStr = [self pwdEditer];
+        localUser.password = pwdStr;
+        
         [localUser signInUserAccount];
 
     }
+}
+
+- (NSString *)pwdEditer {
+    
+    NSString *pwdStr = _pwdField.text;
+    
+    if (pwdStr.length < 6) {
+        
+        pwdStr = [pwdStr stringByAppendingString:@".00000"];
+        pwdStr = [pwdStr substringToIndex:6];
+        
+    }
+    
+    return pwdStr;
 }
 
 - (void)discriminateUserAuth {

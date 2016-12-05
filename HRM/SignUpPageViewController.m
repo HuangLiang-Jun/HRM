@@ -34,12 +34,15 @@
     
     _emailField.tag = 10;
     _emailField.delegate = self;
+    _emailField.placeholder = @"請輸入您的電子郵件";
     
     _pwdField.tag = 11;
     _pwdField.delegate = self;
+    _pwdField.placeholder = @"請輸入您的密碼";
     
     _reconfirmPWDField.tag = 12;
     _reconfirmPWDField.delegate = self;
+    _reconfirmPWDField.placeholder = @"請確認您的密碼";
     
 }
 
@@ -160,7 +163,7 @@
                 
             } else {
                 
-                [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                [self presentAlertControllerWithInfo:@"密碼請勿包含特殊字元"];
                 
             }
             break;
@@ -189,7 +192,7 @@
                 
             } else {
                 
-                [self presentAlertControllerWithInfo:@"比對密碼格式錯誤"];
+                [self presentAlertControllerWithInfo:@"密碼請勿包含特殊字元"];
                 
             }
             break;
@@ -285,7 +288,7 @@
                     
                 } else {
                     
-                    [self presentAlertControllerWithInfo:@"密碼格式錯誤"];
+                    [self presentAlertControllerWithInfo:@"密碼請勿包含特殊字元"];
                     
                 }
                 break;
@@ -321,8 +324,11 @@
     if (emailToken && procedureToken) {
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
+        
         localUser.email = _emailField.text;
-        localUser.password = _pwdField.text;
+        
+        NSString *pwdStr = [self pwdEditer];
+        localUser.password = pwdStr;
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         
@@ -342,6 +348,20 @@
         [localUser createUserAccount];
         
     }
+}
+
+- (NSString *)pwdEditer {
+    
+    NSString *pwdStr = _pwdField.text;
+    
+    if (pwdStr.length < 6) {
+        
+        pwdStr = [pwdStr stringByAppendingString:@".00000"];
+        pwdStr = [pwdStr substringToIndex:6];
+        
+    }
+    
+    return pwdStr;
 }
 
 - (void)segueToUserInfoPage {

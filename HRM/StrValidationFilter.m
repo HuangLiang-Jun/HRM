@@ -38,15 +38,11 @@
 
 + (BOOL)passwordValidationFor:(NSString *)pwd {
     
-    if (pwd.length >= 6) {
-        
-        NSString *regexStr = [NSString stringWithFormat:@"%@%@", LEGAL_ALPHA, LEGAL_NUMBER];
-        NSCharacterSet *regexCharSet = [NSCharacterSet characterSetWithCharactersInString:regexStr];
-        NSCharacterSet *pwdCharSet = [NSCharacterSet characterSetWithCharactersInString:pwd];
-        return [regexCharSet isSupersetOfSet:pwdCharSet];
-        
-    }
-    return false;
+    NSString *regexStr = [NSString stringWithFormat:@"%@%@", LEGAL_ALPHA, LEGAL_NUMBER];
+    NSCharacterSet *regexCharSet = [NSCharacterSet characterSetWithCharactersInString:regexStr];
+    
+    NSCharacterSet *pwdCharSet = [NSCharacterSet characterSetWithCharactersInString:pwd];
+    return [regexCharSet isSupersetOfSet:pwdCharSet];
     
 }
 
