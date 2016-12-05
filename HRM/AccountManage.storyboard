@@ -677,7 +677,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXQ-bE-nop">
+                            <textField opaque="NO" clipsSubviews="YES" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入您的姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wXQ-bE-nop">
                                 <rect key="frame" x="93.5" y="241" width="261.5" height="32"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
@@ -713,7 +713,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入身分證字號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qV-Jn-Fvc">
+                            <textField opaque="NO" clipsSubviews="YES" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入您的身分證字號" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7qV-Jn-Fvc">
                                 <rect key="frame" x="93.5" y="385" width="261.5" height="32"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" keyboardKey="YES"/>
@@ -734,7 +734,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入手機號碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDZ-R3-fdZ">
+                            <textField opaque="NO" clipsSubviews="YES" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="請輸入您的手機號碼" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDZ-R3-fdZ">
                                 <rect key="frame" x="93.5" y="457" width="261.5" height="32"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" keyboardKey="YES"/>

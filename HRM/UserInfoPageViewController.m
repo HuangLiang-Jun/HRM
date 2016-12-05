@@ -101,15 +101,18 @@
     
     _nameField.tag = 11;
     _nameField.delegate = self;
+    _nameField.placeholder = @"請輸入您的姓名";
     
     _birthdayField.tag = 12;
     _birthdayField.delegate = self;
     
     _idCardNumberField.tag = 13;
     _idCardNumberField.delegate = self;
+    _idCardNumberField.placeholder = @"請輸入您的身分證字號";
     
     _cellphoneNumberField.tag = 14;
     _cellphoneNumberField.delegate = self;
+    _cellphoneNumberField.placeholder = @"請輸入您的手機號碼";
     
 }
 

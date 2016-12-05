@@ -40,8 +40,13 @@
     _pwdField.placeholder = @"請輸入您的密碼";
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
+    
+    NSString *pwdStr = localUser.password;
+    NSArray<NSString *> *subPwdStrArr = [pwdStr componentsSeparatedByString:@"."];
+    pwdStr = subPwdStrArr.firstObject;
+    
     if ([StrValidationFilter emailValidationFor:localUser.email] &&
-        localUser.password.length >= 6) {
+        [StrValidationFilter passwordValidationFor:pwdStr]) {
         
         NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
         
