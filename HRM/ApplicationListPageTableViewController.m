@@ -11,7 +11,8 @@
 
 @interface ApplicationListPageTableViewController () {
     
-    FIRDatabaseHandle refHandle;
+    FIRDatabaseHandle _refHandle;
+    long long _count;
     
 }
 
@@ -30,8 +31,11 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
+        
+        _count = localUser.applicationList.count;
+        
         FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
-        refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        _refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             
             if ([snapshot exists]) {
                 
@@ -59,11 +63,19 @@
     });
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
-    [self.tableView reloadData];
-
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    long long latestCount = localUser.applicationList.count;
+    
+    if (latestCount - _count != 0) {
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -73,9 +85,13 @@
         
         CurrentUser *localUser = [CurrentUser sharedInstance];
         FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
-        [ref removeObserverWithHandle:refHandle];
+        [ref removeObserverWithHandle:_refHandle];
         
     }
+    
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    _count = localUser.applicationList.count;
+    
 }
 
 #pragma mark - Table View Delegate
@@ -165,7 +181,7 @@
         NSString*applyDateStr = [applicationDict allKeys].firstObject;
         [localUser removeApplicationWhichAppliedAt:applyDateStr];
         [localUser.applicationList removeObjectAtIndex:indexPath.row];
-        [tableView reloadData];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
 }
