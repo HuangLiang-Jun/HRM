@@ -20,6 +20,7 @@
 @implementation StaffListViewController
 {
     StaffInfoDataManager *staffDataManager;
+    UIImage *staffImage ;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +29,8 @@
     [staffDataManager downLoadStaffInfo:_staffListTableView ];
     
     staffDataManager.imageStatus = false;
+    
+    
     
 }
 
@@ -51,21 +54,45 @@
     
     
     cell.nameLabel.text = staffDataManager.allStaffInfoDict.allKeys[indexPath.row];
+    NSString *tmpUID = staffDataManager.allStaffInfoDict[staffDataManager.allStaffInfoDict.allKeys[indexPath.row]][@"UID"];
+    NSString *URLString = [staffDataManager.allStaffThumbnailDict valueForKey:tmpUID];
+    NSLog(@"tmpUID:%@",tmpUID);
+    NSLog(@"urlString: %@",URLString);
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
     
-    NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:staffDataManager.allStaffInfoDict.allKeys[indexPath.row]];
-    UIImage *staffImage = [UIImage imageWithData:imdata];
-    if (staffImage != nil){
-        cell.staffImageView.image = staffImage;
-        
-    } else {
-        if ([staffDataManager.allStaffInfoDict.allKeys[indexPath.row] isEqualToString:@"李家舜"] && staffDataManager.imageStatus == false){
-            cell.staffImageView.image = [UIImage imageNamed:@"Li.png"];
-        }else{
-            cell.staffImageView.image = [UIImage imageNamed:@"head.png"];
+    NSURLSessionTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"name:%@ download image fail: %@",cell.nameLabel.text,error);
+            return ;
         }
+        staffImage = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (staffImage != nil){
+                cell.staffImageView.image = staffImage;
+            }
+            
+        });
         
-        
-    }
+    }];
+    
+    [task resume];
+    
+    //    NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:staffDataManager.allStaffInfoDict.allKeys[indexPath.row]];
+    //    UIImage *staffImage = [UIImage imageWithData:imdata];
+    //    if (staffImage != nil){
+    //        cell.staffImageView.image = staffImage;
+    //
+    //    } else {
+    //        if ([staffDataManager.allStaffInfoDict.allKeys[indexPath.row] isEqualToString:@"李家舜"] && staffDataManager.imageStatus == false){
+    //            cell.staffImageView.image = [UIImage imageNamed:@"Li.png"];
+    //        }else{
+    //            cell.staffImageView.image = [UIImage imageNamed:@"head.png"];
+    //        }
+    //
+    //
+    //    }
     
     return cell;
 }
@@ -77,7 +104,6 @@
     
     staffInfo.staffInfoDict = staffDataManager.allStaffInfoDict.allValues[indexPath.row];
     staffInfo.nameStr = staffDataManager.allStaffInfoDict.allKeys[indexPath.row];
-    
     [self showViewController:staffInfo sender:nil];
     
 }

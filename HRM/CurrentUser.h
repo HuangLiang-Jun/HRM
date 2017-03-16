@@ -11,7 +11,7 @@
 
 @import FirebaseAuth;
 @import FirebaseDatabase;
-
+@import FirebaseStorage;
 @interface CurrentUser : NSObject
 
 @property (strong, nonatomic) NSString *deviceToken;
@@ -31,6 +31,8 @@
 - (void)signInUserAccount;
 
 - (void)uploadUserInfoWithDict:(NSMutableDictionary *)userInfo;
+
+- (void)uploadUserThumbnailWith:(NSData *)imageData;
 
 - (void)signOutUserAccount;
 

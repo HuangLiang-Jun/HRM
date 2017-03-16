@@ -7,13 +7,14 @@
 //
 
 #import "ApplicationListPageTableViewController.h"
+#import "ApplicationInfoPageViewController.h"
 #import "CurrentUser.h"
-
+#import <SVProgressHUD/SVProgressHUD.h>
 @interface ApplicationListPageTableViewController () {
     
     FIRDatabaseHandle _refHandle;
     long long _count;
-    
+    BOOL status;
 }
 
 @end
@@ -25,18 +26,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundGreen.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"background.png"];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.tableView.backgroundView = backgroundImageView;
+    status = true;
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD setForegroundColor:[UIColor darkGrayColor]];
+    [SVProgressHUD setRingThickness:4.0];
+    
+    [SVProgressHUD show];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(segueToApplicationPage) name:@"ApplicationListDownloaded" object:nil];
+    
+    [localUser downloadAppcationList];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        CurrentUser *localUser = [CurrentUser sharedInstance];
         
-        _count = localUser.applicationList.count;
+        
         
         FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"Application"]child:localUser.displayName];
         _refHandle = [ref observeEventType:FIRDataEventTypeChildChanged withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-            
+            NSLog(@"snapshot%@",snapshot);
             if ([snapshot exists]) {
                 
                 NSString *snapshotApplyDateStr = snapshot.key;
@@ -49,6 +65,7 @@
                         NSDictionary *snapshotInfoDict = snapshot.value;
                         applicationDict = @{snapshotApplyDateStr: snapshotInfoDict};
                         [localUser.applicationList replaceObjectAtIndex:i withObject:applicationDict];
+                        NSLog(@"application:%@",applicationDict);
                         
                     }
                     
@@ -63,12 +80,25 @@
     });
 }
 
+- (void)segueToApplicationPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
+    [self.tableView reloadData];
+    [SVProgressHUD dismiss];
+    
+    
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
     long long latestCount = localUser.applicationList.count;
-    
+    if (status){
+        _count = localUser.applicationList.count;
+        status = false;
+    }
     if (latestCount - _count != 0) {
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -102,15 +132,10 @@
     
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
-    
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
+    
     return localUser.applicationList.count;
     
 }
@@ -127,9 +152,9 @@
         
     }
     
-    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
-    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
-    tableViewCell.backgroundView = cellBackgroundImageView;
+//    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
+//    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
+//    tableViewCell.backgroundView = cellBackgroundImageView;
     
     UIImageView *thumbnailImageView = [tableViewCell viewWithTag:100];
     NSNumber *agree = [infoDict objectForKey:@"Agree"];
@@ -147,7 +172,7 @@
         case 2:
             agreementImage = [UIImage imageNamed:@"refuseIcon.png"];
             break;
-
+            
     }
     thumbnailImageView.image = agreementImage;
     
@@ -167,8 +192,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    _selectedApplicationDict = localUser.applicationList[indexPath.row];
-    [self performSegueWithIdentifier:@"ApplicationInfoPageSegue" sender:nil];
+    ApplicationInfoPageViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ApplicationInfoPageViewController"];
+    vc.applicationDict = localUser.applicationList[indexPath.row];
+    
+    [self showViewController:vc sender:nil];
     
 }
 

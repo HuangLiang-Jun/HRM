@@ -68,18 +68,25 @@
 }
 
 - (void) updateNewBulletin {
+   
     // UpdateData to FBDB & APNS.
     NSString *dateStr = [NSDateNSStringExchange stringFromYearMonthDay:[NSDate date]];
     NSString *now = [NSDateNSStringExchange stringFromChosenDate:[NSDate date]];
+    
     NSDictionary *bulletinDict = @{BULLETIN_TITLE_KEY:_setTittleTextField.text,@"Detail":_detailTextField.text,@"UpdateDate":now};
+    
     NSDictionary *updateFBDBDict = @{dateStr:bulletinDict};
+    // 上傳Firebase
     [comm sendNewBulletinToFBDB:updateFBDBDict completion:^(NSError *error, id result) {
         if (error) {
             NSLog(@"UpdateBulletin Error: %@",error);
+            return;
         }
         
+        // 把訊息傳到推播 server
         [comm sendBulletinMessage:_setTittleTextField.text
                        completion:^(NSError *error, id result) {
+                           
                            if (error) {
                                NSLog(@"SendPushTitle is Error : %@",error);
                                dispatch_async(dispatch_get_main_queue(), ^{
@@ -96,22 +103,11 @@
                        }];
         
     }];
-    
-   
 }
 
 -(IBAction)dismissKeyBoard
 {
     [_detailTextField resignFirstResponder];
 }
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

@@ -7,12 +7,13 @@
 //
 
 #import "SignoffListTableViewController.h"
+#import "SignoffFormPageViewController.h"
 #import "CurrentUser.h"
-
+#import <SVProgressHUD/SVProgressHUD.h>
 @interface SignoffListTableViewController () {
     
     FIRDatabaseHandle _refAddedHandle, _refRemovedHandle;
-    
+    CurrentUser *localUser;
 }
 
 @end
@@ -24,13 +25,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"backgroundGreen.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"background.png"];
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:backgroundImage];
     self.tableView.backgroundView = backgroundImageView;
     
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(segueToApplicationPage) name:@"ApplicationListDownloaded" object:nil];
+    
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setBackgroundColor:[UIColor clearColor]];
+    [SVProgressHUD setDefaultAnimationType:SVProgressHUDAnimationTypeFlat];
+    [SVProgressHUD setForegroundColor:[UIColor darkGrayColor]];
+    [SVProgressHUD setRingThickness:4.0];
+    
+    [SVProgressHUD show];
+    
+    localUser = [CurrentUser sharedInstance];
+   
+     [localUser downloadAppcationList];
+
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
-        CurrentUser *localUser = [CurrentUser sharedInstance];
+        
         
         FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"Signoff"];
         _refRemovedHandle = [ref observeEventType:FIRDataEventTypeChildRemoved withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
@@ -95,6 +114,17 @@
     }
 }
 
+- (void)segueToApplicationPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"ApplicationListDownloaded" object:nil];
+    [self.tableView reloadData];
+    [SVProgressHUD dismiss];
+    
+    
+    
+}
+
 #pragma mark - Table View Delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,14 +132,9 @@
     return 60;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
+    
     
     return localUser.applicationList.count;
 }
@@ -123,11 +148,11 @@
         
     }
     
-    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
-    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
-    tableViewCell.backgroundView = cellBackgroundImageView;
+//    UIImage *cellBackgroundImage = [UIImage imageNamed:@"cellBackground.png"];
+//    UIImageView *cellBackgroundImageView = [[UIImageView alloc] initWithImage:cellBackgroundImage];
+//    tableViewCell.backgroundView = cellBackgroundImageView;
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
+//    CurrentUser *localUser = [CurrentUser sharedInstance];
     NSDictionary *signoffFormDict = localUser.applicationList[indexPath.row];
     
     NSString *newApplyDateStr = [signoffFormDict allKeys].firstObject;
@@ -173,9 +198,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    CurrentUser *localUser = [CurrentUser sharedInstance];
     _selectedSignoffFormDict = localUser.applicationList[indexPath.row];
-    
     [self performSegueWithIdentifier:@"SignoffFormPageSegue" sender:nil];
     
 }

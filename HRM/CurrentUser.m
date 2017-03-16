@@ -230,6 +230,43 @@
     });
 }
 
+- (void)uploadUserThumbnailWith:(NSData *)imageData {
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        FIRStorage *storage = [FIRStorage storage];
+        
+        FIRStorageReference *storageRef = [storage referenceForURL:@"gs://hrmanager-f9a98.appspot.com"];
+        
+        NSString *thumbnailName = [NSString stringWithFormat:@"%@.png", _displayName];
+        FIRStorageReference *thumbnailRef = [[storageRef child:@"thumbnail"] child:thumbnailName];
+        
+        [thumbnailRef putData:imageData metadata:nil completion:^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
+            
+            if (error) {
+                
+                NSLog(@"Error (Upload Thumbnail): %@", error);
+                
+            } else {
+                
+                NSString *thumbnailStr = metadata.downloadURL.absoluteString;
+                
+                FIRDatabaseReference *ref = [[[[FIRDatabase database] reference] child:@"thumbnail"] child:_displayName];
+                
+                [ref setValue:thumbnailStr withCompletionBlock:^(NSError * _Nullable error, FIRDatabaseReference * _Nonnull ref) {
+                    
+                    if (error) {
+                        
+                        NSLog(@"Error (Upload Thumbnail URL): %@", error);
+                        
+                    }
+                }];
+            }
+        }];
+    });
+}
+
+
 #pragma mark - Firebase Application Sync Func
 
 - (void)downloadAppcationList {
@@ -258,6 +295,7 @@
                         }
                         
                     }
+                    
                     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
                     [notificationCenter postNotificationName:@"ApplicationListDownloaded" object:nil];
                     

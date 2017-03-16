@@ -77,8 +77,9 @@
     _applyDateField.text = applyDateStr;
     
     NSString *usernameStr = subNewApplyDateStr.lastObject;
+    NSLog(@"subName:%@",subNewApplyDateStr);
     _usernameField.text = usernameStr;
-    
+    NSLog(@"userName %@",usernameStr);
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         FIRDatabaseReference *cellPhoneNumRef = [[[[[[FIRDatabase database] reference] child:@"StaffInformation"] child:usernameStr] child:@"Info"] child:@"CellphoneNumber"];

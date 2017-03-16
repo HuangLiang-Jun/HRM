@@ -55,7 +55,7 @@
 
 + (NSString *)stringFromYearMonthDay:(NSDate *)date {
     NSDateFormatter *formatter = [NSDateFormatter new];
-    [formatter setDateFormat:@"MMddHHmmss"];
+    [formatter setDateFormat:@"YYYYMMddHHmmss"];
     NSString *strFromDate = [formatter stringFromDate:date];
     return strFromDate;
 }

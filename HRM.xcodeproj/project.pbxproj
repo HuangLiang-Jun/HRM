@@ -12,38 +12,36 @@
 		3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */; };
 		3A6F3FFB1DD1CF0600376501 /* StrValidationFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */; };
 		3A80EFD41DEC69E400E605D1 /* SignoffFormPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */; };
-		3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */; };
-		6309E9E71DCB174D001815C6 /* backBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309E9E61DCB174D001815C6 /* backBtn.png */; };
 		6309EA0F1DCBBF1A001815C6 /* head.png in Resources */ = {isa = PBXBuildFile; fileRef = 6309EA0E1DCBBF1A001815C6 /* head.png */; };
-		6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA121DCBC777001815C6 /* StaffListViewController.m */; };
-		6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */; };
 		6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA191DCCAC8E001815C6 /* StaffSalaryViewController.m */; };
 		6309EA1D1DCCACD4001815C6 /* StaffSalaryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA1C1DCCACD4001815C6 /* StaffSalaryListViewController.m */; };
 		6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6309EA1F1DCCAD52001815C6 /* SalaryListTableViewCell.m */; };
 		630E70ED1DBDBAC00035E334 /* CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EC1DBDBAC00035E334 /* CollectionViewCell.m */; };
 		630E70F01DBDCE960035E334 /* RecipeCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */; };
 		631126241DDEE30A00F3404E /* grayheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 6311261A1DDEE30A00F3404E /* grayheader.png */; };
+		63152FC81DF5F35300F694BA /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 63152FC71DF5F35300F694BA /* background.png */; };
+		63152FCA1DF5F3D200F694BA /* loginbackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 63152FC91DF5F3D200F694BA /* loginbackground.png */; };
+		631DFC5A1DF5A77400006A69 /* Manager.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631DFC591DF5A77400006A69 /* Manager.storyboard */; };
+		631DFC5C1DF5A78500006A69 /* Staff.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 631DFC5B1DF5A78500006A69 /* Staff.storyboard */; };
+		631DFC631DF5D11300006A69 /* EmployeeTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DFC621DF5D11300006A69 /* EmployeeTabBarController.m */; };
+		631DFC661DF5D39D00006A69 /* ManagerTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631DFC651DF5D39D00006A69 /* ManagerTabBarController.m */; };
 		6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */; };
 		6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E1781DB8E4A200B71A63 /* AttendanceViewController.m */; };
 		6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6335E17F1DB8E85200B71A63 /* SchedulingViewController.m */; };
 		6335E1B21DB9E9A100B71A63 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B11DB9E9A100B71A63 /* CoreLocation.framework */; };
 		6335E1B41DB9E9A700B71A63 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B31DB9E9A700B71A63 /* MapKit.framework */; };
 		6335E1B81DBC789F00B71A63 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6335E1B71DBC789F00B71A63 /* QuartzCore.framework */; };
+		63391C3B1E6BCE3A008887AD /* StaffListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63391C3A1E6BCE3A008887AD /* StaffListViewController.m */; };
+		63391C3E1E6BCEA4008887AD /* StaffInfoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 63391C3D1E6BCEA4008887AD /* StaffInfoDataManager.m */; };
+		63391C411E6BD6A7008887AD /* StaffInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63391C401E6BD6A7008887AD /* StaffInfoViewController.m */; };
+		6340260F1DF6D73F00F8A1F0 /* LunchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6340260E1DF6D73F00F8A1F0 /* LunchScreen.png */; };
 		636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */; };
 		637246C21DEC026100D55887 /* becheckIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C11DEC026000D55887 /* becheckIcon.png */; };
-		637246C41DEC064E00D55887 /* launchScreenImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C31DEC064E00D55887 /* launchScreenImage.png */; };
 		637246C61DEC0DB800D55887 /* cellBackground116.png in Resources */ = {isa = PBXBuildFile; fileRef = 637246C51DEC0DB800D55887 /* cellBackground116.png */; };
-		637AD2591DD5E6D500FA94E5 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2561DD5E6D500FA94E5 /* camera.png */; };
 		637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */ = {isa = PBXBuildFile; fileRef = 637AD2571DD5E6D500FA94E5 /* head01.png */; };
-		639C13831DDEA1B900E21531 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 639C13821DDEA1B900E21531 /* info.png */; };
-		639DD7C11DD01A9700ED2C7D /* StaffInfoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */; };
 		63D92FAE1DBF7F7D007578DB /* CheckClassCollectionReusable.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAB1DBF7F7D007578DB /* CheckClassCollectionReusable.m */; };
 		63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FAD1DBF7F7D007578DB /* CheckClassCollectionCell.m */; };
 		63D92FB21DBF7F8B007578DB /* SearchClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FB11DBF7F8B007578DB /* SearchClassViewController.m */; };
-		63D92FC91DBF811A007578DB /* blueCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FB51DBF811A007578DB /* blueCircle.png */; };
-		63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC21DBF811A007578DB /* orangeCircle.png */; };
-		63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC31DBF811A007578DB /* purpleCircle.png */; };
-		63D92FD81DBF811A007578DB /* redCircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 63D92FC41DBF811A007578DB /* redCircle.png */; };
 		63D92FE11DC03667007578DB /* SalarySums.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FDE1DC03667007578DB /* SalarySums.m */; };
 		63D92FE21DC03667007578DB /* SalaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63D92FE01DC03667007578DB /* SalaryViewController.m */; };
 		63E0A1131DCB0C910021F246 /* BulletinBoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E0A1121DCB0C910021F246 /* BulletinBoardViewController.m */; };
@@ -56,11 +54,6 @@
 		70197E031DDD9CFC009254C4 /* greenheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197DFF1DDD9CFC009254C4 /* greenheader.png */; };
 		70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E001DDD9CFC009254C4 /* orangeheader.png */; };
 		70197E051DDD9CFC009254C4 /* redheader.png in Resources */ = {isa = PBXBuildFile; fileRef = 70197E011DDD9CFC009254C4 /* redheader.png */; };
-		7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DB1DD354BF00793999 /* backgroundBlue.png */; };
-		7023F6E11DD354BF00793999 /* btnBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DD1DD354BF00793999 /* btnBlue.png */; };
-		7023F6E21DD354BF00793999 /* btnGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6DE1DD354BF00793999 /* btnGreen.png */; };
-		7023F6E41DD3627300793999 /* btnRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 7023F6E31DD3627300793999 /* btnRed.png */; };
-		7032EEE81DD76294008C6C7A /* btnWork.png in Resources */ = {isa = PBXBuildFile; fileRef = 7032EEE71DD76294008C6C7A /* btnWork.png */; };
 		706159CD1D94231800D2530B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CC1D94231800D2530B /* main.m */; };
 		706159D01D94231800D2530B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 706159CF1D94231800D2530B /* AppDelegate.m */; };
 		706159D81D94231800D2530B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 706159D71D94231800D2530B /* Assets.xcassets */; };
@@ -90,14 +83,8 @@
 		3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrValidationFilter.m; sourceTree = "<group>"; };
 		3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignoffFormPageViewController.h; sourceTree = "<group>"; };
 		3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignoffFormPageViewController.m; sourceTree = "<group>"; };
-		3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundGreen.png; sourceTree = "<group>"; };
 		465262FC63B996D9E36968C5 /* Pods_HRM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HRM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6309E9E61DCB174D001815C6 /* backBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backBtn.png; sourceTree = "<group>"; };
 		6309EA0E1DCBBF1A001815C6 /* head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head.png; sourceTree = "<group>"; };
-		6309EA111DCBC777001815C6 /* StaffListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListViewController.h; sourceTree = "<group>"; };
-		6309EA121DCBC777001815C6 /* StaffListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListViewController.m; sourceTree = "<group>"; };
-		6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoViewController.h; sourceTree = "<group>"; };
-		6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoViewController.m; sourceTree = "<group>"; };
 		6309EA181DCCAC8E001815C6 /* StaffSalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffSalaryViewController.h; sourceTree = "<group>"; };
 		6309EA191DCCAC8E001815C6 /* StaffSalaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffSalaryViewController.m; sourceTree = "<group>"; };
 		6309EA1B1DCCACD4001815C6 /* StaffSalaryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffSalaryListViewController.h; sourceTree = "<group>"; };
@@ -109,6 +96,14 @@
 		630E70EE1DBDCE960035E334 /* RecipeCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipeCollectionHeaderView.h; sourceTree = "<group>"; };
 		630E70EF1DBDCE960035E334 /* RecipeCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipeCollectionHeaderView.m; sourceTree = "<group>"; };
 		6311261A1DDEE30A00F3404E /* grayheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayheader.png; sourceTree = "<group>"; };
+		63152FC71DF5F35300F694BA /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		63152FC91DF5F3D200F694BA /* loginbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginbackground.png; sourceTree = "<group>"; };
+		631DFC591DF5A77400006A69 /* Manager.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Manager.storyboard; sourceTree = "<group>"; };
+		631DFC5B1DF5A78500006A69 /* Staff.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Staff.storyboard; sourceTree = "<group>"; };
+		631DFC611DF5D11300006A69 /* EmployeeTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTabBarController.h; sourceTree = "<group>"; };
+		631DFC621DF5D11300006A69 /* EmployeeTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTabBarController.m; sourceTree = "<group>"; };
+		631DFC641DF5D39D00006A69 /* ManagerTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerTabBarController.h; sourceTree = "<group>"; };
+		631DFC651DF5D39D00006A69 /* ManagerTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerTabBarController.m; sourceTree = "<group>"; };
 		6335E1731DB8E21400B71A63 /* NSDateNSStringExchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateNSStringExchange.h; sourceTree = "<group>"; };
 		6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateNSStringExchange.m; sourceTree = "<group>"; };
 		6335E1771DB8E4A200B71A63 /* AttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendanceViewController.h; sourceTree = "<group>"; };
@@ -118,26 +113,24 @@
 		6335E1B11DB9E9A100B71A63 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6335E1B31DB9E9A700B71A63 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6335E1B71DBC789F00B71A63 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		63391C391E6BCE3A008887AD /* StaffListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListViewController.h; sourceTree = "<group>"; };
+		63391C3A1E6BCE3A008887AD /* StaffListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListViewController.m; sourceTree = "<group>"; };
+		63391C3C1E6BCEA4008887AD /* StaffInfoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoDataManager.h; sourceTree = "<group>"; };
+		63391C3D1E6BCEA4008887AD /* StaffInfoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoDataManager.m; sourceTree = "<group>"; };
+		63391C3F1E6BD6A7008887AD /* StaffInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoViewController.h; sourceTree = "<group>"; };
+		63391C401E6BD6A7008887AD /* StaffInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoViewController.m; sourceTree = "<group>"; };
+		6340260E1DF6D73F00F8A1F0 /* LunchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LunchScreen.png; sourceTree = "<group>"; };
 		636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffListTableViewCell.h; sourceTree = "<group>"; };
 		636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffListTableViewCell.m; sourceTree = "<group>"; };
 		637246C11DEC026000D55887 /* becheckIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = becheckIcon.png; sourceTree = "<group>"; };
-		637246C31DEC064E00D55887 /* launchScreenImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreenImage.png; sourceTree = "<group>"; };
 		637246C51DEC0DB800D55887 /* cellBackground116.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cellBackground116.png; sourceTree = "<group>"; };
-		637AD2561DD5E6D500FA94E5 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		637AD2571DD5E6D500FA94E5 /* head01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = head01.png; sourceTree = "<group>"; };
-		639C13821DDEA1B900E21531 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
-		639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaffInfoDataManager.h; sourceTree = "<group>"; };
-		639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StaffInfoDataManager.m; sourceTree = "<group>"; };
 		63D92FAA1DBF7F7D007578DB /* CheckClassCollectionReusable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckClassCollectionReusable.h; sourceTree = "<group>"; };
 		63D92FAB1DBF7F7D007578DB /* CheckClassCollectionReusable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckClassCollectionReusable.m; sourceTree = "<group>"; };
 		63D92FAC1DBF7F7D007578DB /* CheckClassCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckClassCollectionCell.h; sourceTree = "<group>"; };
 		63D92FAD1DBF7F7D007578DB /* CheckClassCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckClassCollectionCell.m; sourceTree = "<group>"; };
 		63D92FB01DBF7F8B007578DB /* SearchClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchClassViewController.h; sourceTree = "<group>"; };
 		63D92FB11DBF7F8B007578DB /* SearchClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchClassViewController.m; sourceTree = "<group>"; };
-		63D92FB51DBF811A007578DB /* blueCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueCircle.png; sourceTree = "<group>"; };
-		63D92FC21DBF811A007578DB /* orangeCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeCircle.png; sourceTree = "<group>"; };
-		63D92FC31DBF811A007578DB /* purpleCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purpleCircle.png; sourceTree = "<group>"; };
-		63D92FC41DBF811A007578DB /* redCircle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redCircle.png; sourceTree = "<group>"; };
 		63D92FDD1DC03667007578DB /* SalarySums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalarySums.h; sourceTree = "<group>"; };
 		63D92FDE1DC03667007578DB /* SalarySums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SalarySums.m; sourceTree = "<group>"; };
 		63D92FDF1DC03667007578DB /* SalaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SalaryViewController.h; sourceTree = "<group>"; };
@@ -156,11 +149,6 @@
 		70197DFF1DDD9CFC009254C4 /* greenheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenheader.png; sourceTree = "<group>"; };
 		70197E001DDD9CFC009254C4 /* orangeheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangeheader.png; sourceTree = "<group>"; };
 		70197E011DDD9CFC009254C4 /* redheader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redheader.png; sourceTree = "<group>"; };
-		7023F6DB1DD354BF00793999 /* backgroundBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundBlue.png; sourceTree = "<group>"; };
-		7023F6DD1DD354BF00793999 /* btnBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnBlue.png; sourceTree = "<group>"; };
-		7023F6DE1DD354BF00793999 /* btnGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnGreen.png; sourceTree = "<group>"; };
-		7023F6E31DD3627300793999 /* btnRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnRed.png; sourceTree = "<group>"; };
-		7032EEE71DD76294008C6C7A /* btnWork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnWork.png; sourceTree = "<group>"; };
 		706159C81D94231800D2530B /* HRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		706159CC1D94231800D2530B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		706159CE1D94231800D2530B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -224,12 +212,12 @@
 		6309EA101DCBC74B001815C6 /* StaffInfo */ = {
 			isa = PBXGroup;
 			children = (
-				6309EA111DCBC777001815C6 /* StaffListViewController.h */,
-				6309EA121DCBC777001815C6 /* StaffListViewController.m */,
+				63391C391E6BCE3A008887AD /* StaffListViewController.h */,
+				63391C3A1E6BCE3A008887AD /* StaffListViewController.m */,
 				636B50511DD0C6B3009BCB11 /* StaffListTableViewCell.h */,
 				636B50521DD0C6B3009BCB11 /* StaffListTableViewCell.m */,
-				6309EA141DCBC78F001815C6 /* StaffInfoViewController.h */,
-				6309EA151DCBC78F001815C6 /* StaffInfoViewController.m */,
+				63391C3F1E6BD6A7008887AD /* StaffInfoViewController.h */,
+				63391C401E6BD6A7008887AD /* StaffInfoViewController.m */,
 			);
 			name = StaffInfo;
 			sourceTree = "<group>";
@@ -258,10 +246,59 @@
 			name = CollectionView;
 			sourceTree = "<group>";
 		};
+		63152FC51DF5DC9B00F694BA /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
+				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
+				3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */,
+				3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
+		63152FC61DF5EE5500F694BA /* Staff */ = {
+			isa = PBXGroup;
+			children = (
+				A95C7E361DB9A85200AF7CB5 /* ApplicationListPageTableViewController.h */,
+				A95C7E371DB9A85200AF7CB5 /* ApplicationListPageTableViewController.m */,
+				A95C7E391DB9A8D800AF7CB5 /* ApplicationFormPageViewController.h */,
+				A95C7E3A1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m */,
+				A91416FE1DBE601200735A49 /* ApplicationInfoPageViewController.h */,
+				A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */,
+			);
+			name = Staff;
+			sourceTree = "<group>";
+		};
+		631DFC5D1DF5B72000006A69 /* NewImage */ = {
+			isa = PBXGroup;
+			children = (
+				6340260E1DF6D73F00F8A1F0 /* LunchScreen.png */,
+				63152FC71DF5F35300F694BA /* background.png */,
+				63152FC91DF5F3D200F694BA /* loginbackground.png */,
+				63FCD8B41DF2BCCA00734E43 /* Li.png */,
+			);
+			name = NewImage;
+			sourceTree = "<group>";
+		};
+		631DFC671DF5D3C800006A69 /* TabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				631DFC611DF5D11300006A69 /* EmployeeTabBarController.h */,
+				631DFC621DF5D11300006A69 /* EmployeeTabBarController.m */,
+				631DFC641DF5D39D00006A69 /* ManagerTabBarController.h */,
+				631DFC651DF5D39D00006A69 /* ManagerTabBarController.m */,
+			);
+			name = TabBarVC;
+			sourceTree = "<group>";
+		};
 		6328BF2D1DC780410067BBCC /* StoryBoard */ = {
 			isa = PBXGroup;
 			children = (
 				3A01A3D11DEB420A002A2554 /* AccountManage.storyboard */,
+				631DFC591DF5A77400006A69 /* Manager.storyboard */,
+				631DFC5B1DF5A78500006A69 /* Staff.storyboard */,
+				706159D91D94231800D2530B /* LaunchScreen.storyboard */,
 			);
 			name = StoryBoard;
 			sourceTree = "<group>";
@@ -288,8 +325,8 @@
 				3A6F3FFA1DD1CF0600376501 /* StrValidationFilter.m */,
 				6335E1731DB8E21400B71A63 /* NSDateNSStringExchange.h */,
 				6335E1741DB8E21400B71A63 /* NSDateNSStringExchange.m */,
-				639DD7BF1DD01A9700ED2C7D /* StaffInfoDataManager.h */,
-				639DD7C01DD01A9700ED2C7D /* StaffInfoDataManager.m */,
+				63391C3C1E6BCEA4008887AD /* StaffInfoDataManager.h */,
+				63391C3D1E6BCEA4008887AD /* StaffInfoDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -301,6 +338,17 @@
 				63D92FB31DBF7F98007578DB /* WorkScheduling */,
 			);
 			name = Scheduling;
+			sourceTree = "<group>";
+		};
+		6340260D1DF6D5F300F8A1F0 /* UnUse */ = {
+			isa = PBXGroup;
+			children = (
+				A91417011DBEEA8600735A49 /* SupervisorHomePageViewController.h */,
+				A91417021DBEEA8600735A49 /* SupervisorHomePageViewController.m */,
+				A91417041DBEEAF600735A49 /* EmployeeHomePageViewController.h */,
+				A91417051DBEEAF600735A49 /* EmployeeHomePageViewController.m */,
+			);
+			name = UnUse;
 			sourceTree = "<group>";
 		};
 		63D92FA81DBF7F4A007578DB /* SearchTheClassTable */ = {
@@ -337,7 +385,6 @@
 		63D92FB41DBF8105007578DB /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				63FCD8B41DF2BCCA00734E43 /* Li.png */,
 				70E35BFA1DE7C74600CB6702 /* agreeIcon.png */,
 				3A40FB8C1DF154D500DBBE20 /* viber.png */,
 				637246C51DEC0DB800D55887 /* cellBackground116.png */,
@@ -348,23 +395,9 @@
 				70197DFF1DDD9CFC009254C4 /* greenheader.png */,
 				70197E001DDD9CFC009254C4 /* orangeheader.png */,
 				70197E011DDD9CFC009254C4 /* redheader.png */,
-				639C13821DDEA1B900E21531 /* info.png */,
-				7032EEE71DD76294008C6C7A /* btnWork.png */,
-				637AD2561DD5E6D500FA94E5 /* camera.png */,
 				637AD2571DD5E6D500FA94E5 /* head01.png */,
-				7023F6DB1DD354BF00793999 /* backgroundBlue.png */,
-				3ABC83D61DEA282A0099FEFB /* backgroundGreen.png */,
-				7023F6E31DD3627300793999 /* btnRed.png */,
-				637246C31DEC064E00D55887 /* launchScreenImage.png */,
-				7023F6DD1DD354BF00793999 /* btnBlue.png */,
 				637246C11DEC026000D55887 /* becheckIcon.png */,
-				7023F6DE1DD354BF00793999 /* btnGreen.png */,
 				6309EA0E1DCBBF1A001815C6 /* head.png */,
-				6309E9E61DCB174D001815C6 /* backBtn.png */,
-				63D92FB51DBF811A007578DB /* blueCircle.png */,
-				63D92FC21DBF811A007578DB /* orangeCircle.png */,
-				63D92FC31DBF811A007578DB /* purpleCircle.png */,
-				63D92FC41DBF811A007578DB /* redCircle.png */,
 			);
 			name = Image;
 			sourceTree = "<group>";
@@ -403,7 +436,6 @@
 		706159CA1D94231800D2530B /* HRM */ = {
 			isa = PBXGroup;
 			children = (
-				63E52BF41DE987BD00BD24C2 /* bell.mp3 */,
 				6328BF2D1DC780410067BBCC /* StoryBoard */,
 				6309EA171DCCAC3F001815C6 /* ManagerSalary */,
 				6309EA101DCBC74B001815C6 /* StaffInfo */,
@@ -415,14 +447,8 @@
 				7093DD2E1DED10A700396490 /* Salary */,
 				6335E17A1DB8E52C00B71A63 /* Model */,
 				706159CB1D94231800D2530B /* Supporting Files */,
+				631DFC5D1DF5B72000006A69 /* NewImage */,
 				63D92FB41DBF8105007578DB /* Image */,
-				A9DC91111DB51FD900679708 /* HRM.entitlements */,
-				706159CE1D94231800D2530B /* AppDelegate.h */,
-				706159CF1D94231800D2530B /* AppDelegate.m */,
-				706159D71D94231800D2530B /* Assets.xcassets */,
-				706159D91D94231800D2530B /* LaunchScreen.storyboard */,
-				706159DC1D94231900D2530B /* Info.plist */,
-				A99D6A411DB4D18700C54FBB /* GoogleService-Info.plist */,
 			);
 			path = HRM;
 			sourceTree = "<group>";
@@ -430,6 +456,13 @@
 		706159CB1D94231800D2530B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				63E52BF41DE987BD00BD24C2 /* bell.mp3 */,
+				A9DC91111DB51FD900679708 /* HRM.entitlements */,
+				706159CE1D94231800D2530B /* AppDelegate.h */,
+				706159CF1D94231800D2530B /* AppDelegate.m */,
+				706159D71D94231800D2530B /* Assets.xcassets */,
+				706159DC1D94231900D2530B /* Info.plist */,
+				A99D6A411DB4D18700C54FBB /* GoogleService-Info.plist */,
 				706159CC1D94231800D2530B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -447,16 +480,8 @@
 		A95C7E351DB9A7CD00AF7CB5 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				A95C7E361DB9A85200AF7CB5 /* ApplicationListPageTableViewController.h */,
-				A95C7E371DB9A85200AF7CB5 /* ApplicationListPageTableViewController.m */,
-				A95C7E391DB9A8D800AF7CB5 /* ApplicationFormPageViewController.h */,
-				A95C7E3A1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m */,
-				A91416FE1DBE601200735A49 /* ApplicationInfoPageViewController.h */,
-				A91416FF1DBE601200735A49 /* ApplicationInfoPageViewController.m */,
-				3A635F591DEB49C0009DA2B6 /* SignoffListTableViewController.h */,
-				3A635F5A1DEB49C0009DA2B6 /* SignoffListTableViewController.m */,
-				3A80EFD21DEC69E400E605D1 /* SignoffFormPageViewController.h */,
-				3A80EFD31DEC69E400E605D1 /* SignoffFormPageViewController.m */,
+				63152FC61DF5EE5500F694BA /* Staff */,
+				63152FC51DF5DC9B00F694BA /* Manager */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -470,10 +495,8 @@
 				A9DC91171DB5208C00679708 /* SignUpPageViewController.m */,
 				A9DC91191DB52B4100679708 /* UserInfoPageViewController.h */,
 				A9DC911A1DB52B4100679708 /* UserInfoPageViewController.m */,
-				A91417011DBEEA8600735A49 /* SupervisorHomePageViewController.h */,
-				A91417021DBEEA8600735A49 /* SupervisorHomePageViewController.m */,
-				A91417041DBEEAF600735A49 /* EmployeeHomePageViewController.h */,
-				A91417051DBEEAF600735A49 /* EmployeeHomePageViewController.m */,
+				631DFC671DF5D3C800006A69 /* TabBarVC */,
+				6340260D1DF6D5F300F8A1F0 /* UnUse */,
 			);
 			name = AccountManage;
 			sourceTree = "<group>";
@@ -524,6 +547,9 @@
 						DevelopmentTeam = 2FFS45S3SA;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -559,37 +585,28 @@
 			files = (
 				637246C61DEC0DB800D55887 /* cellBackground116.png in Resources */,
 				70197E021DDD9CFC009254C4 /* blueheader.png in Resources */,
-				6309E9E71DCB174D001815C6 /* backBtn.png in Resources */,
-				63D92FD71DBF811A007578DB /* purpleCircle.png in Resources */,
 				70E35BF91DE7C73D00CB6702 /* cellBackground.png in Resources */,
 				A99D6A421DB4D18700C54FBB /* GoogleService-Info.plist in Resources */,
-				7023F6E21DD354BF00793999 /* btnGreen.png in Resources */,
-				63D92FC91DBF811A007578DB /* blueCircle.png in Resources */,
 				6309EA0F1DCBBF1A001815C6 /* head.png in Resources */,
 				70197E051DDD9CFC009254C4 /* redheader.png in Resources */,
 				637AD25A1DD5E6D500FA94E5 /* head01.png in Resources */,
-				63D92FD61DBF811A007578DB /* orangeCircle.png in Resources */,
 				706159DB1D94231800D2530B /* LaunchScreen.storyboard in Resources */,
-				637246C41DEC064E00D55887 /* launchScreenImage.png in Resources */,
 				63FCD8B51DF2BCCA00734E43 /* Li.png in Resources */,
-				63D92FD81DBF811A007578DB /* redCircle.png in Resources */,
 				631126241DDEE30A00F3404E /* grayheader.png in Resources */,
 				70E35BFB1DE7C74600CB6702 /* agreeIcon.png in Resources */,
 				637246C21DEC026100D55887 /* becheckIcon.png in Resources */,
 				70197E041DDD9CFC009254C4 /* orangeheader.png in Resources */,
+				63152FCA1DF5F3D200F694BA /* loginbackground.png in Resources */,
 				63E52BF51DE987BD00BD24C2 /* bell.mp3 in Resources */,
 				3A40FB8D1DF154D500DBBE20 /* viber.png in Resources */,
-				7032EEE81DD76294008C6C7A /* btnWork.png in Resources */,
 				70E35BF71DE7C73100CB6702 /* refuseIcon.png in Resources */,
-				3ABC83D71DEA282A0099FEFB /* backgroundGreen.png in Resources */,
+				631DFC5A1DF5A77400006A69 /* Manager.storyboard in Resources */,
+				63152FC81DF5F35300F694BA /* background.png in Resources */,
 				706159D81D94231800D2530B /* Assets.xcassets in Resources */,
+				6340260F1DF6D73F00F8A1F0 /* LunchScreen.png in Resources */,
 				3A01A3D21DEB420A002A2554 /* AccountManage.storyboard in Resources */,
-				7023F6DF1DD354BF00793999 /* backgroundBlue.png in Resources */,
-				7023F6E11DD354BF00793999 /* btnBlue.png in Resources */,
-				637AD2591DD5E6D500FA94E5 /* camera.png in Resources */,
 				70197E031DDD9CFC009254C4 /* greenheader.png in Resources */,
-				7023F6E41DD3627300793999 /* btnRed.png in Resources */,
-				639C13831DDEA1B900E21531 /* info.png in Resources */,
+				631DFC5C1DF5A78500006A69 /* Staff.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -650,17 +667,16 @@
 			files = (
 				A91417061DBEEAF600735A49 /* EmployeeHomePageViewController.m in Sources */,
 				63E52BF81DE98B5600BD24C2 /* AddBulletinViewController.m in Sources */,
-				6309EA161DCBC78F001815C6 /* StaffInfoViewController.m in Sources */,
 				A9DC91151DB5202D00679708 /* SignInPageViewController.m in Sources */,
 				6309EA201DCCAD52001815C6 /* SalaryListTableViewCell.m in Sources */,
 				63E0A1161DCB0DEF0021F246 /* BulletinBoardTableViewCell.m in Sources */,
-				6309EA131DCBC777001815C6 /* StaffListViewController.m in Sources */,
 				6335E1801DB8E85200B71A63 /* SchedulingViewController.m in Sources */,
 				63D92FAF1DBF7F7D007578DB /* CheckClassCollectionCell.m in Sources */,
 				6335E1791DB8E4A200B71A63 /* AttendanceViewController.m in Sources */,
-				639DD7C11DD01A9700ED2C7D /* StaffInfoDataManager.m in Sources */,
 				A9DC911B1DB52B4100679708 /* UserInfoPageViewController.m in Sources */,
 				A95C7E381DB9A85200AF7CB5 /* ApplicationListPageTableViewController.m in Sources */,
+				631DFC631DF5D11300006A69 /* EmployeeTabBarController.m in Sources */,
+				63391C411E6BD6A7008887AD /* StaffInfoViewController.m in Sources */,
 				A91417001DBE601200735A49 /* ApplicationInfoPageViewController.m in Sources */,
 				A95C7E3B1DB9A8D800AF7CB5 /* ApplicationFormPageViewController.m in Sources */,
 				3A80EFD41DEC69E400E605D1 /* SignoffFormPageViewController.m in Sources */,
@@ -673,8 +689,11 @@
 				6309EA1A1DCCAC8E001815C6 /* StaffSalaryViewController.m in Sources */,
 				3A635F5B1DEB49C0009DA2B6 /* SignoffListTableViewController.m in Sources */,
 				6335E1751DB8E21400B71A63 /* NSDateNSStringExchange.m in Sources */,
+				631DFC661DF5D39D00006A69 /* ManagerTabBarController.m in Sources */,
 				63D92FE11DC03667007578DB /* SalarySums.m in Sources */,
 				63E52BF31DE93E8F00BD24C2 /* ServerCommunicator.m in Sources */,
+				63391C3B1E6BCE3A008887AD /* StaffListViewController.m in Sources */,
+				63391C3E1E6BCEA4008887AD /* StaffInfoDataManager.m in Sources */,
 				636B50531DD0C6B3009BCB11 /* StaffListTableViewCell.m in Sources */,
 				706159CD1D94231800D2530B /* main.m in Sources */,
 				A9DC91211DB530F600679708 /* CurrentUser.m in Sources */,

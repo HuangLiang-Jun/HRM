@@ -20,8 +20,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *birthdayTextField;
 @property (weak, nonatomic) IBOutlet UITextField *idTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cellphoneTextField;
-
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIImageView *staffImageView;
 
 @property (nonatomic,assign)BOOL editStatus;
@@ -35,21 +33,22 @@
     int auth;
     FIRDatabaseReference *updateInfoRef;
     FIRDatabaseReference *updateAuthRef;
-    
+    FIRDatabaseReference *imageUrlRef;
+    NSString *staffUID;
+    NSString *newUrl;
+    UIImage *SFImg;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     _editStatus = false;
-    
-    
     dataManager = [StaffInfoDataManager sharedInstance];
     dataManager.imageStatus = false;
     updateInfoRef = [[[[[FIRDatabase database]reference]child:@"StaffInformation"]child:_nameStr]child:@"Info"];
     updateAuthRef =[[[[FIRDatabase database]reference]child:@"StaffInformation"]child:_nameStr];
-    NSLog(@"staffDetail:%@",_staffInfoDict);
+    imageUrlRef = [[[FIRDatabase database]reference]child:@"thumbnail"];
+    
     infoDict = [_staffInfoDict valueForKey:@"Info"];
-    NSLog(@"info :%@",infoDict);
     auth = [[_staffInfoDict valueForKey:@"Auth"]intValue];
     
     _nameTextField.text = _nameStr;
@@ -57,42 +56,57 @@
     _idTextField.text = [infoDict valueForKey:@"IDCardNumber"];
     _cellphoneTextField.text = [infoDict valueForKey:CELLPHONENUM];
     
+    staffUID = dataManager.allStaffInfoDict[_nameStr][@"UID"];
+    //下載個人照
+    NSString *URLString = [dataManager.allStaffThumbnailDict valueForKey:staffUID];
+    NSURL *url = [NSURL URLWithString:URLString];
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    
+    NSURLSessionTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"download image fail: %@",error);
+            return ;
+        }
+        SFImg = [UIImage imageWithData:data];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (SFImg != nil){
+                self.staffImageView.image = SFImg;
+            }
+            
+        });
+        
+    }];
+    
+    [task resume];
+
     if (auth == 0) {
         _authSegment.selectedSegmentIndex = 0;
     }else {
         _authSegment.selectedSegmentIndex = 1;
     }
     
+
     editBtn = [[UIBarButtonItem alloc]initWithTitle:@"編輯" style:UIBarButtonItemStylePlain target:self action:@selector(editInfo)];
     doneBtn = [[UIBarButtonItem alloc]initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(finishEditStaffInfo)];
     
     self.navigationItem.rightBarButtonItem = editBtn;
     
     
-    //將照片變成圓形
+    //照片圓角
     _staffImageView.layer.cornerRadius = _staffImageView.frame.size.height *0.5;
     _staffImageView.layer.masksToBounds = true;
     _staffImageView.layer.borderWidth = 0.0;
-    _staffImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _staffImageView.contentMode = UIViewContentModeScaleAspectFill;
     
-    NSData *imdata = [[NSUserDefaults standardUserDefaults]valueForKey:_nameStr];
-    UIImage *staffImage = [UIImage imageWithData:imdata];
-    if (staffImage != nil){
-        _staffImageView.image = staffImage;
-    } else {
-        if ([ _nameStr isEqualToString:@"李家舜"]){
-            _staffImageView.image = [UIImage imageNamed:@"Li.png"];
-        }else{
-            _staffImageView.image = [UIImage imageNamed:@"head.png"];
-        }
-    }
+    
 }
 
 #pragma - mark Camera
 
 - (IBAction)settingStaffPhotoRecognizer:(UITapGestureRecognizer *)sender {
     
-    UIAlertController *alert =  [UIAlertController alertControllerWithTitle:@"請選擇照片" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert =  [UIAlertController alertControllerWithTitle:@"選擇照片模式" message:nil preferredStyle:UIAlertControllerStyleAlert];
     
     UIAlertAction *camera = [UIAlertAction actionWithTitle:@"相機" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         
@@ -143,10 +157,19 @@
     //UIImage *resizedImage = [self resizeFromImage:image];
     
     _staffImageView.image = image;
-    CurrentUser *localUser = [CurrentUser sharedInstance];
-    NSData *data = UIImageJPEGRepresentation(image,1.0);
-    [localUser updateUserDefaultsWithValue:data andKey:_nameStr];
     
+    NSData *data = UIImageJPEGRepresentation(image,1.0);
+    
+    // 編輯照片後上傳到db
+    [dataManager upLoadStaffImage:data WiththumbnailName:staffUID withBlock:^(FIRStorageMetadata *metadata, NSError *error) {
+        if (error) {
+            NSLog(@"upLoad error");
+            return;
+        }
+        
+        newUrl = metadata.downloadURL.absoluteString;
+
+    }];
     
     dataManager.imageStatus = true;
     [picker dismissViewControllerAnimated:true completion:nil];
@@ -221,8 +244,6 @@
     _cellphoneTextField.enabled = false;
     NSLog(@"Done");
     
-    
-    
     if (auth != _authSegment.selectedSegmentIndex) {
         NSLog(@"authChange %lu",_authSegment.selectedSegmentIndex);
         //資料有變就加到Dict中
@@ -238,9 +259,18 @@
         _editStatus = true;
     }
     
+    if (dataManager.imageStatus) {
+        
+        NSDictionary *imageUpdateDict = @{staffUID:newUrl};
+        [imageUrlRef updateChildValues:imageUpdateDict];
+    
+    }
+    
     if (_editStatus) {
         [dataManager refreshInfoData];
     }
+    
+
     
 }
 

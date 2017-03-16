@@ -33,21 +33,19 @@
     [_applyTime setUserInteractionEnabled:false];
     [_contentTextView setUserInteractionEnabled:false];
     
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    NSUInteger index = [self.navigationController.viewControllers indexOfObject:self];
-    ApplicationListPageTableViewController *applicationPTableVC = self.navigationController.viewControllers[index-1];
-    NSDictionary *applicationDict = applicationPTableVC.selectedApplicationDict;
-    NSString *applyDateStr = [applicationDict allKeys].firstObject;
-    NSDictionary *infoDict = [applicationDict allValues].firstObject;
+    NSString *applyDateStr = [_applicationDict allKeys].firstObject;
+    NSDictionary *infoDict = [_applicationDict allValues].firstObject;
     _typeField.text = [infoDict objectForKey:@"Type"];
     _fromField.text = [infoDict objectForKey:@"From"];
     _toField.text = [infoDict objectForKey:@"To"];
     _applyTime.text = applyDateStr;
     _contentTextView.text = [infoDict objectForKey:@"Content"];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
     
 }
 

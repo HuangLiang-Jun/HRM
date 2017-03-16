@@ -14,8 +14,9 @@
 @import Firebase;
 @import FirebaseDatabase;
 
-#define COMPANY_LOCATION_LATITUDE 24.967726
-#define COMPANY_LOCATION_LONGITUDE 121.191679
+#define COMPANY_LOCATION_LATITUDE 22.626256
+#define COMPANY_LOCATION_LONGITUDE 120.281939
+
 @interface AttendanceViewController () <MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mainMapView;
@@ -40,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     userData = [CurrentUser sharedInstance];
     
     currentDate = [NSDate date];
@@ -65,8 +66,9 @@
 }
 
 - (IBAction)onDutyBtnPressed:(UIButton *)sender {
-    
-    if (distance <= 10) {
+    //判斷距離
+    if (distance <= 100) {
+        
         [_attendanceRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
             NSUInteger dicCount = 10;
             if(snapshot.hasChildren){
@@ -119,6 +121,7 @@
     
     myLocation = locations.lastObject;
     
+    //距離
     distance = [myLocation distanceFromLocation:companyLocation];
    
     static dispatch_once_t changeRegionToken = 0;

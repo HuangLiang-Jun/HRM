@@ -27,7 +27,8 @@
 
 - (void) downLoadStaffInfo:(UITableView *)tableView {
     
-    
+    _tableView = tableView;
+
     FIRDatabaseReference *staffInfoRef = [[[FIRDatabase database]reference]child:@"StaffInformation"];
     
     if (_allStaffInfoDict == nil) {
@@ -36,12 +37,24 @@
             
             self.allStaffInfoDict = snapshot.value;
             NSLog(@"StaffInformation : %@",self.allStaffInfoDict);
-            _tableView = tableView;
             [_tableView reloadData];
         }];
         
+        FIRDatabaseReference *imageUrlRef = [[[FIRDatabase database]reference]child:@"thumbnail"];
+    
+        [imageUrlRef observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+            
+            if ([snapshot exists]) {
+                _allStaffThumbnailDict = snapshot.value;
+                NSLog(@"UrlDict: %@",_allStaffThumbnailDict);
+                }
+            
+            [_tableView reloadData];
+        }];
     }
 }
+
+
 
 - (void) refreshInfoData{
     
@@ -62,20 +75,21 @@
 }
 
 
-- (void) upLoadStaffImage:(NSData *)imageData withBlock:(Completion)block {
+- (void) upLoadStaffImage:(NSData *)imageData WiththumbnailName:(NSString *)uid withBlock:(Completion)block {
     
-    FIRStorage *storageRef = [FIRStorage storage];
-    FIRStorageReference *imageRef = [storageRef reference];
+    FIRStorage *storage = [FIRStorage storage];
     
-    FIRStorageReference *final = [imageRef child:@"image"];
+    FIRStorageReference *storageRef = [storage referenceForURL:@"gs://hrmanager-f9a98.appspot.com"];
     
-    [final putData:imageData metadata:nil completion:
+    NSString *thumbnailName = [NSString stringWithFormat:@"%@.png", uid];
+    FIRStorageReference *thumbnailRef = [[storageRef child:@"thumbnail"] child:thumbnailName];
+    [thumbnailRef putData:imageData metadata:nil completion:
     ^(FIRStorageMetadata * _Nullable metadata, NSError * _Nullable error) {
         
         block(metadata,error);
         
     }];
-    
+    _imageStatus = false;
 }
 
 @end

@@ -21,7 +21,7 @@ static ServerCommunicator *_singletonCommunicator = nil;
 
 @implementation ServerCommunicator
 {
-    UITableView *_tableView;
+    
 }
 
 
@@ -96,6 +96,7 @@ static ServerCommunicator *_singletonCommunicator = nil;
     [manager POST:urlString parameters:finalParameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         // responseObject：會自動幫我們轉換成陣列
         NSLog(@"doPOST OK : %@",responseObject);
+        
         if(done != nil){
             done(nil,responseObject);
         }

@@ -35,6 +35,10 @@
 	<string>是否願意提供現在位置?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>是否使用相簿</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

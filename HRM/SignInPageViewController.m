@@ -10,6 +10,8 @@
 #import "StrValidationFilter.h"
 #import "CurrentUser.h"
 
+#import "EmployeeTabBarController.h"
+#import "ManagerTabBarController.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface SignInPageViewController () <UITextFieldDelegate> {
@@ -30,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+   
+    
     
     _emailField.tag = 10;
     _emailField.delegate = self;
@@ -289,16 +294,22 @@
     [SVProgressHUD dismiss];
     
     CurrentUser *localUser = [CurrentUser sharedInstance];
-    switch (localUser.auth.intValue) {
-            
-        case 0:
-            [self performSegueWithIdentifier:@"EmployeeHomePageSegue" sender:nil];
-            break;
-            
-        case 1:
-            [self performSegueWithIdentifier:@"SupervisorHomePageSegue" sender:nil];
-            break;
-            
+    
+    if (localUser.auth.intValue == 0) {
+       UIStoryboard *employeeStoryBoard = [UIStoryboard storyboardWithName:@"Staff" bundle:[NSBundle mainBundle]];
+    
+        EmployeeTabBarController *staffVC = [employeeStoryBoard instantiateViewControllerWithIdentifier:@"EmployeeTabBarController"];
+        
+        [self presentViewController:staffVC animated:true completion:nil];
+        //[self showViewController:test sender:nil];
+        
+    } else if (localUser.auth.intValue == 1) {
+        
+        UIStoryboard *managerStoryBoard = [UIStoryboard storyboardWithName:@"Manager" bundle:[NSBundle mainBundle]];
+
+        ManagerTabBarController *managerVC = [managerStoryBoard instantiateViewControllerWithIdentifier:@"ManagerTabBarController"];
+        
+        [self presentViewController:managerVC animated:true completion:nil];
     }
 }
 

@@ -18,15 +18,16 @@ typedef void(^Completion)(FIRStorageMetadata *metadata, NSError *error);
 @interface StaffInfoDataManager : NSObject
 
 @property (nonatomic,strong) NSMutableDictionary *allStaffInfoDict;
+@property (nonatomic,strong) NSMutableDictionary *allStaffThumbnailDict;
 @property (nonatomic,assign) BOOL editStatus;
 @property (nonatomic,assign) BOOL imageStatus;
 
-+(instancetype) sharedInstance;
++ (instancetype) sharedInstance;
 
--(void) downLoadStaffInfo:(UITableView *)tableView ;
+- (void) downLoadStaffInfo:(UITableView *)tableView ;
 
--(void) refreshInfoData;
+- (void) refreshInfoData;
 
-- (void) upLoadStaffImage:(NSData *)imageData withBlock:(Completion)block;
+- (void) upLoadStaffImage:(NSData *)imageData WiththumbnailName:(NSString *)uid withBlock:(Completion)block;
 
 @end

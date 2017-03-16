@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     _schedulingCollectionView.delegate = self;
     _schedulingCollectionView.dataSource = self;
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadCollectionData) name:NOTIFICATION_KEY object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadViewData) name:NOTIFICATION_KEY object:nil];
     
     
     NSDate *nextMonth = [_schedulingCalendar dateByAddingMonths:1 toDate:[NSDate date]];
@@ -211,7 +211,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
             NSLog(@"Update AL Error: %@",error);
         }
     }];
-    [self alertController:@"上傳完成" alertMessage:@"即將離開本畫面" dissmiddVC:true];
+    [self alertController:@"上傳完成" alertMessage:@"班表上傳完成" dissmiddVC:false];
     
 }
 
@@ -328,7 +328,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     //update firebase data
     [colorForVactionDic setValue:selectColor forKey:selectDateStr];
     [attendanceSheetForNextMonthDic setObject:classStr forKey:selectDateStr];
-    [self reloadCollectionData];
+    [self reloadViewData];
     NSLog(@"加入班別時間: %@",attendanceSheetForNextMonthDic);
 }
 
@@ -471,8 +471,9 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"collectionViewCell" forIndexPath:indexPath];
-    
+    //各section中顯示的內容
     switch (indexPath.section) {
+        //section1:已經排班的狀態
         case ScheduleStatus:
             
             switch (indexPath.row) {
@@ -507,16 +508,20 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
                     
             }
             break;
+        
         case FirstShift:
             
             cell.schedulingCollevtionViewLabel.text = firstShiftArr[indexPath.row];
             break;
+        
         case SecondShift:
             cell.schedulingCollevtionViewLabel.text = secondShiftArr[indexPath.row];
             break;
+        
         case DayOff:
             cell.schedulingCollevtionViewLabel.text = dayoff[indexPath.row];
             break;
+        
         case AnnualLeave:
             cell.schedulingCollevtionViewLabel.text = annualLeaveArr[indexPath.row];
             break;
@@ -555,7 +560,7 @@ typedef NS_ENUM(NSInteger, ScheduleItemStatus) { // CollrctionViewCell
     }
 }
 
--(void) reloadCollectionData {
+-(void) reloadViewData {
     
     [_schedulingCollectionView reloadData];
     [_schedulingCalendar reloadData];

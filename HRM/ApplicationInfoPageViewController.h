@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ApplicationInfoPageViewController : UIViewController
-
+@property (nonatomic, strong) NSDictionary *applicationDict;
 @end

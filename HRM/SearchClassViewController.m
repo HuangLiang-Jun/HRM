@@ -11,6 +11,8 @@
 #import "CheckClassCollectionReusable.h"
 #import "FSCalendar.h"
 #import "NSDateNSStringExchange.h"
+#import "CurrentUser.h"
+#import "ServerCommunicator.h"
 @import Firebase;
 @import FirebaseDatabase;
 
@@ -27,10 +29,22 @@
     NSMutableDictionary *dic;
     NSMutableArray *onDuty,*offDuty,*dayoff,*annualLeave;
     NSString *monthStrKey;
+    ServerCommunicator *comm;
+    CurrentUser *currentUser;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    comm = [ServerCommunicator shareInstance];
+    currentUser = [CurrentUser sharedInstance];
+    if (currentUser.deviceToken != nil) {
+        
+        [comm updateDeviceToken:^(NSError *error, id result) {
+            if (error) {
+                NSLog(@"update device token error!");
+                return;
+            }
+        }];
+    }
     // for collectionView
     onDuty = [NSMutableArray new];
     offDuty = [NSMutableArray new];
@@ -72,6 +86,37 @@
             [_checkClassTableCollectionView reloadData];
         }
     }];
+    
+        
+}
+- (IBAction)signOutBtnPressed:(id)sender {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser signOutUserAccount];
+
+
+}
+
+
+- (IBAction)logOutBtnPressed:(id)sender {
+    
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self selector:@selector(prepareForSignInPage) name:@"UserSignedOut" object:nil];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    [localUser signOutUserAccount];
+}
+
+- (void)prepareForSignInPage {
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter removeObserver:self name:@"UserSignedOut" object:nil];
+    CurrentUser *localUser = [CurrentUser sharedInstance];
+    localUser.email = @"";
+    localUser.password = @"";
+    [self dismissViewControllerAnimated:true completion:nil];
     
 }
 
@@ -118,6 +163,7 @@
 }
 
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -138,41 +184,6 @@
     
     headerView = [_checkClassTableCollectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ClassHeaderView" forIndexPath:indexPath];
     
-//    switch (indexPath.section) {
-//        case 0:
-//            if (onDuty.count == 0){
-//                headerView.hidden = true;
-//                
-//                
-//            }else{
-//            headerView.hidden = false;
-//            }
-//            break;
-//        case 1:
-//            if (offDuty.count == 0){
-//                headerView.hidden = true;
-//            }else{
-//            headerView.hidden = false;
-//            }
-//            break;
-//        case 2:
-//            if (dayoff.count == 0){
-//                headerView.hidden = true;
-//            }else{
-//            headerView.hidden = false;
-//            }
-//            break;
-//        case 3:
-//            if (annualLeave.count == 0){
-//                headerView.hidden = true;
-//            }else{
-//            headerView.hidden = false;
-//            }
-//            break;
-//        
-//    }
-
-
     NSArray *arr = @[@"早班",@"晚班",@"例休",@"特休"];
     NSArray *headerImage = @[[UIImage imageNamed:@"blueheader.png"],
                              [UIImage imageNamed:@"orangeheader.png"],
@@ -222,12 +233,15 @@
             cell.cellLabel.text = onDuty[indexPath.row];
             break;
         case 1:
+            
             cell.cellLabel.text = offDuty[indexPath.row];
             break;
         case 2:
+            
             cell.cellLabel.text = dayoff[indexPath.row];
             break;
         case 3:
+            
             cell.cellLabel.text = annualLeave[indexPath.row];
             break;
         default:
@@ -235,8 +249,6 @@
     }
     return cell;
 }
-
-
 
 
 
